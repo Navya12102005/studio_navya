@@ -1,7 +1,7 @@
 /* ---------- Service details ---------- */
 const SERVICES = [
   {
-    id: "social", icon: "I", name: "Social Media Management",
+    id: "social", icon: "01", name: "Social Media Management",
     tagline: "Your brand, consistently beautiful and consistently seen.",
     what: "End-to-end management of Instagram, Facebook and other platforms — from strategy to posting to community care.",
     includes: [
@@ -17,7 +17,7 @@ const SERVICES = [
     kpis: ["Reach", "Engagement rate", "Follower growth", "Profile visits"]
   },
   {
-    id: "linkedin", icon: "II", name: "LinkedIn Marketing",
+    id: "linkedin", icon: "02", name: "LinkedIn Marketing",
     tagline: "Turn your profile into a client-generating asset.",
     what: "Personal-brand and company-page growth on LinkedIn through positioning, ghostwritten thought leadership and strategic networking.",
     includes: [
@@ -33,7 +33,7 @@ const SERVICES = [
     kpis: ["Impressions", "Profile views", "Followers", "Inbound DMs"]
   },
   {
-    id: "cold", icon: "III", name: "Cold Emailing",
+    id: "cold", icon: "03", name: "Cold Emailing",
     tagline: "Predictable conversations with your ideal clients.",
     what: "Done-for-you outbound: finding the right prospects and writing personalised emails that get replies — without landing in spam.",
     includes: [
@@ -49,7 +49,7 @@ const SERVICES = [
     kpis: ["Open rate", "Reply rate", "Positive replies", "Meetings booked"]
   },
   {
-    id: "email", icon: "IV", name: "Email Marketing",
+    id: "email", icon: "04", name: "Email Marketing",
     tagline: "Your most profitable channel — the one you own.",
     what: "Newsletters and automated flows that nurture your existing audience and turn subscribers into repeat customers.",
     includes: [
@@ -65,7 +65,7 @@ const SERVICES = [
     kpis: ["Open rate", "Click rate", "Revenue per email", "List growth"]
   },
   {
-    id: "content", icon: "V", name: "Content Writing",
+    id: "content", icon: "05", name: "Content Writing",
     tagline: "Words that sound like you — only sharper.",
     what: "Research-backed, SEO-friendly writing for websites, blogs and brands — clear, persuasive and on-voice.",
     includes: [
@@ -81,7 +81,7 @@ const SERVICES = [
     kpis: ["Organic traffic", "Time on page", "Rankings", "Conversions"]
   },
   {
-    id: "digital", icon: "VI", name: "Digital Marketing",
+    id: "digital", icon: "06", name: "Digital Marketing",
     tagline: "One strategy connecting every channel.",
     what: "Holistic growth planning and execution — paid ads, SEO basics, funnels and analytics tied together around your business goals.",
     includes: [
@@ -228,15 +228,6 @@ menuBtn.onclick = () => {
   menuBtn.setAttribute("aria-expanded", open);
 };
 $$(".links a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
-
-/* ---------- Cursor glow + hero parallax ---------- */
-const glow = $(".cursor-glow"), heroBg = $(".hero-bg");
-addEventListener("pointermove", e => {
-  glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
-});
-addEventListener("scroll", () => {
-  if (scrollY < innerHeight) heroBg.style.transform = `translateY(${scrollY * 0.3}px) scale(1.1)`;
-}, { passive: true });
 
 /* ---------- Contact form (opens email client) ---------- */
 $("#contactForm").addEventListener("submit", e => {
