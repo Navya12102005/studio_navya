@@ -238,3 +238,61 @@ $("#contactForm").addEventListener("submit", e => {
 });
 
 $("#yr").textContent = new Date().getFullYear();
+
+/* ---------- Scroll animations ---------- */
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Split headings into words that rise from a mask
+$$(".split").forEach(el => {
+  let i = 0;
+  const walk = node => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(part); return; }
+          const w = document.createElement("span"); w.className = "w";
+          const inner = document.createElement("span");
+          inner.textContent = part; inner.style.transitionDelay = `${i++ * 70}ms`;
+          w.append(inner); frag.append(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
+    });
+  };
+  walk(el);
+});
+const io2 = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) { en.target.classList.add("in"); io2.unobserve(en.target); }
+}), { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+$$(".split, .img-reveal").forEach(el => io2.observe(el));
+
+// Progress bar, parallax, pinned horizontal process
+const bar = $(".progress"), hs = $(".hscroll"), track = $(".hs-track"), meter = $(".hs-meter i");
+const parallax = $$("[data-speed]");
+function sizeHS() {
+  if (!hs) return;
+  const dist = Math.max(0, track.scrollWidth - innerWidth + 80);
+  hs.style.height = `${innerHeight + dist}px`;
+  hs.dataset.dist = dist;
+}
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${scrollY / max})`;
+  if (reduced) return;
+  parallax.forEach(el => {
+    const r = el.parentElement.getBoundingClientRect();
+    el.style.transform = `translate3d(0, ${-r.top * el.dataset.speed}px, 0)`;
+  });
+  if (hs) {
+    const r = hs.getBoundingClientRect(), dist = +hs.dataset.dist;
+    const p = Math.min(1, Math.max(0, -r.top / (hs.offsetHeight - innerHeight)));
+    track.style.transform = `translate3d(${-p * dist}px, 0, 0)`;
+    meter.style.transform = `scaleX(${p})`;
+    $$("li", track).forEach((li, k, all) => li.classList.toggle("on", p >= k / all.length - 0.05));
+  }
+}
+sizeHS(); onScroll();
+addEventListener("resize", () => { sizeHS(); onScroll(); });
+addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });

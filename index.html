@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <a href="#top" class="logo"><span class="logo-mark">SN</span> Studio Navya</a>
@@ -27,12 +28,12 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero ink tear-bottom">
-    <div class="hero-photo" aria-hidden="true"></div>
+  <section class="hero dark">
+    <div class="hero-photo" data-speed="0.25" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-main">
         <p class="kicker reveal">Digital services studio — Est. 2026</p>
-        <h1 class="reveal">Marketing<br>with <em>depth.</em></h1>
+        <h1 class="split">Marketing<br>with <em>depth.</em></h1>
         <p class="lead reveal">Social media, LinkedIn, cold outreach, email and content — planned with care, written by hand, and measured every month.</p>
         <div class="cta-row reveal">
           <a href="#contact" class="btn">Book a discovery call</a>
@@ -61,7 +62,7 @@
     <div class="section-head reveal">
       <span class="sec-num">01</span>
       <div>
-        <h2>Services</h2>
+        <h2 class="split">Services</h2>
         <p class="sub">What each one includes, what you receive every month, and how we measure it.</p>
       </div>
     </div>
@@ -72,12 +73,12 @@
   </section>
 
   <!-- JOURNEY -->
-  <section class="section ink tear-top tear-bottom journey">
+  <section class="section dark journey">
     <div class="container">
       <div class="section-head reveal">
         <span class="sec-num">02</span>
         <div>
-          <h2>How it all <em>connects</em></h2>
+          <h2 class="split">How it all <em>connects</em></h2>
           <p class="sub">Each service moves people one step closer to becoming your client.</p>
         </div>
       </div>
@@ -91,27 +92,30 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" class="section container">
-    <div class="section-head reveal">
-      <span class="sec-num">03</span>
-      <div><h2>Process</h2><p class="sub">Five steps, the same for every client.</p></div>
+  <!-- PROCESS (pinned horizontal scroll) -->
+  <section id="process" class="hscroll">
+    <div class="hs-sticky">
+      <div class="container hs-head">
+        <span class="sec-num">03</span>
+        <h2 class="split">The process</h2>
+        <div class="hs-meter"><i></i></div>
+      </div>
+      <ol class="hs-track">
+        <li><span class="ord">01</span><h3>Discover</h3><p>A 30-minute call and an audit of your channels, audience and goals.</p></li>
+        <li><span class="ord">02</span><h3>Strategise</h3><p>A written plan — positioning, content pillars, channels, KPIs and a 90-day roadmap.</p></li>
+        <li><span class="ord">03</span><h3>Create</h3><p>Copy, visuals, sequences and calendars, all sent to you for approval first.</p></li>
+        <li><span class="ord">04</span><h3>Launch</h3><p>Publishing, outreach and automations go live on schedule.</p></li>
+        <li><span class="ord">05</span><h3>Measure</h3><p>A monthly report: what worked, what didn't, and what changes next.</p></li>
+      </ol>
     </div>
-    <ol class="steps">
-      <li class="reveal"><span class="ord">1<sup>st</sup></span><div><h3>Discover</h3><p>A 30-minute call and an audit of your channels, audience and goals.</p></div></li>
-      <li class="reveal"><span class="ord">2<sup>nd</sup></span><div><h3>Strategise</h3><p>A written plan: positioning, content pillars, channels, KPIs and a 90-day roadmap.</p></div></li>
-      <li class="reveal"><span class="ord">3<sup>rd</sup></span><div><h3>Create</h3><p>Copy, visuals, sequences and calendars — all sent to you for approval first.</p></div></li>
-      <li class="reveal"><span class="ord">4<sup>th</sup></span><div><h3>Launch</h3><p>Publishing, outreach and automations go live on schedule.</p></div></li>
-      <li class="reveal"><span class="ord">5<sup>th</sup></span><div><h3>Measure</h3><p>A monthly report: what worked, what didn't, and what changes next.</p></div></li>
-    </ol>
   </section>
 
   <!-- WORK -->
-  <section id="work" class="section paper-2 tear-top">
+  <section id="work" class="section tint">
     <div class="container">
       <div class="section-head reveal">
         <span class="sec-num">04</span>
-        <div><h2>Selected work</h2><p class="sub">Add projects in <code>work.js</code> — they appear here automatically.</p></div>
+        <div><h2 class="split">Selected work</h2><p class="sub">Add projects in <code>work.js</code> — they appear here automatically.</p></div>
       </div>
       <div class="filters reveal" id="workFilters"></div>
       <div class="work-grid" id="workGrid"></div>
@@ -122,7 +126,7 @@
   <section class="section container results">
     <div class="section-head reveal">
       <span class="sec-num">05</span>
-      <div><h2>Typical results in 90 days</h2><p class="sub">Illustrative benchmarks — replace with your own case-study numbers.</p></div>
+      <div><h2 class="split">Typical results in 90 days</h2><p class="sub">Illustrative benchmarks — replace with your own case-study numbers.</p></div>
     </div>
     <div class="bars">
       <div class="bar-item reveal"><div class="bar-label"><span>Instagram reach</span><b>+180%</b></div><div class="bar"><i style="--v:90%"></i></div></div>
@@ -134,15 +138,15 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="section ink tear-top tear-bottom about">
+  <section id="about" class="section dark about">
     <div class="container about-grid">
       <div class="about-art reveal">
-        <div class="about-photo" aria-hidden="true"><span lang="mr">नव्या</span></div>
+        <div class="about-photo img-reveal" aria-hidden="true"><span lang="mr">नव्या</span></div>
         <div class="about-tag"><small>Founder</small>Navya</div>
       </div>
       <div class="reveal">
         <span class="sec-num">06</span>
-        <h2>Hi, I'm <em>Navya.</em></h2>
+        <h2 class="split">Hi, I'm <em>Navya.</em></h2>
         <p>I'm a digital marketer and writer. I think good marketing should feel like a conversation, not a billboard — so I combine clear strategy with honest storytelling to help brands grow an audience that actually cares.</p>
         <p>Whether you need your socials run end-to-end, your LinkedIn ghostwritten, or an outreach system that books meetings, I bring structure, taste and consistency.</p>
         <ul class="pills"><li>Canva</li><li>Meta Business Suite</li><li>Sales Navigator</li><li>Mailchimp</li><li>Brevo</li><li>Apollo</li><li>Notion</li><li>Google Analytics</li></ul>
@@ -154,7 +158,7 @@
   <section class="section container">
     <div class="section-head reveal">
       <span class="sec-num">07</span>
-      <div><h2>Ways to work together</h2></div>
+      <div><h2 class="split">Ways to work together</h2></div>
     </div>
     <div class="packages">
       <div class="pkg reveal"><small>Package A</small><h3>Starter</h3><p class="pkg-for">One channel, done properly.</p><ul><li>1 service of your choice</li><li>Monthly content or outreach plan</li><li>Monthly performance report</li><li>Email support</li></ul><a href="#contact" class="link-arrow">Enquire</a></div>
@@ -165,7 +169,7 @@
 
   <!-- FAQ -->
   <section class="section container faq">
-    <div class="section-head reveal"><span class="sec-num">08</span><div><h2>Questions</h2></div></div>
+    <div class="section-head reveal"><span class="sec-num">08</span><div><h2 class="split">Questions</h2></div></div>
     <div class="faq-list">
       <details class="reveal"><summary>How soon will I see results?</summary><p>Cold email and outreach can bring replies within 2–3 weeks. Social and LinkedIn growth compounds — expect clear momentum by month two or three.</p></details>
       <details class="reveal"><summary>Do I need to approve everything?</summary><p>Yes, by default. You get a shared calendar and review everything before it goes live.</p></details>
@@ -175,11 +179,11 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section wine tear-top contact">
+  <section id="contact" class="section wine contact">
     <div class="container contact-grid">
       <div class="reveal">
         <span class="sec-num">09</span>
-        <h2>Let's work <em>together.</em></h2>
+        <h2 class="split">Let's work <em>together.</em></h2>
         <p class="lead">Tell me about your brand and your goals. I reply within 24 hours.</p>
         <div class="socials">
           <a href="mailto:hello@studionavya.com">hello@studionavya.com</a>
