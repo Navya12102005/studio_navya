@@ -179,6 +179,40 @@ cats.forEach(c => {
 });
 renderWork("All");
 
+/* ---------- Certifications ---------- */
+const certs = window.CERTS || [];
+const certList = $("#certList");
+if (!certs.length) $("#certs").remove();
+else {
+  const hrs = certs.reduce((t, c) => t + (+c.hours || 0), 0);
+  const nCert = certs.filter(c => c.type !== "Course").length, nCourse = certs.length - nCert;
+  $("#certSummary").textContent = [nCert && `${nCert} certification${nCert > 1 ? "s" : ""}`, nCourse && `${nCourse} course${nCourse > 1 ? "s" : ""}`, hrs && `${hrs}+ hours of learning`].filter(Boolean).join(" · ");
+  certs.forEach((c, i) => {
+    const li = document.createElement("li");
+    li.className = "cert reveal";
+    li.innerHTML = `
+      <span class="cert-date">${c.date || ""}</span>
+      <div class="cert-main">
+        <h3>${c.title}${c.placeholder ? ` <span class="cert-ex">Example</span>` : ""}</h3>
+        <p>${c.issuer}${c.type ? ` · ${c.type}` : ""}</p>
+        ${c.skills && c.skills.length ? `<div class="cert-skills">${c.skills.map(s => `<span>${s}</span>`).join("")}</div>` : ""}
+      </div>
+      <div class="cert-actions">
+        ${c.image ? `<button class="link-arrow" data-cert="${i}">View</button>` : ""}
+        ${c.link ? `<a class="link-arrow" href="${c.link}" target="_blank" rel="noopener">Verify ↗</a>` : ""}
+      </div>`;
+    certList.appendChild(li);
+  });
+  certList.addEventListener("click", e => {
+    const b = e.target.closest("[data-cert]");
+    if (!b) return;
+    const c = certs[b.dataset.cert];
+    $("#modalBody").innerHTML = `<img src="${c.image}" alt="${c.title} certificate"><small class="eyebrow">${c.issuer} · ${c.date || ""}</small><h3>${c.title}</h3>${c.link ? `<a class="btn" href="${c.link}" target="_blank" rel="noopener">Verify credential ↗</a>` : ""}`;
+    $("#modal").hidden = false;
+    document.body.style.overflow = "hidden";
+  });
+}
+
 /* ---------- Modal ---------- */
 const modal = $("#modal");
 function openModal(i) {
