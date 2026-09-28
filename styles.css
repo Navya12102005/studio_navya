@@ -415,3 +415,14 @@ a.work-card { display: block; }
 .single-actions { display: flex; align-items: center; gap: 20px; }
 @media (max-width: 1000px) { .single-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .single-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Bonuses ---------- */
+.bonus-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 56px; position: relative; padding-top: 34px; }
+.bonus-label { position: absolute; top: 0; left: 0; font: 500 .62rem var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--copper); }
+.bonus { background: var(--olive-ink); color: var(--cream); padding: 24px 22px; }
+.bonus h4 { font: 500 1.2rem/1.2 var(--serif); margin-bottom: 8px; background: var(--shine); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bonus p { font-size: .84rem; color: rgba(244,239,230,.72); }
+@media (max-width: 900px) { .bonus-strip { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .bonus-strip { grid-template-columns: 1fr; } }
+.single-bonus { flex: 0 !important; margin-top: 14px; font-size: .8rem !important; color: var(--olive) !important; padding: 8px 10px; background: rgba(168,97,47,.08); border-left: 2px solid var(--copper); }
+.single-bonus b { display: block; font: 600 .56rem var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--copper); margin-bottom: 2px; }

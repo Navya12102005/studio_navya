@@ -304,11 +304,17 @@ const singles = SITE.singles || [];
 if (!singles.length) $("#singles").remove();
 else {
   const sGrid = $("#singleGrid"), sFilters = $("#singleFilters");
-  const sCats = ["All", ...new Set(singles.map(s => s.service))];
+  const hasPopular = singles.some(s => s.popular);
+  const sCats = [...(hasPopular ? ["Popular"] : []), "All", ...new Set(singles.map(s => s.service))];
+  const bonuses = SITE.bonuses || [];
+  if (bonuses.length) {
+    $("#bonusStrip").innerHTML = `<span class="bonus-label">Launch bonuses</span>` +
+      bonuses.map(b => `<div class="bonus"><h4>${b.title}</h4><p>${b.text}</p></div>`).join("");
+  } else $("#bonusStrip").remove();
   const renderSingles = cat => {
     $$(".chip", sFilters).forEach(c => c.classList.toggle("on", c.dataset.cat === cat));
     sGrid.innerHTML = "";
-    singles.filter(s => cat === "All" || s.service === cat).forEach((s, k) => {
+    singles.filter(s => cat === "All" || (cat === "Popular" ? s.popular : s.service === cat)).forEach((s, k) => {
       const li = document.createElement("li");
       li.className = "single";
       li.style.animationDelay = `${k * 60}ms`;
@@ -316,6 +322,7 @@ else {
         <small>${s.service}</small>
         <h3>${s.name}</h3>
         <p>${s.includes}</p>
+        ${s.bonus ? `<p class="single-bonus"><b>Free bonus</b>${s.bonus}</p>` : ""}
         <div class="single-foot">
           <span class="single-price">${SITE.currency || ""}${s.price}</span>
           <span class="single-days">${s.days ? `${s.days}-day delivery` : ""}</span>
@@ -333,7 +340,7 @@ else {
     b.onclick = () => renderSingles(c);
     sFilters.appendChild(b);
   });
-  renderSingles("All");
+  renderSingles(sCats[0]);
   sGrid.addEventListener("click", e => {
     const a = e.target.closest("[data-single]");
     if (!a) return;
