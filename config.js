@@ -77,7 +77,6 @@ window.SITE = {
     { name: "Power BI dashboard",         service: "Data & Analytics", price: "1,999", days: 5, popular: true, includes: "An interactive Power BI report with up to 2 pages, filters and drill-downs", bonus: "15-minute walkthrough call" },
     { name: "Google Sheets tracker",       service: "Data & Analytics", price: "499",   days: 2, includes: "A shared tracker for leads, orders, inventory or expenses with dropdowns and totals", bonus: "Mobile-friendly view" },
     { name: "Social media analytics report", service: "Data & Analytics", price: "699", days: 3, includes: "Your last 30–90 days of Instagram or LinkedIn data, analysed and charted", bonus: "Best posting times and formats" },
-    { name: "Business KPI report",        service: "Data & Analytics", price: "1,299", days: 4, includes: "A clear review of your sales, customers and marketing numbers with 5 recommendations", bonus: "KPI tracking template" },
     // Design
     { name: "5 Canva post templates",    service: "Design", price: "599", days: 3, includes: "5 editable on-brand Instagram templates you can reuse", bonus: "Matching story template" },
     { name: "Mini brand kit",            service: "Design", price: "999", days: 4, includes: "Colour palette, font pairing and a one-page style guide in Canva", bonus: "Highlight cover set" },
