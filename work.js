@@ -140,6 +140,29 @@ window.WORK = [
     link: ""
   },
   {
+    slug: "retail-sales-dashboard",
+    spec: true,
+    title: "Power BI sales dashboard for a retail store",
+    category: "Data Analytics",
+    client: "Clothing retailer (concept, public sample data)",
+    duration: "Dashboard build",
+    role: "Data cleaning, modelling, Power BI",
+    summary: "A year of messy sales exports turned into one interactive dashboard the owner can read in two minutes.",
+    problem: "Small retailers usually keep sales in monthly Excel exports. Nobody can quickly answer 'which products and months actually make us money?' without hours of copy-pasting.",
+    approach: [
+      "Combined 12 monthly exports into one clean table in Power Query, fixing dates, duplicates and product names.",
+      "Built a simple data model: sales, products and a calendar table.",
+      "Wrote DAX measures for revenue, profit margin, average order value and month-on-month growth.",
+      "Designed a one-page report: KPI cards on top, trend in the middle, product and category breakdown below, with slicers for month and store."
+    ],
+    deliverables: ["12 files merged", "6 DAX measures", "1 interactive dashboard", "4 KPI cards"],
+    test: "Whether the owner checks it weekly without being reminded. A dashboard nobody opens has failed.",
+    image: "",
+    gallery: [],
+    quote: null,
+    link: ""
+  },
+  {
     slug: "festive-campaign-plan",
     spec: true,
     title: "Diwali campaign for an ethnic-wear label",

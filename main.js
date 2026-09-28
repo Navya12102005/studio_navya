@@ -111,6 +111,38 @@ const SERVICES = [
     deliverables: [["10–15", "designs / month"], ["1", "template set"], ["2", "revision rounds"]],
     ideal: "Small businesses and creators who want to look polished without hiring a full-time designer.",
     kpis: ["Consistency", "Saves & shares", "Profile visits", "Time saved"]
+  },
+  {
+    id: "data", icon: "08", name: "Data Analytics — Excel & Power BI",
+    tagline: "Turn messy spreadsheets into answers you can act on.",
+    what: "Cleaning, organising and visualising your business data in Excel and Power BI, so you can see sales, marketing and operations at a glance instead of digging through sheets.",
+    includes: [
+      "Data cleaning — duplicates, formats, missing values",
+      "Excel dashboards with pivot tables, charts and slicers",
+      "Formulas & automation: XLOOKUP, IFs, conditional formatting",
+      "Interactive Power BI dashboards with filters and drill-downs",
+      "Connecting sources: Excel, Google Sheets, CSV exports",
+      "Monthly refresh and a plain-English summary of what changed"
+    ],
+    deliverables: [["1–2", "dashboards"], ["Monthly", "data refresh"], ["1", "insights summary"]],
+    ideal: "Small businesses, shops, D2C brands and teams who track things in Excel but can't see the full picture.",
+    kpis: ["Time saved", "Report accuracy", "Decisions made faster", "Data freshness"]
+  },
+  {
+    id: "business", icon: "09", name: "Business Analytics",
+    tagline: "Know what's working, what isn't, and what to do next.",
+    what: "Analysing your sales, customers and marketing numbers to find patterns, problems and opportunities, then turning them into clear recommendations.",
+    includes: [
+      "KPI definition: which numbers matter for your business",
+      "Sales & revenue analysis by product, month and channel",
+      "Customer analysis: repeat buyers, best segments, churn",
+      "Marketing performance: which channels bring real sales",
+      "Competitor and market research summaries",
+      "Monthly insight report with 3–5 clear recommendations"
+    ],
+    deliverables: [["1", "KPI framework"], ["Monthly", "insight report"], ["1", "review call"]],
+    ideal: "Founders and managers who have data but no time or analyst to make sense of it.",
+    kpis: ["Revenue growth", "Customer retention", "Marketing ROI", "Margin"]
   }
 ];
 

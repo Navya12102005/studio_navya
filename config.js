@@ -57,18 +57,27 @@ window.SITE = {
     // Email Marketing
     { name: "1 newsletter",              service: "Email Marketing", price: "499", days: 3, includes: "One newsletter written and laid out, with 3 subject-line options", bonus: "Preview text for each subject" },
     { name: "Lead magnet (PDF guide)",   service: "Email Marketing", price: "999", days: 5, includes: "A 5–7 page free guide designed in Canva, to grow your email list", bonus: "Sign-up form copy" },
-    { name: "Welcome email series",      service: "Email Marketing", price: "999", days: 4, popular: true, includes: "3 welcome emails with subject lines and preview text", bonus: "1 re-engagement email" },
+    { name: "Welcome email series",      service: "Email Marketing", price: "999", days: 4, includes: "3 welcome emails with subject lines and preview text", bonus: "1 re-engagement email" },
     { name: "Abandoned-cart emails",     service: "Email Marketing", price: "799", days: 3, includes: "2 reminder emails that bring shoppers back to checkout", bonus: "Discount vs no-discount versions" },
     // Content Writing
     { name: "Product descriptions",      service: "Content Writing", price: "499", days: 3, includes: "5 product descriptions that sell the benefit, not just the features", bonus: "SEO title for each" },
     { name: "About / bio writing",       service: "Content Writing", price: "399", days: 2, includes: "A short and a long bio for your website, LinkedIn and press", bonus: "One-line intro for events" },
-    { name: "SEO blog article",          service: "Content Writing", price: "699", days: 4, popular: true, includes: "One 1,000-word article with keyword research and meta description", bonus: "3 social posts to promote it" },
+    { name: "SEO blog article",          service: "Content Writing", price: "699", days: 4, includes: "One 1,000-word article with keyword research and meta description", bonus: "3 social posts to promote it" },
     { name: "Website page copy",         service: "Content Writing", price: "999", days: 4, includes: "Copy for one page: home, about or services", bonus: "Button and headline variations" },
     // Digital Marketing
     { name: "Google Business Profile setup", service: "Digital Marketing", price: "599",   days: 3, includes: "Complete setup or cleanup: description, categories, photos and first posts", bonus: "Review-request message template" },
     { name: "3 Meta ad concepts",        service: "Digital Marketing", price: "799",   days: 3, includes: "Hook, ad copy and visual direction for 3 Facebook/Instagram ads", bonus: "Audience targeting suggestions" },
     { name: "Competitor research report",service: "Digital Marketing", price: "699",   days: 3, includes: "What 3 competitors post, promote and charge, and gaps you can use", bonus: "5 content ideas from the gaps" },
     { name: "Mini marketing plan",       service: "Digital Marketing", price: "1,499", days: 5, includes: "A 30-day plan: audience, channels, content ideas and what to measure", bonus: "30-minute walkthrough call" },
+    // Data & Analytics
+    { name: "Excel data cleanup",         service: "Data & Analytics", price: "499",   days: 2, popular: true, includes: "Remove duplicates, fix formats and fill gaps in one sheet (up to 5,000 rows)", bonus: "Data-entry checklist to keep it clean" },
+    { name: "Excel formula fix & setup",  service: "Data & Analytics", price: "399",   days: 1, includes: "Fix broken formulas or set up XLOOKUP, IFs, SUMIFS and conditional formatting", bonus: "Short screen-recording explaining them" },
+    { name: "Pivot table report",         service: "Data & Analytics", price: "599",   days: 2, includes: "Pivot tables and charts summarising your data by month, product or region", bonus: "Slicers for one-click filtering" },
+    { name: "Excel sales dashboard",      service: "Data & Analytics", price: "999",   days: 4, includes: "A one-page dashboard with KPIs, trends and charts that update when you add data", bonus: "Monthly data-entry template" },
+    { name: "Power BI dashboard",         service: "Data & Analytics", price: "1,999", days: 5, popular: true, includes: "An interactive Power BI report with up to 2 pages, filters and drill-downs", bonus: "15-minute walkthrough call" },
+    { name: "Google Sheets tracker",       service: "Data & Analytics", price: "499",   days: 2, includes: "A shared tracker for leads, orders, inventory or expenses with dropdowns and totals", bonus: "Mobile-friendly view" },
+    { name: "Social media analytics report", service: "Data & Analytics", price: "699", days: 3, includes: "Your last 30–90 days of Instagram or LinkedIn data, analysed and charted", bonus: "Best posting times and formats" },
+    { name: "Business KPI report",        service: "Data & Analytics", price: "1,299", days: 4, includes: "A clear review of your sales, customers and marketing numbers with 5 recommendations", bonus: "KPI tracking template" },
     // Design
     { name: "5 Canva post templates",    service: "Design", price: "599", days: 3, includes: "5 editable on-brand Instagram templates you can reuse", bonus: "Matching story template" },
     { name: "Mini brand kit",            service: "Design", price: "999", days: 4, includes: "Colour palette, font pairing and a one-page style guide in Canva", bonus: "Highlight cover set" },
