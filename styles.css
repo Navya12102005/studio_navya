@@ -382,3 +382,7 @@ a.work-card { display: block; }
 .case-next { display: block; padding: 90px 0; transition: background .5s; }
 .case-next h2 { transition: transform .6s var(--ease); }
 .case-next:hover h2 { transform: translateX(14px); }
+.case-note { grid-column: 1 / -1; font-size: .85rem; color: var(--muted); padding: 14px 18px; border-left: 2px solid var(--copper); background: #fbf8f2; margin-bottom: 44px; }
+.case-results { row-gap: 40px; grid-template-columns: repeat(4, 1fr); }
+.case-results div:nth-of-type(4n+1) { border-left: 0; padding-left: 0; }
+@media (max-width: 900px) { .case-results { grid-template-columns: 1fr 1fr; } }

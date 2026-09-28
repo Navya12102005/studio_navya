@@ -163,10 +163,10 @@ function renderWork(cat) {
         ${w.image ? "" : `<span>${w.category}</span>`}
       </div>
       <div class="wc-body">
-        <small>${w.category}</small>
+        <small>${w.category}${w.spec ? " · Concept" : ""}</small>
         <h3>${w.title}</h3>
         <p>${w.summary}</p>
-        <span class="wc-more">View case study →</span>
+        <span class="wc-more">View project →</span>
       </div>`;
     grid.appendChild(card);
   });
