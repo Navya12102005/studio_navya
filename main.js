@@ -153,8 +153,9 @@ function renderWork(cat) {
   work.forEach((w, i) => {
     if (cat !== "All" && w.category !== cat) return;
     const h = hues[w.category] ?? 25;
-    const card = document.createElement("button");
+    const card = document.createElement("a");
     card.className = "work-card";
+    card.href = `case.html?p=${encodeURIComponent(w.slug || i)}`;
     card.style.setProperty("--h", h);
     card.style.animationDelay = `${grid.children.length * 70}ms`;
     card.innerHTML = `
@@ -167,7 +168,6 @@ function renderWork(cat) {
         <p>${w.summary}</p>
         <span class="wc-more">View case study →</span>
       </div>`;
-    card.onclick = () => openModal(i);
     grid.appendChild(card);
   });
 }
@@ -229,12 +229,55 @@ menuBtn.onclick = () => {
 };
 $$(".links a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
 
-/* ---------- Contact form (opens email client) ---------- */
-$("#contactForm").addEventListener("submit", e => {
+/* ---------- Settings from config.js ---------- */
+const SITE = window.SITE || {};
+const waLink = (topic = "your services") =>
+  SITE.whatsapp ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent((SITE.whatsappMessage || "Hi! ") + topic)}` : "#contact";
+if (SITE.email) { const a = $("#soEmail"); a.href = `mailto:${SITE.email}`; a.textContent = SITE.email; }
+if (SITE.linkedin) $("#soLinkedin").href = SITE.linkedin;
+if (SITE.instagram) $("#soInstagram").href = SITE.instagram;
+$("#soWhatsapp").href = $("#waBtn").href = waLink();
+if (!SITE.whatsapp) { $("#waBtn").hidden = true; $("#soWhatsapp").hidden = true; }
+$$("[data-price]").forEach(el => {
+  const v = SITE.prices && SITE.prices[el.dataset.price];
+  if (v) el.innerHTML = `<small>From</small> ${SITE.currency || ""}${v}<small> / month</small>`; else el.remove();
+});
+const auditBtn = $("#auditBtn");
+if (SITE.calendly) { auditBtn.href = SITE.calendly; auditBtn.target = "_blank"; auditBtn.rel = "noopener"; }
+else auditBtn.addEventListener("click", () => { $("#svc").value = "Free audit"; });
+$$('.pkg a[href="#contact"]').forEach(a => a.addEventListener("click", () => {
+  $("#msg").value = `I'm interested in the ${$("h3", a.closest(".pkg")).textContent} package.`;
+}));
+
+/* ---------- Contact form ---------- */
+const form = $("#contactForm"), status = $("#formStatus");
+form.addEventListener("submit", async e => {
   e.preventDefault();
-  const f = new FormData(e.target);
-  const body = `Name: ${f.get("name")}\nEmail: ${f.get("email")}\nService: ${f.get("service")}\n\n${f.get("message")}`;
-  location.href = `mailto:hello@studionavya.com?subject=${encodeURIComponent("Enquiry: " + f.get("service"))}&body=${encodeURIComponent(body)}`;
+  const f = new FormData(form);
+  if (f.get("botcheck")) return;
+  const subject = `New enquiry: ${f.get("service")} — ${f.get("name")}`;
+  if (!SITE.web3formsKey) {
+    const body = `Name: ${f.get("name")}\nEmail: ${f.get("email")}\nService: ${f.get("service")}\n\n${f.get("message")}`;
+    location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+  const btn = $("button[type=submit]", form);
+  btn.disabled = true; status.className = "form-status"; status.textContent = "Sending…";
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ access_key: SITE.web3formsKey, subject, from_name: "Studio Navya website", ...Object.fromEntries(f) })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message);
+    form.reset();
+    status.classList.add("ok");
+    status.textContent = "Thank you — your message is in. I'll reply within 24 hours.";
+  } catch {
+    status.classList.add("err");
+    status.innerHTML = `Something went wrong. Please email me at <a href="mailto:${SITE.email}">${SITE.email}</a>.`;
+  } finally { btn.disabled = false; }
 });
 
 $("#yr").textContent = new Date().getFullYear();
