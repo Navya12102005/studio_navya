@@ -95,6 +95,22 @@ const SERVICES = [
     deliverables: [["1", "strategy roadmap"], ["2–3", "campaigns / quarter"], ["Live", "dashboard"]],
     ideal: "Growing businesses that want a single partner to plan and run their marketing.",
     kpis: ["ROAS", "Cost per lead", "Conversion rate", "Revenue"]
+  },
+  {
+    id: "design", icon: "07", name: "Canva Graphic Design",
+    tagline: "A consistent look across every post, slide and page.",
+    what: "On-brand visuals made in Canva — social posts, carousels, stories, banners and simple brand kits — handed over as editable templates you can reuse.",
+    includes: [
+      "Mini brand kit: colours, fonts and logo placement rules",
+      "Instagram post and story templates",
+      "LinkedIn carousels and banners",
+      "Highlight covers and profile visuals",
+      "Simple flyers, menus and presentation slides",
+      "Editable Canva links so you can reuse every design"
+    ],
+    deliverables: [["10–15", "designs / month"], ["1", "template set"], ["2", "revision rounds"]],
+    ideal: "Small businesses and creators who want to look polished without hiring a full-time designer.",
+    kpis: ["Consistency", "Saves & shares", "Profile visits", "Time saved"]
   }
 ];
 
