@@ -400,3 +400,18 @@ a.work-card { display: block; }
 .cert-actions { display: flex; gap: 22px; padding-top: 8px; }
 .cert-actions button { background: none; border: 0; cursor: pointer; color: inherit; }
 @media (max-width: 700px) { .cert { grid-template-columns: 1fr; gap: 6px; } .cert:hover { padding-inline: 0; } }
+
+/* ---------- Single services ---------- */
+.single-filters { display: flex; flex-wrap: wrap; gap: 6px 28px; margin-bottom: 40px; }
+.single-grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.single { display: flex; flex-direction: column; padding: 30px 26px; background: var(--cream); animation: rise .7s var(--ease) both; transition: background .4s, transform .5s var(--ease); }
+.single:hover { background: #fbf8f2; transform: translateY(-4px); }
+.single small { font: 500 .6rem var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--olive-2); }
+.single h3 { font-size: 1.5rem; margin: 10px 0 8px; }
+.single p { color: var(--muted); font-size: .88rem; flex: 1; }
+.single-foot { display: flex; justify-content: space-between; align-items: baseline; margin: 22px 0 18px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.single-price { font: 400 1.9rem/1 var(--serif); background: var(--shine); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.single-days { font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.single-actions { display: flex; align-items: center; gap: 20px; }
+@media (max-width: 1000px) { .single-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .single-grid { grid-template-columns: 1fr; } }

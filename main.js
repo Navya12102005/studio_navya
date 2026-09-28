@@ -283,6 +283,49 @@ $$('.pkg a[href="#contact"]').forEach(a => a.addEventListener("click", () => {
   $("#msg").value = `I'm interested in the ${$("h3", a.closest(".pkg")).textContent} package.`;
 }));
 
+/* ---------- Single services ---------- */
+const singles = SITE.singles || [];
+if (!singles.length) $("#singles").remove();
+else {
+  const sGrid = $("#singleGrid"), sFilters = $("#singleFilters");
+  const sCats = ["All", ...new Set(singles.map(s => s.service))];
+  const renderSingles = cat => {
+    $$(".chip", sFilters).forEach(c => c.classList.toggle("on", c.dataset.cat === cat));
+    sGrid.innerHTML = "";
+    singles.filter(s => cat === "All" || s.service === cat).forEach((s, k) => {
+      const li = document.createElement("li");
+      li.className = "single";
+      li.style.animationDelay = `${k * 60}ms`;
+      li.innerHTML = `
+        <small>${s.service}</small>
+        <h3>${s.name}</h3>
+        <p>${s.includes}</p>
+        <div class="single-foot">
+          <span class="single-price">${SITE.currency || ""}${s.price}</span>
+          <span class="single-days">${s.days ? `${s.days}-day delivery` : ""}</span>
+        </div>
+        <div class="single-actions">
+          <a class="btn btn-sm" href="#contact" data-single="${s.name}">Order</a>
+          ${SITE.whatsapp ? `<a class="link-arrow" href="${waLink(`the "${s.name}" (${SITE.currency || ""}${s.price}).`)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
+        </div>`;
+      sGrid.appendChild(li);
+    });
+  };
+  sCats.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.dataset.cat = c; b.textContent = c;
+    b.onclick = () => renderSingles(c);
+    sFilters.appendChild(b);
+  });
+  renderSingles("All");
+  sGrid.addEventListener("click", e => {
+    const a = e.target.closest("[data-single]");
+    if (!a) return;
+    $("#svc").value = "Single service";
+    $("#msg").value = `I'd like to order: ${a.dataset.single}.`;
+  });
+}
+
 /* ---------- Contact form ---------- */
 const form = $("#contactForm"), status = $("#formStatus");
 form.addEventListener("submit", async e => {
