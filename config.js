@@ -35,19 +35,18 @@ window.SITE = {
   singles: [
     // Social Media
     { name: "Instagram profile audit",   service: "Social Media", price: "299",   days: 2, popular: true, includes: "A short video walkthrough of your profile with 10 specific fixes", bonus: "Competitor snapshot of 2 accounts" },
-    { name: "Bio & highlights refresh",  service: "Social Media", price: "399",   days: 2, includes: "A rewritten Instagram bio plus 5 highlight cover designs", bonus: "3 alternative bio versions" },
+    { name: "Bio & highlights refresh",  service: "Social Media", price: "399",   days: 2, includes: "A rewritten Instagram bio plus names and order for your story highlights", bonus: "3 alternative bio versions" },
     { name: "Hashtag & keyword set",     service: "Social Media", price: "299",   days: 2, includes: "30 researched hashtags in 3 groups, plus keywords for your bio and captions", bonus: "Rotation guide for 4 weeks" },
     { name: "10 captions",               service: "Social Media", price: "399",   days: 2, includes: "Ten ready-to-post captions with hooks and calls to action", bonus: "5 extra hook lines" },
     { name: "3 Reel scripts",            service: "Social Media", price: "499",   days: 3, popular: true, includes: "Hook, script and shot list for each Reel", bonus: "Trending-audio suggestions" },
-    { name: "Instagram content pack",    service: "Social Media", price: "999",   days: 4, popular: true, includes: "6 post designs in Canva with captions and hashtags", bonus: "2 story templates" },
+    { name: "Instagram content pack",    service: "Social Media", price: "999",   days: 4, popular: true, includes: "6 post ideas with captions, hooks and hashtags, ready to post", bonus: "3 story ideas" },
     { name: "30-day content calendar",   service: "Social Media", price: "1,299", days: 5, includes: "A month of post ideas, formats, captions and posting times", bonus: "Festival & trend dates for the month" },
     { name: "1-week account management", service: "Social Media", price: "1,499", days: 7, includes: "I post, reply to comments and DMs for one week, then send a short report", bonus: "Posting-time analysis" },
     // LinkedIn
     { name: "LinkedIn headline + About", service: "LinkedIn", price: "499",   days: 2, popular: true, includes: "A rewritten headline and About section that says who you help", bonus: "3 headline options to test" },
-    { name: "LinkedIn banner design",    service: "LinkedIn", price: "299",   days: 2, includes: "A custom Canva banner that tells visitors what you do", bonus: "Editable Canva link" },
-    { name: "LinkedIn carousel",         service: "LinkedIn", price: "599",   days: 3, includes: "One 8–10 slide carousel, written and designed in Canva", bonus: "Caption to post it with" },
+    { name: "LinkedIn carousel",         service: "LinkedIn", price: "599",   days: 3, includes: "Slide-by-slide copy for one 8–10 slide carousel", bonus: "Caption to post it with" },
     { name: "5 LinkedIn posts",          service: "LinkedIn", price: "799",   days: 4, popular: true, includes: "Five ready-to-post posts in your voice, after a short call", bonus: "Posting schedule for 2 weeks" },
-    { name: "Full profile makeover",     service: "LinkedIn", price: "999",   days: 3, includes: "Headline, About, banner design, Featured section and skills", bonus: "Connection-request note template" },
+    { name: "Full profile makeover",     service: "LinkedIn", price: "999",   days: 3, includes: "Headline, About, banner text, Featured section and skills", bonus: "Connection-request note template" },
     { name: "Company page setup",        service: "LinkedIn", price: "799",   days: 3, includes: "Logo, cover, tagline, About and first 3 posts for your company page", bonus: "Employee sharing guide" },
     // Cold Email & Outreach
     { name: "Cold DM scripts",           service: "Cold Email", price: "399", days: 2, includes: "5 LinkedIn or Instagram DM templates with follow-ups", bonus: "Reply-handling templates" },
@@ -56,7 +55,7 @@ window.SITE = {
     { name: "Cold email review",         service: "Cold Email", price: "299", days: 1, includes: "Line-by-line feedback and a rewrite of one email you already use", bonus: "2 new subject lines" },
     // Email Marketing
     { name: "1 newsletter",              service: "Email Marketing", price: "499", days: 3, includes: "One newsletter written and laid out, with 3 subject-line options", bonus: "Preview text for each subject" },
-    { name: "Lead magnet (PDF guide)",   service: "Email Marketing", price: "999", days: 5, includes: "A 5–7 page free guide designed in Canva, to grow your email list", bonus: "Sign-up form copy" },
+    { name: "Lead magnet (PDF guide)",   service: "Email Marketing", price: "999", days: 5, includes: "The written content for a 5–7 page free guide, to grow your email list", bonus: "Sign-up form copy" },
     { name: "Welcome email series",      service: "Email Marketing", price: "999", days: 4, includes: "3 welcome emails with subject lines and preview text", bonus: "1 re-engagement email" },
     { name: "Abandoned-cart emails",     service: "Email Marketing", price: "799", days: 3, includes: "2 reminder emails that bring shoppers back to checkout", bonus: "Discount vs no-discount versions" },
     // Content Writing
@@ -76,11 +75,6 @@ window.SITE = {
     { name: "Excel sales dashboard",      service: "Data & Analytics", price: "999",   days: 4, includes: "A one-page dashboard with KPIs, trends and charts that update when you add data", bonus: "Monthly data-entry template" },
     { name: "Power BI dashboard",         service: "Data & Analytics", price: "1,999", days: 5, popular: true, includes: "An interactive Power BI report with up to 2 pages, filters and drill-downs", bonus: "15-minute walkthrough call" },
     { name: "Google Sheets tracker",       service: "Data & Analytics", price: "499",   days: 2, includes: "A shared tracker for leads, orders, inventory or expenses with dropdowns and totals", bonus: "Mobile-friendly view" },
-    { name: "Social media analytics report", service: "Data & Analytics", price: "699", days: 3, includes: "Your last 30–90 days of Instagram or LinkedIn data, analysed and charted", bonus: "Best posting times and formats" },
-    // Design
-    { name: "5 Canva post templates",    service: "Design", price: "599", days: 3, includes: "5 editable on-brand Instagram templates you can reuse", bonus: "Matching story template" },
-    { name: "Mini brand kit",            service: "Design", price: "999", days: 4, includes: "Colour palette, font pairing and a one-page style guide in Canva", bonus: "Highlight cover set" },
-    { name: "Simple logo refresh",       service: "Design", price: "799", days: 4, includes: "A clean text-based logo in 2 layouts, with light and dark versions", bonus: "Profile-picture version" },
-    { name: "Flyer or menu design",      service: "Design", price: "499", days: 3, includes: "One print- or WhatsApp-ready flyer, poster or menu", bonus: "Instagram-size version" }
+    { name: "Social media analytics report", service: "Data & Analytics", price: "699", days: 3, includes: "Your last 30–90 days of Instagram or LinkedIn data, analysed and charted", bonus: "Best posting times and formats" }
   ]
 };

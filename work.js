@@ -40,7 +40,7 @@ window.WORK = [
       "Created a recurring 'Table 4' series featuring one regular each Friday, to encourage tagging and sharing.",
       "Wrote captions in a warm, unhurried voice, with no hashtag walls."
     ],
-    deliverables: ["9 grid post designs", "3 Reel scripts with shot lists", "12 captions", "1 monthly content calendar"],
+    deliverables: ["9 grid post ideas", "3 Reel scripts with shot lists", "12 captions", "1 monthly content calendar"],
     test: "Whether short behind-the-counter Reels beat polished latte-art shots on saves and shares.",
     image: "",
     gallery: [],

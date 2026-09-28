@@ -7,7 +7,7 @@ const SERVICES = [
     includes: [
       "Audit of current profiles & competitor research",
       "Content pillars and a monthly content calendar",
-      "Post & Reel design, captions and hashtag research",
+      "Post & Reel ideas, captions and hashtag research",
       "Scheduling and publishing at peak times",
       "Community management — replies to comments & DMs",
       "Monthly analytics report with insights"
@@ -56,7 +56,7 @@ const SERVICES = [
       "Platform setup (Mailchimp, Brevo, Klaviyo etc.)",
       "Lead magnet & signup form strategy",
       "Welcome, abandoned-cart & re-engagement flows",
-      "Monthly / weekly newsletters — copy & design",
+      "Monthly / weekly newsletters — written and set up",
       "List segmentation and hygiene",
       "Campaign analytics and optimisation"
     ],
@@ -97,23 +97,7 @@ const SERVICES = [
     kpis: ["ROAS", "Cost per lead", "Conversion rate", "Revenue"]
   },
   {
-    id: "design", icon: "07", name: "Canva Graphic Design",
-    tagline: "A consistent look across every post, slide and page.",
-    what: "On-brand visuals made in Canva — social posts, carousels, stories, banners and simple brand kits — handed over as editable templates you can reuse.",
-    includes: [
-      "Mini brand kit: colours, fonts and logo placement rules",
-      "Instagram post and story templates",
-      "LinkedIn carousels and banners",
-      "Highlight covers and profile visuals",
-      "Simple flyers, menus and presentation slides",
-      "Editable Canva links so you can reuse every design"
-    ],
-    deliverables: [["10–15", "designs / month"], ["1", "template set"], ["2", "revision rounds"]],
-    ideal: "Small businesses and creators who want to look polished without hiring a full-time designer.",
-    kpis: ["Consistency", "Saves & shares", "Profile visits", "Time saved"]
-  },
-  {
-    id: "data", icon: "08", name: "Data Analytics — Excel & Power BI",
+    id: "data", icon: "07", name: "Data Analytics — Excel & Power BI",
     tagline: "Turn messy spreadsheets into answers you can act on.",
     what: "Cleaning, organising and visualising your business data in Excel and Power BI, so you can see sales, marketing and operations at a glance instead of digging through sheets.",
     includes: [
