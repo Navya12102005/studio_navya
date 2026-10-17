@@ -118,3 +118,7 @@ The five original artwork assets and painted room behavior are unchanged. Font m
 ## Current scene continuity
 
 The opening and scrolling narrative now share one persistent painted room. A single sticky scene spans the introduction and all four story markers. Native scroll continuously adjusts evening light, the clock and a subtle desk offset on one reversible timeline. The existing sunset artwork, flowers, retriever, fairy lights and woven dreamcatcher remain unchanged. No room copy, background swap, slide navigation or diary page-flip is used. The small left diary updates with a short text fade and keeps the professional DM Serif Display / Inter typography. The portfolio details follow below the scene. Earlier 3D and handwriting directions above are archived development notes.
+
+## Current typography — one matching pair
+
+Use upright DM Serif Display for headings and Inter for body copy, notes and controls throughout the homepage, diary, project pages and editor. Colour and font weight provide emphasis. No script or decorative italic face is loaded; the favicon uses the same display glyph as a vector outline. The original room artwork and motion are unchanged.

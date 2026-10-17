@@ -77,8 +77,10 @@ DM Serif Display provides the diary headings and Inter provides its body copy an
 
 ## Current typography
 
-Headings use DM Serif Display (regular and italic), paired with Inter regular, medium and semibold for body text and controls. Fonts are served locally as WOFF files and do not depend on Google Fonts connectivity. Licenses are in assets/fonts/DM-SERIF-OFL.txt and assets/fonts/INTER-OFL.txt. The former handwriting font is no longer loaded. Small labels, body line-height and diary title sizes are tuned for the compact layout. The current typography revision was checked using the actual font metrics at 320, 375, 768 and 1440px, local font parsing, deployed asset references and JavaScript syntax. Browser visual QA remains unavailable.
+The whole site uses two font families: upright DM Serif Display for headings, and Inter regular, medium and semibold for body text and controls. A single typography.css defines the pair across the homepage, diary, project pages and editor. Emphasis uses colour and weight, with no script or decorative italic treatment. Fonts are served locally as WOFF files and do not depend on Google Fonts connectivity. Licenses are in assets/fonts/DM-SERIF-OFL.txt and assets/fonts/INTER-OFL.txt. The former handwriting font is no longer loaded. Small labels, body line-height and diary title sizes are tuned for the compact layout. The current typography revision was checked using the actual font metrics at 320, 375, 768 and 1440px, local font parsing, deployed asset references and JavaScript syntax. Browser visual QA remains unavailable.
 
 ## One continuous visual
 
 The introduction and four diary entries share a single .room-world and .room-illustration inside one sticky scene. There is no second room, slide transition, page-flip animation or chapter-dot navigation. Vertical scroll controls a reversible 6:12–7:21 PM timeline from golden light toward evening. The diary stays small on the left; the full service, work and contact details follow below. Fullscreen and View the room use that same illustration rather than creating another scene.
+
+Typography is limited to the same two families in SVG scene lettering as well. Legacy Cormorant, Manrope and Caveat rules are removed from the live stylesheets. Archived font files are not loaded.
