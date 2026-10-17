@@ -30,7 +30,8 @@ function start() {
     const dt=Math.min(.05,lastNow?(now-lastNow)/1000:0);lastNow=now;
     // One WebGL context follows the visible room; all other website sections use no GPU.
     let target=null,area=0;
-    for(const [el,r] of viewports){const a=Math.max(0,Math.min(innerHeight,r.bottom)-Math.max(0,r.top));if(a>area){area=a;target=el;}}
+    for(const [el,r] of viewports){if(el.classList.contains('hero-room')&&!api.state.exploring)continue;const a=Math.max(0,Math.min(innerHeight,r.bottom)-Math.max(0,r.top));if(a>area){area=a;target=el;}}
+    if(!target&&active){active.classList.remove('has-webgl');canvas.remove();active=null;}
     if(target){
       if(active!==target){active?.classList.remove('has-webgl');active=target;active.append(canvas);active.classList.add('has-webgl');lastWidth=0;}
       const r=viewports.get(target),w=Math.max(1,Math.round(r.width)),h=Math.max(1,Math.round(r.height));

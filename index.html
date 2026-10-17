@@ -11,7 +11,7 @@
 <link rel="preload" href="assets/fonts/caveat-regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" as="image" href="assets/img/sunset-studio.webp">
 <link rel="modulepreload" href="assets/scene/room-engine.js">
-<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="room.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script><script defer src="diary.js"></script>
+<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="room.js"></script><script defer src="hero-art.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script><script defer src="diary.js"></script>
 <script type="module" src="assets/scene/room-engine.js"></script>
 </head>
 <body>
@@ -23,11 +23,11 @@
 </header>
 <main id="main">
 <section class="hero room-hero" id="top" aria-labelledby="openingTitle">
-<div class="room-world hero-room"><div class="room-poster" aria-hidden="true"></div><span class="room-load-status" role="status">Preparing your evening…</span></div><div class="hero-shade" aria-hidden="true"></div>
+<div class="room-world hero-room" data-view="illustrated"><div class="room-poster" aria-hidden="true"><div class="room-camera"><div class="room-illustration"></div></div></div><span class="room-load-status" role="status">Preparing your evening…</span></div><div class="hero-shade" aria-hidden="true"></div>
 <h1 id="openingTitle" class="diary-visually-hidden">Studio Navya — Digital presence, written with warmth.</h1>
 <div class="diary-dock diary-hero-dock"></div>
 <div class="view-controls"><button type="button" id="exploreToggle" aria-pressed="false">Explore 360°</button><details class="room-options"><summary>Room settings <span aria-hidden="true">+</span></summary><div class="room-options-panel"><button type="button" id="breezeToggle" aria-pressed="false">Let the breeze in</button><button type="button" id="lampSwitch" aria-pressed="false"><span>Preview the night</span></button><button type="button" id="dogHello">Say hello to the retriever</button><button type="button" id="resetView">Reset view ↺</button><button type="button" id="roomFullscreen" aria-pressed="false">Full screen ↗</button></div></details></div>
-<div class="room-view-hint"><span class="view-bearing">0° / 360°</span><span>Drag to wander · scroll to follow the evening</span></div>
+<div class="room-view-hint"><span class="view-bearing">0° / 360°</span><span>Golden hour at the studio · scroll to follow the evening</span></div>
 <div class="hero-bottom container"><span class="handwritten" id="roomAside" role="status">The best ideas arrive around golden hour.</span><a href="#story">SCROLL TO TURN THE PAGE <span aria-hidden="true">↓</span></a></div>
 </section>
 <section class="brand-story cinema-story" id="story" aria-label="An evening in four chapters">
@@ -45,8 +45,8 @@
 <article class="story-step" id="chapter-3" data-chapter="2"><div class="narrative-panel panel-three"><span class="scene-number">page three</span><p class="eyebrow">7:03 PM / WORDS FIND THEIR WINGS</p><h2>And then,<br><em>the story travels.</em></h2><p>A post catches an eye. An email starts a conversation. Your story finds its people.</p><span class="story-service">SOCIAL · LINKEDIN · EMAIL · OUTREACH</span><span class="handwritten">Connection is where the good things begin.</span><a class="chapter-skip" href="#chapter-4">ONE MORE PAGE ↓</a></div></article>
 <article class="story-step" id="chapter-4" data-chapter="3"><div class="narrative-panel panel-four"><span class="scene-number">page four</span><p class="eyebrow">7:21 PM / THE LAMP STAYS ON</p><h2>A new page.<br><em>With your name on it.</em></h2><p>The lamps come on. The retriever wanders over. Your idea has found its voice. And there’s a new chapter waiting to be written.</p><span class="handwritten">The next chapter? We could write it together.</span><a class="button" href="#contact">Tell me your idea <span aria-hidden="true">↗</span></a><a class="chapter-skip" href="#work">OR EXPLORE THE WORK ↓</a></div></article>
 </div></section>
-<div class="diary-landing"><span>the diary settles. the work begins.</span><i aria-hidden="true">↓</i></div>
-<div class="diary-details" id="diaryDetails"><div class="diary-spine" aria-hidden="true"></div>
+<div class="chapter-divider"><span class="handwritten">and this is where the work begins…</span></div>
+<div class="studio-details" id="diaryDetails">
 <section class="intro section container">
 <p class="eyebrow reveal">THE STUDIO, IN A SENTENCE</p><h2 class="intro-heading reveal">A thoughtful presence.<br>With a little <em>personality.</em></h2>
 <div class="intro-bottom reveal"><p>Your digital presence should feel like your brand at its best. I connect the strategy, the words and the everyday execution, so every touchpoint tells the same compelling story.</p><div class="principles"><span><b>01</b> Strategy before noise</span><span><b>02</b> Content with character</span><span><b>03</b> Progress you can understand</span></div></div>

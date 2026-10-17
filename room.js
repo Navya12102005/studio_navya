@@ -15,7 +15,7 @@
   const breeze=document.querySelector('#breezeToggle');breeze?.addEventListener('click',()=>{state.breeze=!state.breeze;body.classList.toggle('window-open',state.breeze);breeze.setAttribute('aria-pressed',String(state.breeze));breeze.textContent=state.breeze?'Follow the story breeze':'Let the breeze in';emit();});
   document.querySelector('#dogHello')?.addEventListener('click',()=>{state.greetingUntil=performance.now()+4200;body.classList.add('dog-stir');if(caption)caption.textContent='A sleepy hello. A little tail wag. You’re in good company.';emit();setTimeout(()=>body.classList.remove('dog-stir'),4200);});
   worlds.forEach(el=>{
-    el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label','360 degree studio. Drag or swipe sideways to turn all the way around; drag diagonally to look up and down. Vertical scroll reads the story. Arrow keys turn; Home resets.');
+    el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label',el.classList.contains('hero-room')?'Illustrated sunset studio. Select Explore 360 degree view to look around the complete room. Scroll down for the story.':'360 degree studio. Drag or swipe sideways to turn all the way around; drag diagonally to look up and down. Vertical scroll reads the story. Arrow keys turn; Home resets.');
     let drag=null;
     el.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY};el.setPointerCapture?.(e.pointerId);el.classList.add('dragging');});
     el.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;look(-(e.clientX-drag.x)*.004,(e.clientY-drag.y)*.0035);drag.x=e.clientX;drag.y=e.clientY;});

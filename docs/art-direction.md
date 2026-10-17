@@ -91,3 +91,10 @@ The floating standalone story copy from the previous revision is replaced by one
 The earlier small 3D desk notebook is hidden so the narration has a single diary. The background room, 360 camera and scroll-driven evening remain. The handwriting uses Caveat regular and semibold, obtained from Google Fonts and self-hosted with the SIL Open Font License in assets/fonts/CAVEAT-OFL.txt. The diary illustration and page details are native HTML/CSS/SVG; no new raster generation was used.
 
 Mobile line lengths were estimated using the actual local font metrics at 320, 375 and 430px viewport widths. Ten geometry checks and 26 DOM checks pass; visual browser rendering remains unverified because the supported browser capability was unavailable.
+
+
+## Correction — restore the room, keep the diary small
+
+The opening page again uses the original warm sunset artwork and its illustrated prop layers from the earlier living-room revision. The default opening view is no longer replaced by the new modeled scene. Three.js is used for the opening room only after Explore 360° is selected; story scenes retain their 3D choreography.
+
+The diary is confined to the left edge, 286px square on desktop and up to 224 × 256px on phones. Its entries are shortened and its scroll motion is limited to seven vertical pixels and a small rotation. It does not travel across the middle of the room. The oversized diary wrapper and handwriting applied across the portfolio and project pages have been removed; their prior editorial layouts are restored. The original image assets are unchanged.

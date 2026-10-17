@@ -11,9 +11,16 @@
     const aside=p.querySelector('.handwritten')?.textContent||'';
     return {number:i+1,label:p.querySelector('.eyebrow').textContent,title:h.textContent,body,aside,links,service:p.querySelector('.story-service')?.textContent||''};
   });
+  const compactEntries=[
+    ['A little “what if”…','Every good story starts with an idea. Pull up a chair.'],
+    ['Finding your voice.','A conversation. A first draft. A voice that feels unmistakably yours.'],
+    ['Let the story travel.','A post. A LinkedIn thought. An email. Your words, finding their people.'],
+    ['Your next chapter.','Night falls. The lamps glow. Your idea has a voice. Shall we begin?']
+  ];
+  pages.forEach((entry,i)=>{entry.title=compactEntries[i][0];entry.body='<p>'+window.Studio.esc(compactEntries[i][1])+'</p>';});
   // The old panels only mark chapter geometry; the diary owns all visible narration.
   panels.forEach(p=>{p.hidden=true;p.setAttribute('aria-hidden','true');});
-  pages.unshift({number:0,label:'A quiet evening / Studio Navya',title:'Your story, written with warmth.',body:'<p>I help brands find their voice — through thoughtful strategy, content and conversations.</p>',aside:'make yourself at home.',links:'<a href="#story">Open the first page ↓</a><a href="#services">Find your service ↗</a>',service:'Social · LinkedIn · Email · Content'});
+  pages.unshift({number:0,label:'a note from Navya',title:'Make yourself at home.',body:'<p>Words with warmth. Thoughtful strategy. A presence that feels like you.</p>',aside:'make yourself at home.',links:'<a href="#story">Open the first page ↓</a><a href="#services">Find your service ↗</a>',service:'Social · LinkedIn · Email · Content'});
   const book=document.createElement('section');book.className='story-diary';book.setAttribute('aria-label','The Studio Navya diary');book.innerHTML='<div class="diary-cover" aria-hidden="true"></div><div class="diary-page-edges" aria-hidden="true"></div><div class="diary-open-pages"><div class="diary-left-page"></div><div class="diary-right-page"></div><div class="diary-gutter" aria-hidden="true"></div></div><div class="diary-turn-leaf" aria-hidden="true"></div><span class="diary-ribbon" aria-hidden="true"></span>';
   const orbit=document.createElement('div');orbit.className='diary-orbit-layer';orbit.append(book);document.body.append(orbit);let current=-1,ticking=false;
   const esc=window.Studio.esc;
@@ -41,13 +48,9 @@
     const detailsTop=document.querySelector('#diaryDetails').getBoundingClientRect().top;const fade=Math.max(0,Math.min(1,(innerHeight*.85-detailsTop)/(innerHeight*.6)));orbit.style.opacity=String(1-fade);orbit.hidden=fade>=1;book.inert=fade>.8;book.style.pointerEvents=fade>.8?'none':'auto';book.dataset.phase=inStory?'story':'opening';
     const index=inStory?Math.min(4,Number(stage.dataset.act||0)+1):0;page(index);
     const p=inStory?api.state.progress:0;
-    const positions=[[-.7,14,-3.3],[.65,-15,2.3],[-.5,12,-2.2],[.25,-4,.6]];
-    const a=Math.min(2,Math.floor(p*3)),t=p*3-a,lerp=(x,y)=>x+(y-x)*t;
-    const travel=Math.max(0,(innerWidth-book.offsetWidth)/2-28);
-    const x=inStory?lerp(positions[a][0],positions[a+1][0])*travel:travel*.22;
-    const y=inStory?lerp(positions[a][1],positions[a+1][1]):12;
-    const r=inStory?lerp(positions[a][2],positions[a+1][2]):-2;
-    book.style.setProperty('--diary-x',(reduced.matches?0:x).toFixed(1)+'px');
+    // The diary stays on the left. Movement is deliberately small and never crosses the room.
+    const y=inStory?Math.sin(p*Math.PI*2)*7:0;
+    const r=inStory?-1.5+Math.sin(p*Math.PI*2)*.7:-1.5;
     book.style.setProperty('--diary-y',(reduced.matches?0:y).toFixed(1)+'px');
     book.style.setProperty('--diary-turn',(reduced.matches?0:r).toFixed(2)+'deg');
   }

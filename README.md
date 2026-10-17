@@ -1,8 +1,8 @@
 # Studio Navya
 
-A warm, minimal digital-services portfolio told through one handwritten diary inside a complete 360° studio. The diary stays with you, drifts between chapters, turns its pages and reveals its ink as you scroll. Separate narration boxes are removed. After the evening story, the diary settles open for the portfolio, service explanations, process, proposals, FAQ and enquiry form. Individual project pages share the same paper and handwriting.
+A warm digital-services portfolio with the original illustrated sunset room on its opening page. A small handwritten diary sits along the left edge and changes short entries as you scroll. The artwork, window, furniture, fairy lights, woven dreamcatcher, flowers and golden retriever keep the visual focus. Explore 360° opens the complete interactive 3D room on demand. Later story scenes retain the scroll-directed 3D evening.
 
-Behind the diary, sunset becomes night, the chair pulls out, a golden retriever wakes and walks, and a breeze moves the curtains, window lights, flowers and woven dreamcatcher. Select Explore 360° to hide the diary and look around.
+The portfolio, service descriptions, process, proposals, FAQ, project pages and enquiry form retain their original editorial layouts and readable typography. The handwriting and notebook styling are confined to the small diary.
 
 ## Update your work without writing code
 
@@ -37,7 +37,8 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | motion.css / motion.js | Story progress, floating text, word reveals and ambient pause |
 | room.js | Full 360° input, room settings, explore, keyboard and fullscreen controls |
 | living-room.css | Room controls and responsive 3D presentation |
-| diary.js / diary.css | The single moving diary, page turns, writing effect and later diary pages |
+| diary.js / diary.css | Small side diary, short handwritten entries and page turns |
+| hero-art.js | Original illustrated room layers, fairy lights, flowers and retriever |
 | assets/fonts/ | Self-hosted Caveat handwriting fonts with the SIL Open Font License |
 | assets/scene/ | Three.js room geometry, rendering and reversible scroll choreography |
 | assets/vendor/ | Self-hosted Three.js 0.186.1 and its MIT license |
@@ -56,7 +57,7 @@ Run node scripts/build.mjs from the repository root. It copies public HTML, CSS,
 
 ## Verification
 
-Run `node scripts/verify-room.mjs` for 10 checks of the complete room, finite geometry, opening composition, lighting changes, chair movement, retriever motion and floor clearance, breeze, reversibility and reduced motion. An additional 26 DOM-based checks cover services, keyboard tabs, portfolio filters, cases, enquiries, menu, local editing, draft isolation, unsafe content, 360° inputs, room settings, native vertical scrolling story progress, single-diary continuity and content inside the diary pages.
+Run `node scripts/verify-room.mjs` for 10 checks of the complete room, finite geometry, opening composition, lighting changes, chair movement, retriever motion and floor clearance, breeze, reversibility and reduced motion. An additional 26 DOM-based checks cover services, keyboard tabs, portfolio filters, cases, enquiries, menu, local editing, draft isolation, unsafe content, 360° inputs, room settings, native vertical scrolling story progress, single-diary continuity, original room layers and the restored editorial details.
 
 These checks do not render WebGL pixels. Desktop/mobile appearance, GPU performance and exact animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
 
@@ -72,4 +73,6 @@ Original generated artwork is retained for the fallback view, About and contact 
 
 ## The diary narrator
 
-One diary DOM object stays fixed through the introduction and four story chapters, so it does not jump between section containers. Its position and gentle rotation follow scroll progress. Its pages change with the chapter and the handwriting appears letter by letter. Screen readers receive complete text, while the visual letters are hidden from the accessibility tree. Reduced motion shows all writing immediately and disables page flips and drift; ambient pause shows the full writing too. At the end of the story, the floating diary fades as the later paper pages enter view. The services, portfolio and enquiry controls keep their existing functionality inside those pages. Room controls and navigation retain clear compact UI labels.
+The diary is a small side element: 286 × 286px on desktop, 370 × 360px on very large displays and up to 224 × 256px on phones. It stays along the left edge and drifts by no more than seven vertical pixels. It does not cross the window or grow to fill the screen. Entries are deliberately short; the full services and project descriptions remain in the normal page sections.
+
+Handwriting is self-hosted. Visual ink appears letter by letter; screen readers receive complete text. Reduced motion removes drift, flips and writing animation. Ambient pause shows the full writing immediately. Explore 360° hides the diary and switches the opening artwork to the modeled 3D view; exiting restores the original illustration. The original generated artwork files are unchanged.
