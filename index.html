@@ -7,10 +7,11 @@
 <link rel="icon" href="assets/img/monogram.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="living-room.css">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="living-room.css"><link rel="stylesheet" href="diary.css">
+<link rel="preload" href="assets/fonts/caveat-regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" as="image" href="assets/img/sunset-studio.webp">
 <link rel="modulepreload" href="assets/scene/room-engine.js">
-<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="room.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script>
+<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="room.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script><script defer src="diary.js"></script>
 <script type="module" src="assets/scene/room-engine.js"></script>
 </head>
 <body>
@@ -23,14 +24,8 @@
 <main id="main">
 <section class="hero room-hero" id="top" aria-labelledby="openingTitle">
 <div class="room-world hero-room"><div class="room-poster" aria-hidden="true"></div><span class="room-load-status" role="status">Preparing your evening…</span></div><div class="hero-shade" aria-hidden="true"></div>
-<div class="container hero-layout"><div class="hero-copy">
-<p class="eyebrow hero-entrance">A DIGITAL STUDIO. AN EVENING OF POSSIBILITIES.</p>
-<span class="handwritten hero-handnote">make yourself at home.</span>
-<h1 id="openingTitle" class="hero-entrance">Good stories<br>begin with<br><em>a little warmth.</em></h1>
-<p class="hero-description hero-entrance">Your ideas, given a voice.<br>Thoughtful strategy. Words with warmth. A presence that feels like you.</p>
-<div class="hero-actions hero-entrance"><a class="button button-ivory" href="#story"><span class="play-mark" aria-hidden="true">▷</span>Step into the story<span aria-hidden="true">↓</span></a><a class="text-link light" href="#services">Explore my services <span aria-hidden="true">↗</span></a></div>
-<p class="hero-service-line">SOCIAL · LINKEDIN · EMAIL · CONTENT · DIGITAL STRATEGY</p>
-</div></div>
+<h1 id="openingTitle" class="diary-visually-hidden">Studio Navya — Digital presence, written with warmth.</h1>
+<div class="diary-dock diary-hero-dock"></div>
 <div class="view-controls"><button type="button" id="exploreToggle" aria-pressed="false">Explore 360°</button><details class="room-options"><summary>Room settings <span aria-hidden="true">+</span></summary><div class="room-options-panel"><button type="button" id="breezeToggle" aria-pressed="false">Let the breeze in</button><button type="button" id="lampSwitch" aria-pressed="false"><span>Preview the night</span></button><button type="button" id="dogHello">Say hello to the retriever</button><button type="button" id="resetView">Reset view ↺</button><button type="button" id="roomFullscreen" aria-pressed="false">Full screen ↗</button></div></details></div>
 <div class="room-view-hint"><span class="view-bearing">0° / 360°</span><span>Drag to wander · scroll to follow the evening</span></div>
 <div class="hero-bottom container"><span class="handwritten" id="roomAside" role="status">The best ideas arrive around golden hour.</span><a href="#story">SCROLL TO TURN THE PAGE <span aria-hidden="true">↓</span></a></div>
@@ -41,15 +36,17 @@
 <div class="cinema-vignette" aria-hidden="true"></div>
 <div class="story-view-controls"><button type="button" data-explore aria-pressed="false">Explore 360°</button><span class="view-bearing">0° / 360°</span></div>
 <nav class="room-directions" aria-label="Look around the room"><button type="button" data-turn="0">The desk</button><button type="button" data-turn="75">Reading corner</button><button type="button" data-turn="180">The doorway</button><button type="button" data-turn="-75">The library</button></nav>
+<div class="diary-dock diary-story-dock"></div>
 <div class="cinema-bottom"><span id="storyChapterLabel">01 / AN IDEA ARRIVES</span><div class="story-meter"><i></i></div><span id="sceneTime">6:12 PM</span><button id="motionToggle" type="button" aria-pressed="false">Pause ambient motion Ⅱ</button></div>
 </div>
 <div class="container story-steps">
-<article class="story-step" id="chapter-1" data-chapter="0"><div class="narrative-panel panel-one"><span class="scene-number">scene one</span><p class="eyebrow">6:12 PM / AN IDEA ARRIVES</p><h2>A good idea<br><em>knocks softly.</em></h2><p>A half-written note. A hopeful “what if”. Your next chapter starts here.</p><span class="handwritten">Pull up a chair. There’s room for your story.</span><a class="chapter-skip" href="#chapter-2">TURN THE PAGE ↓</a></div></article>
-<article class="story-step" id="chapter-2" data-chapter="1"><div class="narrative-panel panel-two"><span class="scene-number">scene two</span><p class="eyebrow">6:26 PM / THE NOTEBOOK OPENS</p><h2>First, we find<br><em>your kind of magic.</em></h2><p>A conversation. A first draft. A voice that feels unmistakably yours.</p><span class="story-service">POSITIONING · CONTENT STRATEGY · WRITING</span><span class="handwritten">A little clarity changes the whole story.</span><a class="chapter-skip" href="#chapter-3">KEEP READING ↓</a></div></article>
-<article class="story-step" id="chapter-3" data-chapter="2"><div class="narrative-panel panel-three"><span class="scene-number">scene three</span><p class="eyebrow">7:03 PM / WORDS FIND THEIR WINGS</p><h2>And then,<br><em>the story travels.</em></h2><p>A post catches an eye. An email starts a conversation. Your story finds its people.</p><span class="story-service">SOCIAL · LINKEDIN · EMAIL · OUTREACH</span><span class="handwritten">Connection is where the good things begin.</span><a class="chapter-skip" href="#chapter-4">ONE MORE PAGE ↓</a></div></article>
-<article class="story-step" id="chapter-4" data-chapter="3"><div class="narrative-panel panel-four"><span class="scene-number">scene four</span><p class="eyebrow">7:21 PM / THE LAMP STAYS ON</p><h2>A new page.<br><em>With your name on it.</em></h2><p>The lamps come on. The retriever wanders over. Your idea has found its voice. And there’s a new chapter waiting to be written.</p><span class="handwritten">The next chapter? We could write it together.</span><a class="button" href="#contact">Tell me your idea <span aria-hidden="true">↗</span></a><a class="chapter-skip" href="#work">OR EXPLORE THE WORK ↓</a></div></article>
+<article class="story-step" id="chapter-1" data-chapter="0"><div class="narrative-panel panel-one"><span class="scene-number">page one</span><p class="eyebrow">6:12 PM / AN IDEA ARRIVES</p><h2>A good idea<br><em>knocks softly.</em></h2><p>A half-written note. A hopeful “what if”. Your next chapter starts here.</p><span class="handwritten">Pull up a chair. There’s room for your story.</span><a class="chapter-skip" href="#chapter-2">TURN THE PAGE ↓</a></div></article>
+<article class="story-step" id="chapter-2" data-chapter="1"><div class="narrative-panel panel-two"><span class="scene-number">page two</span><p class="eyebrow">6:26 PM / THE NOTEBOOK OPENS</p><h2>First, we find<br><em>your kind of magic.</em></h2><p>A conversation. A first draft. A voice that feels unmistakably yours.</p><span class="story-service">POSITIONING · CONTENT STRATEGY · WRITING</span><span class="handwritten">A little clarity changes the whole story.</span><a class="chapter-skip" href="#chapter-3">KEEP READING ↓</a></div></article>
+<article class="story-step" id="chapter-3" data-chapter="2"><div class="narrative-panel panel-three"><span class="scene-number">page three</span><p class="eyebrow">7:03 PM / WORDS FIND THEIR WINGS</p><h2>And then,<br><em>the story travels.</em></h2><p>A post catches an eye. An email starts a conversation. Your story finds its people.</p><span class="story-service">SOCIAL · LINKEDIN · EMAIL · OUTREACH</span><span class="handwritten">Connection is where the good things begin.</span><a class="chapter-skip" href="#chapter-4">ONE MORE PAGE ↓</a></div></article>
+<article class="story-step" id="chapter-4" data-chapter="3"><div class="narrative-panel panel-four"><span class="scene-number">page four</span><p class="eyebrow">7:21 PM / THE LAMP STAYS ON</p><h2>A new page.<br><em>With your name on it.</em></h2><p>The lamps come on. The retriever wanders over. Your idea has found its voice. And there’s a new chapter waiting to be written.</p><span class="handwritten">The next chapter? We could write it together.</span><a class="button" href="#contact">Tell me your idea <span aria-hidden="true">↗</span></a><a class="chapter-skip" href="#work">OR EXPLORE THE WORK ↓</a></div></article>
 </div></section>
-<div class="chapter-divider"><span class="handwritten">and this is where the work begins…</span><svg viewBox="0 0 150 35" aria-hidden="true"><path d="M2 14c24 30 67-28 104-2l28 7m-17-12 17 12-21 10" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div>
+<div class="diary-landing"><span>the diary settles. the work begins.</span><i aria-hidden="true">↓</i></div>
+<div class="diary-details" id="diaryDetails"><div class="diary-spine" aria-hidden="true"></div>
 <section class="intro section container">
 <p class="eyebrow reveal">THE STUDIO, IN A SENTENCE</p><h2 class="intro-heading reveal">A thoughtful presence.<br>With a little <em>personality.</em></h2>
 <div class="intro-bottom reveal"><p>Your digital presence should feel like your brand at its best. I connect the strategy, the words and the everyday execution, so every touchpoint tells the same compelling story.</p><div class="principles"><span><b>01</b> Strategy before noise</span><span><b>02</b> Content with character</span><span><b>03</b> Progress you can understand</span></div></div>
@@ -107,6 +104,7 @@
 <button class="button button-ivory" type="submit">Prepare my enquiry <span aria-hidden="true">↗</span></button><p class="form-note" id="deliveryNote">Prepare a brief you can copy. Contact details are being finalised.</p><p id="formStatus" role="status" class="form-status"></p>
 <div id="enquiryOutput" hidden><label for="enquiryText">Your project enquiry</label><textarea id="enquiryText" rows="8" readonly></textarea><button type="button" class="text-link light" id="copyEnquiry">Copy enquiry <span aria-hidden="true">↗</span></button></div>
 </form></div></section>
+</div>
 </main>
 <footer class="site-footer"><div class="container footer-top"><a class="footer-wordmark" href="#top">studio <em>navya.</em></a><p>DIGITAL PRESENCE.<br>THOUGHTFULLY MADE.</p><a class="back-top" href="#top" aria-label="Back to top">↑</a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Studio Navya</span><span>STRATEGY · STORY · SUBSTANCE</span><a href="editor.html">Studio editor ↗</a></div></footer>
 <div class="draft-banner" id="draftBanner" hidden>Viewing your browser draft. <a href="editor.html">Open Studio editor ↗</a><button id="hideDraft" type="button" aria-label="Dismiss draft notice">×</button></div>

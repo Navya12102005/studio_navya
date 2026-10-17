@@ -11,7 +11,7 @@
    const clone=h.cloneNode(true);clone.querySelectorAll("br").forEach(br=>br.replaceWith(" "));h.setAttribute("aria-label",clone.textContent.replace(/\s+/g," ").trim());let n=0;
    function walk(node){[...node.childNodes].forEach(child=>{if(child.nodeType===Node.TEXT_NODE){const fragment=document.createDocumentFragment();child.textContent.split(/(\s+)/).forEach(word=>{if(!word.trim()){fragment.append(document.createTextNode(word));return;}const mask=document.createElement("span");mask.className="word-mask";mask.setAttribute("aria-hidden","true");const span=document.createElement("span");span.style.setProperty("--word-delay",(n++*(hero?100:45))+"ms");if(hero)span.className="hero-word";span.textContent=word;mask.append(span);fragment.append(mask);});child.replaceWith(fragment);}else if(child.nodeType===Node.ELEMENT_NODE)walk(child);});}walk(h);h.classList.add("animated-heading");
  }
- const headings=$$("h1,h2");headings.forEach(h=>animateHeading(h,h.tagName==="H1"));
+ const headings=$$("h1,h2").filter(h=>!h.closest(".story-diary"));headings.forEach(h=>animateHeading(h,h.tagName==="H1"));
  if("IntersectionObserver" in window){const io=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}}),{threshold:.12});headings.forEach(h=>io.observe(h));}else headings.forEach(h=>h.classList.add("in"));
  let centers=[],top=0,height=0,ticking=false,act=-1;
  const lerp=(a,b,t)=>a+(b-a)*t;

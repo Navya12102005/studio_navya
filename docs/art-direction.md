@@ -82,3 +82,12 @@ Vertical progress drives a reversible evening: chair pulls out → dog wakes →
 Horizontal and diagonal inputs rotate a real perspective camera around an unlimited horizontal axis, with bounded up/down look. Native vertical wheel scrolling is preserved. There is no automatic camera orbit. The room renderer supports native 4K canvas dimensions on 4K screens and caps high-DPI work to 8.3 million pixels; the material textures are not claimed as native 4K photography.
 
 Ten geometry/choreography checks and 24 DOM functional checks cover the current implementation. The supported visual browser capability was unavailable, so exact rendered appearance and device performance remain unverified.
+
+
+## Current narrator — one handwritten diary
+
+The floating standalone story copy from the previous revision is replaced by one persistent open diary. It has a wine leather cover, cream paper, a center gutter, visible page edges, a ribbon, quiet botanical/book sketches and a turning leaf. It drifts and rotates slightly as scroll progress changes; chapter text writes itself in locally served Caveat. The diary stays in one fixed overlay through the introduction and story, then gives way to its later content pages. Portfolio, services, process, proposals, FAQ, contact and individual projects all use the same paper and handwriting treatment. There are no separate visible narration cards. The old scene panels remain only as hidden content templates and scroll markers.
+
+The earlier small 3D desk notebook is hidden so the narration has a single diary. The background room, 360 camera and scroll-driven evening remain. The handwriting uses Caveat regular and semibold, obtained from Google Fonts and self-hosted with the SIL Open Font License in assets/fonts/CAVEAT-OFL.txt. The diary illustration and page details are native HTML/CSS/SVG; no new raster generation was used.
+
+Mobile line lengths were estimated using the actual local font metrics at 320, 375 and 430px viewport widths. Ten geometry checks and 26 DOM checks pass; visual browser rendering remains unverified because the supported browser capability was unavailable.

@@ -118,6 +118,7 @@ export function createStudio({ textureFactory = makeTextures } = {}) {
   box(2.35,.045,.035,m.brass,0,.92,.43,desk);
   const notebook=group('opening-notebook',-.15,1.055,.03,desk);notebook.rotation.y=.16;
   box(.57,.025,.43,m.wine,0,0,0,notebook);box(.54,.026,.4,m.paper,0,.024,0,notebook);
+  notebook.visible=false; // The single HTML diary is the narrator; no duplicate book on the desk.
   const cover=group('notebook-cover',-.285,.045,0,notebook);box(.57,.015,.43,m.wine,.285,0,0,cover);
   const pageInk=mesh(new T.PlaneGeometry(.43,.29),new T.MeshBasicMaterial({map:tex.note,transparent:true}),0,.04,0,notebook);pageInk.rotation.x=-Math.PI/2;pageInk.castShadow=false;
   const pencil=cylinder(.011,.011,.38,material('#9e4f36'),.35,1.065,.22,desk,8);pencil.rotation.z=Math.PI/2;pencil.rotation.y=.18;
