@@ -6,9 +6,10 @@
 <meta name="description" content="Thoughtful social media, LinkedIn, email and content marketing. Studio Navya helps ambitious brands find their voice and build a distinctive digital presence.">
 <link rel="icon" href="assets/img/monogram.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="motion.css">
-<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script>
+<link rel="preload" as="image" href="assets/img/sunset-studio.webp">
+<script defer src="config.js"></script><script defer src="work.js"></script><script defer src="certs.js"></script><script defer src="services.js"></script><script defer src="content-data.js"></script><script defer src="content.js"></script><script defer src="room.js"></script><script defer src="main.js"></script><script defer src="motion.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
@@ -18,57 +19,49 @@
 <nav id="siteNav" aria-label="Main navigation"><a href="#work">The work</a><a href="#services">Expertise</a><a href="#about">The studio</a><a class="nav-contact" href="#contact">Let’s collaborate <span aria-hidden="true">↗</span></a></nav>
 </header>
 <main id="main">
-<section class="hero" id="top">
-<div class="hero-texture" aria-hidden="true"></div>
-<div class="container hero-layout">
-<div class="hero-copy">
-<p class="eyebrow hero-entrance">INDEPENDENT DIGITAL MARKETING STUDIO</p>
-<h1 class="hero-entrance">A presence<br>worth<br><em>remembering.</em></h1>
-<p class="hero-description hero-entrance">For brands with something to say.<br>Strategy, storytelling and digital experiences that turn a passing glance into a lasting connection.</p>
-<div class="hero-actions hero-entrance"><a class="button button-ivory" href="#contact">Let’s build your presence <span aria-hidden="true">↗</span></a><a class="text-link light" href="#work">Explore the work <span aria-hidden="true">↓</span></a></div>
-<div class="hero-note"><span class="tiny-star" aria-hidden="true">✦</span><span>Considered strategy. Distinctive voice. Meaningful growth.</span></div>
-</div>
-<div class="hero-art" aria-label="Editorial concept showing a coordinated brand, content calendar and email campaign">
-<div class="art-orbit" aria-hidden="true"></div><div class="art-caption">A LITTLE STRATEGY. A LOT OF SOUL.</div>
-<div class="editorial-card"><div class="editorial-top"><span>THE ART OF BEING</span><span>001 / SN</span></div><div class="editorial-title">Quietly<br><em>unforgettable.</em></div>
-<svg class="botanical" viewBox="0 0 300 300" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width=".75"><ellipse cx="150" cy="150" rx="53" ry="117"/><ellipse cx="150" cy="150" rx="53" ry="117" transform="rotate(45 150 150)"/><ellipse cx="150" cy="150" rx="53" ry="117" transform="rotate(90 150 150)"/><ellipse cx="150" cy="150" rx="53" ry="117" transform="rotate(135 150 150)"/><circle cx="150" cy="150" r="23"/></g></svg>
-<div class="editorial-bottom"><span>GOOD BRANDS HAVE A STORY.<br>LET’S MAKE YOURS RESONATE.</span><b>n.</b></div></div>
-<div class="floating-note content-note"><span class="eyebrow">CONTENT, WITH INTENTION</span><div class="calendar-mini" aria-hidden="true"><i>M</i><i>T</i><i>W</i><i>T</i><i>F</i><b>✦</b><b></b><b>✦</b><b></b><b>✦</b></div><span class="note-bottom">Your voice. Beautifully consistent.</span></div>
-<div class="floating-note email-note"><span class="mini-envelope" aria-hidden="true">↗</span><div><span class="eyebrow">BEYOND THE INBOX</span><strong>A conversation starts here.</strong><span class="note-bottom">Thoughtful words. The right people.</span></div></div>
-<span class="art-footnote">BRAND &amp; CAMPAIGN CONCEPT · STUDIO NAVYA</span>
+<section class="hero room-hero" id="top" aria-labelledby="openingTitle">
+<div class="room-world hero-room" role="img" aria-label="An illustrated writing studio at sunset: books, a wine glass, warm lamplight, fairy lights by the window, a hanging dreamcatcher and a sleeping golden retriever."><div class="room-camera"><div class="room-illustration"></div></div></div><div class="hero-shade" aria-hidden="true"></div>
+<div class="container hero-layout"><div class="hero-copy">
+<p class="eyebrow hero-entrance">THE SUN IS SETTING. THE IDEAS ARE JUST WAKING UP.</p>
+<span class="handwritten hero-handnote">an evening at Studio Navya</span>
+<h1 id="openingTitle" class="hero-entrance">Good stories<br>begin with<br><em>a little warmth.</em></h1>
+<p class="hero-description hero-entrance">Come in. Bring your big idea, your half-written notes, your “what if”. I’ll help turn them into a digital presence that feels unmistakably yours.</p>
+<div class="hero-actions hero-entrance"><a class="button button-ivory" href="#story"><span class="play-mark" aria-hidden="true">▷</span>Step into the story<span aria-hidden="true">↓</span></a><a class="text-link light" href="#services">Explore my services <span aria-hidden="true">↗</span></a></div>
+<p class="hero-service-line">SOCIAL · LINKEDIN · EMAIL · CONTENT · DIGITAL STRATEGY</p>
 </div></div>
-<div class="hero-bottom container"><span>STRATEGY MEETS STORYTELLING</span><a href="#work">SCROLL TO DISCOVER <span aria-hidden="true">↓</span></a><span>BASED IN INDIA · WORKING EVERYWHERE</span></div>
+<div class="room-controls"><button type="button" id="lampSwitch" aria-pressed="false"><i aria-hidden="true">☼</i><span>Stay a little later</span></button><button type="button" id="dogHello"><span aria-hidden="true">✧</span>Say hello to the retriever</button></div>
+<div class="hero-bottom container"><span class="handwritten" id="roomAside" role="status">The best ideas arrive around golden hour.</span><a href="#story">SCROLL TO TURN THE PAGE <span aria-hidden="true">↓</span></a></div>
 </section>
-<div class="service-ribbon" aria-label="Social media, LinkedIn, email, content, digital strategy"><div class="ribbon-track"><span>SOCIAL MEDIA <i>✦</i> LINKEDIN <i>✦</i> EMAIL MARKETING <i>✦</i> CONTENT <i>✦</i> DIGITAL STRATEGY <i>✦</i></span><span aria-hidden="true">SOCIAL MEDIA <i>✦</i> LINKEDIN <i>✦</i> EMAIL MARKETING <i>✦</i> CONTENT <i>✦</i> DIGITAL STRATEGY <i>✦</i></span></div></div>
-<section class="brand-story" id="story" aria-labelledby="storyHeading">
-<div class="container story-top"><p class="eyebrow">THE STORY WE COULD WRITE TOGETHER</p><span>FOUR CHAPTERS. ONE TRANSFORMATION. ↓</span></div>
-<div class="container story-layout">
-<div class="story-steps">
-<article class="story-step" data-chapter="0"><p class="eyebrow">CHAPTER I / THE QUIET BEGINNING</p><h2 id="storyHeading">Imagine a<br>brilliant brand.<br><em>Almost unseen.</em></h2><p>The idea is good. The work is good. But online? A few scattered posts, a quiet inbox, and a story no one quite understands.</p><span class="story-scroll">THIS IS WHERE WE BEGIN <i aria-hidden="true">↓</i></span></article>
-<article class="story-step" data-chapter="1"><p class="eyebrow">CHAPTER II / FINDING THE VOICE</p><h2>First, we find<br>what makes it<br><em>unmistakably you.</em></h2><p>We listen. We find the audience, the point of view and the words that feel right. The scattered pieces begin to make sense.</p><span class="story-service">POSITIONING · BRAND VOICE · CONTENT STRATEGY</span></article>
-<article class="story-step" data-chapter="2"><p class="eyebrow">CHAPTER III / CONNECTING THE DOTS</p><h2>Then every<br>touchpoint<br><em>tells one story.</em></h2><p>A social post starts the interest. LinkedIn builds trust. A thoughtful email opens a conversation. Nothing works in isolation.</p><span class="story-service">SOCIAL · LINKEDIN · EMAIL · OUTREACH</span></article>
-<article class="story-step" data-chapter="3"><p class="eyebrow">CHAPTER IV / A LASTING IMPRESSION</p><h2>From another<br>brand online<br>to <em>the one they remember.</em></h2><p>A clearer presence. A consistent voice. A reason to connect. That’s the kind of next chapter I want to help you create.</p><a class="text-link light" href="#work">See the thinking behind it <span aria-hidden="true">↗</span></a></article>
+<section class="brand-story cinema-story" id="story" aria-label="An evening in four chapters">
+<div class="cinema-sticky story-stage" data-act="0">
+<div class="room-world story-room"><div class="room-camera"><div class="room-illustration"></div></div></div>
+<div class="cinema-vignette" aria-hidden="true"></div><div class="cinema-letterbox letterbox-top" aria-hidden="true"></div><div class="cinema-letterbox letterbox-bottom" aria-hidden="true"></div>
+<div class="scene-props" aria-hidden="true">
+<div class="arrival-envelope"><div class="envelope-back"></div><div class="envelope-letter"><span>a little idea</span><i>what if…</i></div><div class="envelope-front"></div><span class="envelope-stamp">n.</span></div>
+<div class="writing-book"><div class="book-page page-left"><small>THE FIRST DRAFT</small><strong>your<br><em>story.</em></strong><svg viewBox="0 0 180 70"><path d="M5 10q20-20 35 0t35 0 35 0 35 0m-140 23q20-20 35 0t35 0 35 0m-105 23q20-20 35 0t35 0" fill="none" stroke="currentColor" stroke-width="1" pathLength="1"/></svg></div><div class="book-page page-right"><small>MAKE IT SOUND LIKE YOU</small><span class="writing-line"></span><span class="writing-line"></span><span class="writing-line short"></span><i>Every word,<br>with intention.</i></div><span class="book-pencil">✎</span></div>
+<div class="travelling-notes"><div class="flying-note social-note"><span>01 / SOCIAL</span><strong>Worth<br><em>sharing.</em></strong><small>A moment of connection.</small></div><div class="flying-note linkedin-note"><span>02 / LINKEDIN</span><strong>Your voice.<br><em>Out loud.</em></strong><small>Thoughts with a point of view.</small></div><div class="flying-note email-note-scene"><span>03 / EMAIL & OUTREACH</span><strong>A little<br><em>hello.</em></strong><small>The start of something good.</small></div></div>
+<svg class="paper-flight" viewBox="0 0 700 400" fill="none"><path d="M30 340C50 100 360 400 400 180S600 40 655 80" stroke="#ebd2a3" stroke-width="1.5" stroke-dasharray="4 7" pathLength="1"/><g class="paper-plane"><path d="m618 55 60 14-45 32 6-23-21-23Z" fill="#f0dfbc" stroke="#916550" stroke-width="1.2"/><path d="m618 55 21 23 39-9" stroke="#916550"/></g></svg>
+<div class="last-note"><span class="handwritten">For your next chapter.</span><strong>Yours, <em>Navya</em></strong><i>✦</i></div>
 </div>
-<div class="story-rail" aria-hidden="true"><div class="story-stage">
-<div class="story-orbit orbit-one"></div><div class="story-orbit orbit-two"></div><span class="story-backdrop" id="storyBackdrop">unseen.</span>
-<svg class="story-thread" viewBox="0 0 560 560" fill="none"><path d="M110 180C110 50 470 20 430 170S80 210 120 350S460 440 455 300S250 220 270 370" stroke="currentColor" stroke-width="1.3" pathLength="1"/></svg>
-<div class="story-card story-card-social"><span class="story-card-label">THE SOCIAL PRESENCE</span><strong>Something<br>worth <em>sharing.</em></strong><div class="story-mini-grid"><i>n.</i><i>✦</i><i>the<br>story.</i></div><small>A DISTINCTIVE POINT OF VIEW</small></div>
-<div class="story-card story-card-email"><span class="story-card-label">THE CONVERSATION</span><span class="story-mail-icon">↗</span><strong>A good story<br>travels further.</strong><div class="story-lines"><i></i><i></i><i></i></div><small>PERSONAL. PURPOSEFUL. RELEVANT.</small></div>
-<div class="story-card story-card-brand"><span class="story-card-label">THE HEART OF IT ALL</span><strong>your<br><em>brand.</em></strong><span class="story-brand-star">✦</span><small>CLARITY → CONNECTION</small></div>
-<div class="story-connection connection-one">A CLEARER VOICE</div><div class="story-connection connection-two">ONE CONNECTED PRESENCE</div><div class="story-final-seal"><span>✦</span> MADE TO BE REMEMBERED</div>
-<div class="story-stage-footer"><span id="storyChapterLabel">01 / THE QUIET BEGINNING</span><div class="story-meter"><i></i></div><span>04</span></div>
-</div></div>
+<div class="cinema-bottom"><span id="storyChapterLabel">01 / AN IDEA ARRIVES</span><div class="story-meter"><i></i></div><span id="sceneTime">6:12 PM</span><button id="motionToggle" type="button" aria-pressed="false">Pause ambient motion Ⅱ</button></div>
+</div>
+<div class="container story-steps">
+<article class="story-step" id="chapter-1" data-chapter="0"><div class="narrative-panel panel-one"><span class="scene-number">scene one</span><p class="eyebrow">6:12 PM / AN IDEA ARRIVES</p><h2>A good idea<br><em>knocks softly.</em></h2><p>Your work is good. Your online presence hasn’t caught up. So you bring an idea, a few scattered notes and a small, hopeful “what if”.</p><span class="handwritten">Pull up a chair. There’s room for your story.</span><a class="chapter-skip" href="#chapter-2">TURN THE PAGE ↓</a></div></article>
+<article class="story-step" id="chapter-2" data-chapter="1"><div class="narrative-panel panel-two"><span class="scene-number">scene two</span><p class="eyebrow">6:26 PM / THE NOTEBOOK OPENS</p><h2>First, we find<br><em>your kind of magic.</em></h2><p>Who are you speaking to? What do you want them to feel? Between a conversation and a first draft, your brand begins to find its voice.</p><span class="story-service">POSITIONING · CONTENT STRATEGY · WRITING</span><span class="handwritten">A little clarity changes the whole story.</span><a class="chapter-skip" href="#chapter-3">KEEP READING ↓</a></div></article>
+<article class="story-step" id="chapter-3" data-chapter="2"><div class="narrative-panel panel-three"><span class="scene-number">scene three</span><p class="eyebrow">7:03 PM / WORDS FIND THEIR WINGS</p><h2>And then,<br><em>the story travels.</em></h2><p>A social post catches someone’s eye. LinkedIn gives your expertise a voice. An email starts a conversation. One story, finding the right people in different ways.</p><span class="story-service">SOCIAL · LINKEDIN · EMAIL · OUTREACH</span><span class="handwritten">Connection is where the good things begin.</span><a class="chapter-skip" href="#chapter-4">ONE MORE PAGE ↓</a></div></article>
+<article class="story-step" id="chapter-4" data-chapter="3"><div class="narrative-panel panel-four"><span class="scene-number">scene four</span><p class="eyebrow">7:21 PM / THE LAMP STAYS ON</p><h2>A new page.<br><em>With your name on it.</em></h2><p>The room grows quiet. The retriever is still dreaming. But something has: your idea now has a direction, a voice and a place to begin.</p><span class="handwritten">The next chapter? We could write it together.</span><a class="button" href="#contact">Tell me your idea <span aria-hidden="true">↗</span></a><a class="chapter-skip" href="#work">OR EXPLORE THE WORK ↓</a></div></article>
 </div></section>
+<div class="chapter-divider"><span class="handwritten">and this is where the work begins…</span><svg viewBox="0 0 150 35" aria-hidden="true"><path d="M2 14c24 30 67-28 104-2l28 7m-17-12 17 12-21 10" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div>
 <section class="intro section container">
-<p class="eyebrow reveal">A THOUGHTFUL APPROACH TO YOUR NEXT CHAPTER</p><h2 class="intro-heading reveal">You bring the ambition.<br>I bring the <em>intention.</em></h2>
+<p class="eyebrow reveal">THE STUDIO, IN A SENTENCE</p><h2 class="intro-heading reveal">A thoughtful presence.<br>With a little <em>personality.</em></h2>
 <div class="intro-bottom reveal"><p>Your digital presence should feel like your brand at its best. I connect the strategy, the words and the everyday execution, so every touchpoint tells the same compelling story.</p><div class="principles"><span><b>01</b> Strategy before noise</span><span><b>02</b> Content with character</span><span><b>03</b> Progress you can understand</span></div></div>
 </section>
 <section class="work-section section" id="work"><div class="container">
-<div class="section-heading reveal"><div><p class="eyebrow">01 / THE PORTFOLIO</p><h2>Ideas made <em>tangible.</em></h2></div><p class="section-description">A collection of concept directions exploring how strategy and storytelling can work together.<br><span class="muted">Concept briefs, not client results.</span></p></div>
+<div class="section-heading reveal"><div><p class="eyebrow">01 / THE PORTFOLIO</p><h2>Stories from<br><em>the writing desk.</em></h2></div><p class="section-description">A collection of concept directions exploring how strategy and storytelling can work together.<br><span class="muted">Concept briefs, not client results.</span></p></div>
 <div class="filter-row" id="workFilters" role="group" aria-label="Filter projects"></div><div class="work-grid" id="workGrid"></div><p class="work-count" id="workCount" role="status"></p>
 </div></section>
 <section class="section expertise container" id="services">
-<div class="section-heading reveal"><div><p class="eyebrow">02 / THE EXPERTISE</p><h2>Every detail.<br><em>One clear direction.</em></h2></div><p class="section-description">Choose one service or bring them together. Here’s exactly what each includes and what it is designed to do.</p></div>
+<div class="section-heading reveal"><div><p class="eyebrow">02 / THE EXPERTISE</p><h2>Pick a page.<br><em>Find your direction.</em></h2></div><p class="section-description">Choose one service or bring them together. Here’s exactly what each includes and what it is designed to do.</p></div>
 <div class="services-layout reveal"><div class="service-tabs" id="serviceTabs" role="tablist" aria-label="Digital services" aria-orientation="vertical"></div><article class="service-panel" id="servicePanel" role="tabpanel" tabindex="0"></article></div>
 <p class="service-scope">Deliverables are illustrative scopes, agreed in your proposal. Ad spend, paid software and production costs are quoted separately.</p>
 </section>
@@ -82,11 +75,11 @@
 </div><div class="journey-detail" id="journeyDetail" aria-live="polite"><span class="eyebrow">01 / BE DISCOVERED</span><p>Give the right people a reason to notice you. Search-led writing and consistent social content introduce your brand through useful ideas, a recognisable voice and relevant topics.</p></div>
 </div></section>
 <section class="section process container" id="process">
-<div class="section-heading reveal"><div><p class="eyebrow">03 / THE EXPERIENCE</p><h2>Good work starts with<br><em>a good conversation.</em></h2></div><p class="section-description">Clear steps, collaborative decisions and room for thoughtful work. You know what’s happening at every stage.</p></div>
+<div class="section-heading reveal"><div><p class="eyebrow">03 / THE EXPERIENCE</p><h2>How the plot<br><em>comes together.</em></h2></div><p class="section-description">Clear steps, collaborative decisions and room for thoughtful work. You know what’s happening at every stage.</p></div>
 <ol class="process-grid"><li class="reveal"><span>01 / DISCOVER</span><h3>Listen first.</h3><p>We talk about your business, audience and ambitions, then review what’s already working.</p></li><li class="reveal"><span>02 / DEFINE</span><h3>Find the direction.</h3><p>A focused proposal sets the channels, deliverables, timeline and measures of success.</p></li><li class="reveal"><span>03 / CREATE &amp; LAUNCH</span><h3>Make it resonate.</h3><p>Content and campaigns come together in a shared calendar, with your approval before publishing.</p></li><li class="reveal"><span>04 / REFINE</span><h3>Keep getting better.</h3><p>Reports connect activity to outcomes. We use the findings to shape the next month.</p></li></ol>
 </section>
 <section class="about section" id="about"><div class="container about-layout">
-<div class="about-art reveal" aria-label="Studio Navya monogram"><span class="eyebrow">A NOTE FROM THE STUDIO</span><div class="about-monogram">n<span>✦</span></div><span class="about-art-bottom">THOUGHTFULLY PLANNED.<br>PERSONALLY CRAFTED.</span></div>
+<div class="about-art reveal" aria-label="Studio Navya monogram"><span class="eyebrow">A NOTE FROM THE STUDIO</span><div class="about-monogram">good ideas deserve<br>a little room to grow.</div><span class="about-art-bottom">THOUGHTFULLY PLANNED.<br>PERSONALLY CRAFTED.</span></div>
 <div class="about-copy reveal"><p class="eyebrow">04 / THE PERSON BEHIND THE PRESENCE</p><h2>A little strategy.<br>A lot of <em>soul.</em></h2><p class="about-intro">Hi, I’m <span data-owner>Navya</span> — the person behind Studio Navya.</p><p>I believe your marketing should sound like you and make sense for your business. I bring a writer’s attention to language and a strategist’s focus on purpose to every project.</p><p>From the first content idea to the monthly report, you work directly with me. It’s a personal, considered approach for brands ready to show up with more clarity and consistency.</p><a href="#contact" class="text-link">Tell me your story <span aria-hidden="true">↗</span></a><div class="tool-list" aria-label="Tools in the workflow"><span>CANVA</span><span>NOTION</span><span>MAILCHIMP</span><span>META BUSINESS SUITE</span><span>EXCEL &amp; POWER BI</span></div></div>
 </div></section>
 <section class="section container credentials" id="credentials" hidden><p class="eyebrow">CONTINUING TO LEARN</p><h2>Learning behind <em>the work.</em></h2><div id="credentialList"></div></section>
@@ -107,7 +100,7 @@
 <details><summary>What do you need from me to get started?<span aria-hidden="true">+</span></summary><p>Your goals, brand assets, existing content and a conversation about your audience. If execution needs account access, we agree on the appropriate access during onboarding.</p></details>
 </div></div></section>
 <section class="contact section" id="contact"><div class="container contact-layout">
-<div class="contact-copy reveal"><p class="eyebrow">06 / YOUR NEXT CHAPTER</p><h2>Let’s make<br>something<br><em>that matters.</em></h2><p>Tell me what you’re building, where you want to go, and what you need a little help with.</p><a id="contactEmail" class="contact-email" hidden></a><div id="socialLinks" class="social-links"></div><span class="contact-signature">With intention, <i data-owner>Navya</i></span></div>
+<div class="contact-copy reveal"><p class="eyebrow">06 / YOUR NEXT CHAPTER</p><h2>A new page.<br>A little courage.<br><em>Your story.</em></h2><p>The lamp is still on. Tell me what you’re building, what you’re dreaming of, and where you could use a little help.</p><a id="contactEmail" class="contact-email" hidden></a><div id="socialLinks" class="social-links"></div><span class="contact-signature">With intention, <i data-owner>Navya</i></span></div>
 <form id="contactForm" class="contact-form">
 <div class="form-two"><div class="field"><label for="name">Your name <span>*</span></label><input id="name" name="name" required autocomplete="name" placeholder="How should I call you?"></div><div class="field"><label for="email">Email address <span>*</span></label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@yourbrand.com"></div></div>
 <div class="field"><label for="brand">Brand / website</label><input id="brand" name="brand" placeholder="A little introduction to your world"></div>

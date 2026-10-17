@@ -1,6 +1,6 @@
 # Studio Navya
 
-A warm editorial portfolio in wine, cocoa, parchment and antique gold. A four-chapter scroll story takes a brand from almost unseen to a coherent digital presence, followed by work, detailed services and an enquiry builder.
+A warm illustrated portfolio set in a creative studio at sunset. A four-scene scroll story follows an idea arriving, a notebook opening, words finding their audience and an invitation to begin. The room includes a sleeping golden retriever, books, a wine glass, a gently swaying dreamcatcher and lamplight. Services, portfolio editing and enquiries remain directly accessible.
 
 ## Update your work without writing code
 
@@ -32,7 +32,8 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | certs.js | Credentials; placeholder entries are hidden |
 | index.html | Main page, four story chapters, FAQ and enquiry form |
 | styles.css | Responsive layout, warm palette and typography |
-| motion.css / motion.js | Scroll story, animated words, moving cards and drawing thread |
+| motion.css / motion.js | Four-scene camera, word reveals, notebook, letters, flying notes and plane |
+| room.js | Layered room illustration, golden retriever, lamp and greeting controls |
 | main.js | Accessible tabs, filters, menu, journey diagram and enquiries |
 | content.js | Shared safe rendering, content validation and draft loading |
 | case.html / case.js | Individual project pages |
@@ -47,4 +48,6 @@ Run node scripts/build.mjs from the repository root. It copies public HTML, CSS,
 
 ## Verification
 
-JavaScript syntax and local links/assets are checked. Fifteen DOM-based functional checks cover services, keyboard selection, portfolio filters, case studies, missing projects, enquiry preparation, menu state, local editing, draft isolation, unsafe input and four-chapter motion state. These checks do not render layout. Desktop/mobile appearance and animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
+JavaScript syntax and local links/assets are checked. Twenty DOM-based functional checks cover services, keyboard selection, portfolio filters, case studies, missing projects, enquiry preparation, menu state, local editing, draft isolation, unsafe input and four-scene motion state, room controls, the golden retriever layer, fairy lights, ambient pause and reduced-motion state. These checks do not render layout. Desktop/mobile appearance and animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
+
+Artwork files and exact generation prompts are recorded in [docs/art-direction.md](docs/art-direction.md). The built-in image generation tool created the room and the transparent retriever layer. The website uses optimized WebP versions.
