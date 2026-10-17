@@ -38,7 +38,9 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | room.js | Bounded painted-room parallax, settings, keyboard and fullscreen controls |
 | living-room.css | Room controls, illustrated prop movement and responsive presentation |
 | diary.js / diary.css | One pinned room and small side diary with fading entries |
-| hero-art.js | Original illustrated room layers, fairy lights, flowers and retriever |
+| hero-art.js | Original room layers, window, wine, paper, pillow and retriever poses |
+| evening.js / evening.css | One reversible scroll timeline for the sunset and room actions |
+| scripts/verify-evening.mjs | Dependency-free choreography, continuity and reduced-motion checks |
 | assets/fonts/ | Self-hosted DM Serif Display and Inter webfonts with their SIL Open Font Licenses |
 | assets/scene/ | Archived modeled prototype; not loaded by the live page |
 | assets/vendor/ | Archived prototype dependency and MIT license; not loaded by the live page |
@@ -65,7 +67,7 @@ These checks do not render browser pixels. Visual browser QA was unavailable in 
 
 Select **View the room** to hide the diary while keeping the exact same painting. Drag sideways or diagonally for gentle bounded depth movement; horizontal wheel or Shift+wheel also works. Vertical movement always reads the site. Arrow keys adjust the view when focused; Home resets it, and Escape returns to the diary. There is no full 360° model in this version: the rejected modeled room is no longer loaded, including during scrolling and fullscreen.
 
-Room settings provide the night tint, breeze, retriever greeting, reset and fullscreen. The existing illustration layers supply subtle chair, lamp, flower, dreamcatcher, feather and fairy-light movement. Scrolling gradually darkens the same artwork toward night. The retriever remains the original painted sleeping dog with a small greeting animation; the toy-like articulated model and its walking animation are not used. Reduced motion removes continuous movement and ambient pause freezes the loops.
+Room settings provide the night tint, breeze, retriever greeting, reset and fullscreen. The existing illustration layers supply subtle chair, lamp, flower, dreamcatcher, feather and fairy-light movement. Scrolling lowers the sun behind the skyline, reveals a blue night sky, stars and moon, and brightens the existing desk lamp. The wine glass empties, a paper roll drops and unfurls on the floor, and a linen pillow falls beside the chair. The original sleeping retriever blends into matching awake and standing poses, then steps down to the rug as you scroll. The modeled prototype remains archived. Reduced motion removes continuous movement and ambient pause freezes the loops.
 
 Original generated assets and prompts remain in [docs/art-direction.md](docs/art-direction.md). Their files are unchanged.
 
@@ -84,3 +86,7 @@ The whole site uses two font families: upright DM Serif Display for headings, an
 The introduction and four diary entries share a single .room-world and .room-illustration inside one sticky scene. There is no second room, slide transition, page-flip animation or chapter-dot navigation. Vertical scroll controls a reversible 6:12–7:21 PM timeline from golden light toward evening. The diary stays small on the left; the full service, work and contact details follow below. Fullscreen and View the room use that same illustration rather than creating another scene.
 
 Typography is limited to the same two families in SVG scene lettering as well. Legacy Cormorant, Manrope and Caveat rules are removed from the live stylesheets. Archived font files are not loaded.
+
+## Scroll-driven evening
+
+Run node scripts/verify-evening.mjs to check 1,001 progress samples, phase boundaries, reverse determinism, reduced motion and the manual night preview. A native SVG frame review and DOM integration checks confirm that old CSS does not hide the new poses or night layers. The original artwork and the two-font system remain. Story timings, new asset paths and exact generation prompts are in [docs/evening-choreography.md](docs/evening-choreography.md).

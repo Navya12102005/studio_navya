@@ -13,7 +13,7 @@
 
   const lamp=document.querySelector('#lampSwitch');lamp?.addEventListener('click',()=>{state.night=!state.night;body.classList.toggle('room-night',state.night);lamp.setAttribute('aria-pressed',String(state.night));lamp.querySelector('span').textContent=state.night?'Return to the story light':'Preview the night';if(caption)caption.textContent=state.night?'The lights come on. There’s no rush.':'The best ideas arrive around golden hour.';emit();});
   const breeze=document.querySelector('#breezeToggle');breeze?.addEventListener('click',()=>{state.breeze=!state.breeze;body.classList.toggle('window-open',state.breeze);breeze.setAttribute('aria-pressed',String(state.breeze));breeze.textContent=state.breeze?'Follow the story breeze':'Let the breeze in';emit();});
-  document.querySelector('#dogHello')?.addEventListener('click',()=>{state.greetingUntil=performance.now()+4200;body.classList.add('dog-stir');if(caption)caption.textContent='A sleepy hello. A little tail wag. You’re in good company.';emit();setTimeout(()=>body.classList.remove('dog-stir'),4200);});
+  document.querySelector('#dogHello')?.addEventListener('click',()=>{state.greetingUntil=performance.now()+4200;body.classList.add('dog-stir');if(caption)caption.textContent='A sleepy hello. A little tail wag. You’re in good company.';emit();setTimeout(()=>{body.classList.remove('dog-stir');state.greetingUntil=0;emit();},4200);});
   worlds.forEach(el=>{
     el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label','Original painted sunset studio. Drag for gentle depth movement; scroll vertically for the story. View the room hides the diary. Arrow keys adjust the view; Home resets it.');
     let drag=null;

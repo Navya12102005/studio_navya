@@ -19,8 +19,6 @@
   let current=0;centers.forEach((center,i)=>{if(y+vh*.55>=center-vh*.16)current=i;});
   if(current!==act){act=current;scene.dataset.act=String(act);$('#storyChapterLabel').textContent=labels[act];}
   scene.style.setProperty('--story-p',p.toFixed(5));
-  const night=reduced.matches?[.03,.18,.35,.58][act]:.03+p*.58;
-  scene.style.setProperty('--night',night.toFixed(4));
   scene.style.setProperty('--desk-scene-x',(reduced.matches?0:-Math.sin(p*Math.PI)*7).toFixed(2)+'px');
   scene.style.setProperty('--desk-scene-y',(reduced.matches?0:-Math.sin(p*Math.PI)*4).toFixed(2)+'px');
   const minutes=Math.round(6*60+12+p*69),hour=Math.floor(minutes/60);
