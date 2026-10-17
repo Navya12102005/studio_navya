@@ -69,3 +69,16 @@ Use case: illustration-story. Create ONE transparent-background cutout asset: a 
 Use case: precise-object-edit. Edit target is this exact empty sunset studio background plate. Produce a native 4K 3840x2160 landscape version for a 4K-screen website scene. Preserve the EXACT room composition, camera angle, window size and position, colors, sunset, floor, rug, all architecture, curtain and bookshelf placement, and empty areas. Only increase resolved detail, subtle material texture and edge quality at 3840 by 2160 pixels. The internal window has no glazing bars; keep it that way. Keep floor empty: NO desk, NO armchair, NO chair, NO lamp, NO dog, NO vase, NO dreamcatcher, NO text. Do not change the framing or add props. High-quality warm gouache / editorial painterly realism, natural paper texture, no oversharpening and no gloss. Output the full wide 16:9 frame at 3840x2160 pixels.
 
 Room controls, native vertical scrolling, diagonal/horizontal gestures, pointer drag, keyboard bounds, explore/exit, reset, breeze, ambient pause, reduced motion and the original service/portfolio/editor behavior are covered by 26 DOM-based functional checks. Visual browser QA remains unavailable.
+
+
+## Current revision — a quiet 360° evening
+
+The earlier layered diorama described above has been superseded by a full Three.js room, with furniture on all four sides, an opening window wall, floor and ceiling. The generated painting is now the fallback rather than the 3D scene. All current 3D geometry and material patterns are authored in assets/scene/studio.js. Three.js 0.186.1 is vendored locally with its MIT license.
+
+The room keeps warm walnut, wine velvet, parchment linen, olive and aged brass. The composition leaves the writing desk and retriever visible to the right of sparse floating text. Chapters use short lines, serif italics, a muted handwritten accent and generous space. Paper-card overlays and flying 2D props are removed from the live HTML. Secondary controls sit inside a room-settings menu.
+
+Vertical progress drives a reversible evening: chair pulls out → dog wakes → dog stands and walks → peach sky becomes blue night → fairy lights, desk lamp, floor lamp and pendant glow. Wind deforms linen mesh vertices, opens casement pivots, sways the suspended wire and woven hoop, moves five individually hinged feathers and the flower stems. The dog has articulated legs, knees, ears, head and tail. It is a crafted stylized golden retriever, not a scanned photoreal animal. Dog floor clearance is checked through the rise and walk.
+
+Horizontal and diagonal inputs rotate a real perspective camera around an unlimited horizontal axis, with bounded up/down look. Native vertical wheel scrolling is preserved. There is no automatic camera orbit. The room renderer supports native 4K canvas dimensions on 4K screens and caps high-DPI work to 8.3 million pixels; the material textures are not claimed as native 4K photography.
+
+Ten geometry/choreography checks and 24 DOM functional checks cover the current implementation. The supported visual browser capability was unavailable, so exact rendered appearance and device performance remain unverified.

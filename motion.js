@@ -22,6 +22,8 @@
   const p=clamp((y+vh*.5-centers[0])/Math.max(1,centers.at(-1)-centers[0]));
   let current=0;centers.forEach((center,i)=>{if(y+vh*.55>=center-vh*.16)current=i;});
   if(current!==act){act=current;stage.dataset.act=String(act);$("#storyChapterLabel").textContent=labels[act];$("#sceneTime").textContent=times[act];[...dots.children].forEach((a,i)=>{a.classList.toggle("active",i===act);if(i===act)a.setAttribute("aria-current","step");else a.removeAttribute("aria-current");});}
+  window.StudioRoom?.setProgress(p);
+  steps.forEach((step,i)=>{const distance=(centers[i]-(y+vh*.5))/vh;step.style.setProperty("--float-offset",(reduced.matches?0:Math.max(-1,Math.min(1,distance))*26).toFixed(2)+"px");});
   set("--story-p",p.toFixed(4));dots.classList.toggle("visible",y+vh*.5>top&&y+vh*.5<top+height);
   const doc=document.documentElement;$(".reading-progress").style.transform="scaleX("+clamp(y/Math.max(1,doc.scrollHeight-vh))+")";
   set("--desk-scene-x",(Math.sin(p*Math.PI)*-7).toFixed(2)+"px");

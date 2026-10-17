@@ -1,6 +1,6 @@
 # Studio Navya
 
-A warm illustrated portfolio set in a creative studio at sunset. A four-scene scroll story follows an idea arriving, a notebook opening, words finding their audience and an invitation to begin. The room includes a sleeping golden retriever, books, a wine glass, a gently swaying dreamcatcher and lamplight. Services, portfolio editing and enquiries remain directly accessible.
+A warm, minimal portfolio inside a complete real-time 3D creative studio. Float through four short story chapters while sunset becomes night, the chair pulls out, a golden retriever wakes and walks, and a breeze moves the curtains, window lights, flowers and woven dreamcatcher. Sparse serif text sits directly over the room. Services, project editing and enquiries remain directly accessible.
 
 ## Update your work without writing code
 
@@ -32,15 +32,19 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | certs.js | Credentials; placeholder entries are hidden |
 | index.html | Main page, four story chapters, FAQ and enquiry form |
 | styles.css | Responsive layout, warm palette and typography |
-| motion.css / motion.js | Four-scene camera, word reveals, notebook, letters, flying notes and plane |
-| room.js | Layered room illustration, golden retriever, lamp and greeting controls |
+| motion.css / motion.js | Story progress, floating text, word reveals and ambient pause |
+| room.js | Full 360° input, room settings, explore, keyboard and fullscreen controls |
+| living-room.css | Quiet room controls and floating story typography |
+| assets/scene/ | Three.js room geometry, rendering and reversible scroll choreography |
+| assets/vendor/ | Self-hosted Three.js 0.186.1 and its MIT license |
+| scripts/verify-room.mjs | Dependency-free geometry and choreography checks |
 | main.js | Accessible tabs, filters, menu, journey diagram and enquiries |
 | content.js | Shared safe rendering, content validation and draft loading |
 | case.html / case.js | Individual project pages |
 | editor.html / editor.js / editor.css | Local project and contact editor |
 | .openai/hosting.json | Sites identity and static deployment directory |
 
-No runtime package dependencies are required. Google Fonts are optional; readable Georgia and Arial fallbacks are supplied. Motion respects prefers-reduced-motion, uses native scrolling without trapping input, and degrades to readable static content. The silk image is retained from the original repository.
+No package installation or external 3D CDN is required. The browser loads the bundled Three.js ES modules. Serve over HTTP(S) for module loading; opening index.html directly as a file cannot run WebGL modules. Google Fonts are optional; readable Georgia and Arial fallbacks are supplied. Motion respects prefers-reduced-motion, uses native scrolling without trapping input, and degrades to readable static content. The silk image is retained from the original repository.
 
 ## Build and host
 
@@ -48,12 +52,16 @@ Run node scripts/build.mjs from the repository root. It copies public HTML, CSS,
 
 ## Verification
 
-JavaScript syntax and local links/assets are checked. Twenty-six DOM-based functional checks cover services, keyboard selection, portfolio filters, case studies, missing projects, enquiry preparation, menu state, local editing, draft isolation, unsafe input and four-scene motion state, room controls, the golden retriever layer, fairy lights, layered props, explore mode, horizontal/diagonal camera input, native vertical scrolling, pointer/keyboard input, ambient pause and reduced-motion state. These checks do not render layout. Desktop/mobile appearance and animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
+Run `node scripts/verify-room.mjs` for 10 checks of the complete room, finite geometry, opening composition, lighting changes, chair movement, retriever motion and floor clearance, breeze, reversibility and reduced motion. An additional 24 DOM-based checks cover services, keyboard tabs, portfolio filters, cases, enquiries, menu, local editing, draft isolation, unsafe content, 360° inputs, room settings, native vertical scrolling and story progress.
 
-Artwork files and exact generation prompts are recorded in [docs/art-direction.md](docs/art-direction.md). The built-in image generation tool created the room and the transparent retriever layer. The website uses optimized WebP versions.
+These checks do not render WebGL pixels. Desktop/mobile appearance, GPU performance and exact animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
 
 ## Explore the room
 
-Select **Explore the room** to hide the opening text and enjoy the illustrated depth scene. Drag horizontally or diagonally to look around; horizontal wheel or Shift+wheel also works. Vertical wheel movement keeps reading the site. Arrow keys look around when the view has focus; Home or **Reset view** returns to the starting angle. Escape leaves explore mode. **Let the breeze in** opens the casements and increases the movement of flowers and the woven dreamcatcher. Fullscreen depends on browser support.
+Select **Explore 360°** to hide the floating words and enjoy the room. Drag sideways to turn without a yaw limit; drag diagonally to look up or down. Horizontal wheel or Shift+wheel also turns. Vertical wheel movement always keeps reading the site. On touch devices, swipe horizontally to turn and vertically to read. Arrow keys turn when the room is focused; Home or **Reset view** resets it. Escape returns to the words. The story includes direct view buttons for the desk, reading corner, doorway and library.
 
-The scene is a layered CSS 3D diorama with a bounded camera, not a full walkable 3D model. A large-screen layout supports 4K displays; artwork textures retain their original generated dimensions.
+**Room settings** holds night, breeze, greeting, reset and fullscreen controls. The story itself automatically pulls the chair out, opens the casements, changes the sky, switches on the fairy lights and lamps, and takes the articulated golden retriever from resting to standing and walking. Scroll backward to rewind those actions. Ambient pause freezes continuous swaying and breathing; scroll-driven actions remain available. Reduced motion uses discrete scene poses and no ambient movement.
+
+The room has four furnished sides, a floor and ceiling, modeled furniture and an articulated stylized retriever. It is a warm, crafted 3D illustration, not a photographic room or a walkable game. Lighting and geometric edges render at native 3840 × 2160 on a 4K display; high-DPI rendering is capped at approximately 8.3 million pixels. Material textures use modest resolutions for performance. One WebGL context follows the visible room; it does not draw while reading later sections. A still illustration remains available when WebGL is unsupported.
+
+Original generated artwork is retained for the fallback view, About and contact backgrounds. Prompts and asset dimensions remain in [docs/art-direction.md](docs/art-direction.md). The live 3D room, dog, woven threads, feathers, flowers and material textures are native geometry/code.
