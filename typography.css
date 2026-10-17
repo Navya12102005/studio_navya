@@ -25,6 +25,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em}
 
 /* Use colour and weight for emphasis rather than another decorative treatment. */
 em,i{font-style:normal}
+code,kbd,samp,pre{font-family:var(--sans)}
 b,strong{font-weight:600}
 .monogram{font-style:normal;letter-spacing:-.08em}
 .handwritten,.hero-handnote,.scene-number,.contact-email,.about-copy .about-intro,.deliverable-row b,.journey-node>span,.faq-list summary span{font-family:var(--sans);font-style:normal}
