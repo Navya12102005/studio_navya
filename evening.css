@@ -1,0 +1,22 @@
+/* Scroll changes the existing room; the scene itself never changes position. */
+.room-backplate{filter:brightness(var(--room-ambient,1))}
+.room-furniture{filter:brightness(var(--prop-ambient,1))}
+.window-stars,.setting-sun,.window-night-wash,.window-upper-night,.window-moon{transition:none!important}
+.window-stars{opacity:0}
+.window-moon{opacity:0}
+.window-night-wash,.window-upper-night{opacity:0;pointer-events:none}
+.lamp-halo{animation:none!important;opacity:.1;transition:none;mix-blend-mode:screen}
+.lamp-desk-pool,.lamp-floor-pool,.lamp-bulb{mix-blend-mode:screen;pointer-events:none}
+.lamp-bulb{filter:drop-shadow(0 0 5px #ffe1a2)}
+.lamp-shade{filter:brightness(var(--lamp-brightness,1))}
+.fairy-lights{opacity:var(--fairy-strength,.35);transition:none}
+.room-dog,.dog-sleep-text{animation:none!important}
+.retriever-travel,.retriever-pose,.room-pillow,.paper-roll-travel,.floor-paper{transition:none;pointer-events:none}
+.retriever-awake,.retriever-standing{opacity:0}
+.wine-glass{pointer-events:none}
+.wine-rim,.wine-glint{fill:none;stroke:#fff0cd;stroke-linecap:round}
+.room-pillow,.paper-roll-travel{will-change:auto}
+.room-night .continuous-room{--night:inherit}
+@media(prefers-reduced-motion:reduce){
+ .lamp-shade,.fairy-bulb{animation:none!important}
+}

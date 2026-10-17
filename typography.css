@@ -1,0 +1,33 @@
+/* One shared pair: DM Serif Display for headings; Inter for text and controls. */
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/dm-serif-regular.woff') format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/inter-regular.woff') format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/inter-medium.woff') format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/inter-semibold.woff') format('woff')}
+:root{--serif:'DM Serif Display',serif;--sans:'Inter',sans-serif}
+body{font-family:var(--sans);font-kerning:normal;text-rendering:optimizeLegibility;font-synthesis:none}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em}
+.handwritten{font-family:var(--sans);font-size:22px;font-style:normal;line-height:1.35;letter-spacing:0}
+.section-description,.intro-bottom p,.work-card p,.service-panel>.service-what,.journey-detail p,.about-copy p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:14px;line-height:1.85}
+.service-includes li,.best-for,.process-grid p,.engagement>p,.engagement ul,.faq-list p,.single-card p{font-size:13px;line-height:1.8}
+.faq-list summary{font-size:14px;line-height:1.6}.service-panel h4{font-weight:600;letter-spacing:1.1px}
+.contact-signature i{font-family:var(--sans);font-size:24px;font-weight:400;font-style:normal}
+.case-summary,.case-row p,.case-row li{font-family:var(--sans)}
+.case-page .case-row p,.case-page .case-row li{font-size:15px;line-height:1.85}
+.case-page .case-row h2{font-family:var(--sans);font-size:11px;letter-spacing:1.25px;font-weight:600}
+.editor-page .editor-box h2,.editor-page .editor-sidebar h2{letter-spacing:-.02em}
+@media(max-width:680px){
+ h2{letter-spacing:-.025em}
+ .section-description,.intro-bottom p,.work-card p,.service-panel>.service-what,.journey-detail p,.about-copy p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:14px;line-height:1.8}
+ .service-includes li,.best-for,.process-grid p,.engagement>p,.engagement ul,.faq-list p,.single-card p{font-size:13px;line-height:1.75}
+ .faq-list summary{font-size:14px}.handwritten{font-size:21px}
+ .case-page .case-row p,.case-page .case-row li{font-size:14px;line-height:1.8}
+}
+
+/* Use colour and weight for emphasis rather than another decorative treatment. */
+em,i{font-style:normal}
+code,kbd,samp,pre{font-family:var(--sans)}
+b,strong{font-weight:600}
+.monogram{font-style:normal;letter-spacing:-.08em}
+.handwritten,.hero-handnote,.scene-number,.contact-email,.about-copy .about-intro,.deliverable-row b,.journey-node>span,.faq-list summary span{font-family:var(--sans);font-style:normal}
+.about-monogram{font-family:var(--serif);font-style:normal}
+.footer-wordmark em,.cover-art em,.wax-seal,.editorial-bottom b{font-style:normal}
