@@ -1,4 +1,4 @@
-/* A layered 3D diorama: CSS perspective for the view, SVG coordinates for each prop. */
+/* The same original painting in every scene; only its existing prop layers move. */
 (() => {
   const NS="http://www.w3.org/2000/svg",W=1672,H=941;
   const oldArt="assets/img/sunset-studio.webp";
@@ -26,7 +26,7 @@
     const dust='<g class="dust-motes" fill="#ffe6b2"><circle cx="820" cy="520" r="1.7"/><circle cx="965" cy="540" r="1.2"/><circle cx="1150" cy="580" r="1.3"/><circle cx="1000" cy="400" r="1.5"/><circle cx="1290" cy="510" r="1.1"/><circle cx="800" cy="670" r="1.2"/></g>';
     return svg("room-layer-background",-18,1.01286,background)+svg("room-layer-desk",32,.97714,desk)+svg("room-layer-chair",72,.94857,chair)+svg("room-layer-near",46,.96714,dream+lights+dust);
   }
-  document.querySelectorAll(".hero-room .room-illustration").forEach((el,i)=>el.innerHTML=room("room"+i));
+  document.querySelectorAll(".room-illustration").forEach((el,i)=>el.innerHTML=room("room"+i));
   function frame(){document.querySelectorAll(".room-svg").forEach(s=>s.setAttribute("preserveAspectRatio",innerWidth<=680?"xMaxYMid slice":"xMidYMid slice"));}
   frame();addEventListener("resize",frame,{passive:true});
 })();

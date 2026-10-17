@@ -98,3 +98,10 @@ Mobile line lengths were estimated using the actual local font metrics at 320, 3
 The opening page again uses the original warm sunset artwork and its illustrated prop layers from the earlier living-room revision. The default opening view is no longer replaced by the new modeled scene. Three.js is used for the opening room only after Explore 360° is selected; story scenes retain their 3D choreography.
 
 The diary is confined to the left edge, 286px square on desktop and up to 224 × 256px on phones. Its entries are shortened and its scroll motion is limited to seven vertical pixels and a small rotation. It does not travel across the middle of the room. The oversized diary wrapper and handwriting applied across the portfolio and project pages have been removed; their prior editorial layouts are restored. The original image assets are unchanged.
+
+
+## Painting continuity fix
+
+The screenshot supplied by the user showed the modeled replacement still active in the last scrolling chapter. The previous correction had restored only the opening. The modeled-room script and module preload are now removed from the HTML entirely. Both the opening and all scrolling chapters instantiate the same original five artwork assets through hero-art.js, with separate SVG IDs and matching composition. View mode and fullscreen keep those illustrated layers too.
+
+The interface now says View the room, and old 360° bearings and direction buttons are removed. The live view uses gentle bounded parallax, not a full room model. The old 3D files are archived and unreferenced. No new illustration or regeneration was made; the small side diary and editorial service/project sections remain. The illustrated golden retriever replaces the rejected articulated model throughout.

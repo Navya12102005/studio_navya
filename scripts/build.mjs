@@ -6,5 +6,9 @@ await mkdir(out,{recursive:true});
 for(const file of await readdir(root)){
   if(/\.(html|css|js)$/.test(file)) await cp(path.join(root,file),path.join(out,file));
 }
-await cp(path.join(root,"assets"),path.join(out,"assets"),{recursive:true});
+await mkdir(path.join(out,"assets"),{recursive:true});
+for(const entry of await readdir(path.join(root,"assets"))){
+  if(["scene","vendor"].includes(entry))continue; // Archived modeled-room prototype is not published.
+  await cp(path.join(root,"assets",entry),path.join(out,"assets",entry),{recursive:true});
+}
 console.log("Static site prepared in dist/.");

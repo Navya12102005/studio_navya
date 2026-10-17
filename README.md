@@ -1,8 +1,8 @@
 # Studio Navya
 
-A warm digital-services portfolio with the original illustrated sunset room on its opening page. A small handwritten diary sits along the left edge and changes short entries as you scroll. The artwork, window, furniture, fairy lights, woven dreamcatcher, flowers and golden retriever keep the visual focus. Explore 360° opens the complete interactive 3D room on demand. Later story scenes retain the scroll-directed 3D evening.
+A warm digital-services portfolio set in the same original illustrated sunset room throughout the opening, scrolling story and room-view mode. A small handwritten diary stays at the left edge. Existing painted layers provide the fairy lights, woven dreamcatcher, flowers, furniture and golden retriever. Scrolling changes the evening tint and diary entries; it never replaces the painting with the modeled prototype.
 
-The portfolio, service descriptions, process, proposals, FAQ, project pages and enquiry form retain their original editorial layouts and readable typography. The handwriting and notebook styling are confined to the small diary.
+The portfolio, services, process, proposals, FAQ, project pages and enquiries retain their editorial layouts and readable typography. Notebook styling is confined to the small diary.
 
 ## Update your work without writing code
 
@@ -40,8 +40,8 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | diary.js / diary.css | Small side diary, short handwritten entries and page turns |
 | hero-art.js | Original illustrated room layers, fairy lights, flowers and retriever |
 | assets/fonts/ | Self-hosted Caveat handwriting fonts with the SIL Open Font License |
-| assets/scene/ | Three.js room geometry, rendering and reversible scroll choreography |
-| assets/vendor/ | Self-hosted Three.js 0.186.1 and its MIT license |
+| assets/scene/ | Archived modeled prototype; not loaded by the live page |
+| assets/vendor/ | Archived prototype dependency and MIT license; not loaded by the live page |
 | scripts/verify-room.mjs | Dependency-free geometry and choreography checks |
 | main.js | Accessible tabs, filters, menu, journey diagram and enquiries |
 | content.js | Shared safe rendering, content validation and draft loading |
@@ -49,7 +49,7 @@ The editor is a browser-local notebook, not a remote CMS. It cannot access GitHu
 | editor.html / editor.js / editor.css | Local project and contact editor |
 | .openai/hosting.json | Sites identity and static deployment directory |
 
-No package installation or external 3D CDN is required. The Caveat handwriting font is self-hosted under its SIL Open Font License; it does not depend on Google Fonts loading. The browser loads the bundled Three.js ES modules. Serve over HTTP(S) for module loading; opening index.html directly as a file cannot run WebGL modules. Google Fonts are optional; readable Georgia and Arial fallbacks are supplied. Motion respects prefers-reduced-motion, uses native scrolling without trapping input, and degrades to readable static content. The silk image is retained from the original repository.
+No package installation or external 3D CDN is required. The Caveat handwriting font is self-hosted under its SIL Open Font License; it does not depend on Google Fonts loading. The live page uses ordinary JavaScript and SVG image layers. The modeled-room modules remain archived in source but are not referenced, preloaded, published or executed by the website. Google Fonts are optional; readable Georgia and Arial fallbacks are supplied. Motion respects prefers-reduced-motion, uses native scrolling without trapping input, and degrades to readable static content. The silk image is retained from the original repository.
 
 ## Build and host
 
@@ -57,22 +57,20 @@ Run node scripts/build.mjs from the repository root. It copies public HTML, CSS,
 
 ## Verification
 
-Run `node scripts/verify-room.mjs` for 10 checks of the complete room, finite geometry, opening composition, lighting changes, chair movement, retriever motion and floor clearance, breeze, reversibility and reduced motion. An additional 26 DOM-based checks cover services, keyboard tabs, portfolio filters, cases, enquiries, menu, local editing, draft isolation, unsafe content, 360° inputs, room settings, native vertical scrolling story progress, single-diary continuity, original room layers and the restored editorial details.
+Twenty-six DOM-based checks cover services, portfolio filters, cases, enquiries, local editing, accessibility, native vertical scrolling, bounded painted-room movement, diary continuity and the restored editorial layout. Both scenes are checked against the same five artwork URLs, with eight illustrated layers and no modeled-renderer entry point. Syntax, local references and build assets are checked separately.
 
-These checks do not render WebGL pixels. Desktop/mobile appearance, GPU performance and exact animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
+These checks do not render browser pixels. Visual browser QA was unavailable in this environment. The old scripts/verify-room.mjs only checks the archived 3D prototype and is not evidence about the live painted experience.
 
-## Explore the room
+## View the room
 
-Select **Explore 360°** to hide the diary and enjoy the room. Drag sideways to turn without a yaw limit; drag diagonally to look up or down. Horizontal wheel or Shift+wheel also turns. Vertical wheel movement always keeps reading the site. On touch devices, swipe horizontally to turn and vertically to read. Arrow keys turn when the room is focused; Home or **Reset view** resets it. Escape returns to the words. The story includes direct view buttons for the desk, reading corner, doorway and library.
+Select **View the room** to hide the diary while keeping the exact same painting. Drag sideways or diagonally for gentle bounded depth movement; horizontal wheel or Shift+wheel also works. Vertical movement always reads the site. Arrow keys adjust the view when focused; Home resets it, and Escape returns to the diary. There is no full 360° model in this version: the rejected modeled room is no longer loaded, including during scrolling and fullscreen.
 
-**Room settings** holds night, breeze, greeting, reset and fullscreen controls. The story itself automatically pulls the chair out, opens the casements, changes the sky, switches on the fairy lights and lamps, and takes the articulated golden retriever from resting to standing and walking. Scroll backward to rewind those actions. Ambient pause freezes continuous swaying and breathing; scroll-driven actions remain available. Reduced motion uses discrete scene poses and no ambient movement.
+Room settings provide the night tint, breeze, retriever greeting, reset and fullscreen. The existing illustration layers supply subtle chair, lamp, flower, dreamcatcher, feather and fairy-light movement. Scrolling gradually darkens the same artwork toward night. The retriever remains the original painted sleeping dog with a small greeting animation; the toy-like articulated model and its walking animation are not used. Reduced motion removes continuous movement and ambient pause freezes the loops.
 
-The room has four furnished sides, a floor and ceiling, modeled furniture and an articulated stylized retriever. It is a warm, crafted 3D illustration, not a photographic room or a walkable game. Lighting and geometric edges render at native 3840 × 2160 on a 4K display; high-DPI rendering is capped at approximately 8.3 million pixels. Material textures use modest resolutions for performance. One WebGL context follows the visible room; it does not draw while reading later sections. A still illustration remains available when WebGL is unsupported.
-
-Original generated artwork is retained for the fallback view, About and contact backgrounds. Prompts and asset dimensions remain in [docs/art-direction.md](docs/art-direction.md). The live 3D room, dog, woven threads, feathers, flowers and material textures are native geometry/code.
+Original generated assets and prompts remain in [docs/art-direction.md](docs/art-direction.md). Their files are unchanged.
 
 ## The diary narrator
 
 The diary is a small side element: 286 × 286px on desktop, 370 × 360px on very large displays and up to 224 × 256px on phones. It stays along the left edge and drifts by no more than seven vertical pixels. It does not cross the window or grow to fill the screen. Entries are deliberately short; the full services and project descriptions remain in the normal page sections.
 
-Handwriting is self-hosted. Visual ink appears letter by letter; screen readers receive complete text. Reduced motion removes drift, flips and writing animation. Ambient pause shows the full writing immediately. Explore 360° hides the diary and switches the opening artwork to the modeled 3D view; exiting restores the original illustration. The original generated artwork files are unchanged.
+Handwriting is self-hosted. Visual ink appears letter by letter; screen readers receive complete text. Reduced motion removes drift, flips and writing animation. Ambient pause shows the full writing immediately. View the room hides only the diary; the painting stays the same before, during and after it. The original generated artwork files are unchanged.
