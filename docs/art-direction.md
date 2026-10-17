@@ -38,3 +38,34 @@ Native scrolling and scene links remain available. Visitors can pause ambient mo
 Assets were inspected and DOM/state behavior was tested. Browser rendering and precise desktop/mobile composition could not be visually verified because the supported browser QA capability is unavailable.
 
 Window fairy lights are live SVG overlays: 22 bulbs with subtle amber glow, a slow brightness variation and increased warmth toward evening. Ambient pause and reduced motion include these lights.
+
+## Living room revision
+
+The scene now uses separate SVG planes in CSS 3D perspective: background/window, desk/lamp/vase, armchair/retriever, and hanging details. The desk and armchair are clipped from the original artwork against the clean background plate. This keeps their appearance consistent while permitting independent movement. Camera look-around is bounded to ±8 degrees horizontally and ±4.5 degrees vertically; it is a layered illustrated diorama.
+
+The native vertical wheel path is never prevented. Horizontal wheel input, Shift+wheel and pointer drags adjust the look-around camera. Diagonal wheel input changes the view while its vertical part continues page scrolling. Touch uses pan-y, preserving vertical page navigation. Arrow keys work when the view is focused; Home resets. Explore mode hides the opening copy, Escape restores it, and fullscreen is available when the browser permits it.
+
+New assets:
+- assets/img/studio-clean.webp — 1672 × 941, background without furniture and internal glazing bars.
+- assets/img/dreamcatcher-woven.webp — 793 × 1983, detailed transparent rattan, beads, cord and feathers.
+- assets/img/flower-vase.webp — 1024 × 1536, transparent bouquet and amber vase.
+
+Large-screen support includes media queries for 2200px and wider, scalable SVG geometry, fullscreen view and larger reading text. The texture artwork retains its generated resolution; it is not native 4K. A 3840 × 2160 generation was requested but the returned file remained 1672 × 941; that unused variant is not referenced by the site.
+
+### Clean background prompt
+
+Use case: precise-object-edit. Edit target: supplied sunset studio painting. Create a clean background plate for a layered animation. Keep EXACT same wide composition, camera, room geometry, warm textured painting style, sunset view, wall, window position, curtain positions, bookshelf, rug and overall lighting. REMOVE only the walnut writing desk and ALL objects on that desk (lamp, notebook, books, pen, wine glass, potted desk plant), the central wooden desk chair and its blanket, and the ochre upholstered armchair at far right. Remove their shadows and reveal plausible continuous wooden floor and wall behind. Leave the bookshelf, left floor plant, little floor books/basket and rug where they are. In the large arched window remove only the INTERNAL vertical/horizontal wooden glazing bars and central handles, so the outside view is uninterrupted within the same thick OUTER wooden arch. Preserve the outer arch, side trim and sill. Do NOT remove the outer window frame, curtains or sunset view. We will add opening casement panes and original furniture as separate layers. Keep the empty calm cocoa left wall, no new decorative objects, no flowers, no dreamcatcher, no cats or dogs, no lettering. Exact same 16:9 full image framing. This is a background-only cleanup, not a redesign.
+
+### Woven dreamcatcher prompt
+
+Use case: illustration-story. Create a highly detailed realistic craft cutout of ONE small handmade dreamcatcher on a truly transparent background. Natural rattan hoop wrapped in fine suede cord, intricate delicate woven radial spiderweb with tiny imperfect knots, three fine hanging cords with amber and cream wooden beads and THREE long soft realistic pheasant / cream feathers with individual barbs and slightly frayed edges. A thin hanging loop above. Natural antique gold, ivory, warm tan and muted terracotta accents. Front view, complete object in frame, vertical 1:2.5 silhouette, minimum transparent padding. Real handcrafted material detail, warm sunset illumination from left matching the supplied room (style and lighting reference only). More dimensional and believable than a geometric icon. Do not draw a five-point star or polygon web. Fine botanical/editorial textured painterly realism, no photoreal glossy stock cutout, no 3D. No wall, no floor, no room, no people, no text, no halo, no shadow plane. The reference is not an edit target: generate this new object only.
+
+### Flower vase prompt
+
+Use case: illustration-story. Create ONE transparent-background cutout asset: a small softly ribbed amber-glass flower vase holding a loose, elegant bunch of five or six cottage-garden flowers: muted peach cosmos, a cream daisy, one soft wine-red bloom, airy little buds and delicate olive green stems. Entire bouquet AND vase visible in frame, relaxed asymmetrical natural arrangement, modest amount of flowers, not a dense florist bouquet. The glass vase should be about the bottom third of the asset, flower stems and blooms in the upper two thirds. Slightly elevated front three-quarter view, seen as if sitting on the supplied room's writing desk. Match its warm gouache, colored-pencil and ink textured editorial storybook realism, subtle irregular brush texture, sunset rim light from upper left. True transparent alpha background. No desk, no room, no floor, no text, no additional props, no black background, no broad shadow or orange halo haze. Portrait composition, minimal transparent padding. Supplied room is a style, perspective and lighting reference, not an edit target.
+
+### 4K generation request
+
+Use case: precise-object-edit. Edit target is this exact empty sunset studio background plate. Produce a native 4K 3840x2160 landscape version for a 4K-screen website scene. Preserve the EXACT room composition, camera angle, window size and position, colors, sunset, floor, rug, all architecture, curtain and bookshelf placement, and empty areas. Only increase resolved detail, subtle material texture and edge quality at 3840 by 2160 pixels. The internal window has no glazing bars; keep it that way. Keep floor empty: NO desk, NO armchair, NO chair, NO lamp, NO dog, NO vase, NO dreamcatcher, NO text. Do not change the framing or add props. High-quality warm gouache / editorial painterly realism, natural paper texture, no oversharpening and no gloss. Output the full wide 16:9 frame at 3840x2160 pixels.
+
+Room controls, native vertical scrolling, diagonal/horizontal gestures, pointer drag, keyboard bounds, explore/exit, reset, breeze, ambient pause, reduced motion and the original service/portfolio/editor behavior are covered by 26 DOM-based functional checks. Visual browser QA remains unavailable.

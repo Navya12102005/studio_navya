@@ -1,0 +1,83 @@
+/* Object motion and a bounded CSS 3D camera. Vertical page scrolling is untouched. */
+.room-world{perspective:1400px;perspective-origin:67% 53%;cursor:grab;touch-action:pan-y}
+.room-world.dragging{cursor:grabbing}.room-world:focus-visible{outline:1px solid #e6c28b;outline-offset:-5px}
+.room-camera{transform-style:preserve-3d}.room-illustration{transform-style:preserve-3d;transform-origin:67% 53%;transform:rotateX(var(--look-pitch,0deg)) rotateY(var(--look-yaw,0deg));transition:transform .18s ease-out}
+.dragging .room-illustration{transition:none}.room-layer{transform:translateZ(var(--layer-z,0px)) scale(var(--layer-scale,1));transform-origin:67% 53%;backface-visibility:hidden;overflow:visible}
+.room-layer-background{z-index:0}.room-layer-desk{z-index:1}.room-layer-chair{z-index:3}.room-layer-near{z-index:2}
+.room-hero .hero-layout{pointer-events:none}.room-hero .hero-copy{pointer-events:auto}
+.desk-depth{transform:translate(var(--desk-scene-x,0px),var(--desk-scene-y,0px))}
+.room-desk{transform-box:view-box;transform-origin:61% 68%;animation:deskSettle 18s ease-in-out infinite}
+.room-chair{transform-box:view-box;transform-origin:91% 94%;animation:chairRock 12s ease-in-out infinite}
+.room-dog{animation:retrieverBreath 4.8s ease-in-out infinite}.dog-stir .room-dog{animation:retrieverStir 2.4s ease-in-out}
+.dog-stir .room-chair{animation:chairGreeting 2.4s ease-in-out}
+.window-pane{transform-box:view-box;transition:transform 1.5s ease}.window-pane-left{transform-origin:48.8% 24%;animation:paneLeft 15s ease-in-out infinite}.window-pane-right{transform-origin:74.7% 24%;animation:paneRight 17s -3s ease-in-out infinite}
+.window-open .window-pane-left{animation-name:paneLeftOpen;animation-duration:10s}.window-open .window-pane-right{animation-name:paneRightOpen;animation-duration:12s}
+.curtain-glints{animation:curtainBreeze 11s ease-in-out infinite;transform-box:view-box;transform-origin:68% 4%}
+.lamp-shade{transform-box:view-box;transform-origin:46% 37%;animation:lampNod 14s ease-in-out infinite}
+.room-night .hero-room .lamp-shade{animation-name:lampLean}.window-open .lamp-shade{animation-duration:10s}
+.flower-blooms{transform-box:view-box;transform-origin:76.4% 41%;animation:flowerSway 8s -2s ease-in-out infinite}
+.window-open .flower-blooms{animation-name:flowerBreeze;animation-duration:6s}
+.glass-vase{filter:drop-shadow(1px 2px 2px #6e412a44)}
+.woven-dreamcatcher{transform-box:view-box;transform-origin:85.5% 2.5%;animation:wovenSway 10s ease-in-out infinite}
+.window-open .woven-dreamcatcher{animation-name:wovenBreeze;animation-duration:7s}
+.dream-feather{transform-box:view-box;animation:featherFloat 5.5s ease-in-out infinite}
+.dream-feather-left{transform-origin:83.8% 20%;animation-delay:-1s}.dream-feather-mid{transform-origin:85.6% 20%;animation-delay:-3s}.dream-feather-right{transform-origin:87.6% 20%;animation-delay:-2s}
+.room-view-hint{position:absolute;z-index:6;right:55px;bottom:88px;color:#ead3ae;font-size:7px;letter-spacing:.5px;pointer-events:none;text-shadow:0 1px 8px #23170f}
+.view-controls{position:absolute;top:125px;right:55px;z-index:6;display:flex;flex-wrap:wrap;justify-content:end;gap:8px;max-width:470px}
+.view-controls button{border:1px solid #c6a47177;background:#3b241bd9;color:#f6e3bd;padding:10px 13px;min-height:38px;font:500 8px/1.5 var(--sans);letter-spacing:.2px;backdrop-filter:blur(8px)}
+.view-controls button:hover,.view-controls button[aria-pressed="true"]{background:#e7cf9f;color:#4c2e23}
+.view-controls button:focus-visible{outline-color:#f0d6a2}
+.exploring .hero-copy{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s}
+.exploring .hero-shade{opacity:.15;transition:opacity .5s}.exploring .site-header{opacity:0;pointer-events:none}.exploring .view-controls{top:28px}
+.exploring .room-hero .hero-bottom{opacity:0;pointer-events:none}.exploring .room-view-hint{font-size:10px;bottom:40px;right:55px}
+.room-hero:fullscreen{width:100vw;height:100vh;min-height:0;background:#34211f}.room-hero:fullscreen .room-world{height:100%;inset:0}.room-hero:fullscreen .hero-copy,.room-hero:fullscreen .hero-bottom{display:none}.room-hero:fullscreen .view-controls{top:25px}
+.room-offscreen *{animation-play-state:paused!important}
+@keyframes chairRock{0%,100%{transform:rotate(-.45deg)}28%{transform:rotate(.8deg) translateY(-.8px)}58%{transform:rotate(-.2deg)}79%{transform:rotate(.35deg)}}
+@keyframes chairGreeting{0%,100%{transform:rotate(0)}25%{transform:rotate(-1.4deg)}60%{transform:rotate(1deg)}}
+@keyframes deskSettle{0%,100%{transform:translateY(0) skewX(0)}50%{transform:translateY(-1px) skewX(.07deg)}}
+@keyframes retrieverBreath{0%,100%{transform:scale(1,1) translateY(0)}50%{transform:scale(1.012,1.045) translateY(-.8px)}}
+@keyframes retrieverStir{0%,100%{transform:scale(1,1)}25%{transform:scale(1.04,1.07) rotate(-1.4deg) translateY(-2px)}55%{transform:scale(1.02,1.03) rotate(1deg)}80%{transform:scale(1.01,1.015) rotate(-.3deg)}}
+@keyframes paneLeft{0%,100%{transform:skewY(0deg) scaleX(1)}50%{transform:skewY(-1.1deg) scaleX(.97)}}
+@keyframes paneRight{0%,100%{transform:skewY(0deg) scaleX(1)}50%{transform:skewY(1.2deg) scaleX(.975)}}
+@keyframes paneLeftOpen{0%,100%{transform:skewY(-2.5deg) scaleX(.9)}50%{transform:skewY(-4deg) scaleX(.85)}}
+@keyframes paneRightOpen{0%,100%{transform:skewY(2.7deg) scaleX(.91)}50%{transform:skewY(4deg) scaleX(.87)}}
+@keyframes curtainBreeze{0%,100%{transform:skewX(0);opacity:.06}50%{transform:skewX(.6deg);opacity:.15}}
+@keyframes lampNod{0%,100%{transform:rotate(-.8deg)}50%{transform:rotate(1.7deg)}}
+@keyframes lampLean{0%,100%{transform:rotate(2deg)}50%{transform:rotate(4deg)}}
+@keyframes flowerSway{0%,100%{transform:rotate(-.7deg)}50%{transform:rotate(1.1deg)}}
+@keyframes flowerBreeze{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(2.5deg)}}
+@keyframes wovenSway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(2deg)}}
+@keyframes wovenBreeze{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg)}}
+@keyframes featherFloat{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(2.5deg)}}
+@media(min-width:2200px){
+ .room-hero .hero-layout{width:90%;max-width:none}.room-hero .hero-copy{width:43%;max-width:1250px}
+ .room-hero h1{font-size:clamp(130px,5.6vw,225px)}.hero-handnote{font-size:50px}
+ .room-hero .hero-copy>.eyebrow{font-size:13px;max-width:800px}.room-hero .hero-description{font-size:21px;max-width:650px}
+ .room-hero .hero-actions .button{font-size:14px;padding:23px 30px}.room-hero .hero-actions .text-link{font-size:14px}.hero-service-line{font-size:10px;margin-top:35px}
+ .room-hero .hero-bottom>.handwritten{font-size:38px}.room-hero .hero-bottom a{font-size:12px}
+ .view-controls{top:150px;right:5%;max-width:800px;gap:13px}.view-controls button{font-size:13px;padding:15px 21px}
+ .room-controls{right:5%;bottom:160px}.room-controls button{font-size:13px;padding:14px 21px}.room-view-hint{font-size:12px;right:5%;bottom:115px}
+ .narrative-panel{width:760px;padding:55px 55px 40px}.narrative-panel h2{font-size:82px}.narrative-panel>p:not(.eyebrow){font-size:19px;max-width:600px}.narrative-panel>.handwritten{font-size:40px}.narrative-panel .eyebrow{font-size:12px}.scene-number{font-size:42px}
+ .narrative-panel .story-service{font-size:10px}.chapter-skip{font-size:11px}.narrative-panel>.button{font-size:14px;padding:22px 30px}
+ .container{width:min(1900px,calc(100% - 180px))}.cinema-bottom{font-size:11px;bottom:20px}.cinema-bottom button{font-size:11px}
+ .section{padding:170px 0}.section-description{font-size:18px;max-width:520px}h2{font-size:90px}.intro-heading{font-size:110px}
+ .work-card h3{font-size:42px}.work-card p{font-size:16px;max-width:670px}.work-meta{font-size:11px}.filter-button{font-size:13px;padding:12px 18px}
+ .services-layout{grid-template-columns:440px 1fr}.service-tab{font-size:16px;padding:25px 18px}.service-panel h3{font-size:61px}.service-panel>.service-what{font-size:19px;max-width:900px}.service-panel h4{font-size:12px}
+ .service-includes li,.best-for{font-size:15px}.deliverable-row{font-size:14px}.deliverable-row b{font-size:34px}.kpi-list span{font-size:12px}.service-panel .button{font-size:14px}.service-scope{font-size:13px}
+}
+@media(max-width:1000px){.view-controls{top:115px;right:36px;max-width:365px;gap:6px}.view-controls button{font-size:7px;padding:9px 11px}.room-view-hint{right:36px}}
+@media(max-width:680px){
+ .view-controls{top:95px;right:20px;max-width:calc(100% - 40px);gap:5px}
+ .view-controls button{font-size:6px;padding:8px 10px;min-height:33px;backdrop-filter:none}
+ .room-view-hint{right:20px;top:calc(max(48svh,360px) - 89px);bottom:auto;font-size:6px;letter-spacing:.2px}
+ .exploring .room-hero{height:100svh;min-height:0}.exploring .room-hero .room-world{height:100%;inset:0}
+ .exploring .hero-layout{height:100%;padding:0}.exploring .room-controls{top:auto;bottom:90px}.exploring .view-controls{top:25px}
+ .exploring .room-view-hint{top:auto;bottom:40px;right:20px;left:20px;text-align:center;font-size:8px}
+ .room-hero:fullscreen .room-controls{top:auto;bottom:90px}.room-hero:fullscreen .room-view-hint{top:auto;bottom:40px}
+ .room-world{perspective:1400px}.room-layer{will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ .room-illustration{transition:none}.room-chair,.room-dog,.room-desk,.lamp-shade,.dreamcatcher,.dream-feather,.flower-blooms,.curtain-glints{animation:none!important}
+ .window-pane{animation:none!important;transform:none;transition:none}.window-open .window-pane-left{transform:skewY(-2.5deg) scaleX(.9)}.window-open .window-pane-right{transform:skewY(2.7deg) scaleX(.91)}
+ .desk-depth{transform:none}.exploring .hero-copy,.exploring .hero-shade{transition:none}
+}

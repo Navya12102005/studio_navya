@@ -48,6 +48,12 @@ Run node scripts/build.mjs from the repository root. It copies public HTML, CSS,
 
 ## Verification
 
-JavaScript syntax and local links/assets are checked. Twenty DOM-based functional checks cover services, keyboard selection, portfolio filters, case studies, missing projects, enquiry preparation, menu state, local editing, draft isolation, unsafe input and four-scene motion state, room controls, the golden retriever layer, fairy lights, ambient pause and reduced-motion state. These checks do not render layout. Desktop/mobile appearance and animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
+JavaScript syntax and local links/assets are checked. Twenty-six DOM-based functional checks cover services, keyboard selection, portfolio filters, case studies, missing projects, enquiry preparation, menu state, local editing, draft isolation, unsafe input and four-scene motion state, room controls, the golden retriever layer, fairy lights, layered props, explore mode, horizontal/diagonal camera input, native vertical scrolling, pointer/keyboard input, ambient pause and reduced-motion state. These checks do not render layout. Desktop/mobile appearance and animation timing still require a visual browser pass; the supported browser QA capability was unavailable in this environment.
 
 Artwork files and exact generation prompts are recorded in [docs/art-direction.md](docs/art-direction.md). The built-in image generation tool created the room and the transparent retriever layer. The website uses optimized WebP versions.
+
+## Explore the room
+
+Select **Explore the room** to hide the opening text and enjoy the illustrated depth scene. Drag horizontally or diagonally to look around; horizontal wheel or Shift+wheel also works. Vertical wheel movement keeps reading the site. Arrow keys look around when the view has focus; Home or **Reset view** returns to the starting angle. Escape leaves explore mode. **Let the breeze in** opens the casements and increases the movement of flowers and the woven dreamcatcher. Fullscreen depends on browser support.
+
+The scene is a layered CSS 3D diorama with a bounded camera, not a full walkable 3D model. A large-screen layout supports 4K displays; artwork textures retain their original generated dimensions.

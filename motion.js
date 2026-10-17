@@ -24,8 +24,11 @@
   if(current!==act){act=current;stage.dataset.act=String(act);$("#storyChapterLabel").textContent=labels[act];$("#sceneTime").textContent=times[act];[...dots.children].forEach((a,i)=>{a.classList.toggle("active",i===act);if(i===act)a.setAttribute("aria-current","step");else a.removeAttribute("aria-current");});}
   set("--story-p",p.toFixed(4));dots.classList.toggle("visible",y+vh*.5>top&&y+vh*.5<top+height);
   const doc=document.documentElement;$(".reading-progress").style.transform="scaleX("+clamp(y/Math.max(1,doc.scrollHeight-vh))+")";
+  set("--desk-scene-x",(Math.sin(p*Math.PI)*-7).toFixed(2)+"px");
+  set("--desk-scene-y",(Math.sin(p*Math.PI)*-4).toFixed(2)+"px");
   // Every prop has a discrete readable reduced-motion state.
   if(reduced.matches){
+    set("--desk-scene-x","0px");set("--desk-scene-y","0px");
     set("--camera-scale","1");set("--camera-x","0%");set("--camera-y","0%");set("--night",String([.03,.18,.35,.58][act]));
     set("--envelope-opacity",act===0?"1":"0");set("--envelope-x","0px");set("--envelope-y","0px");set("--envelope-rotate","-8deg");
     set("--book-opacity",act===1?"1":"0");set("--book-y","0px");set("--book-scale","1");set("--page-angle","0deg");set("--ink-offset","0");
@@ -53,7 +56,5 @@
  let paused=false;try{paused=localStorage.getItem("studio-ambient-paused")==="1";}catch{}
  function setPaused(value){paused=value;document.body.dataset.ambient=paused?"paused":"playing";pause.setAttribute("aria-pressed",String(paused));pause.textContent=paused?"Resume ambient motion ▷":"Pause ambient motion Ⅱ";try{localStorage.setItem("studio-ambient-paused",paused?"1":"0");}catch{}}
  setPaused(paused);pause.addEventListener("click",()=>setPaused(!paused));
- const hero=$(".room-hero"),heroCamera=$(".hero-room .room-camera");
- if(matchMedia("(hover: hover) and (pointer: fine)").matches){hero.addEventListener("pointermove",ev=>{if(reduced.matches||paused)return;const r=hero.getBoundingClientRect();heroCamera.style.setProperty("--pointer-x",((ev.clientX/r.width-.5)*-10).toFixed(1)+"px");heroCamera.style.setProperty("--pointer-y",(((ev.clientY-r.top)/r.height-.5)*-7).toFixed(1)+"px");});hero.addEventListener("pointerleave",()=>{heroCamera.style.setProperty("--pointer-x","0px");heroCamera.style.setProperty("--pointer-y","0px");});}
  measure();
 })();
