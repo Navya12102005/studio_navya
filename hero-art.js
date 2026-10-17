@@ -1,4 +1,4 @@
-/* The same original painting in every scene; only its existing prop layers move. */
+/* One persistent original painting. Existing prop layers move without replacing the scene. */
 (() => {
   const NS="http://www.w3.org/2000/svg",W=1672,H=941;
   const oldArt="assets/img/sunset-studio.webp";

@@ -24,7 +24,7 @@
     el.addEventListener('keydown',e=>{const keys={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,.10],ArrowDown:[0,-.10]};if(keys[e.key]){e.preventDefault();look(...keys[e.key]);}else if(e.key==='Home'){e.preventDefault();state.yaw=0;state.pitch=0;emit();}});
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.exploring){e.stopImmediatePropagation();explore(false);document.querySelector('#exploreToggle')?.focus();}},true);
-  const fullscreen=document.querySelector('#roomFullscreen');fullscreen?.addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else{explore(true);const hero=document.querySelector('.room-hero');if(hero.requestFullscreen)await hero.requestFullscreen();else if(caption)caption.textContent='Explore mode is on. Fullscreen is unavailable in this browser.';}}catch{if(caption)caption.textContent='Explore mode is ready. This browser did not allow fullscreen.';}});
+  const fullscreen=document.querySelector('#roomFullscreen');fullscreen?.addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else{explore(true);const hero=document.querySelector('#continuousScene');if(hero.requestFullscreen)await hero.requestFullscreen();else if(caption)caption.textContent='Explore mode is on. Fullscreen is unavailable in this browser.';}}catch{if(caption)caption.textContent='Explore mode is ready. This browser did not allow fullscreen.';}});
   document.addEventListener('fullscreenchange',()=>fullscreen?.setAttribute('aria-pressed',String(!!document.fullscreenElement)));
   api.ready('illustrated');
 })();

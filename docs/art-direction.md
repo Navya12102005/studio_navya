@@ -105,3 +105,16 @@ The diary is confined to the left edge, 286px square on desktop and up to 224 ×
 The screenshot supplied by the user showed the modeled replacement still active in the last scrolling chapter. The previous correction had restored only the opening. The modeled-room script and module preload are now removed from the HTML entirely. Both the opening and all scrolling chapters instantiate the same original five artwork assets through hero-art.js, with separate SVG IDs and matching composition. View mode and fullscreen keep those illustrated layers too.
 
 The interface now says View the room, and old 360° bearings and direction buttons are removed. The live view uses gentle bounded parallax, not a full room model. The old 3D files are archived and unreferenced. No new illustration or regeneration was made; the small side diary and editorial service/project sections remain. The illustrated golden retriever replaces the rejected articulated model throughout.
+
+
+## Professional typography revision
+
+The script handwriting has been replaced with DM Serif Display for headings and Inter for body copy, navigation and controls. Both are locally served as WOFF webfonts, with regular/italic display faces and regular/medium/semibold sans faces. The main page, project pages and editor use the same type pairing. Google Fonts stylesheet connections were removed. SIL Open Font Licenses are bundled in assets/fonts/.
+
+The diary keeps its small side position and existing paper/cover design. Its title is 24px display serif on desktop, with 13px Inter copy and comfortable leading; phone sizes are adjusted to the smaller paper. Individual-letter spans and typing delays were removed, so full paragraphs remain available immediately and appear with a short fade. Reduced motion removes that fade. Body copy in the service and portfolio sections has more readable type sizes and leading.
+
+The five original artwork assets and painted room behavior are unchanged. Font metrics were used to estimate text fit at 320, 375, 768 and 1440px. The font files, local references, build output and JavaScript syntax were checked; browser visual rendering remains unverified.
+
+## Current scene continuity
+
+The opening and scrolling narrative now share one persistent painted room. A single sticky scene spans the introduction and all four story markers. Native scroll continuously adjusts evening light, the clock and a subtle desk offset on one reversible timeline. The existing sunset artwork, flowers, retriever, fairy lights and woven dreamcatcher remain unchanged. No room copy, background swap, slide navigation or diary page-flip is used. The small left diary updates with a short text fade and keeps the professional DM Serif Display / Inter typography. The portfolio details follow below the scene. Earlier 3D and handwriting directions above are archived development notes.
