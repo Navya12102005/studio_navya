@@ -1,72 +1,15 @@
-/* Renders one case study from work.js, chosen by ?p=slug */
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const work = window.WORK || [];
-const key = new URLSearchParams(location.search).get("p");
-let idx = work.findIndex((w, i) => w.slug === key || String(i) === key);
-if (idx < 0) idx = 0;
-const w = work[idx], next = work[(idx + 1) % work.length];
-document.title = `${w.title} — Studio Navya`;
-
-const list = arr => (arr || []).map(x => `<li>${x}</li>`).join("");
-const gallery = (w.gallery || []).map(g =>
-  `<figure class="reveal"><img src="${g.src}" alt="${g.caption || ""}" loading="lazy">${g.caption ? `<figcaption>${g.caption}</figcaption>` : ""}</figure>`
-).join("");
-
-$("#case").innerHTML = `
-  <section class="case-hero dark">
-    <div class="container">
-      <p class="kicker">${w.category}${w.spec ? ` · <span class="spec">Concept project</span>` : ""}</p>
-      <h1 class="split">${w.title}</h1>
-      <p class="lead">${w.summary}</p>
-      <dl class="case-meta">
-        <div><dt>${w.spec ? "Brand" : "Client"}</dt><dd>${w.client || "—"}</dd></div>
-        <div><dt>Scope</dt><dd>${w.duration || "—"}</dd></div>
-        <div><dt>My role</dt><dd>${w.role || w.category}</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  ${w.image ? `<div class="case-cover"><div class="container"><img class="img-reveal" src="${w.image}" alt=""></div></div>` : ""}
-
-  <section class="section container case-results">
-    ${w.spec ? `<p class="case-note">A self-initiated concept project, made to show my process. Not a paid client engagement.</p>` : ""}
-    ${(w.deliverables || w.results || []).map(r => {
-      const t = r.split(" "), k = Math.max(0, t.findIndex(x => /\d/.test(x)));
-      const label = [...t.slice(0, k), ...t.slice(k + 1)].join(" ").replace(/:$/, "");
-      return `<div class="reveal"><strong>${t[k]}</strong><span>${label}</span></div>`;
-    }).join("")}
-  </section>
-
-  <section class="container case-body">
-    ${w.problem ? `<div class="case-row reveal"><span class="sec-num">The problem</span><p class="case-big">${w.problem}</p></div>` : ""}
-    ${w.approach ? `<div class="case-row reveal"><span class="sec-num">What I did</span><ol class="case-steps">${list(w.approach)}</ol></div>` : ""}
-    ${gallery ? `<div class="case-row"><span class="sec-num">The work</span><div class="case-gallery">${gallery}</div></div>` : ""}
-    ${w.test ? `<div class="case-row reveal"><span class="sec-num">What I'd test first</span><p class="case-big"><em>${w.test}</em></p></div>` : ""}
-    ${w.learned ? `<div class="case-row reveal"><span class="sec-num">What I learned</span><p class="case-big"><em>${w.learned}</em></p></div>` : ""}
-    ${w.quote ? `<blockquote class="case-quote reveal"><p>“${w.quote.text}”</p><cite>${w.quote.name}${w.quote.role ? `, ${w.quote.role}` : ""}</cite></blockquote>` : ""}
-    ${w.link ? `<p class="reveal"><a class="link-arrow" href="${w.link}" target="_blank" rel="noopener">See it live ↗</a></p>` : ""}
-  </section>
-
-  <section class="section container case-cta reveal">
-    <h2>Want this kind of thinking for <em>your</em> brand?</h2>
-    <a class="btn" href="index.html#contact">Start a conversation</a>
-  </section>
-
-  ${next && next !== w ? `<a class="case-next dark" href="case.html?p=${encodeURIComponent(next.slug || (idx + 1) % work.length)}">
-    <div class="container"><span class="kicker">Next project</span><h2>${next.title} →</h2></div></a>` : ""}
-`;
-
-/* animations */
-$$(".split").forEach(el => {
-  el.innerHTML = el.textContent.split(" ").map((t, i) => `<span class="w"><span style="transition-delay:${i * 60}ms">${t}</span></span>`).join(" ");
-});
-const io = new IntersectionObserver(es => es.forEach(en => {
-  if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-}), { threshold: 0.15 });
-$$(".reveal, .split, .img-reveal").forEach(el => io.observe(el));
-const bar = $(".progress");
-addEventListener("scroll", () => {
-  bar.style.transform = `scaleX(${scrollY / (document.documentElement.scrollHeight - innerHeight)})`;
-}, { passive: true });
-$("#yr").textContent = new Date().getFullYear();
+(() => {
+const {esc:e,safeURL,cover,work,preview}=window.Studio;
+const main=document.querySelector("#case"),key=new URLSearchParams(location.search).get("p");
+const index=work.findIndex(w=>w.slug===key);
+const w=work[index];
+const home="index.html"+(preview?"?preview=1":"");
+document.querySelector("#allWork").href=home+"#work";
+document.querySelector("#year").textContent=new Date().getFullYear();
+if(!w){document.title="Project not found — Studio Navya";main.innerHTML='<section class="section container"><p class="eyebrow">THE COLLECTION</p><h1 style="font-size:60px;margin:25px 0">This chapter isn’t here.</h1><p>The project may have moved or is not published yet.</p><a class="text-link" href="'+home+'#work">Explore the collection ↗</a></section>';return;}
+document.title=w.title+" — Studio Navya";
+const list=items=>(Array.isArray(items)?items:[]).map(x=>"<li>"+e(x)+"</li>").join("");
+const gallery=(w.gallery||[]).filter(g=>safeURL(g.src,true)).map(g=>'<figure><img src="'+e(safeURL(g.src,true))+'" alt="'+e(g.caption||w.title)+'" loading="lazy"><figcaption>'+e(g.caption||"")+'</figcaption></figure>').join("");
+const next=work[(index+1)%work.length];
+main.innerHTML='<section class="case-hero"><div class="container"><p class="eyebrow">'+e(w.category)+' / '+(w.spec?"CONCEPT BRIEF":"CLIENT PROJECT")+'</p><h1>'+e(w.title)+'</h1><p class="case-summary">'+e(w.summary)+'</p><dl class="case-meta"><div><dt>'+(w.spec?"Concept direction":"Client")+'</dt><dd>'+e(w.client||"Independent project")+'</dd></div><div><dt>Scope</dt><dd>'+e(w.duration||"")+'</dd></div><div><dt>Focus</dt><dd>'+e(w.role||w.category)+'</dd></div></dl></div></section><div class="container">'+(w.spec?'<p class="case-note">An illustrative concept brief demonstrating a strategic direction. The approach and deliverables below are proposed, not evidence of a completed client campaign. The editorial cover is a visual concept; no client results are claimed.</p>':"")+'<div class="case-cover">'+cover(w)+'</div><div class="case-body">'+(w.problem?'<section class="case-row"><h2>THE OPPORTUNITY</h2><p>'+e(w.problem)+'</p></section>':"")+(w.approach?.length?'<section class="case-row"><h2>'+(w.spec?"THE PROPOSED APPROACH":"THE APPROACH")+'</h2><ol>'+list(w.approach)+'</ol></section>':"")+(w.deliverables?.length?'<section class="case-row"><h2>'+(w.spec?"PROPOSED DELIVERABLES":"DELIVERABLES")+'</h2><ul class="case-deliverables">'+list(w.deliverables)+'</ul></section>':"")+(gallery?'<section class="case-row"><h2>THE WORK</h2><div class="case-gallery">'+gallery+'</div></section>':"")+(w.results?.length&&!w.spec?'<section class="case-row"><h2>DOCUMENTED RESULTS</h2><ul>'+list(w.results)+'</ul></section>':"")+(w.test?'<section class="case-row"><h2>WHAT TO TEST</h2><p>'+e(w.test)+'</p></section>':"")+(w.learned?'<section class="case-row"><h2>THE LEARNING</h2><p>'+e(w.learned)+'</p></section>':"")+(safeURL(w.link)?'<a class="text-link" href="'+e(safeURL(w.link))+'" target="_blank" rel="noopener">Explore the project ↗</a>':"")+(next&&next!==w?'<a class="case-next" href="case.html?p='+encodeURIComponent(next.slug)+(preview?"&preview=1":"")+'"><span class="eyebrow">THE NEXT CHAPTER</span><br>'+e(next.title)+' ↗</a>':"")+'</div></div><section class="case-cta"><p class="eyebrow">YOUR BRAND COULD BE NEXT</p><h2 style="margin-top:20px">Let’s write <em>your next chapter.</em></h2><a class="button" href="'+home+'#contact">Start a conversation ↗</a></section>';
+})();

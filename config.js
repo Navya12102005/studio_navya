@@ -3,11 +3,12 @@
    ============================================================ */
 window.SITE = {
   name: "Navya",
-  email: "hello@studionavya.com",           // your email
-  whatsapp: "919999999999",                  // country code + number, no + or spaces
+  showPrices: false, // Set true to show your saved prices; proposals are shown by default.
+  email: "",           // your email
+  whatsapp: "",                  // country code + number, no + or spaces
   whatsappMessage: "Hi Navya, I found your website and I'd like to talk about ",
-  linkedin: "https://www.linkedin.com/",
-  instagram: "https://www.instagram.com/",
+  linkedin: "",
+  instagram: "",
 
   // Free audit booking — create a free event at calendly.com and paste the link.
   // Leave "" to send people to the contact form instead.
