@@ -1,0 +1,200 @@
+/* Dark neurovascular art direction. This supersedes the earlier pastel chapters. */
+:root { color-scheme: dark; --bg: #060609; --panel: #101019; --text: #f0edf6; --muted: #b1a7bf; --dim: #92869e; --lilac: #c5a1f5; --gold: #e5ba91; --line: #b7a0d426; }
+body { background: #060609; }
+body:after { content: ''; position: fixed; inset: 0; background: url('assets/grain.svg') repeat; background-size: 180px 180px; opacity: .065; mix-blend-mode: soft-light; pointer-events: none; z-index: 80; }
+.ambient { background: radial-gradient(ellipse at 73% 28%, #6522660c, transparent 58%); }
+.hero { background: none; min-height: 900px; height: 110svh; }
+.hero-copy { width: min(670px, 56%); }
+.hero-kicker { color: #baa5cd; }
+h1 em { background-image: linear-gradient(100deg, #cfb3ff, #f3b6da 62%, #edc19d); }
+.hero .chapters { margin-top: 42px; }
+.hero-bottom { bottom: 28px; }
+/* All artwork is within upper-body framing. No educational labels are exposed. */
+.specimen { position: fixed; left: 43%; right: 1%; top: 0; width: 56%; height: 100svh; pointer-events: none; z-index: 0; overflow: hidden; }
+.specimen:before, .specimen:after { display: none; }
+.scene-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .35s linear; }
+.scene-body { opacity: 1; }
+.scene-figure { position: relative; width: min(100%, 66vh); aspect-ratio: 2 / 3; transform-origin: 50% 50%; }
+.scene-body .scene-figure { transform-origin: 50% 18%; }
+.scene-art { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: screen; }
+.scene-vignette { position: absolute; inset: 0; z-index: 4; background: linear-gradient(90deg, #060609, transparent 18%, transparent 88%, #060609), linear-gradient(#060609 0%, transparent 8%, transparent 88%, #060609 100%); }
+.scene-signals { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; filter: drop-shadow(0 0 3px #c58dff); }
+.scene-signals path { fill: none; stroke: #eab7e7; stroke-width: 1; stroke-linecap: round; stroke-dasharray: 2 19; animation: signal-travel 6s linear infinite; animation-play-state: paused; }
+.scene-signals path:nth-child(2) { stroke: #87d5fd; animation-delay: -2s; }
+.scene-signals path:nth-child(3) { stroke: #f8c480; animation-delay: -4s; }
+.brain-signals { opacity: .48; }
+.brain-signals path { stroke-width: 1.4; stroke-dasharray: 1.5 28; animation-duration: 8s; }
+@keyframes signal-travel { to { stroke-dashoffset: -210; } }
+.heart-beat { transform-origin: 52% 58%; animation: anatomical-beat 1.45s ease-in-out infinite; animation-play-state: paused; }
+@keyframes anatomical-beat { 0%, 43%, 100% { transform: scale(1); } 10% { transform: scale(1.032, 1.02); } 19% { transform: scale(1); } 29% { transform: scale(1.018, 1.012); } }
+.heart-corona { position: absolute; inset: 28% 14% 18%; border-radius: 50%; background: radial-gradient(ellipse, #e9538e1f, #bd559308 50%, transparent 70%); filter: blur(20px); animation: heart-light 1.45s ease-in-out infinite; animation-play-state: paused; }
+.body-heart-glow { position: absolute; left: 51%; top: 49%; width: 27%; height: 23%; border-radius: 50%; background: radial-gradient(ellipse, #ffc19638, #ec4d8e12 48%, transparent 70%); mix-blend-mode: screen; animation: heart-light 1.45s ease-in-out infinite; animation-play-state: paused; }
+@keyframes heart-light { 0%, 43%, 100% { opacity: .22; } 10% { opacity: .9; } 19% { opacity: .3; } 29% { opacity: .65; } }
+.specimen.is-visible .scene-layer.is-active .scene-signals path,
+.specimen.is-visible .scene-layer.is-active .heart-beat,
+.specimen.is-visible .scene-layer.is-active .heart-corona,
+.specimen.is-visible .scene-layer.is-active .body-heart-glow { animation-play-state: running; }
+/* Natural scrolling drives the image sequence; navigation is never locked. */
+.anatomy-experience { position: relative; z-index: 2; }
+.experience-panel { min-height: 100svh; display: flex; align-items: center; padding: 100px var(--gutter); }
+.experience-copy { max-width: 500px; width: 43%; }
+.experience-copy h2 { font-size: clamp(44px, 4.8vw, 76px); margin: 28px 0; }
+.experience-copy > p:not(.eyebrow) { color: #aea1bc; font-size: 14px; line-height: 1.9; max-width: 340px; }
+#mind h2 em { color: #adbbfb; }
+#intent h2 em { color: #e7a5ce; }
+.experience-skip { display: inline-flex; align-items: center; gap: 20px; min-height: 44px; font-size: 10px; color: #bca8d2; border-bottom: 1px solid #b7a0d440; padding: 10px 0; margin-top: 24px; }
+.experience-skip:hover { color: #f0d2e6; }
+.journey { height: auto; min-height: 780px; padding-top: 80px; padding-bottom: 80px; background: #060609; }
+.journey-sticky { position: relative; min-height: 620px; height: auto; padding: 0; }
+.journey h2 em, .bio-copy h2 em { color: #c2a2e4; }
+.strengths-card { background: linear-gradient(150deg, #181020, #0c0b12); border-color: #bd9ee530; }
+.connection-section, .about, .work, .contact { color-scheme: dark; --bg: #060609; --panel: #111019; --text: #f0edf6; --muted: #b1a7bf; --dim: #92869e; --lilac: #c5a1f5; --gold: #e5ba91; --line: #b7a0d426; color: var(--text); background: #060609; }
+.connection-section { background: radial-gradient(ellipse at 50% 60%, #24203a25, transparent 65%), #060609; }
+.connection-heading h2 em { color: #b6b8ed; }
+.neural-branches { stroke: #c49cda35; }
+.path-buttons button.active { color: #e9ddf3; border-color: #bb8bd07a; background: #bc88cf14; }
+.about { background: radial-gradient(ellipse at 10% 45%, #3b163325, transparent 55%), #060609; }
+.heart-art { top: 10vh; }
+.crystal-detail { aspect-ratio: 2 / 3; overflow: visible; border-radius: 0; }
+.heart-art .crystal-detail img { width: 100%; height: auto; margin: 0; max-height: 74vh; object-fit: contain; filter: drop-shadow(0 10px 45px #d6578b10); mix-blend-mode: screen; }
+.work .section-heading h2 em { color: #c4a4eb; }
+.work-filters button { color: #bdabc9; border-color: #af8dc442; }
+.work-filters button:hover { background: #d8b3f512; }
+.work-filters button[aria-pressed=true] { color: #f5ebff; background: #3b2551; border-color: #9f7fbb; }
+#projectCount { color: #a38bb6; }
+.project { border-top-color: #b7a0d418; }
+.project h3 { color: #bfb1cb; }
+.project-type { color: #ac95bc; }
+.project-index { color: #ceb6e00a; }
+.project summary:hover, .project summary:focus-visible, .project[open] summary { background: #c1a4de; }
+.project:nth-child(3n+2) summary:hover, .project:nth-child(3n+2)[open] summary { background: #9fc9c5; }
+.project:nth-child(3n) summary:hover, .project:nth-child(3n)[open] summary { background: #dcadbe; }
+.project-content { background: #101019; border-left-color: #9874af55; }
+.project-study { background: radial-gradient(ellipse at 85% 20%, #66345035, transparent 70%), #191222; border-color: #ba94cf36; }
+.project:nth-child(3n+2) .project-study { background: linear-gradient(130deg, #102026, #191222); }
+.project:nth-child(3n) .project-study { background: linear-gradient(130deg, #281622, #191222); }
+.study-mark { color: #b38ac274; }
+.study-steps > span { color: #c0aecb; }
+.study-disclaimer { color: #a18bae; }
+.writing-sample { background: #b890d609; }
+.project-actions > a { background: #513468; color: #f5e8ff; }
+.project-actions > a:hover { background: #6c4686; }
+.project-actions button, .share-feedback { color: #bea4d0; }
+.share-fallback { background: #1d1527; color: #dec7ed; border-color: #b7a0d440; }
+.contact { background: radial-gradient(ellipse at 50% 75%, #34182e32, transparent 60%), #060609; }
+.contact h2 em { color: #d5a3c6; }
+.contact-options a:hover { background: #cfa7c20b; }
+.compose-intro .compose-note { color: #a18ea9; }
+.enquiry-types legend, #enquiryForm > label, .form-row label, .reply-email label { color: #c0adc8; }
+.enquiry-types label:has(input:checked) { background: #bb8fb519; border-color: #ac81b0; }
+.enquiry-types input { accent-color: #c5a1f5; }
+.form-row label span { color: #9b86a6; }
+.form-row input, #enquiryMessage, .reply-email input { background: #15101b; color: #ecdeef; border-color: #b591c33b; }
+.form-row input::placeholder, #enquiryMessage::placeholder, .reply-email input::placeholder { color: #8f7c9c; }
+.prepare-enquiry { background: #69466e; color: #f9edf9; }
+.selected-brief { background: #b889c80c; color: #d0afda; border-color: #b591c34d; }
+.selected-brief button { color: #d0afda; }
+.email-draft { background: #15101b; border-color: #b591c33b; }
+.email-draft h4, #enquiryFeedback, #copyEnquiry { color: #c7a4cf; }
+#draftSubject, #openEmailDraft { color: #e0c5e7; }
+#draftBody { color: #bda5c6; }
+#enquiryCopyFallback { background: #211529; color: #dec7ed; }
+.delivery-status { color: #c7a4cf; }
+.delivery-status[data-state=error] { color: #f0a4b3; }
+.delivery-status[data-state=success] { color: #b8d6b6; background: #6a976f1a; border-color: #79976f55; }
+footer { background: #09070e; }
+body[data-chapter=work] .chapter-rail, body[data-chapter=contact] .chapter-rail { --lilac: #c5a1f5; }
+body[data-chapter=work] .chapter-rail i, body[data-chapter=contact] .chapter-rail i { background: #b7a0d466; }
+body[data-chapter=work] .chapter-rail a[aria-current] i, body[data-chapter=contact] .chapter-rail a[aria-current] i { background: #c5a1f5; }
+.no-js .scene-brain, .no-js .scene-heart, .no-js #motionToggle { display: none; }
+.visuals-paused .scene-layer { transition: none; }
+.visuals-paused .scene-signals path, .visuals-paused .heart-beat, .visuals-paused .heart-corona, .visuals-paused .body-heart-glow,
+.menu-open .scene-signals path, .menu-open .heart-beat, .menu-open .heart-corona, .menu-open .body-heart-glow { animation-play-state: paused !important; }
+@media (max-width: 1000px) {
+  .specimen { left: 35%; width: 65%; }
+  .hero-copy { width: 66%; }
+  .experience-copy { width: 48%; }
+  .experience-copy h2 { font-size: 50px; }
+}
+@media (max-width: 600px) {
+  body:after { opacity: .055; }
+  .hero { height: auto; min-height: 1100px; padding-top: 110px; }
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: clamp(52px, 13.8vw, 81px); }
+  .hero .intro { font-size: 11px; }
+  .specimen { top: 330px; left: 0; width: 100%; height: 470px; }
+  .scene-figure { width: min(100%, 313px); }
+  .scene-vignette { background: linear-gradient(#060609 0%, transparent 10%, transparent 88%, #060609), linear-gradient(90deg, #060609, transparent 10%, transparent 90%, #060609); }
+  .hero .chapters { margin-top: 440px; }
+  .anatomy-experience { padding-top: 0; }
+  .experience-panel { min-height: 100svh; padding: 65px var(--gutter) 490px; align-items: flex-start; }
+  .experience-copy { max-width: none; width: 100%; }
+  .experience-copy h2 { font-size: 43px; margin: 22px 0; }
+  .experience-copy > p:not(.eyebrow) { font-size: 12px; max-width: 300px; }
+  .experience-copy .eyebrow { font-size: 7px; }
+  .experience-skip { margin-top: 5px; font-size: 9px; }
+  .journey { min-height: 0; padding: 65px var(--gutter); }
+  .journey-sticky { min-height: 0; }
+  .heart-art { top: auto; }
+  .heart-art .crystal-detail img { max-height: 580px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-signals, .body-heart-glow, .heart-corona { display: none; }
+  .heart-beat { animation: none; }
+  .scene-layer { transition: none; }
+  .journey { height: auto; min-height: 0; }
+  .journey-sticky { min-height: 0; }
+}
+#motionToggle.motion-control { position: fixed; top: 24px; right: 24px; z-index: 46; min-height: 42px; padding: 10px 15px; border: 1px solid #b7a0d42b; border-radius: 30px; background: #0c0a13cc; backdrop-filter: blur(15px); color: #b9a6c9; font: 10px Arial, sans-serif; }
+#motionToggle.motion-control:hover { border-color: #c5a1f577; color: #e9ddf3; }
+#motionToggle.motion-control:disabled { opacity: .65; cursor: default; }
+@media (max-width: 600px) { #motionToggle.motion-control { top: 16px; right: 16px; font-size: 9px; } }
+.specimen { mix-blend-mode: screen; }
+@media (max-width: 600px) {
+  .experience-copy { position: relative; z-index: 2; padding-bottom: 25px; background: linear-gradient(#060609 0%, #060609ed 80%, transparent); }
+}
+.scene-vignette { background: linear-gradient(90deg, #000, transparent 18%, transparent 88%, #000), linear-gradient(#000 0%, transparent 8%, transparent 88%, #000 100%); }
+@media (max-width: 600px) {
+  .specimen { top: 380px; height: 440px; }
+  .scene-figure { width: min(100%, 293px); }
+  .scene-vignette { background: linear-gradient(#000 0%, transparent 10%, transparent 88%, #000), linear-gradient(90deg, #000, transparent 10%, transparent 90%, #000); }
+}
+/* Reference refinement: a synaptic interior, drifting cyan depth and warm orbiting light. */
+.scene-neuron .neuron-figure { width: 100%; max-width: none; aspect-ratio: 3 / 2; }
+.neuron-signal-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.axon-track { fill: none; stroke: #f7c991; stroke-width: 2; stroke-opacity: .18; }
+.synaptic-pulse { pointer-events: none; }
+.neuron-haze { position: absolute; inset: -12%; background-image: var(--neural-texture); background-position: center; background-size: cover; filter: blur(18px) hue-rotate(-80deg) saturate(1.2); opacity: .12; animation: filament-drift 20s ease-in-out infinite alternate; animation-play-state: paused; }
+@keyframes filament-drift { from { transform: translate(-2%, 1%) scale(1.03); } to { transform: translate(2%, -2%) scale(1.1); } }
+.specimen.is-visible .scene-neuron.is-active .neuron-haze { animation-play-state: running; }
+#spark h2 em { color: #a7d4df; }
+.heart-context { position: absolute; inset: -6% -10%; overflow: hidden; opacity: .22; mask-image: radial-gradient(ellipse, #000 15%, transparent 73%); }
+.chest-art { width: 100%; height: 100%; object-fit: contain; transform-origin: 59% 57%; }
+.scene-heart .heart-beat { position: relative; z-index: 2; }
+.heart-corona { z-index: 1; }
+.heart-orbits { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; pointer-events: none; filter: drop-shadow(0 0 4px #ffad53); }
+.heart-orbits ellipse, .heart-orbits path { stroke: #f8c18a; stroke-linecap: round; stroke-width: 1.2; stroke-dasharray: 40 14 2 24; animation: warm-orbit 12s linear infinite; animation-play-state: paused; }
+.heart-orbits ellipse:nth-child(2), .heart-orbits path:nth-child(2) { stroke: #e3a1b1; stroke-width: .7; animation-direction: reverse; animation-duration: 16s; }
+.orbit-back { z-index: 1; opacity: .3; }
+.orbit-front { z-index: 3; opacity: .55; }
+.orbit-front path { stroke-width: 1.5; stroke-dasharray: 75 8 1 35; }
+@keyframes warm-orbit { to { stroke-dashoffset: -560; } }
+.specimen.is-visible .scene-heart.is-active .heart-orbits ellipse,
+.specimen.is-visible .scene-heart.is-active .heart-orbits path { animation-play-state: running; }
+.visuals-paused .neuron-haze, .visuals-paused .heart-orbits ellipse, .visuals-paused .heart-orbits path,
+.menu-open .neuron-haze, .menu-open .heart-orbits ellipse, .menu-open .heart-orbits path { animation-play-state: paused !important; }
+.no-js .scene-neuron { display: none; }
+@media (max-width: 600px) {
+  .scene-neuron .neuron-figure { width: 125%; flex-shrink: 0; aspect-ratio: 3 / 2; }
+  .scene-neuron { overflow: hidden; }
+  .neuron-haze { inset: -5%; opacity: .1; }
+  .heart-orbits { opacity: .32; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .neuron-signal-svg { display: none; }
+  .neuron-haze, .heart-orbits ellipse, .heart-orbits path { animation: none; }
+}
+.scene-neuron .scene-art { mask-image: radial-gradient(ellipse at 50% 50%, #000 45%, #000d9 60%, transparent 78%); }
+.orbit-front { opacity: .68; }
+.orbit-front path { stroke-width: 2; }
+.orbit-back ellipse { stroke-width: 1.5; }
