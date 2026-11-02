@@ -15,7 +15,8 @@ npm start -- --port 3000
 ## Current experience
 
 - Full-screen fixed R3F Canvas, centered upper-body GLB loaded through Drei useGLTF and Suspense.
-- Physical glass materials, orange/gold skeletal rims, pink brain displacement waves, cyan/violet lighting, amber cardiac flashes and real 3D particles.
+- Physical crystal optics (transmission .95, roughness .08, clearcoat 1/.1, IOR 1.52, thickness 1.2), colored rim lighting and a higher-resolution local reflection environment.
+- Authored-surface diamond dust, three instanced glass roses and pulsing pink/amber botanical filigree inside the thorax.
 - Acoustic brain/heart shells use chromatic sine-wave shaders and vortex particles; GSAP scroll velocity compresses the rings and increases their speed, then relaxes to a heartbeat-modulated idle.
 - Native document scrolling drives cranial arrival/splitting (0–25%), spinal descent (25–50%), a held heart/energy-blade/light-burst transition (50–75%) and the final 360-degree domain gateway. All phases reverse with scrolling.
 - Transparent, depth-tested world-space checkpoint labels plus accessible HTML typography, opacity/blur reveals, project dialogs and working realm tabs.
