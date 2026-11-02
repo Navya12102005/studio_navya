@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { sampleHelix } from '../lib/spatial';
 
 test.beforeEach(async ({page})=>{await page.addInitScript(()=>sessionStorage.setItem('navya-intro-seen','1'));});
 
@@ -10,7 +9,7 @@ test('requested fonts are local and content stays box-free on desktop and mobile
   expect(fonts.body).not.toBe(fonts.title);expect(fonts.mono).not.toBe(fonts.body);expect(fonts.loaded).toBeGreaterThanOrEqual(3);
   for(const width of [390,768,1440]){
     await page.setViewportSize({width,height:950});
-    for(const selector of ['.hero-editorial','.spatial-project','.spatial-project-copy','.micro-telemetry']){
+    for(const selector of ['.clean-hero','.spatial-project','.spatial-project-copy','.micro-telemetry']){
       const styles=await page.locator(selector).first().evaluate(el=>{const s=getComputedStyle(el);return{background:s.backgroundColor,border:s.borderTopWidth,overflow:s.overflow};});
       expect(styles.background).toBe('rgba(0, 0, 0, 0)');expect(styles.border).toBe('0px');expect(styles.overflow).not.toBe('hidden');
     }

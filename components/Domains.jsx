@@ -72,7 +72,7 @@ export default function Domains() {
         article.querySelector('[data-spatial-depth]').textContent = depth.toFixed(3);
         // Small perspective shift only; paragraphs remain in normal document
         // flow and cannot collide or clip when canvas support is unavailable.
-        article.style.setProperty('--spatial-drift', enabled ? `${Math.max(-16, Math.min(16, (rect.top / innerHeight - .3) * -12))}px` : '0px');
+
       }
       spatialState.project = nearest;
     }
@@ -92,16 +92,7 @@ export default function Domains() {
       setSwitching(false);
     }
   }, [enabled]);
-  function switchDomain(next) {
-    if (next === domain || switching) return;
-    if (!enabled || flightReady) { setDomain(next); return; }
-    setSwitching(true);
-    const overlay = wipe.current;
-    gsap.fromTo(overlay, { scale: .7, opacity: 0 }, { scale: 1, opacity: .35, duration: .33, ease: 'power3.inOut', onComplete: () => {
-      setDomain(next);
-      gsap.to(overlay, { scale: 1, opacity: 0, duration: .4, delay: .1, ease: 'power3.inOut', onComplete: () => { setSwitching(false); ScrollRefresh(); } });
-    } });
-  }
+  function switchDomain(next) { if (next !== domain) setDomain(next); }
   useEffect(() => {
     const navigate = event => {
       const target = typeof event.detail === 'string' ? { domain: event.detail } : event.detail;

@@ -1,7 +1,7 @@
 import './globals.css';
 import './spatial.css';
-import './flight.css';
 import './restraint.css';
+import './clean.css';
 import localFont from 'next/font/local';
 import { MotionProvider } from '../components/MotionProvider';
 

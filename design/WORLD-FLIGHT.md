@@ -1,3 +1,5 @@
+> Historical design, superseded by the fixed anatomy canvas and native HTML scrolling described in README.md.
+
 # Unified world-flight engine
 
 ## Current scope

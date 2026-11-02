@@ -29,11 +29,11 @@ export function MotionProvider({ children }) {
       document.removeEventListener('visibilitychange', visibility);
     };
   }, []);
-  const enabled = !reduced && !paused && !reading;
+  const enabled = !reduced && !reading;
   useEffect(() => {
     document.documentElement.dataset.motion = reduced ? 'reduced' : paused || reading ? 'paused' : 'full';
   }, [reduced, paused, reading]);
-  const value = { reduced, paused, reading, setReading, flightReady, setFlightReady, enabled, active: enabled && visible && !blocked, setPaused, setBlocked, blocked, scrollRef, intro, setIntro };
+  const value = { reduced, paused, reading, setReading, flightReady, setFlightReady, enabled, active: enabled && !paused && visible && !blocked, setPaused, setBlocked, blocked, scrollRef, intro, setIntro };
   return <MotionContext.Provider value={value}>
     {children}
   </MotionContext.Provider>;

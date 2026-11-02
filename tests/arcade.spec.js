@@ -12,7 +12,7 @@ async function atProgress(page, progress) {
 }
 
 test('reduced-motion arcade has keyboard controls, terminal commands, collectible badges and a real project/contact reward', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/');
+  await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/arcade');
   const stage = page.locator('#arcade'); await stage.scrollIntoViewIfNeeded();
   await stage.getByRole('button', { name: /02 Creative Studio/ }).click();
   await expect(page.locator('#arcade')).toHaveClass(/arcade-warm/);
@@ -43,7 +43,7 @@ test('reduced-motion arcade has keyboard controls, terminal commands, collectibl
 
 test('mobile arcade and both realm layouts fit; reduced motion suppresses bursts', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/');
+  await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/arcade');
   await page.locator('#arcade').scrollIntoViewIfNeeded();
   await expect(page.locator('.arcade-static-art')).toBeVisible();
   await page.getByRole('button', { name: /02 Creative Studio/ }).click();

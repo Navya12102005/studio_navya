@@ -32,9 +32,9 @@ test('Suspense displays a loader, then useGLTF traverses the real asset and appl
     const meshes=JSON.parse(await canvas.getAttribute('data-imported-meshes'));expect(meshes).toHaveLength(9);expect(meshes).toContain('Cranium');expect(meshes).toContain('Ribcage');
     const materials=JSON.parse(await canvas.getAttribute('data-physical-materials'));
     for(const material of materials){expect(material.transmission).toBe(.9);expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.ior).toBe(1.5);}
-    await page.waitForFunction(()=>document.querySelector('canvas[data-parts]'));
+    await page.waitForFunction(()=>document.querySelector('canvas[data-camera]'));
     await page.screenshot({path:'/tmp/navya-imported-glb-hero.png'});
-    await expect(page.locator('.flight-model-credit')).toContainText('BodyParts3D');
+    await expect(page.locator('.model-credit')).toContainText('BodyParts3D');
   }finally{release();}
 });
 

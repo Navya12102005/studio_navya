@@ -1,6 +1,6 @@
 # Navya Gupta portfolio
 
-Next.js App Router portfolio with an authored BodyParts3D GLB, native world-space typography and a scroll-driven 3D flight between research and creative project galleries.
+Next.js App Router portfolio with a real, licensed BodyParts3D GLB behind transparent editorial HTML.
 
 ## Run
 
@@ -10,21 +10,18 @@ npm run build
 npm start -- --port 3000
 ```
 
-`npm run dev -- --port 3000` starts development. `npm test` runs browser checks against production on port 3100 using `/usr/bin/chromium`.
+`npm test` runs production browser checks on port 3100 using `/usr/bin/chromium`.
 
 ## Current experience
 
-- One fixed R3F scene; Catmull-Rom camera/focus curves driven by native browser scrolling and GSAP.
-- Actual GLB anatomy through Drei useGLTF, Suspense loading and exact crystal material overrides.
-- Local-font, depth-tested SDF text for headings, projects and telemetry.
-- Separate spatial Bio-Tech and Studio galleries with an architectural portal.
-- Restrained bloom/chromatic transition effects; charcoal and muted materials.
-- Readable HTML mode, reduced-motion fallback, keyboard controls, model-error recovery and native project dialogs.
-- A reviewed email draft form; no server-side sending or database storage.
-- Draft Privacy and Terms pages based on the implemented data practices.
+- Full-screen fixed R3F Canvas, centered upper-body GLB loaded through Drei useGLTF and Suspense.
+- Physical glass materials, cyan/violet cranial lighting and pink/amber chest lighting, with scroll-interpolated emissive shaders and real 3D particles.
+- Native document scrolling drives a modest camera orbit and vertical movement through GSAP ScrollTrigger.
+- Transparent HTML typography above the canvas, opacity/blur chapter reveals, keyboard-accessible project dialogs and working realm tabs.
+- Reduced-motion reading layout, pause and Hide 3D controls, loading progress and model-error recovery.
+- Optional game demonstration at `/arcade`, separated from the primary portfolio.
+- Reviewed email draft form, no server-side sending or database storage; draft Privacy and Terms pages.
 
-See [WORLD-FLIGHT.md](design/WORLD-FLIGHT.md), [model provenance](design/ANATOMY.md), [third-party notices](THIRD_PARTY.md) and [publishing instructions](PUBLISHING.md).
+See [model provenance](design/ANATOMY.md), [third-party notices](THIRD_PARTY.md) and [publishing instructions](PUBLISHING.md). The earlier world-flight design is historical and superseded. Hardware frame rate and live hosting require independent verification.
 
-The latest visual brief supersedes earlier neon, orb, matrix-rain, sticker and decorative hover implementations. Old static source files and unused animation components are historical cleanup candidates. Hardware rendering and deployment success require verification beyond local software-browser tests.
-
-`/?reading=1` opens the normal reading layout. `/?profile=1` exposes camera, scene, text, postprocessing and model diagnostics on the canvas dataset. Diagnostic values are not portfolio achievements.
+`/?reading=1` opens the reading layout. Canvas datasets expose rendering diagnostics, not portfolio achievements.

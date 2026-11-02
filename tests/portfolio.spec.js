@@ -10,7 +10,7 @@ test('reading mode preserves specific project content, accessible tabs, dialogs 
 test('reduced motion avoids model requests and retains box-free content at seven widths',async({page})=>{
  let requested=false;page.on('request',r=>{if(r.url().endsWith('/models/skeleton.glb'))requested=true;});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-motion','reduced');await expect(page.locator('canvas')).toHaveCount(0);
  for(const width of[360,390,600,768,1024,1440,1920]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`overflow at ${width}`).toBe(true);}
- for(const selector of['.hero-editorial','.spatial-project','.spatial-project-copy']){const styles=await page.locator(selector).first().evaluate(el=>({border:getComputedStyle(el).borderTopWidth,background:getComputedStyle(el).backgroundColor}));expect(styles).toEqual({border:'0px',background:'rgba(0, 0, 0, 0)'});}
+ for(const selector of['.clean-hero','.spatial-project','.spatial-project-copy']){const styles=await page.locator(selector).first().evaluate(el=>({border:getComputedStyle(el).borderTopWidth,background:getComputedStyle(el).backgroundColor}));expect(styles).toEqual({border:'0px',background:'rgba(0, 0, 0, 0)'});}
  expect(requested).toBe(false);await expect(page.getByRole('button',{name:'System reduced motion enabled'})).toBeDisabled();
 });
 
@@ -26,6 +26,6 @@ test('WebGL failure and no JavaScript retain portfolio content, legal links and 
  const demo=await request.get('/studies/analysis_pipeline.py');expect(demo.status()).toBe(200);expect(await demo.text()).toContain('SYNTHETIC DEMONSTRATION');
 });
 
-test('legacy molecular and operations controls retain scoped project handoffs in reading mode',async({page})=>{
- await page.goto('/?reading=1');await page.getByRole('button',{name:'Open cell project highlight'}).click();await expect(page.getByRole('dialog')).toContainText('molecular docking');await page.keyboard.press('Escape');await page.getByRole('button',{name:'Explore vascular',exact:true}).focus();await page.getByRole('button',{name:'View operational leadership',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('AWS Student Builder operational lead');
+test('anatomical chapter actions retain project mappings and normal anchor navigation',async({page})=>{
+ await page.goto('/?reading=1');await page.getByRole('link',{name:'Connection',exact:true}).click();await expect(page.locator('#spine')).toBeInViewport();await page.getByRole('button',{name:'View operational leadership',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('AWS Student Builder operational lead');
 });

@@ -15,14 +15,14 @@ Next.js requires Node 20.9+; use Node 24 as in the prepared environment. The sup
 
 ## Vercel
 
-Import this repository and select the branch containing the Next.js changes. The release branch is `codex/portfolio-through-point-12`; the configured deployment branch is `claude/portfolio-digital-services-jsqn5t`. Both must point to the verified release commit. This is separate from saving or publishing a cloud development environment.
+The anatomy preview uses branch `codex/anatomy-flight-preview`. Select that branch rather than an older marketing-site branch. Saving a cloud environment does not deploy a website.
 
 - Framework: **Next.js**
 - Install command: `npm ci --ignore-scripts`
 - Build command: `npm run build`
 - Output directory: `.next`, explicitly declared in vercel.json to override older static `dist` settings.
 
-`vercel.json` records the framework and commands. Response headers are configured in `next.config.mjs`, with Next-compatible script policy. A public deployment has not been created by this task.
+`vercel.json` records the framework and commands. Response headers are configured in `next.config.mjs`, with Next-compatible script policy. GitHub is connected to Vercel preview checks. Confirm the deployed source commit in Vercel; local build success alone does not establish live deployment success.
 
 ## Netlify
 

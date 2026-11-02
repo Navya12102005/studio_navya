@@ -1,0 +1,31 @@
+/* HTML carries the portfolio. The only background artwork is the fixed GLB. */
+main { position:relative; z-index:10; pointer-events:auto; background:transparent; }
+.site-header,.site-footer { z-index:20; background:transparent; }
+.anatomy-art.anatomy-fullscreen { opacity:1; position:fixed; inset:0; z-index:0; width:100vw; height:100vh; }
+.anatomy-fullscreen,.anatomy-fullscreen .anatomy-canvas,.anatomy-fullscreen canvas { pointer-events:none!important; }
+.clean-journey,.clean-hero,.clean-chapters,.clean-chapter,.domains,.domain-panel-wrap,#domain-panel,.spatial-project,.spatial-project-copy,.manifesto,.about-section,.about-copy,.contact-section,.contact-heading,.contact-bottom,.enquiry-form,.email-preview,.micro-telemetry,.site-footer { background:transparent!important; background-image:none!important; border:0; border-radius:0; box-shadow:none; }
+.clean-hero { min-height:100svh; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding-block:140px 65px; }
+.clean-hero h1 { font:500 clamp(58px,7.3vw,116px)/1.04 var(--font-syne),sans-serif; letter-spacing:-.06em; margin:26px 0; max-width:760px; text-shadow:0 1px 12px #15191955; }
+.clean-deck { max-width:390px; color:#c3cabe; font-size:15px; line-height:1.9; }
+.clean-hero>.eyebrow { max-width:500px; font-size:9px; line-height:2; }
+.clean-chapter-links { display:flex; flex-wrap:wrap; gap:28px; margin-top:45px; font:10px var(--font-jetbrains),monospace; color:#a5b4a7; }
+.clean-chapter-links a { display:flex; align-items:center; min-height:44px; text-decoration:underline; text-underline-offset:5px; }
+.clean-chapter { min-height:65svh; max-width:680px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding-block:65px; scroll-margin-top:85px; }
+.clean-chapter:nth-child(2) { margin-left:auto; }
+.clean-chapter h2 { font-size:clamp(36px,5vw,74px); line-height:1.08; letter-spacing:-.045em; margin-block:20px; }
+.clean-chapter>p:not(.eyebrow) { max-width:420px; color:#c5ccc1; font-size:15px; line-height:1.95; }
+.spatial-project,.spatial-project-copy { transform:none!important; }
+[data-editorial-reveal],.spatial-project-copy,.domain-intro,.about-copy,.contact-heading { overflow:visible; }
+[data-editorial-reveal]:focus-within,.spatial-project-copy:focus-within,.domain-intro:focus-within,.contact-heading:focus-within { opacity:1!important; filter:none!important; }
+.hero-editorial::before,.journey-chapter::before,.spatial-project-copy::before,.anatomy-readout::before,.chapter-preview::before { content:none!important; }
+.project-dialog,.dialog-inner { background:transparent!important; border:0; border-radius:0; box-shadow:none; }
+.project-dialog::backdrop { background:#15191926; backdrop-filter:blur(7px); }
+.dialog-inner { padding:50px 0; }.dialog-description,.dialog-scope { color:#d0d6ca; }
+.domain-tabs,.domain-tabs button,.spatial-tags,.spatial-tags span,.tags,.tags span { background:transparent!important; border:0; box-shadow:none; border-radius:0; }
+.enquiry-form input,.enquiry-form textarea,.enquiry-form select,.email-preview pre { background:transparent; }
+@media(max-width:760px) {
+ .clean-hero { padding-top:125px; min-height:90svh; }.clean-hero h1 { font-size:clamp(48px,11.5vw,80px); }.clean-hero>.eyebrow { font-size:8px; max-width:280px; }.clean-deck { max-width:280px; font-size:13px; }
+ .clean-chapter { min-height:60svh; width:100%; }.clean-chapter h2 { font-size:clamp(35px,9vw,56px); }.clean-chapter>p:not(.eyebrow) { font-size:13px; max-width:320px; }.clean-chapter-links { gap:22px; margin-top:28px; }
+}
+@media(prefers-reduced-motion:reduce) { [data-editorial-reveal],.spatial-project-copy,.domain-intro,.about-copy,.contact-heading { opacity:1!important; filter:none!important; } }
+.spatial-project:focus-within { opacity:1!important; filter:none!important; }

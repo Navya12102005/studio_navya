@@ -14,22 +14,20 @@ The packaged GLB contains 72,818 faces and is 1,767,836 bytes. Brain surfaces re
 
 ## Loading and materials
 
-`AnatomyWorld` suspends until `useGLTF('/models/skeleton.glb')` resolves. A CanvasLoader using Drei useProgress and a text-only DOM status overlay displays a floating loading indicator and percentage. Load errors preserve the HTML portfolio without substituting a procedural skeleton or flat image.
+`SkeletonScene` suspends until `useGLTF('/models/skeleton.glb')` resolves. A CanvasLoader using Drei useProgress and a text-only DOM status overlay displays a floating loading indicator and percentage. Load errors preserve the HTML portfolio without substituting a procedural skeleton or flat image.
 
 `createImportedAnatomy` clones the loaded scene, traverses actual mesh nodes and replaces their original materials with MeshPhysicalMaterial. Every anatomical material has transmission **0.9**, roughness **0.1**, clearcoat **1.0** and IOR **1.5**, including on software renderers. Reduced pixel ratio and transmission-buffer resolution lower software rendering cost without changing those requested optical properties.
 
-Cyan and neon pink key lights illuminate the two sides. A small world-space cyan/pink rim-emission shader reinforces the crystal edges on the imported surfaces; it changes shading only and does not generate anatomy. Additional cyan, pink and amber point lights sit inside the imported thoracic cavity and move with the model. The imported heart scales rhythmically around its centered authored pivot. A small local studio environment supplies physical clearcoat/transmission reflections.
+Cyan (#00F0FF) and violet (#7B2CBF) lights illuminate the cranial region. Pink (#FF007F) and amber (#FFB703) lights illuminate the chest. Internal point lights, physical environment reflections and a realm-aware rim/emission shader color the imported glass. The authored heart pulses around its own pivot. A genuine 3D particle field and transparent shader haze interpolate between the same palettes; the haze approximates atmosphere rather than physical volumetric scattering.
 
 ## Camera, interaction and lifecycle
 
-The R3F canvas stays fixed at inset 0, z-index 0, pointer-events none, width 100vw and height 100vh. HTML owns navigation and controls at higher stacking levels. GSAP ScrollTrigger and Lenis drive the existing full-turn helical orbit around the centered imported model, descending toward the imported heart's actual world-space pivot before pulling out into the realms.
+The R3F canvas stays fixed at inset 0, z-index 0, pointer-events none, width 100vw and height 100vh. Transparent HTML owns typography, navigation and controls at z-index 10 or higher. Native scrolling and GSAP ScrollTrigger drive a modest 1.1-radian orbit and 0.45-unit vertical translation around the centered model. Realm tabs also drive smooth palette interpolation. There is no scroll interception or spline world jump.
 
-Raycasting uses the imported anatomical meshes themselves. No sphere/tube proxy skeleton is generated. Keyboard anatomy controls and project mappings remain available even without WebGL. Native world-space labels remain independent typography meshes.
+Chapter text animates opacity and blur only. Project dialogs remain keyboard accessible. Reduced motion and Hide 3D preserve the normal HTML portfolio; pause freezes the visible scene.
 
 The cached useGLTF scene is never mutated or disposed. Each mounted instance gets its own geometry copies, mesh-node clones and material overrides. Unmount disposes only those owned copies, lights and environment resources, so pause/resume can reuse the cached GLB safely.
 
-The cosmic opening samples vertices from the actual imported meshes. Reduced motion/pause preserves normal HTML content and avoids loading the anatomy canvas. No physical-device frame-rate guarantee is made.
-
 The GLB is uncompressed and embeds its buffers. The hook disables unused Draco and Meshopt decoder initialization; no remote decoder request or production CSP relaxation is needed.
 
-Imported-model checkpoint validation: production build succeeded and all 22 browser checks passed. A software-Chromium sample measured about 3.26 fps at 0.5 pixel ratio, 12 draw calls, 72,824 submitted triangles, 13 geometries and zero line primitives. Hardware performance remains unverified. This checkpoint predates the subsequent spline/world-flight upgrade.
+Hardware rendering performance remains unverified; no physical-device frame-rate guarantee is made.

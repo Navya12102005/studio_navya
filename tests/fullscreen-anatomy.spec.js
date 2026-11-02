@@ -1,42 +1,28 @@
 import {test,expect} from '@playwright/test';
+async function load(page){await page.goto('/?profile=1');await page.waitForFunction(()=>document.querySelector('canvas[data-camera]'));}
+async function at(page,p){await page.evaluate(p=>scrollTo({top:(document.documentElement.scrollHeight-innerHeight)*p,behavior:'instant'}),p);await expect.poll(()=>page.locator('.anatomy-canvas canvas').evaluate((el,p)=>Math.abs(JSON.parse(el.dataset.camera).progress-p),p)).toBeLessThan(.02);}
 
-test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('navya-intro-seen','1'));});
-async function ready(page){await page.goto('/?profile=1');await page.waitForFunction(()=>Number(document.querySelector('canvas[data-camera]')?.dataset.nativeTextReadyCount)>60);}
-async function at(page,p){await page.evaluate(p=>scrollTo({top:(document.querySelector('.flight-scroll-rail').offsetHeight-innerHeight)*p,behavior:'instant'}),p);await expect.poll(()=>page.locator('.anatomy-canvas canvas').evaluate((el,p)=>Math.abs(JSON.parse(el.dataset.camera).progress-p),p)).toBeLessThan(.0015);}
-
-test('one fixed GLB canvas uses depth-tested native text and preserves browser scroll controls',async({page})=>{
- const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
- await ready(page);const canvas=page.locator('.anatomy-canvas canvas');
- await expect(page.locator('canvas')).toHaveCount(1);await expect(canvas).toHaveAttribute('data-flight-engine','CatmullRomCurve3');await expect(canvas).toHaveAttribute('data-model-source','/models/skeleton.glb');
- await expect(page.locator('main')).toHaveCSS('display','none');
- const text=await canvas.evaluate(el=>({total:Number(el.dataset.nativeTextCount),ready:Number(el.dataset.nativeTextReadyCount),depth:Number(el.dataset.depthTestedTextCount)}));expect(text.ready).toBeGreaterThan(60);expect(text.depth).toBe(text.total);
+test('fixed GLB canvas remains behind transparent, clickable HTML at desktop and mobile sizes',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});await load(page);
+ await expect(page.locator('canvas')).toHaveCount(1);await expect(page.locator('main')).toHaveCSS('z-index','10');await expect(page.locator('main')).toHaveCSS('pointer-events','auto');await expect(page.locator('main')).not.toHaveCSS('display','none');await expect(page.locator('.flight-scroll-rail,.flight-node-controls')).toHaveCount(0);
  for(const width of[1440,768,390]){await page.setViewportSize({width,height:950});const layout=await page.locator('.anatomy-art').evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return{parent:el.parentElement.tagName,x:r.x,y:r.y,w:r.width,h:r.height,fixed:s.position,events:s.pointerEvents};});expect(layout).toEqual({parent:'BODY',x:0,y:0,w:width,h:950,fixed:'fixed',events:'none'});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
- await page.setViewportSize({width:1440,height:1000});await page.mouse.move(600,450);await page.mouse.wheel(0,650);await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(500);
- const before=await page.evaluate(()=>scrollY);const timeline=page.getByRole('slider',{name:'3D flight timeline'});await timeline.focus();await timeline.press('End');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before+1000);
- expect(errors).toEqual([]);
- await page.getByRole('link',{name:'Skip to portfolio',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.locator('main')).not.toHaveCSS('display','none');await expect(page.locator('canvas')).toHaveCount(0);
+ for(const selector of['.clean-hero','.clean-chapter','.spatial-project','.spatial-project-copy','.micro-telemetry']){const s=await page.locator(selector).first().evaluate(el=>({background:getComputedStyle(el).backgroundColor,border:getComputedStyle(el).borderTopWidth}));expect(s).toEqual({background:'rgba(0, 0, 0, 0)',border:'0px'});}
+ await page.screenshot({path:'/tmp/navya-clean-neon-mobile.png'});expect(errors).toEqual([]);
 });
 
-test('spline orbits real anatomy, enters its heart, crosses a portal and reverses between spatial worlds',async({page})=>{
- test.setTimeout(180000);await ready(page);const canvas=page.locator('.anatomy-canvas canvas');
- const pose=()=>canvas.evaluate(el=>JSON.parse(el.dataset.camera));
- await at(page,.08);expect((await pose()).position[0]).toBeGreaterThan(2);
- await at(page,.16);expect((await pose()).position[2]).toBeLessThan(-3);
- await at(page,.24);expect((await pose()).position[0]).toBeLessThan(-2);
- await at(page,.30);let core=await pose();expect(Math.hypot(...core.position.map((v,i)=>v-core.target[i]))).toBeLessThan(.65);
- await at(page,.39);expect((await pose()).zone).toBe('bio-tech');const bio=(await pose()).position;await page.screenshot({path:'/tmp/navya-flight-bio.png'});
- await at(page,.60);await expect(canvas).toHaveAttribute('data-zone','portal');
- const fx=await canvas.evaluate(el=>JSON.parse(el.dataset.postprocessing));expect(fx.enabled).toBe(true);expect(fx.bloom).toBeGreaterThan(.25);expect(fx.chromaticOffset).toBeGreaterThan(.00035);
- await at(page,.67);expect((await pose()).zone).toBe('creative-studio');const studio=(await pose()).position;expect(studio[0]-bio[0]).toBeGreaterThan(10);expect(studio[2]).toBeLessThan(bio[2]-20);
- const worlds=await canvas.evaluate(el=>JSON.parse(el.dataset.worldCoordinates));expect(worlds.anatomy).toEqual([0,0,0]);expect(worlds.creative[2]).toBeLessThan(worlds.bioTech[2]-20);await page.screenshot({path:'/tmp/navya-flight-studio.png'});
- await at(page,.39);const reversed=(await pose()).position;expect(Math.hypot(...reversed.map((v,i)=>v-bio[i]))).toBeLessThan(.15);
+test('native scrolling gently rotates the camera and fades text without moving its layout',async({page})=>{
+ await load(page);const canvas=page.locator('.anatomy-canvas canvas'),chapter=page.locator('#brain');const initial=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));
+ const before=await chapter.evaluate(el=>({top:el.offsetTop,height:el.offsetHeight}));await chapter.scrollIntoViewIfNeeded();await expect.poll(()=>chapter.evaluate(el=>parseFloat(getComputedStyle(el).opacity))).toBeGreaterThan(.8);
+ expect(await chapter.evaluate(el=>({top:el.offsetTop,height:el.offsetHeight}))).toEqual(before);await expect(chapter).toHaveCSS('transform','none');await expect(chapter).toHaveCSS('overflow','visible');
+ await at(page,.8);const later=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));expect(later.angle-initial.angle).toBeGreaterThan(.5);expect(later.angle-initial.angle).toBeLessThan(1.2);expect(Math.abs(later.target[1]-initial.target[1])).toBeLessThan(.6);expect(later.radius).toBe(initial.radius);await expect(canvas).toHaveAttribute('data-model-position','[0,0,0]');
+ await page.getByRole('link',{name:'Skip to portfolio',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.locator('#work')).toBeInViewport();
 });
 
-test('spatial project actions open working dialogs with focus return; contact opens the readable form',async({page})=>{
- await ready(page);await page.getByRole('button',{name:'Fly to Creative Studio world'}).click();
- const opener=page.getByRole('button',{name:'Explore Startup Club · President'});await expect(opener).toBeVisible();await opener.click();await expect(page.getByRole('dialog')).toContainText('Startup Club President');
- await page.keyboard.press('Escape');await expect(opener).toBeFocused();
- await page.getByRole('button',{name:'Fly to contact',exact:true}).click();await page.getByRole('button',{name:'Open contact form',exact:true}).click();
- await expect(page.getByLabel('Your name',{exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);await expect(page.locator('main')).not.toHaveCSS('display','none');
- await page.screenshot({path:'/tmp/navya-readable-contact.png'});
+test('realm selection interpolates real neon lights, glass and particle palettes; pause freezes the view',async({page})=>{
+ await load(page);const canvas=page.locator('.anatomy-canvas canvas');const lights=await canvas.evaluate(el=>JSON.parse(el.dataset.lighting));expect(lights).toMatchObject({cyan:'00f0ff',violet:'7b2cbf',pink:'ff007f',amber:'ffb703'});
+ await page.locator('#work').scrollIntoViewIfNeeded();await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeLessThan(.1);const tech=await canvas.evaluate(el=>JSON.parse(el.dataset.palette));expect(tech.particles).toBeGreaterThan(100);
+ await page.getByRole('tab',{name:/Creative, PR & Strategy/}).click();await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeGreaterThan(.9);const warm=await canvas.evaluate(el=>JSON.parse(el.dataset.palette));expect(warm.primary).not.toBe(tech.primary);
+ await page.screenshot({path:'/tmp/navya-clean-neon-creative.png'});
+ await page.getByRole('button',{name:'Explore Startup Club · President'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('dialog')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');await page.keyboard.press('Escape');
+ await page.getByRole('button',{name:'Pause visual effects'}).click();const frozen=await canvas.getAttribute('data-camera');await page.evaluate(()=>scrollTo(0,1200));await expect(canvas).toHaveAttribute('data-camera',frozen);await expect(page.locator('canvas')).toHaveCount(1);
 });
