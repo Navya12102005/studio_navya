@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
 import CanvasLoader from './CanvasLoader';
 import AnatomyAnchors from './AnatomyAnchors';
+import {createLobeEngine} from '../lib/lobe-engine';
 import {createCrystalArt} from '../lib/crystal-art';
 import {createSurgicalNarrative,surgicalState} from '../lib/surgical-narrative';
 import {createAcousticField} from '../lib/acoustic-field';
@@ -31,21 +32,23 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   const software=debug?/swiftshader|llvmpipe|software/i.test(context.getParameter(debug.UNMASKED_RENDERER_WEBGL)):false;
   if(software)onQuality(.6);
   gl.setClearColor('#151919',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
-  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),materials=new Map();scene.background=null;
+  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),materials=new Map();scene.background=null;
   sculpture.model.traverse(node=>{if(node.isMesh){const m=node.material;materials.set(m.uuid,{name:m.name,transmission:m.transmission,roughness:m.roughness,clearcoat:m.clearcoat,clearcoatRoughness:m.clearcoatRoughness,ior:m.ior,thickness:m.thickness});}});
   const canvas=gl.domElement;canvas.dataset.engine='react-three-fiber';canvas.dataset.renderer='physical-mesh';canvas.dataset.modelSource='/models/skeleton.glb';canvas.dataset.importedMeshes=JSON.stringify(sculpture.sourceMeshes);canvas.dataset.physicalMaterials=JSON.stringify([...materials.values()]);canvas.dataset.wireframeMeshes='0';
-  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
+  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,lobes,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
   setAnchors(sculpture.anchors);onReady(true);invalidate();
-  return()=>{runtime.current=null;crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
+  return()=>{runtime.current=null;delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm,velocity]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
-  if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const story=d.surgery.update(d.p,d.time,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst);
+  if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const story=d.surgery.update(d.p,d.time,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst);d.lobes.update(d.time,story.separation,gl.getPixelRatio());
    if(!realm.current.inWork&&d.p>.735&&!d.creativeActivated){d.creativeActivated=true;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'creative'}}));}
    if(!realm.current.inWork&&d.p<.5&&d.creativeActivated){d.creativeActivated=false;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'tech'}}));}const speed=Math.max(velocity.current.pending,performance.now()-velocity.current.at<160?Math.abs(velocity.current.value):0);velocity.current.pending=0;d.acoustics.update(d.time,delta,speed,gl.getPixelRatio(),d.p,state.size.width/state.size.height);}
   const aspect=state.size.width/state.size.height;
   const pose=spiralPose(d.p,d.sculpture.anchors,aspect),{radius,angle,target}=pose;
   camera.position.copy(pose.position);camera.lookAt(target);
+  const cranialHud=d.p>.12&&d.p<.31?'active':'inactive';if(document.documentElement.dataset.cranialHud!==cranialHud)document.documentElement.dataset.cranialHud=cranialHud;
+  gl.domElement.dataset.lobes=JSON.stringify(d.lobes.telemetry());
   gl.domElement.dataset.crystalArt=JSON.stringify(d.crystalArt.telemetry());
   gl.domElement.dataset.narrative=JSON.stringify(d.surgery.telemetry());
   gl.domElement.dataset.acoustics=JSON.stringify(d.acoustics.telemetry());

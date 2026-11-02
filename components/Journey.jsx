@@ -6,7 +6,7 @@ import { useMotion } from './MotionProvider';
 import { ArrowUpRight } from './Icons';
 const FullCanvasAnatomy=dynamic(()=>import('./FullCanvasAnatomy'),{ssr:false});
 const chapters=[
- {id:'brain',label:'01 // NEURAL CORE: BIOENGINEERING & SYSTEM ARCHITECTURE',title:'Think in systems.',text:'Biomedical innovation and future healthcare contribution meet technical exploration, prompt engineering, vibe coding and Python workflows.',domain:'tech',action:'Explore Tech & Bioengineering'},
+ {id:'brain',label:'01 // NEURAL CORE: BIOENGINEERING & SYSTEM ARCHITECTURE',title:'Think in systems.',text:'Areas of interest: molecular docking, computational biosensors and clinical diagnostics. Technical exploration spans prompt engineering, vibe coding, Python data pipelines, Java and generative AI workflows.',domain:'tech',action:'Explore Tech & Bioengineering'},
  {id:'spine',label:'02 // BACKBONE: AWS & DATA PIPELINES',title:'Connect the unexpected.',text:'Planning, communication and coordination across student communities. The structure that connects an idea with the people bringing it to life.',domain:'creative',project:'aws',action:'View operational leadership'},
  {id:'heart',label:'03 // CREATIVE ENGINE: BRAND STRATEGY & STARTUP LEADERSHIP',title:'Create with intent.',text:'Startup Club leadership, independent design and content strategy. Work shaped around a clear purpose and the people it needs to reach.',domain:'creative',action:'Explore Creative, PR & Strategy'}
 ];

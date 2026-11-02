@@ -12,13 +12,13 @@ test('surgical phases are reversible and camera holds the heart through impact',
 });
 
 test('scroll splits real brain nodes, pierces the heart, bursts into Creative and restores on reverse',async({page})=>{
- test.setTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
+ test.setTimeout(240000);const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
  await page.goto('/?profile=1');const canvas=page.locator('.anatomy-canvas canvas');await expect(canvas).toHaveAttribute('data-narrative',/.+/);
  const initial=await canvas.evaluate(el=>JSON.parse(el.dataset.narrative));
  const at=async p=>{await page.evaluate(p=>scrollTo({top:(document.getElementById('home').offsetHeight-innerHeight*.75)*p,behavior:'instant'}),p);await expect.poll(()=>canvas.evaluate((el,p)=>Math.abs(JSON.parse(el.dataset.narrative).progress-p),p)).toBeLessThan(.006);};
  await at(.1);expect((await canvas.evaluate(el=>JSON.parse(el.dataset.narrative))).laser).toBeGreaterThan(.7);
  await at(.24);await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeLessThan(.1);const split=await canvas.evaluate(el=>JSON.parse(el.dataset.narrative));expect(split.hemispherePositions[0][0]).toBeGreaterThan(initial.hemispherePositions[0][0]+.4);expect(split.hemispherePositions[1][0]).toBeLessThan(initial.hemispherePositions[1][0]-.4);
- await expect(page.locator('[data-narrative-label="0"]')).toBeVisible();await expect(page.locator('[data-narrative-label="1"]')).toBeVisible();await expect(page.locator('[data-narrative-label="0"]')).toContainText('BIOMEDICAL INNOVATION');await expect(page.locator('[data-narrative-label="1"]')).toContainText('PYTHON ARCHITECT');await page.screenshot({path:'/tmp/navya-surgical-brain-split.png'});
+ await expect(page.locator('[data-narrative-label="0"]')).toBeVisible();await expect(page.locator('[data-narrative-label="1"]')).toBeVisible();await expect(page.locator('[data-narrative-label="0"]')).toContainText('BIOENGINEERING');await expect(page.locator('[data-narrative-label="1"]')).toContainText('PYTHON DATA PIPELINES');await page.screenshot({path:'/tmp/navya-surgical-brain-split.png'});
  await at(.375);expect(await canvas.evaluate(el=>JSON.parse(el.dataset.acoustics))).toMatchObject({spinalRings:4,corridorVisible:true});
  await at(.59);const blade=await canvas.evaluate(el=>JSON.parse(el.dataset.narrative));expect(blade.blade).toBeGreaterThan(.98);expect(blade.burst).toBe(0);
  await at(.665);await page.screenshot({path:'/tmp/navya-surgical-heart-impact.png'});

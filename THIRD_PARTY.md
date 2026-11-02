@@ -56,3 +56,7 @@ The scroll-phase controller, laser sheet, abstract energy dagger and heart-verte
 ## Crystal and botanical accents
 
 `lib/crystal-art.js` contains original low-poly petal surfaces, instanced roses, tubular botanical filigree and diamond-dust shaders. Dust samples the already licensed BodyParts3D derivative at runtime; the anatomical asset and attribution are unchanged. No third-party floral models, textures or HDR files were downloaded.
+
+## Cybernetic lobe HUDs
+
+`lib/lobe-engine.js` and `components/LobeHudPanel.jsx` contain original artistic synaptic paths, core fibers and transparent optical HUD surfaces. Copper surface traces are original procedural GLSL in the existing anatomical material adapter. No atlas, neural tractography dataset, UI library, font or remote texture was added.
