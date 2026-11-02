@@ -1,5 +1,11 @@
 # Current design direction — 29 October 2026
 
+## Superseding specification — 2 November 2026
+
+The user now requests a Next.js App Router / Tailwind implementation: obsidian (#030305), editorial type, a procedural upper skeleton with cool/warm dual brain hemispheres and a heart core, GSAP camera descent brain → spine → heart, React Lenis, actual React Bits cards and toggleable Tech & Bioengineering / Creative, PR & Strategy domains. Later steering adds original ThreeUI-inspired shaders, frosted spotlight borders, tilt, magnetic controls, holographic tags, a domain wipe and a custom cursor. This specification supersedes the older static-site details below.
+
+Active source: app/, components/, lib/ and public/. Leadership roles are user-supplied; docking and data concepts are explicitly scoped rather than inventing completed outcomes. The original WebP artwork remains a no-WebGL/reduced-motion fallback. Shader anatomy is procedural artistic geometry, with approximated refraction/scattering rather than a volumetric medical model. ThreeUI's Notion page could not be opened (proxy CONNECT HTTP 403), so its written requirements guide the original implementation.
+
 The upper-body anatomical opening supersedes the earlier isolated connected brain/heart opening and pastel section backgrounds. Anatomy is decorative identity for a bioengineering student pursuing non-tech roles; it must not become an educational interface.
 
 ## Requirements recorded from the user
@@ -38,3 +44,20 @@ The new visuals are generated artwork layers with browser-composited camera move
 - `r12again.mp4`: inspected, 26.05 seconds. Warm golden light ribbons sweep/orbit around the anatomical heart. Another reference shows slowly drifting, translucent blue cellular/filament structures on black. The implementation uses restrained warm orbit paths and a cyan-tinted drifting neural haze; these remain artistic treatments, not exact reproduced 3D motion.
 
 The larger `Recording 2026-10-29 151326.mp4` and `r12.mp4` could not be transferred because each exceeded 32 MiB. Their smaller replacements above were inspected successfully.
+
+## Motion library integration — 2 November 2026
+
+User requested Lenis, GSAP, Vanta and React Bits, plus 21st.dev as an additional frontend/icon reference. The implementation uses pinned Lenis/GSAP/Vanta/Three.js packages, self-hosted in the build, with a React Bits-inspired SpotlightCard adaptation and original inline line icons. 21st.dev returned HTTP 403 in this session; its current components were not inspected or copied. Keep the existing upper-body anatomy direction and art layers.
+
+## Additional user references — pending visual inspection
+
+- https://howtotalktowhitekidsaboutracism.com/
+- https://www.twomuch.studio/
+- https://www.shopify.com/editions/winter2026
+- https://www.unbelievablycrap.com/
+
+User requests these as references for graphics and animations alongside the supplied neuron and heart videos. All four requests were denied by the environment proxy (HTTP CONNECT 403); no page visuals or motion were observed. Do not claim their designs were inspected or reproduced. Review once domain access or user recordings are available; preserve the established luminous anatomy direction.
+
+## Pixel-art / arcade / realm additions
+
+User requested a pixel-art add-on, two game levels, scroll-driven engineer avatar/jumps/collectibles, usable terminals and secret routes, a pixel scroll meter, OS frames, square click particles and spring feedback. These sit alongside the anatomical installation. A shared realm state connects arcade and portfolio: cool data/HUD typography vs warm editorial/OS windows. Framer Motion is installed. Aceternity's official registry is blocked; original Aceternity-style lamp/grid compositions are implemented without claiming upstream component integration. All projects remain directly available; discovery energy refers only to visitor gameplay.

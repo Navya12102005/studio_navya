@@ -43,6 +43,7 @@ function run(script, environment = {}) {
     assert.equal(await page.locator('.contact-options a').first().getAttribute('href').then(href => href.startsWith('mailto:')), true);
     await browser.close(); browser = null;
     await run('experience.cjs', { PORTFOLIO_TEST_URL: base });
+    await run('motion.cjs', { PORTFOLIO_TEST_URL: base });
     await run('smoke.cjs', { PORTFOLIO_TEST_URL: base });
     await run('contact.cjs', { PORTFOLIO_TEST_URL: base });
   } finally { if (browser) await browser.close(); await new Promise(resolve => server.close(resolve)); }

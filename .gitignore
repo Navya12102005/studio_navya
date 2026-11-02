@@ -4,3 +4,12 @@
 .env
 .env.*
 !.env.example
+
+/.next/
+/out/
+/test-results/
+/playwright-report/
+next-env.d.ts
+
+__pycache__/
+*.pyc

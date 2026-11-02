@@ -1,11 +1,11 @@
-/* Dependency-free publishing build. Only active public files enter dist/. */
+/* Publishing build. Only active public files enter dist/. */
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const { render } = require('../project-views.js');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'dist');
-const files = ['index.html', '404.html', 'portfolio.css', 'experience.css', 'portfolio.js', 'project-views.js', 'anatomy-scene.js', 'work.js', 'config.js', 'assets/upper-body.webp', 'assets/neural-brain.webp', 'assets/neuron-interior.webp', 'assets/luminous-heart.webp', 'assets/grain.svg', 'assets/monogram.svg', 'assets/social-preview.png'];
+const files = ['index.html', '404.html', 'portfolio.css', 'experience.css', 'portfolio.js', 'motion.js', 'motion.css', 'THIRD_PARTY.md', 'project-views.js', 'anatomy-scene.js', 'work.js', 'config.js', 'assets/upper-body.webp', 'assets/neural-brain.webp', 'assets/neuron-interior.webp', 'assets/luminous-heart.webp', 'assets/grain.svg', 'assets/monogram.svg', 'assets/social-preview.png'];
 for (const file of files) if (!fs.existsSync(path.join(root, file))) throw new Error(`Missing public file: ${file}`);
 if (fs.existsSync(output)) {
   if (!fs.existsSync(path.join(output, '.portfolio-build'))) throw new Error('Refusing to replace an unrecognised dist directory.');
@@ -17,6 +17,22 @@ for (const file of files) {
   fs.mkdirSync(path.dirname(path.join(output, file)), { recursive: true });
   fs.copyFileSync(path.join(root, file), path.join(output, file));
 }
+// Ship pinned libraries from the lockfile on our own origin, preserving CSP.
+const vendor = {
+  'gsap.min.js': 'gsap/dist/gsap.min.js',
+  'ScrollTrigger.min.js': 'gsap/dist/ScrollTrigger.min.js',
+  'lenis.min.js': 'lenis/dist/lenis.min.js',
+  'three.min.js': 'three/build/three.min.js',
+  'vanta.net.min.js': 'vanta/dist/vanta.net.min.js',
+  'LENIS-LICENSE.txt': 'lenis/LICENSE',
+  'THREE-LICENSE.txt': 'three/LICENSE',
+  'VANTA-LICENSE.md': 'vanta/LICENSE.md'
+};
+fs.mkdirSync(path.join(output, 'vendor'), { recursive: true });
+for (const [name, source] of Object.entries(vendor)) {
+  fs.copyFileSync(path.join(root, 'node_modules', source), path.join(output, 'vendor', name));
+}
+fs.copyFileSync(path.join(root, 'licenses/react-bits.txt'), path.join(output, 'vendor/REACT-BITS-LICENSE.txt'));
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'work.js'), 'utf8'), context, { timeout: 1000 });
 if (!Array.isArray(context.window.WORK) || !context.window.WORK.length) throw new Error('No project outlines found.');

@@ -1,0 +1,35 @@
+/* Native touch scrolling stays native; Lenis owns wheel easing on desktop only. */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis-stopped { overflow: hidden; }
+.neural-atmosphere { position: absolute; inset: 0; pointer-events: none; opacity: .22;
+  mask-image: linear-gradient(90deg, transparent 10%, #000 65%, transparent 100%); }
+.neural-atmosphere canvas { pointer-events: none; }
+.spotlight-surface { position: relative; isolation: isolate; }
+.spotlight-surface::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+  z-index: -1; opacity: 0; border-radius: inherit;
+  background: radial-gradient(340px circle at var(--light-x, 50%) var(--light-y, 50%), #caa9df14, transparent 78%);
+  transition: opacity .35s; }
+.spotlight-surface:focus-within { border-color: #caa9df80; }
+.spotlight-surface:focus-within::before { opacity: 1; }
+.ui-icon { width: 17px; height: 17px; flex: 0 0 auto; vertical-align: middle; }
+.work-filters button, .project-actions button { display: inline-flex; align-items: center; gap: 8px; }
+.work-filters button .ui-icon { width: 14px; height: 14px; opacity: .8; }
+.contact-options strong > .ui-icon { width: 21px; height: 21px; color: var(--lilac); }
+.contact-options a { transition: background .3s, border-color .3s; }
+.contact-options a:focus-visible, .contact-options a:hover { border-color: #caa9df80; }
+.work-cta { border-radius: 3px; background-image: linear-gradient(110deg, #caa9df0a, transparent 70%); }
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-surface:hover::before { opacity: 1; }
+  .spotlight-surface { transition: border-color .35s, background-color .35s; }
+  .spotlight-surface:hover { border-color: #caa9df70; }
+  .work-cta .inline-arrow { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  .work-cta:hover .inline-arrow { transform: translateX(6px); }
+}
+.visuals-paused .spotlight-surface::before { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .neural-atmosphere { display: none; }
+  .spotlight-surface::before { display: none; }
+  .spotlight-surface, .work-cta .inline-arrow, .contact-options a { transition: none; }
+}
