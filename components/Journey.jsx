@@ -10,6 +10,7 @@ import { Magnetic } from './Interactions';
 import { anatomicalParts } from '../lib/anatomy';
 import DiagnosticHUD from './DiagnosticHUD';
 import CinematicIntro from './CinematicIntro';
+import { SpatialMilestones } from './SpatialEditorial';
 
 const FullCanvasAnatomy = dynamic(() => import('./FullCanvasAnatomy'), { ssr: false });
 const chapters = [
@@ -52,14 +53,15 @@ export default function Journey() {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({ scrollTrigger: {
-        trigger: section.current, start: 'top top', end: 'bottom bottom', scrub: .65,
+        trigger: section.current, start: 'top top', end: 'bottom bottom', scrub: 1.2,
         onUpdate: self => {
-          progress.current = self.progress;
+
           velocity.current = Math.max(-1.5, Math.min(1.5, self.getVelocity() / 4500));
           const next = self.progress < .18 ? null : self.progress < .46 ? 'brain' : self.progress < .76 ? 'spine' : 'heart';
           setSceneChapter(current => current === next ? current : next);
         }
       } });
+      timeline.to(progress, { current: 1, duration: 1, ease: 'none' }, 0);
       timeline.to('.hero-editorial', { opacity: 0, y: -35, duration: .13 }, .05);
       chapters.forEach((chapter, i) => {
         const start = [.2, .49, .78][i];
@@ -84,6 +86,7 @@ export default function Journey() {
   }
   return <section id="home" ref={section} data-radiance={inspectedPart === 'heart' ? 'warm' : inspectedPart ? 'cool' : 'neutral'} className={`anatomical-journey ${enabled ? 'journey-animated' : 'journey-static'}`} aria-label="From thought to feeling">
     <div className="journey-sticky">
+      <SpatialMilestones />
       <div className="scene-vignette" aria-hidden="true" />
       <div className="diagnostic-sweep" aria-hidden="true" />
       <div className="hero-editorial page-gutter">

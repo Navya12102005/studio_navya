@@ -23,17 +23,15 @@ test('WebGL shaders render; anatomical navigation descends and reverses the came
   expect(shaderErrors).toEqual([]); expect(errors).toEqual([]);
 });
 
-test('domain transition, actual React Bits spotlight, tilt, cursor and project dialog', async ({ page }) => {
+test('domain transition, open spatial typography, cursor and project dialog', async ({ page }) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('/');
   const skip = page.getByRole('button', { name: 'Skip intro' });
   if (await skip.isVisible()) await skip.click();
   await page.locator('#work').scrollIntoViewIfNeeded();
-  await expect(page.locator('.spotlight-card')).toHaveCount(4);
-  const card = page.locator('.project-shell').first();
-  const box = await card.boundingBox();
-  await page.mouse.move(box.x + box.width * .7, box.y + 45);
-  await expect.poll(() => card.evaluate(el => getComputedStyle(el).transform)).not.toBe('none');
+  await expect(page.locator('.spatial-project')).toHaveCount(4);
+  await expect(page.locator('.spotlight-card, .portfolio-card')).toHaveCount(0);
+  await page.mouse.move(300,400);
   await expect(page.locator('.custom-cursor')).toHaveCSS('opacity', '1');
   await page.getByRole('button', { name: 'Explore Oculomics · Research' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -44,15 +42,15 @@ test('domain transition, actual React Bits spotlight, tilt, cursor and project d
   const creative = page.getByRole('tab', { name: /Creative, PR & Strategy/ });
   await creative.click();
   await expect(creative).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('.editorial-grid .project-shell')).toHaveCount(6);
-  await expect(page.locator('.projects-grid')).toContainText('Startup Club · President');
-  await expect(page.locator('.projects-grid')).toContainText('AWS Student Builder · Operational lead');
+  await expect(page.locator('.spatial-editorial .spatial-project')).toHaveCount(6);
+  await expect(page.locator('.spatial-projects')).toContainText('Startup Club · President');
+  await expect(page.locator('.spatial-projects')).toContainText('AWS Student Builder · Operational lead');
   await page.getByRole('button', { name: 'Explore Studio Navya · Design & strategy' }).click();
   await expect(page.getByRole('dialog')).toContainText('personal studio');
   await page.getByRole('button', { name: 'Close project' }).click();
   await creative.focus(); await page.keyboard.press('ArrowLeft');
   await expect(page.getByRole('tab', { name: /Tech & Bioengineering/ })).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('.projects-grid')).toContainText('Molecular docking');
+  await expect(page.locator('.spatial-projects')).toContainText('Molecular docking');
   expect(errors).toEqual([]);
 });
 
@@ -72,7 +70,7 @@ test('pause/resume and changed system reduced-motion preference remove heavy tra
   await expect(page.getByRole('button', { name: 'System reduced motion enabled' })).toBeDisabled();
   await page.locator('#work').scrollIntoViewIfNeeded();
   await page.getByRole('tab', { name: /Creative, PR & Strategy/ }).click();
-  await expect(page.locator('.projects-grid')).toContainText('Studio Navya');
+  await expect(page.locator('.spatial-projects')).toContainText('Studio Navya');
 });
 
 test('reduced-motion, touch and seven viewport widths retain readable content and usable controls', async ({ browser }) => {
@@ -88,7 +86,7 @@ test('reduced-motion, touch and seven viewport widths retain readable content an
   await page.screenshot({ path: '/tmp/navya-next-reduced-mobile.png' });
   await page.locator('#work').scrollIntoViewIfNeeded();
   await page.getByRole('tab', { name: /Creative, PR & Strategy/ }).click();
-  await expect(page.locator('.projects-grid')).toContainText('Startup Club');
+  await expect(page.locator('.spatial-projects')).toContainText('Startup Club');
   await context.close();
   const touch = await browser.newContext({ isMobile: true, hasTouch: true, viewport: { width: 390, height: 844 } });
   const mobile = await touch.newPage(); await mobile.goto('http://127.0.0.1:3100');
@@ -131,7 +129,7 @@ test('WebGL failure preserves portfolio without a flat anatomy fallback; server 
   expect(response.status()).toBe(200);
   expect(response.headers()['x-content-type-options']).toBe('nosniff');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.locator('.project-inner')).toHaveCount(4);
+  await expect(page.locator('.spatial-project')).toHaveCount(4);
   await expect(page.getByRole('link', { name: 'hello@studionavya.com' })).toBeVisible();
   const missing = await page.goto('http://127.0.0.1:3100/not-a-real-page'); expect(missing.status()).toBe(404);
   await context.close();
@@ -151,7 +149,7 @@ test('anatomical tagging provides raycast and keyboard readouts with domain hand
   await expect(page.getByRole('button', { name: 'Explore Creative, PR & Strategy', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('tab', { name: /Creative, PR & Strategy/ })).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('.projects-grid')).toContainText('Startup Club');
+  await expect(page.locator('.spatial-projects')).toContainText('Startup Club');
 });
 
 test('cosmic opening converges on input, sound is opt-in, and reduced motion bypasses it', async ({ browser }) => {
@@ -197,10 +195,10 @@ test('diagnostic HUD tracks scroll rather than fabricated results; batched rende
   await expect.poll(() => page.locator('[data-scan-progress]').textContent().then(value => parseInt(value, 10))).toBeGreaterThanOrEqual(97);
   await expect(page.locator('.diagnostic-hud')).toHaveAttribute('data-region', 'thoracic');
   await page.locator('#work').scrollIntoViewIfNeeded();
-  const card = page.locator('.project-inner').first(); const bounds = await card.boundingBox();
-  await page.mouse.move(bounds.x + bounds.width * .7, bounds.y + 40);
-  await expect.poll(() => card.locator('[data-card-progress]').textContent()).not.toBe('00');
-  await expect(card.locator('.card-telemetry')).toContainText('SCAN');
+  const project = page.locator('.spatial-project').first(); await project.scrollIntoViewIfNeeded();
+  await page.mouse.move(300,400);
+  await expect(project.locator('[data-pointer-coordinate]')).toContainText('X 0.208');
+  await expect(project.locator('.micro-telemetry')).toContainText('[STATUS: ACTIVE]');
 });
 
 test('molecular project nodes and vascular operations map to scoped portfolio highlights', async ({ page }) => {
@@ -215,8 +213,8 @@ test('molecular project nodes and vascular operations map to scoped portfolio hi
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Explore vascular', exact: true })).toBeFocused();
   await page.locator('#work').scrollIntoViewIfNeeded();
-  await expect(page.locator('.projects-grid')).toContainText('Sound Check');
-  await expect(page.locator('.projects-grid')).toContainText('Campus summits');
+  await expect(page.locator('.spatial-projects')).toContainText('Sound Check');
+  await expect(page.locator('.spatial-projects')).toContainText('Campus summits');
   await page.getByRole('tab', { name: /Tech & Bioengineering/ }).click();
   await page.getByRole('button', { name: 'Explore Python data analysis · Systems' }).click();
   const source = page.getByRole('link', { name: 'Download the working Python study' });

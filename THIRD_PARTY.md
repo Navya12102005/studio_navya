@@ -32,3 +32,7 @@ The Z-Anatomy open atlas repository (Gauthier Kervyn, Marcin Zielinski and contr
 - Framer Motion 14.9.0 (Motion), MIT, is the actual animation runtime for the realm atmosphere and click springs. License is served at `/licenses/framer-motion.txt`.
 - The arcade avatar pixel map, world renderer, level/progression engine, terminal puzzle, square burst UI and retro frame styling are original assets/code. No third-party game sprites or artwork were downloaded.
 - The grid/beam and warm conic-gradient lamp treatments follow Aceternity UI design patterns but are original code. The official registry at https://ui.aceternity.com/registry/lamp.json and /registry/3d-card.json returned HTTP 403. No Aceternity component source or licensing claim is made. Official source integration requires successful source access.
+
+## Spatial typography (points 15–18)
+
+JetBrains Mono, Syne and Plus Jakarta Sans are Google Fonts, self-hosted from the official google/fonts repository under the SIL Open Font License. Full notices are served at `/licenses/fonts/JetBrainsMono.txt`, `/licenses/fonts/Syne.txt` and `/licenses/fonts/PlusJakartaSans.txt`. Native label textures are generated with those fonts. The DNA, matrix rain, orb shader, vinyl geometry, pixel stickers, pooled sparks and spray particles are original Three.js implementations. The active spatial project layout supersedes the earlier React Bits card presentation; the source and its original license are retained as historical work.

@@ -1,88 +1,58 @@
 # Navya Gupta — The science of possibility
 
-A Next.js App Router portfolio at the intersection of bioengineering, technology, creative strategy, marketing and PR. Obsidian surfaces, editorial typography, a procedural anatomical installation, and two connected portfolio domains.
+A Next.js App Router portfolio connecting bioengineering, technology, leadership and creative strategy. The current visual direction is a full-screen botanical glass-anatomy installation followed by two open, container-free 3D realms.
 
-## Run
+## Run locally
 
-Node.js 20.9+ is required (the cloud environment provides Node 24).
-
-```sh
-npm ci --ignore-scripts
-npm run dev
+```bash
+npm ci
+npm run build
+npm start -- --port 3000
 ```
 
-For the exact production experience:
+For development, use `npm run dev -- --port 3000`. The server binds to `0.0.0.0`; a local address is not automatically a public preview URL. Vercel uses the checked-in Next.js configuration. Publishing a Git branch alone does not verify a successful hosting deployment.
 
-```sh
-npm run build
-npm start
-```
+## Current design: points 15–18
 
-The build uses Next.js's supported Webpack backend because this cloud environment blocks the local socket used by Turbopack's CSS worker. No external fonts, models, textures, CDN scripts or API credentials are required. The existing WebP artwork provides a static anatomy fallback.
+- **Typography:** self-hosted Google Fonts JetBrains Mono, Syne and Plus Jakarta Sans, with local licenses. No runtime font CDN request.
+- **Open editorial layout:** transparent, borderless project articles, unboxed tags and telemetry, soft radial readability masks and scroll-colored pull-quotes. The earlier bento/OS card styling is superseded.
+- **Spatial anatomy:** fixed body-level R3F canvas, original upper-body glass meshes, beating heart, glowing vessels, botanical details and native 3D text markers. No flat anatomy image or SVG skeleton fallback.
+- **Helical camera:** a full reversible 360° turn around the spinal axis with descending height, tightening radius and a final heart-core approach. GSAP `scrub: 1.2`, Lenis and delta-time camera damping drive the motion.
+- **Bio-Tech Lab:** instanced voxel DNA, a faceted bio-cell, matrix pixel streams with pointer-repulsion physics, open CRT calibration arcs, spatial typography and electric click sparks.
+- **Creative Studio:** a displaced chromatic glass orb, spinning neon vinyl grooves, pixel stickers in depth, pink/amber spray particles and two-frame header glitches.
+- **Continuity:** anatomy, ambient shaders and both realms use one R3F canvas. Realm lighting and shader opacity ease between palettes.
+- **Existing interactions:** the two-level arcade, discovery badges, terminal puzzle, native project dialogs and reviewed email draft flow remain usable.
 
-## Experience
+See [the point-by-point implementation guide](design/SPATIAL-REALMS.md), [anatomical scope](design/ANATOMY.md) and [third-party notices](THIRD_PARTY.md). Geometry is original artistic work, not a clinically validated atlas model. Portfolio descriptions distinguish research context, working demonstrations, leadership and concepts; decorative telemetry never invents professional or scientific results.
 
-- **Opening:** a same-canvas cosmic warp converges onto sampled anatomical vertices. First scroll/click accelerates it, Skip and Escape dismiss it, and it runs only once per tab session. Sound is opt-in, follows warp acceleration and fades away on completion; it is suspended when the page is hidden. Reduced motion bypasses the intro.
-- **Anatomical journey:** A body-level fixed full-screen Three.js backdrop with lofted MeshPhysicalMaterial glass surfaces, solid tubular skeletal/vascular meshes, folded cerebral meshes and a volumetric cardiac core. Dynamic cyan/violet and pink/amber lights and vertex-shader coloration provide the dual spectrum. No SVG, line material or wireframe material is used by the active anatomical renderer. Custom GLSL shaders create Fresnel glow, refractive bands, a backlit scattering approximation and flowing emitted particles. These are artistic approximations, not a physically simulated subsurface material or clinical anatomical model.
-- **Camera:** GSAP ScrollTrigger synchronises a reversible whole-body → brain → spine → heart journey. Three labelled anatomy controls jump to the same scroll positions. Cursor movement subtly changes perspective. The upper body orbits continuously; the final camera approaches the cardiac core along the Z axis.
-- **Scrolling:** the maintained `lenis/react` ReactLenis integration, synchronised to the GSAP ticker. The specifically mentioned `@studio-freight/react-lenis` package is retired and declares React 17/18 peers; `lenis/react` is its maintained React-19-compatible successor. Touch scrolling stays native.
-- **Tech & Bioengineering:** a glass bento grid for research context, a molecular docking workflow exploration, an working synthetic-data Python pipeline and reporting concept and this working technical build.
-- **Creative, PR & Strategy:** a staggered editorial grid covering Startup Club leadership, AWS Student Builder operations, Studio Navya and an independent founder-voice concept, Sound Check logistics direction and campus-summit PR direction.
-- **Interactions:** actual upstream React Bits SpotlightCard, GSAP card tilt, magnetic controls, domain transition wipe, holographic tags and an additive interactive dot/ring cursor.
-- **Accessibility:** labelled tabs with arrow-key navigation, native modal focus containment and Escape handling, visible keyboard focus, a skip link, native form validation, pause control and live system reduced-motion updates.
-- **Fallbacks:** reduced motion unmounts both canvases, removes smooth-scroll tracking and uses a shorter static chapter layout. Offscreen or hidden-tab anatomy stops drawing. WebGL failure retains existing artwork. No JavaScript still provides server-rendered introduction, tech card summaries, personal context and direct email contact.
+## Important source files
 
-## Content and email
+| File | Responsibility |
+| --- | --- |
+| `components/FullCanvasAnatomy.jsx` | R3F lifecycle, camera, scene handoff, projected markers and diagnostics |
+| `lib/spatial.js` | Reversible helix math and transient visual state |
+| `lib/volumetric-anatomy.js` | Upper-body meshes, glass materials, botanical fibers and heartbeat |
+| `lib/realm-world.js` | Realm assets, shaders, native text billboards, matrix physics and pooled click VFX |
+| `components/Domains.jsx` | Accessible realm tabs, open project articles, telemetry and native dialogs |
+| `components/SpatialEditorial.jsx` | Gradient quotes, micro-telemetry and matching HTML milestones |
+| `app/spatial.css` | Typography, open spatial layout, vignettes, glitch styling and responsive behavior |
 
-Edit `lib/projects.js` for project/leadership cards, `app/page.jsx` for personal context and `components/SiteChrome.jsx` for contact details. Leadership roles come from the user's brief. Research context, workflow studies and concepts are labelled with their scope; no invented client metrics or validated scientific outcomes are claimed.
+## Accessibility and performance
 
-The contact form prepares a reviewable draft for `hello@studionavya.com`. It does not send email or claim delivery. The visitor chooses to open their mail app or copy the draft. There is no server-side inbox integration or credential requirement.
+System reduced motion and the pause control unmount heavy canvases while preserving normal HTML chapters, projects and controls. Native dialogs retain focus trapping, Escape dismissal and focus return. All project content remains readable without WebGL; the initial portfolio is server-rendered.
 
-## Verify
+The renderer uses instancing, merged geometries, hidden inactive groups, bounded particle pools, adaptive pixel ratio, lower-density software geometry and a smaller software transmission buffer. It suspends drawing for hidden tabs, offscreen scenes and modal dialogs. Resource and event cleanup is explicit.
 
-```sh
-npm run build
+Open `/?profile=1` for canvas datasets and `anatomy:performance` events. Software-Chromium measurements do not establish a hardware-backed 60 fps result. Hardware appearance and sustained frame rate need a physical-device check.
+
+## Validation
+
+```bash
 npm test
 ```
 
-Playwright starts the production application on port 3100. Tests use environment-provided `/usr/bin/chromium`; elsewhere install Chromium with Playwright and adjust `playwright.config.mjs`'s executable path. Sixteen browser tests cover actual GLSL rendering, camera descent/reversal, Lenis, real React Bits, hover depth/cursor, domain switching, native dialog/focus return, live pause/reduced motion, seven viewport widths, native touch scrolling, email drafts, clipboard failure, WebGL failure, server-rendered content and 404s. Tests never send real messages.
+Playwright starts the production build on port 3100 and uses `/usr/bin/chromium`. On another machine, install a Playwright browser and adjust `playwright.config.mjs`. The suite covers the helix, real shaders, world markers, local fonts, box-free layout, responsive widths, cursor/click effects, both realms, keyboard navigation, reduced motion, WebGL failure, project dialogs, contact drafts and the arcade. No tests send real messages.
 
-## Publish
+## Contact and historical files
 
-See [PUBLISHING.md](PUBLISHING.md). Vercel and Netlify settings now target Next.js, not the former static `dist` site. Workspace changes are not automatically pushed or deployed.
-
-## Sources
-
-See [THIRD_PARTY.md](THIRD_PARTY.md) and [design/VISION.md](design/VISION.md). The supplied neuron/heart recordings informed the visual direction. The additional website and ThreeUI Notion references returned network-policy denials and were not visually inspected. Older static files and scripts are retained as legacy work; `app/`, `components/`, `lib/` and `public/` are the active application.
-
-## Cyber-organic layer and model mapping
-
-The upper-body model has C1–C7, T1–T12, twelve rib pairs (seven direct, three costal-margin, two floating), a cranial vault, shoulders, asymmetric ventricular core and branching upper-body vessels. No pelvis, lumbar/lower-body model or legs are generated. See [design/ANATOMY.md](design/ANATOMY.md) for reference scope and limitations.
-
-A bounded recursive canopy creates curved bioluminescent floral fibers with instanced quartz-like tips. Rotating lipid-bilayer and ligand nodes are actually raycastable and open molecular workflow highlights; keyboard buttons provide the same action. Vascular picking opens the operational-leadership highlight. Brain/heart controls also change domain.
-
-The diagnostic HUD includes scan grids, waveform studies and actual scroll progress. Card coordinate frames and pointer scan percentages are decorative interface telemetry, not biological measurements or optimization results. Thin-film organ/crystal shaders, stained-glass card films, orbit-linked prism projections and regional cool/warm light reinforce the two domains.
-
-## Performance evidence
-
-The physical scene is lazy loaded and uses merged tube buffers, instanced vertebrae/atoms/floral petals, bounded particles and a small local reflection map. Hardware graphics use physical glass transmission; detected software renderers use the same 3D meshes with alpha glass and lower geometry density. Slow hardware can drop transmission adaptively, and pixel ratio is capped/adaptive. Offscreen and hidden-tab rendering pauses. The former line-only scene's 30 fps sample does not represent this replacement. Use `/?profile=1` and `anatomy:performance` events or the canvas `data-profile` for current measurements; physical-device 60 fps is not established.
-
-The Python demonstration is downloadable from the data project. Run `python3 public/studies/analysis_pipeline.py`; it reports four accepted synthetic records, three rejections and an exact-decimal total of 3600.00, with explicit synthetic-data provenance.
-
-## Release scope: through point 12
-
-Includes the anatomical, cosmic, biomedical and botanical features, plus both point-12 arcade briefs: two pixel-art levels, scroll-driven avatar and jumps, collectible discoveries, terminals and puzzle, pixel progress meter, secondary retro-window cards, square click bursts and Framer Motion springs. Discovery energy tracks visitor exploration; all portfolio work stays open.
-
-The later global shared-realm styling and Aceternity atmosphere (points 13–14) are excluded and preserved on local codex/portfolio-motion-libraries at commit 6832ab2. Original domain tabs and local game palettes remain.
-
-Release branch: codex/portfolio-through-point-12. The production build and all 14 browser tests passed. Git publication alone does not establish a successful Vercel deployment.
-
-## Critical full-screen anatomy fix
-
-`Journey` portals the canvas container directly to `document.body` as fixed/inset-0/z-0/pointer-events-none. It covers the viewport on every breakpoint; mobile side offsets are removed. HTML remains above the scene and owns all controls. Cranial, spinal and cardiac camera keyframes stay on a central focus axis, with continuous 3D orbit and a true Z-axis approach into an inner vascular chamber. A separate work-section ScrollTrigger pulls the camera back and fades the canvas beneath interactive cards. The arcade now follows the bento section so it does not interrupt this transition.
-
-`components/FullCanvasAnatomy.jsx` owns the React Three Fiber Canvas and `useFrame` lifecycle. `lib/volumetric-anatomy.js` constructs original lofted glass head/torso, MeshPhysicalMaterial skeletal structures (roughness 0.1, clearcoat 1, nonzero transmission), tubular vessels, a beating volumetric heart, instanced flowers/leaves, luminous lung particles, dynamic lights and a reflection environment. The previous AnatomyScene renderer and flat anatomy image fallback are deleted. `lib/cosmic.js` samples mesh vertices for the retained cosmic assembly. `tests/fullscreen-anatomy.spec.js` checks the body-level viewport contract, centred camera target, core entry and card retreat, along with the existing regression suite.
-
-The supplied floral glass-body image informs the botanical anatomy direction. This is original procedural artwork, not an exact reproduction or clinical atlas model. Software renderers use a smaller transmission buffer and adaptive pixel ratio while retaining physical glass properties. Hardware appearance/performance requires a physical-device check; no hardware-backed 60 fps claim is made.
-
-Final R3F validation: production build and all 16 browser tests passed. A software-Chromium sample measured approximately 2.06 fps, 35 draw calls, 35,336 triangles, 34 geometries and zero line primitives at 0.8 pixel ratio. This confirms functional rendering and bounded geometry, not a hardware 60 fps result.
+The form prepares an email draft; it does not send or store a message on a backend. See [CONTACT_SETUP.md](CONTACT_SETUP.md) for delivery context. Earlier static HTML, scripts and source components remain as historical work; `app/`, `components/`, `lib/` and `public/` form the active Next.js application.

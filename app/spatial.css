@@ -1,0 +1,129 @@
+/* Points 15–18: typography is the interface; light supplies the separation. */
+:root { --ambient-warmth:0; --quote-warmth:0; --spatial-cyan:#00f0ff; --spatial-violet:#7b2cbf; --spatial-pink:#ff007f; --spatial-amber:#ffb703; }
+body { font-family:var(--font-jakarta),sans-serif; }
+h1,h2,h3,blockquote { font-family:var(--font-syne),sans-serif; font-weight:500; }
+em { font-family:var(--font-syne),sans-serif; font-style:normal; font-weight:500; }
+body .eyebrow,body .section-meta,body .domain-note,body .domain-legend,body .domain-tabs,body .micro-telemetry,body .spatial-tags,body .spatial-milestone,body .specimen-label,body .floating-code,body .diagnostic-hud,body .anatomy-node,body .anatomy-readout small,body .chapter-preview small,body .hero-signature > span:last-child,body .motion-switch,body .hero-bottom,body .journey-exit,body .portfolio-footnote,body .site-footer p,body .site-footer > span { font-family:var(--font-jetbrains),monospace; }
+.site-header { background:transparent; backdrop-filter:none; }
+.brand > span { font-family:var(--font-syne),sans-serif; }
+.site-header nav a,.motion-switch { min-height:44px; display:inline-flex; align-items:center; }
+.nav-contact,.pill-button { border:0; border-radius:0; background:none; padding-inline:8px; }
+.nav-contact:hover,.pill-button:hover { background:none; }
+.section-meta { border:0; color:#ada7b6; }
+main { isolation:isolate; }
+/* Explicitly remove the earlier box-based content treatments. */
+.hero-editorial,.journey-chapter,.portfolio-card,.project-inner,.spotlight-card,.anatomy-readout,.chapter-preview,.dialog-inner,.email-preview,.arcade-terminal,.arcade-achievement,.arcade-cabinet,.arcade-level-label,.arcade-inventory button,.about-roles > div,.domain-tabs > button { border:0; border-radius:0; background:none; box-shadow:none; clip-path:none; backdrop-filter:none; }
+.hero-editorial,.journey-chapter { padding-block:22px; }
+.hero-editorial::before,.journey-chapter::before,.spatial-project-copy::before,.anatomy-readout::before,.chapter-preview::before { content:''; position:absolute; inset:-20% -12%; z-index:-1; pointer-events:none; background:radial-gradient(ellipse,#030305e0 5%,#03030580 45%,transparent 72%); filter:blur(18px); }
+.hero-editorial h1,.journey-chapter h2,.spatial-project h3,.domain-intro h2 { text-shadow:0 2px 24px #030305e8; }
+.hero-editorial h1 { font-size:clamp(55px,6.7vw,112px); line-height:1.01; letter-spacing:-.065em; }
+.hero-editorial h1 em { background:linear-gradient(105deg,#a2efff,#d3bcff,#ffc191); background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-deck { color:#c3bdc9; font-size:13px; line-height:1.9; }
+.journey-sticky { overflow:visible; }
+.journey-chapter h2 { font-size:clamp(44px,5.3vw,86px); letter-spacing:-.055em; }
+.journey-chapter > p:last-child { color:#c2bacb; }
+.anatomy-readout { isolation:isolate; text-shadow:0 2px 15px #000; }
+.anatomy-readout::before { inset:-50%; }
+.anatomy-readout p { color:#b8b3c2; }
+.chapter-preview { isolation:isolate; text-shadow:0 2px 16px #000; }
+.diagnostic-hud { opacity:.5; }
+.hud-title,.hud-readout,.hud-progress { border:0; }
+.hud-slice { background:transparent; border:0; }
+.spatial-milestones { position:fixed; inset:0; pointer-events:none; z-index:12; overflow:visible; }
+.spatial-milestone { position:absolute; top:0; left:0; color:#a6eaff; font-size:8px; letter-spacing:1px; white-space:nowrap; opacity:0; text-shadow:0 1px 12px #000; will-change:transform; }
+.spatial-milestone i { display:inline-block; width:3px; height:3px; background:currentColor; margin-right:10px; box-shadow:0 0 12px currentColor; }
+.spatial-quote { --quote-warmth:0; margin:0; padding:clamp(50px,9vw,140px) 0; max-width:1000px; position:relative; }
+.spatial-quote blockquote { font-size:clamp(32px,4.4vw,70px); line-height:1.2; letter-spacing:-.045em; margin:0; font-weight:500; background:linear-gradient(110deg,color-mix(in srgb,#a3edff calc(100% - var(--quote-warmth)*100%),#ff94c5),color-mix(in srgb,#b1a5ff calc(100% - var(--quote-warmth)*100%),#ffc480)); background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 2px 16px #0008); }
+.spatial-quote figcaption { margin-top:30px; color:#a49dad; font:9px/1.8 var(--font-jetbrains),monospace; letter-spacing:1.5px; }
+.manifesto { padding-top:70px; padding-bottom:90px; background:none; }
+.manifesto .spatial-quote { margin:auto; padding:20px 0 45px; }
+.manifesto .spatial-quote figcaption { font-size:8px; }
+.domains { --accent:var(--spatial-cyan); position:relative; background:transparent; padding-top:100px; }
+.domains.creative { --accent:#ff9ac7; }
+.domain-intro h2 { font-family:var(--font-syne),sans-serif; font-size:clamp(56px,7.5vw,122px); letter-spacing:-.065em; }
+.domain-intro h2 em { color:#c8b1ee; }
+.domain-intro > div p { color:#b9b1c1; }
+.domain-tabs { border:0; margin-top:50px; gap:clamp(20px,5vw,80px); }
+.domain-tabs button { padding:20px 0; gap:14px; color:#a8a1b2; font-size:11px; min-height:56px; }
+.domain-tabs button[aria-selected=true] { background:none; border:0; box-shadow:none; color:var(--accent); text-shadow:0 0 24px color-mix(in srgb,var(--accent),transparent 65%); }
+.domain-tabs button::after { content:'↳ ENTERED'; font:8px var(--font-jetbrains),monospace; opacity:0; margin-left:12px; }
+.domain-tabs button[aria-selected=true]::after { opacity:.7; }
+.domain-note { color:#b2a6c0; border:0; padding:28px 0; }
+.domain-panel-wrap,#domain-panel { overflow:visible; }
+.domain-wipe { inset:0; background:radial-gradient(ellipse at 50% 35%,#ff007f40,transparent 65%),radial-gradient(ellipse at 35% 40%,#00f0ff33,transparent 65%); border:0; border-radius:50%; transform:scale(.7); opacity:0; pointer-events:none; mix-blend-mode:screen; }
+.domain-wipe > span { display:none; }
+.spatial-projects { position:relative; padding-top:40px; }
+.spatial-project { --spatial-drift:0px; position:relative; display:flex; flex-direction:column; justify-content:center; width:46%; min-height:87svh; padding:80px 0; isolation:isolate; background:none; border:0; transform:translate3d(0,var(--spatial-drift),0); }
+.spatial-project.spatial-right { margin-left:auto; }
+.spatial-project-copy { position:relative; max-width:520px; }
+.spatial-project-copy::before { inset:-10% -25%; background:radial-gradient(ellipse,#030305e8 5%,#03030599 50%,transparent 74%); }
+.spatial-project .project-category { color:var(--accent); font:10px/1.8 var(--font-jetbrains),monospace; letter-spacing:1px; margin:36px 0 18px; }
+.spatial-project h3 { position:relative; font-size:clamp(38px,3.8vw,63px); line-height:1.08; letter-spacing:-.055em; margin-bottom:25px; overflow:visible; }
+.spatial-description { color:#c2bcca; font-size:14px; line-height:1.95; max-width:370px; }
+.spatial-tags { display:flex; flex-wrap:wrap; gap:12px 18px; font-size:9px; color:#b4a9c3; margin-top:28px; }
+.spatial-tags span { padding:0; background:none; border:0; }
+.spatial-tags span::before { content:'/ '; opacity:.45; }
+.spatial-project-open { border:0; margin-top:24px; font-size:11px; min-height:44px; color:#e2dae7; }
+.spatial-project-open:hover { color:var(--accent); }
+.spatial-project-index { position:absolute; right:0; top:14%; color:var(--accent); opacity:.13; font:clamp(60px,9vw,140px)/1 var(--font-syne),sans-serif; letter-spacing:-8px; pointer-events:none; }
+.micro-telemetry { display:flex; flex-wrap:wrap; gap:12px 24px; font:8px/1.8 var(--font-jetbrains),monospace; letter-spacing:.5px; color:var(--accent); opacity:.65; max-width:420px; }
+.micro-telemetry span:first-child { color:#d0bfe6; }
+.micro-telemetry b { font-weight:400; }
+.spatial-project h3::before,.spatial-project h3::after { content:attr(data-glitch-text); position:absolute; inset:0; opacity:0; pointer-events:none; }
+.spatial-project h3[data-glitch=active]::before { opacity:.8; color:#00f0ff; transform:translateX(var(--glitch-shift)); clip-path:inset(15% 0 50%); mix-blend-mode:screen; }
+.spatial-project h3[data-glitch=active]::after { opacity:.8; color:#ff007f; transform:translateX(calc(var(--glitch-shift)*-1)); clip-path:inset(50% 0 5%); mix-blend-mode:screen; }
+.portfolio-footnote { max-width:760px; color:#aba1b5; font-size:9px; }
+/* Modal semantics and focus trapping are retained, but the details are an open
+   full-screen editorial view with a soft vignette rather than a framed card. */
+.project-dialog { max-width:none; max-height:none; width:100vw; height:100dvh; margin:0; padding:clamp(35px,7vw,120px); border:0; border-radius:0; background:radial-gradient(ellipse at 50% 35%,#131220f5,#030305fa 78%); color:#ede7ed; box-shadow:none; }
+.project-dialog::backdrop { background:#030305c9; backdrop-filter:blur(10px); }
+.dialog-inner { max-width:850px; margin:auto; padding:40px 0; }
+.dialog-inner h2 { font-family:var(--font-syne),sans-serif; font-size:clamp(36px,5vw,72px); letter-spacing:-.045em; }
+.dialog-close { position:fixed; top:24px; right:30px; min-width:44px; min-height:44px; }
+.dialog-scope > div { border:0; }
+.about-section,.contact-section { background:none; }
+.about-copy h2,.contact-heading h2 { font-family:var(--font-syne),sans-serif; letter-spacing:-.055em; }
+.about-art { background:none; }
+.about-roles { border:0; }
+.email-preview { padding:40px 0; border:0; background:none; }
+.email-preview pre { color:#c5b9cf; white-space:pre-wrap; }
+/* The arcade remains playable. Its text/HUD layers also lose rectangular
+   cabinets and terminal frames under the newer spatial-typography direction. */
+.arcade-section .arcade-sticky { background:radial-gradient(ellipse at 50% 70%,#070c18ee,transparent 80%); }
+.arcade-section .arcade-cabinet,.arcade-section .arcade-hud,.arcade-section .arcade-controls,.arcade-section .arcade-terminal,.arcade-section .arcade-achievement,.arcade-section .arcade-inventory button,.arcade-section .arcade-level-label { border:0; background:none; border-radius:0; box-shadow:none; clip-path:none; }
+.arcade-section .arcade-terminal { background:radial-gradient(ellipse,#030305fa 30%,#030305bd 65%,transparent); padding:30px; }
+.arcade-section .arcade-hud,.arcade-section .arcade-controls { padding-inline:0; }
+.arcade-section .arcade-level-label { text-shadow:0 2px 6px #000; }
+.arcade-section .arcade-inventory button.collected { background:none; border:0; }
+.arcade-section .arcade-terminal > div:first-child,.arcade-section .arcade-terminal form { border:0; }
+.arcade-section .arcade-puzzle button { border:0; }
+[data-motion=reduced] .spatial-project,[data-motion=paused] .spatial-project { transform:none !important; }
+[data-motion=reduced] .spatial-milestones,[data-motion=paused] .spatial-milestones { display:none; }
+@media(min-width:1700px) { .spatial-project { width:42%; }.spatial-project.spatial-right { margin-right:4%; } }
+@media(max-width:1000px) { .domain-tabs button::after { display:none; }.spatial-project { width:49%; }.spatial-project h3 { font-size:42px; }.micro-telemetry { font-size:7px; gap:8px 14px; } }
+@media(max-width:760px) {
+ .hero-editorial { background:none; backdrop-filter:none; margin-inline:20px; width:calc(100% - 40px); padding-inline:4px; top:16%; }
+ .hero-editorial h1 { font-size:clamp(48px,11.5vw,78px); letter-spacing:-.055em; max-width:530px; }
+ .hero-deck { max-width:220px; font-size:12px; }.hero-signature > span:last-child { font-size:6px; line-height:2; }
+ .journey-chapter { background:none; backdrop-filter:none; width:calc(100% - 48px); margin-inline:24px; padding-inline:0; top:20%; }
+ .journey-chapter h2 { font-size:clamp(38px,9vw,62px); }
+ .spatial-milestone { font-size:6px; }.diagnostic-hud { opacity:.3; }
+ .domains { padding-top:70px; }.domain-intro h2 { font-size:clamp(52px,12vw,85px); }
+ .domain-intro { flex-direction:column; gap:30px; }.domain-intro > div { width:100%; }.domain-intro > div p { font-size:12px; }
+ .domain-tabs { gap:18px; margin-top:25px; flex-wrap:wrap; }.domain-tabs button { font-size:9px; gap:8px; padding:16px 0; }.domain-tabs button > span:first-child { display:none; }
+ .domain-note { font-size:7px; gap:14px; }.domain-note > span:first-child { max-width:65%; }
+ .spatial-project,.spatial-project.spatial-right { width:100%; min-height:78svh; margin:0; padding:70px 0; }
+ .spatial-project-copy { width:100%; max-width:440px; }.spatial-project h3 { font-size:clamp(37px,9vw,62px); max-width:100%; }
+ .spatial-description { max-width:330px; font-size:13px; }.spatial-project-index { font-size:100px; top:16%; right:0; }
+ .micro-telemetry { font-size:7px; max-width:340px; }.spatial-tags { font-size:8px; }.spatial-quote { padding:65px 0; }.spatial-quote blockquote { font-size:clamp(29px,7.5vw,48px); }
+ .spatial-quote figcaption { font-size:7px; }.project-dialog { padding:50px 24px; }.project-dialog h2 { font-size:37px; }
+ .about-copy h2,.contact-heading h2 { font-size:clamp(42px,10vw,70px); }
+}
+@media(prefers-reduced-motion:reduce) { .spatial-project { transform:none !important; }.spatial-milestones { display:none; }.spatial-quote { --quote-warmth:.45; }.spatial-project h3::before,.spatial-project h3::after { display:none; } }
+.spatial-project-copy { transform:translate3d(var(--world-parallax,0px),0,0); }
+@media(max-width:760px) { .site-header nav > a { display:none; }.site-header { gap:10px; }.site-header nav { margin-left:auto; }.motion-switch span { display:none; }.motion-switch { min-width:28px; padding-left:8px; }.nav-contact { font-size:9px; gap:7px; padding-inline:3px; }.brand > span { font-size:19px; }.brand { gap:7px; }.spatial-project-copy { transform:none; } }
+[data-motion=reduced] .spatial-project-copy,[data-motion=paused] .spatial-project-copy { transform:none; }
+/* Vignettes may blur beyond their paint bounds, but their layout bounds stay
+   inside the text span so an invisible light mask cannot widen mobile pages. */
+.hero-editorial::before,.journey-chapter::before,.spatial-project-copy::before,.anatomy-readout::before,.chapter-preview::before { left:0; right:0; }
+.domain-tabs { overflow:visible; }

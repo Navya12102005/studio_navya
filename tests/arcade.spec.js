@@ -25,7 +25,7 @@ test('scroll engine walks, jumps, collects and separates the two realms; reverse
   await atProgress(page, .76);
   await expect(canvas).toHaveAttribute('data-level', 'studio');
   await expect(page.locator('#arcade')).toHaveClass(/arcade-warm/);
-  await expect(page.locator('.domains .projects-grid .project-shell')).toHaveCount(4);
+  await expect(page.locator('.domains .spatial-projects .spatial-project')).toHaveCount(4);
   await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 3);
   await expect.poll(() => canvas.getAttribute('data-avatar-x').then(Number)).toBeGreaterThan(1400);
   await page.screenshot({ path: '/tmp/navya-arcade-studio.png' });
@@ -66,7 +66,7 @@ test('reduced-motion arcade has keyboard controls, terminal commands, collectibl
   await expect(page.locator('.arcade-achievement')).toHaveCount(0);
 });
 
-test('pixel progress, real click bursts, spring feedback and secondary OS frames work together', async ({ page }) => {
+test('pixel progress and click bursts remain usable with the new container-free projects', async ({ page }) => {
   await page.addInitScript(() => {
     window.pixelBurstSeen = false;
     new MutationObserver(() => { if (document.querySelector('.pixel-burst-layer i')) window.pixelBurstSeen = true; }).observe(document, { childList: true, subtree: true });
@@ -76,9 +76,10 @@ test('pixel progress, real click bursts, spring feedback and secondary OS frames
   await expect.poll(() => page.getByRole('progressbar', { name: 'Portfolio scroll depth' }).getAttribute('aria-valuenow').then(Number)).toBeGreaterThan(10);
   await expect.poll(() => page.evaluate(() => window.pixelBurstSeen)).toBe(true);
   await expect(page.locator('.domains')).toHaveClass(/tech/);
-  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(3);
+  await expect(page.locator('.domains .spatial-project')).toHaveCount(4);
+  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(0);
   await page.getByRole('tab', { name: /Creative, PR & Strategy/ }).click();
-  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(5);
+  await expect(page.locator('.domains .spatial-project')).toHaveCount(6);
 });
 
 test('mobile arcade and both realm layouts fit; reduced motion suppresses bursts', async ({ page }) => {

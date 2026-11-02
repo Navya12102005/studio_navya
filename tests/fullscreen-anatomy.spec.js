@@ -38,7 +38,7 @@ test('physical mesh is centred in a fixed body-level viewport canvas on desktop 
   expect(shaderErrors).toEqual([]);
 });
 
-test('camera enters the thoracic volume and retreats into fully interactive project cards', async ({ page }) => {
+test('camera enters the thoracic volume and retreats into the container-free realm', async ({ page }) => {
   test.setTimeout(120000);
   await page.goto('/?profile=1');
   const canvas = page.locator('.anatomy-canvas canvas');
@@ -53,7 +53,8 @@ test('camera enters the thoracic volume and retreats into fully interactive proj
   const exit = await canvas.evaluate(el => JSON.parse(el.dataset.camera));
   expect(exit.position[2]).toBeGreaterThan(core.position[2] + 2);
   await page.evaluate(() => window.scrollTo({ top: document.querySelector('#work').offsetTop + innerHeight * .7, behavior: 'instant' }));
-  await expect(page.locator('.anatomy-art')).toHaveCSS('opacity', '0');
+  await expect(canvas).toHaveAttribute('data-realm', 'tech');
+  await expect(page.locator('.anatomy-art')).toHaveCSS('opacity', '1');
   await page.getByRole('button', { name: 'Explore Oculomics · Research' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
