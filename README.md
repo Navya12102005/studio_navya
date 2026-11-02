@@ -23,7 +23,7 @@ The build uses Next.js's supported Webpack backend because this cloud environmen
 ## Experience
 
 - **Opening:** a same-canvas cosmic warp converges onto sampled anatomical vertices. First scroll/click accelerates it, Skip and Escape dismiss it, and it runs only once per tab session. Sound is opt-in, follows warp acceleration and fades away on completion; it is suspended when the page is hidden. Reduced motion bypasses the intro.
-- **Anatomical journey:** Three.js upper-body wireframe, distinct cool/warm brain hemispheres, cervical/thoracic vertebrae, ribcage and pulsing heart core. Custom GLSL shaders create Fresnel glow, refractive bands, a backlit scattering approximation and flowing emitted particles. These are artistic approximations, not a physically simulated subsurface material or clinical anatomical model.
+- **Anatomical journey:** A body-level fixed full-screen Three.js backdrop with lofted MeshPhysicalMaterial glass surfaces, solid tubular skeletal/vascular meshes, folded cerebral meshes and a volumetric cardiac core. Dynamic cyan/violet and pink/amber lights and vertex-shader coloration provide the dual spectrum. No SVG, line material or wireframe material is used by the active anatomical renderer. Custom GLSL shaders create Fresnel glow, refractive bands, a backlit scattering approximation and flowing emitted particles. These are artistic approximations, not a physically simulated subsurface material or clinical anatomical model.
 - **Camera:** GSAP ScrollTrigger synchronises a reversible whole-body → brain → spine → heart journey. Three labelled anatomy controls jump to the same scroll positions. Cursor movement subtly changes perspective. The upper body orbits continuously; the final camera approaches the cardiac core along the Z axis.
 - **Scrolling:** the maintained `lenis/react` ReactLenis integration, synchronised to the GSAP ticker. The specifically mentioned `@studio-freight/react-lenis` package is retired and declares React 17/18 peers; `lenis/react` is its maintained React-19-compatible successor. Touch scrolling stays native.
 - **Tech & Bioengineering:** a glass bento grid for research context, a molecular docking workflow exploration, an working synthetic-data Python pipeline and reporting concept and this working technical build.
@@ -45,7 +45,7 @@ npm run build
 npm test
 ```
 
-Playwright starts the production application on port 3100. Tests use environment-provided `/usr/bin/chromium`; elsewhere install Chromium with Playwright and adjust `playwright.config.mjs`'s executable path. Fourteen browser tests cover actual GLSL rendering, camera descent/reversal, Lenis, real React Bits, hover depth/cursor, domain switching, native dialog/focus return, live pause/reduced motion, seven viewport widths, native touch scrolling, email drafts, clipboard failure, WebGL failure, server-rendered content and 404s. Tests never send real messages.
+Playwright starts the production application on port 3100. Tests use environment-provided `/usr/bin/chromium`; elsewhere install Chromium with Playwright and adjust `playwright.config.mjs`'s executable path. Sixteen browser tests cover actual GLSL rendering, camera descent/reversal, Lenis, real React Bits, hover depth/cursor, domain switching, native dialog/focus return, live pause/reduced motion, seven viewport widths, native touch scrolling, email drafts, clipboard failure, WebGL failure, server-rendered content and 404s. Tests never send real messages.
 
 ## Publish
 
@@ -65,7 +65,7 @@ The diagnostic HUD includes scan grids, waveform studies and actual scroll progr
 
 ## Performance evidence
 
-The scene is lazy loaded, with shader/vertex-color curve batching, instanced atoms/crystals, bounded recursion/particles, pixel-ratio caps, adaptive resolution and offscreen/hidden-tab drawing suspension. A profiled software-Chromium run measured 19 draw calls, about 6,000 triangles, 24 geometries and approximately 30 fps at 0.65 pixel ratio. This is not a 60 fps claim for physical devices; a hardware GPU benchmark is still needed. Use `/?profile=1` and listen for `anatomy:performance` events, or inspect the anatomy canvas's `data-profile`, to measure the active renderer.
+The physical scene is lazy loaded and uses merged tube buffers, instanced vertebrae/atoms/floral petals, bounded particles and a small local reflection map. Hardware graphics use physical glass transmission; detected software renderers use the same 3D meshes with alpha glass and lower geometry density. Slow hardware can drop transmission adaptively, and pixel ratio is capped/adaptive. Offscreen and hidden-tab rendering pauses. The former line-only scene's 30 fps sample does not represent this replacement. Use `/?profile=1` and `anatomy:performance` events or the canvas `data-profile` for current measurements; physical-device 60 fps is not established.
 
 The Python demonstration is downloadable from the data project. Run `python3 public/studies/analysis_pipeline.py`; it reports four accepted synthetic records, three rejections and an exact-decimal total of 3600.00, with explicit synthetic-data provenance.
 
@@ -76,3 +76,11 @@ Includes the anatomical, cosmic, biomedical and botanical features, plus both po
 The later global shared-realm styling and Aceternity atmosphere (points 13–14) are excluded and preserved on local codex/portfolio-motion-libraries at commit 6832ab2. Original domain tabs and local game palettes remain.
 
 Release branch: codex/portfolio-through-point-12. The production build and all 14 browser tests passed. Git publication alone does not establish a successful Vercel deployment.
+
+## Critical full-screen anatomy fix
+
+`Journey` portals the canvas container directly to `document.body` as fixed/inset-0/z-0/pointer-events-none. It covers the viewport on every breakpoint; mobile side offsets are removed. HTML remains above the scene and owns all controls. Cranial, spinal and cardiac camera keyframes stay on a central focus axis, with continuous 3D orbit and a true Z-axis approach into an inner vascular chamber. A separate work-section ScrollTrigger pulls the camera back and fades the canvas beneath interactive cards. The arcade now follows the bento section so it does not interrupt this transition.
+
+`lib/volumetric-anatomy.js` owns original lofted glass head/torso, MeshStandardMaterial organs/bones, tubular vessels, instanced details, dynamic lights and physical reflection environment. `lib/cosmic.js` samples mesh vertices for the retained cosmic assembly. `tests/fullscreen-anatomy.spec.js` checks the body-level viewport contract, centred camera target, core entry and card retreat, along with the existing regression suite.
+
+Latest fixed-canvas validation: production build and all 16 browser tests passed. The headless software fallback measured about 8 fps with 22 draw calls, 18,096 triangles and zero line primitives at 0.65 pixel ratio. This measurement is deliberately reported as software-renderer evidence, not a hardware-backed 60 fps claim. Hardware transmission appearance/performance requires a physical-device check.

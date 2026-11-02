@@ -1,6 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDown, ArrowUpRight, MoveDown } from 'lucide-react';
@@ -17,7 +18,8 @@ const chapters = [
   { id: 'heart', label: '03 / THE INSTINCT', name: 'Create with intent.', text: 'Ideas become meaningful when they move people. Logic gives them structure. Heart gives them life.', color: 'warm', at: 1 }
 ];
 export default function Journey() {
-  const section = useRef(null), progress = useRef(0), velocity = useRef(0);
+  const section = useRef(null), progress = useRef(0), velocity = useRef(0), cardsProgress = useRef(0);
+  const [mounted, setMounted] = useState(false), [sceneVisible, setSceneVisible] = useState(true);
   const [ready, setReady] = useState(false);
   const [sceneChapter, setSceneChapter] = useState(null);
   const [rayPart, setRayPart] = useState(null), [focusedPart, setFocusedPart] = useState(null);
@@ -27,6 +29,16 @@ export default function Journey() {
   const onReady = useCallback(value => setReady(value), []);
   const onIntro = useCallback(value => setIntro(value), [setIntro]);
   const onPartHover = useCallback(value => setRayPart(value), []);
+  useEffect(() => {
+    setMounted(true);
+    const work = document.getElementById('work'), visibility = new Map();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => visibility.set(entry.target, entry.isIntersecting));
+      setSceneVisible([...visibility.values()].some(Boolean));
+    }, { rootMargin: '100px' });
+    observer.observe(section.current); if (work) observer.observe(work);
+    return () => observer.disconnect();
+  }, []);
   const onPartSelect = useCallback(part => {
     const { domain, project } = anatomicalParts[part];
     dispatchEvent(new CustomEvent('portfolio:domain', { detail: { domain, project, part } }));
@@ -36,7 +48,7 @@ export default function Journey() {
     else target.scrollIntoView({ behavior: 'smooth' });
   }, [scrollRef]);
   useEffect(() => {
-    if (!enabled) { progress.current = 0; setSceneChapter(null); return; }
+    if (!enabled) { progress.current = 0; cardsProgress.current = 0; setSceneChapter(null); return; }
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({ scrollTrigger: {
@@ -57,6 +69,8 @@ export default function Journey() {
       timeline.to('.journey-progress-fill', { scaleY: 1, duration: 1, ease: 'none' }, 0);
       timeline.fromTo('.diagnostic-sweep', { top: '-5%', opacity: 0 }, { top: '105%', opacity: .42, duration: .24, ease: 'none' }, .43);
       timeline.to('.diagnostic-sweep', { opacity: 0, duration: .06 }, .67);
+      ScrollTrigger.create({ trigger: document.getElementById('work'), start: 'top 20%', end: 'top -60%',
+        onUpdate: self => { cardsProgress.current = self.progress; } });
       gsap.from('.hero-editorial > *', { opacity: 0, y: 20, stagger: .09, duration: 1.1, ease: 'power3.out', clearProps: 'transform,opacity' });
     }, section);
     ScrollTrigger.refresh();
@@ -64,7 +78,7 @@ export default function Journey() {
   }, [enabled]);
   function goTo(chapter) {
     const node = section.current;
-    const top = enabled ? node.offsetTop + (node.offsetHeight - innerHeight) * Math.min(chapter.at, .98) : document.getElementById(chapter.id).offsetTop;
+    const top = enabled ? node.offsetTop + (node.offsetHeight - innerHeight) * Math.min(chapter.at, .995) : document.getElementById(chapter.id).offsetTop;
     const lenis = scrollRef.current?.lenis;
     if (lenis) lenis.scrollTo(top); else window.scrollTo({ top, behavior: enabled ? 'smooth' : 'auto' });
   }
@@ -72,11 +86,6 @@ export default function Journey() {
     <div className="journey-sticky">
       <div className="scene-vignette" aria-hidden="true" />
       <div className="diagnostic-sweep" aria-hidden="true" />
-      <div className={`anatomy-art ${ready && enabled ? 'canvas-ready' : ''}`}>
-        <div className="prism-radiation" aria-hidden="true" />
-        <img className="anatomy-fallback" src="/art/anatomy.webp" alt="" width="1024" height="1536" fetchPriority="high" />
-        {enabled ? <AnatomyScene progress={progress} velocity={velocity} active={active} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} /> : null}
-      </div>
       <div className="hero-editorial page-gutter">
         <p className="eyebrow"><span className="status-dot" /> A MULTIDISCIPLINARY MIND</p>
         <h1>The science<br />of <em>possibility.</em></h1>
@@ -109,5 +118,9 @@ export default function Journey() {
     <div className="static-chapters page-gutter">{chapters.map(chapter => <div className={chapter.color} id={chapter.id} key={chapter.id}><p className="eyebrow">{chapter.label}</p><h2>{chapter.name}</h2><p>{chapter.text}</p><MoveDown size={20} aria-hidden="true" /></div>)}</div>
     <div className="journey-exit page-gutter"><span>DIFFERENT DISCIPLINES.</span><ArrowDown size={16} /><span>ONE CONNECTED PERSPECTIVE.</span></div>
     <CinematicIntro />
+    {mounted ? createPortal(<div className={`anatomy-art anatomy-fullscreen ${ready && enabled ? 'canvas-ready' : ''}`} style={!enabled ? { opacity: sceneVisible ? 1 : 0 } : undefined} aria-hidden="true">
+      <img className="anatomy-fallback" src="/art/anatomy.webp" alt="" width="1024" height="1536" fetchPriority="high" />
+      {enabled ? <AnatomyScene progress={progress} cardsProgress={cardsProgress} velocity={velocity} active={active && sceneVisible} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} /> : null}
+    </div>, document.body) : null}
   </section>;
 }

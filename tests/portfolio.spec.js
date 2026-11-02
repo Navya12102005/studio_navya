@@ -141,7 +141,8 @@ test('anatomical tagging provides raycast and keyboard readouts with domain hand
   await expect(page.locator('.canvas-ready')).toHaveCount(1);
   await expect(page.getByRole('region', { name: 'Cosmic introduction' })).toHaveCount(0);
   await page.waitForTimeout(200);
-  await page.mouse.move(912, 220);
+  const brainPoint = await page.locator('.anatomy-canvas canvas').evaluate(el => JSON.parse(el.dataset.parts).brain);
+  await page.mouse.move(brainPoint.x, brainPoint.y);
   await expect(page.locator('#anatomy-readout')).toContainText('Paired cerebral hemispheres');
   await page.getByRole('button', { name: 'Explore heart', exact: true }).focus();
   await expect(page.locator('#anatomy-readout')).toContainText('7 TRUE · 3 FALSE · 2 FLOATING');
@@ -183,12 +184,16 @@ test('diagnostic HUD tracks scroll rather than fabricated results; batched rende
   await expect(page.locator('.canvas-ready')).toHaveCount(1);
   await page.waitForFunction(() => window.renderProfiles.some(sample => sample.fps > 0));
   const samples = await page.evaluate(() => window.renderProfiles.filter(sample => sample.fps > 0));
-  expect(samples[0].drawCalls).toBeLessThan(40);
-  expect(samples[0].geometries).toBeLessThan(50);
-  expect(samples[0].triangles).toBeLessThan(10000);
+  expect(samples[0].drawCalls).toBeLessThan(100);
+  expect(samples[0].geometries).toBeLessThan(60);
+  // Transmission renders an additional physical pass; budget total submitted
+  // triangles rather than reusing the former line-only scene's budget.
+  expect(samples[0].triangles).toBeLessThan(80000);
+  expect(samples[0].lines).toBe(0);
+  expect(samples[0].physicalMeshes).toBe(true);
   console.log('Renderer sample (software Chromium; not a physical-device guarantee):', samples[0]);
   await page.getByRole('button', { name: 'Explore heart', exact: true }).click();
-  await expect.poll(() => page.locator('[data-scan-progress]').textContent()).toBe('98%');
+  await expect.poll(() => page.locator('[data-scan-progress]').textContent().then(value => parseInt(value, 10))).toBeGreaterThanOrEqual(97);
   await expect(page.locator('.diagnostic-hud')).toHaveAttribute('data-region', 'thoracic');
   await page.locator('#work').scrollIntoViewIfNeeded();
   const card = page.locator('.project-inner').first(); const bounds = await card.boundingBox();

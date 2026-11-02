@@ -65,3 +65,7 @@ User requested a pixel-art add-on, two game levels, scroll-driven engineer avata
 ## Authorized release scope
 
 The user requests features through both point-12 briefs. Release codex/portfolio-through-point-12 excludes points 13–14, preserved at local commit 6832ab2. Automatic approval review blocked updating the existing deployment branch without explicit branch approval; no live deployment is established.
+
+## Critical full-screen volumetric correction
+
+User rejected the thin side-aligned wireframe presentation. Replace it with a document.body portal, fixed full viewport canvas, centrally focused glass/organ meshes, 3D tubular vessels and dynamic spectral lighting. Keep HTML pointer ownership, remove side/mobile offsets, perform a spinal orbit/depth dive into a real cardiac interior and retreat at the work cards. Preserve the approved point-12 features; place the arcade after the bento section.

@@ -32,6 +32,10 @@ Raycast volumes are tagged independently of delicate visual lines. The same targ
 
 ## Rendering
 
-Static skeletal curves are batched into vertex-colored line-segment buffers per named structure. Bounded recursive fibers, instanced crystals/atoms and local GLSL shaders avoid large model downloads. Low frame rates trigger a bounded resolution reduction. Render diagnostics are opt-in via `?profile=1`.
+The active renderer uses lofted MeshPhysicalMaterial glass head/torso surfaces, solid tubular ribs and vessels, instanced vertebrae, folded organ meshes, dynamic point lights and vertex-shader spectrum mapping. Static tube buffers are merged by material; there are no line/wireframe materials in the active anatomical scene. Bounded recursive fibers, instanced crystals/atoms and local GLSL shaders avoid large model downloads. Low frame rates trigger a bounded resolution reduction. Render diagnostics are opt-in via `?profile=1`.
 
 Physical-device 60 fps performance and professional atlas-surface validation remain unverified. The measured cloud renderer uses software Chromium, which is distinct from a hardware-backed browser.
+
+## Full-screen presentation
+
+The canvas is fixed to the viewport in a React portal under document.body. Main HTML remains at a higher stacking level; pointer events pass through the canvas. Camera focus stays centred, visits cranial/spinal/thoracic regions, enters an inner cardiac chamber, then pulls out and fades as the bento section enters. Software rendering substitutes alpha glass and lower-density meshes for expensive optical transmission while retaining real 3D volume, normals, lighting and motion. This remains original artistic geometry rather than an atlas-validated medical reconstruction.
