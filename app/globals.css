@@ -61,8 +61,8 @@ main,.site-footer { position:relative; z-index:1; }
 .anatomy-art { position:absolute; inset:0; z-index:1; }
 .anatomy-canvas { width:100%; height:100%; }
 .anatomy-canvas canvas { display:block; width:100%; height:100%; }
-.anatomy-fallback { position:absolute; right:4%; bottom:-13%; width:49%; height:110%; object-fit:contain; mask-image:linear-gradient(black 80%,transparent); opacity:.86; }
-.canvas-ready .anatomy-fallback { opacity:0; }
+
+
 .hero-editorial { position:absolute; top:29%; left:0; width:67%; z-index:3; pointer-events:none; }
 .hero-editorial a { pointer-events:auto; }
 .hero-editorial .eyebrow { color:#bdb4bd; font-size:8px; letter-spacing:2.2px; margin-bottom:32px; }
@@ -270,7 +270,7 @@ html.lenis,html.lenis body { height:auto; }.lenis.lenis-smooth { scroll-behavior
   .journey-sticky { min-height:740px; }.journey-animated { height:350svh; }
   .hero-editorial { top:19%; width:100%; }.hero-editorial .eyebrow { font-size:6px; letter-spacing:1.5px; margin-bottom:24px; }h1 { font-size:clamp(60px,13vw,98px); letter-spacing:-3.5px; }
   .hero-deck { font-size:12px; width:51%; }.hero-signature { margin-top:23px; }.hero-signature > span:last-child { font-size:5px; letter-spacing:.8px; }.hero-editorial .text-cta { font-size:10px; gap:20px; }
-  .anatomy-art { top:29%; bottom:-4%; opacity:.75; }.anatomy-fallback { right:-8%; bottom:-2%; width:75%; height:100%; }.anatomy-canvas { transform:translateX(17%); width:100%; }.specimen-label { top:16%; font-size:5px; gap:7px; }.specimen-label > span:last-child { display:none; }.specimen-rule { width:40px; }
+  .anatomy-art { top:29%; bottom:-4%; opacity:.75; }.anatomy-canvas { transform:translateX(17%); width:100%; }.specimen-label { top:16%; font-size:5px; gap:7px; }.specimen-label > span:last-child { display:none; }.specimen-rule { width:40px; }
   .hero-coordinates { display:none; }.hero-bottom { bottom:23px; font-size:6px; }.anatomy-inspector { right:19px; bottom:13%; }.anatomy-nodes { gap:9px; }.anatomy-node { font-size:6px; gap:8px; padding:6px; }.anatomy-node span { width:32px; }.anatomy-node i { width:4px; height:4px; }.anatomy-readout { width:210px; right:68px; padding:17px; }
   .journey-chapter { width:80%; top:19%; }.journey-chapter h2 { font-size:50px; max-width:300px; letter-spacing:-2px; }.journey-chapter > p:last-child { max-width:260px; font-size:12px; }.journey-progress { right:10px; height:90px; top:45%; }
   .journey-exit { gap:15px; font-size:5px; padding-block:17px; }.journey-static .static-chapters { grid-template-columns:1fr; gap:45px; padding-block:40px 90px; }.static-chapters h2 { font-size:32px; }.static-chapters > div { border-top:1px solid var(--line); padding-top:20px; }.static-chapters svg { display:none; }
@@ -285,7 +285,7 @@ html.lenis,html.lenis body { height:auto; }.lenis.lenis-smooth { scroll-behavior
 @media (max-width:370px) { :root { --gutter:20px; }.brand > span { font-size:18px; }.brand > svg { width:20px; }.nav-contact { gap:6px; padding-inline:9px; }.motion-switch { padding-left:9px; }.domain-intro h2 { font-size:50px; }.domain-intro > div { width:43%; }.contact-heading h2 { font-size:54px; }.tags { gap:5px; }.form-submit { gap:8px; }.form-submit .pill-button { padding-inline:13px; gap:10px; } }
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-  .custom-cursor { display:none !important; }.anatomy-fallback { opacity:.7; }.particle-field { display:none; }
+  .custom-cursor { display:none !important; }.particle-field { display:none; }
 }
 [data-motion=paused] .tags > span::after { animation:none; }
 /* Diagnostic visual studies: real interface progress, not medical telemetry. */
@@ -331,7 +331,7 @@ html.lenis,html.lenis body { height:auto; }.lenis.lenis-smooth { scroll-behavior
 .anatomy-art.anatomy-fullscreen { position:fixed; inset:0; width:100vw; height:100svh; z-index:0; pointer-events:none; opacity:1; overflow:hidden; }
 .anatomy-fullscreen .anatomy-canvas { position:absolute; inset:0; width:100%; height:100%; transform:none; pointer-events:none; }
 .anatomy-fullscreen .anatomy-canvas canvas { display:block; width:100%; height:100%; pointer-events:none; }
-.anatomy-fullscreen .anatomy-fallback { inset:0; margin:auto; width:100%; height:100%; max-height:100svh; object-fit:contain; object-position:center; }
+
 .scene-vignette { z-index:2; background:linear-gradient(90deg,#030305df 0%,#03030599 22%,transparent 47%,#03030508 75%,#03030533),radial-gradient(ellipse at 50% 45%,transparent 35%,#03030555); }
 .hero-editorial { width:50%; top:28%; }
 .hero-editorial h1 { font-size:clamp(65px,7vw,116px); letter-spacing:-5px; }
@@ -342,10 +342,22 @@ html.lenis,html.lenis body { height:auto; }.lenis.lenis-smooth { scroll-behavior
 @media(max-width:760px) {
   .anatomy-art.anatomy-fullscreen { inset:0; width:100vw; height:100svh; opacity:1; }
   .anatomy-fullscreen .anatomy-canvas { transform:none; width:100%; }
-  .anatomy-fullscreen .anatomy-fallback { inset:0; width:100%; height:100%; }
+
   .hero-editorial { top:14%; width:100%; }
   .hero-editorial h1 { font-size:clamp(54px,12vw,88px); letter-spacing:-3px; }
   .hero-deck { width:48%; font-size:10px; }
   .scene-vignette { background:linear-gradient(180deg,#0303054d 0%,#0303058c 16%,transparent 50%,#03030555),linear-gradient(90deg,#030305c2,transparent 67%); }
   .journey-chapter { width:80%; top:16%; }
 }
+
+/* R3F is the only anatomical renderer. Every content plane is above z=0. */
+main,.site-footer { position:relative; z-index:10; }
+.site-header { z-index:40; background:linear-gradient(#030305c9,#03030525); backdrop-filter:blur(8px); }
+.hero-editorial,.journey-chapter { z-index:20; }
+.hero-editorial { background:linear-gradient(90deg,#030305b8,#03030569 72%,transparent); border-radius:8px; padding-block:24px; backdrop-filter:blur(3px); }
+.journey-chapter { background:linear-gradient(90deg,#030305cf,#0303056b 75%,transparent); border-radius:8px; padding-block:24px; backdrop-filter:blur(4px); }
+.portfolio-card { position:relative; z-index:10; background-color:#07090edb; }
+.creative .portfolio-card { background-color:#100c13e8; }
+.anatomy-inspector,.diagnostic-hud,.chapter-preview,.hero-bottom { z-index:20; }
+.anatomy-unavailable { width:100%; height:100%; background:radial-gradient(ellipse at 50% 40%,#15213944,transparent 65%); }
+@media(max-width:760px) { .hero-editorial { background:linear-gradient(90deg,#030305de,#0303058a); width:calc(100% - 48px); margin-inline:24px; padding-inline:18px; padding-block:20px; top:12%; } .hero-editorial h1 { font-size:clamp(47px,11vw,74px); } .hero-deck { width:100%; } .journey-chapter { width:calc(100% - 48px); margin-inline:24px; padding-inline:20px; } }

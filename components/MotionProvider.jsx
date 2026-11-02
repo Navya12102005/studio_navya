@@ -15,6 +15,7 @@ function ScrollBridge({ blocked }) {
     gsap.registerPlugin(ScrollTrigger);
     const tick = time => lenis.raf(time * 1000);
     lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.lagSmoothing(0);
     gsap.ticker.add(tick);
     return () => { gsap.ticker.remove(tick); lenis.off('scroll', ScrollTrigger.update); };
   }, [lenis]);

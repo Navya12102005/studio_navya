@@ -5,7 +5,7 @@
 - Next.js 16.4.3 and React / React DOM 19.3.1; Tailwind CSS / PostCSS integration 4.3.3. MIT licenses.
 - `lenis/react` from Lenis 1.3.27 provides ReactLenis, the maintained successor to the React-17/18-only `@studio-freight/react-lenis` package. MIT.
 - GSAP / ScrollTrigger 3.15.0, under the GSAP Standard License linked below.
-- Three.js 0.134.0 renders locally generated anatomical curves and original GLSL shader effects; MIT notice shipped at `/licenses/three.txt`.
+- Three.js 0.187.0 and @react-three/fiber 9.8.2 (MIT) render locally generated anatomical curves and original GLSL shader effects; MIT notices shipped at `/licenses/three.txt` and `/licenses/react-three-fiber.txt`.
 - Lucide React supplies the interface icons, under the ISC license.
 - **Actual React Bits SpotlightCard** is included in `components/react-bits/SpotlightCard.jsx` and its CSS, retrieved from the pinned upstream commit listed below. The full MIT + Commons Clause notice is retained in `licenses/react-bits.txt` and served at `/licenses/react-bits.txt`. It is integrated into this portfolio; it is not offered as a standalone component service.
 - The magnetic controls, tilt, anatomical geometry, custom shader programs, particle field and domain transition are original implementation for this site. The shaders are stylized refraction/scattering approximations, not physically based ray-traced materials.

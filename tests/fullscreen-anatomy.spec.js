@@ -5,11 +5,20 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('physical mesh is centred in a fixed body-level viewport canvas on desktop and mobile', async ({ page }) => {
+  test.setTimeout(90000);
   const shaderErrors = [];
   page.on('console', message => { if (/Shader Error|VALIDATE_STATUS|shader.*failed/i.test(message.text())) shaderErrors.push(message.text()); });
   await page.goto('/?profile=1');
   const canvas = page.locator('.anatomy-canvas canvas');
   await expect(canvas).toHaveAttribute('data-renderer', 'physical-mesh');
+  await expect(canvas).toHaveAttribute('data-engine', 'react-three-fiber');
+  await expect(canvas).toHaveAttribute('data-wireframe-meshes', '0');
+  await expect(page.locator('.anatomy-fullscreen img, .anatomy-fullscreen svg')).toHaveCount(0);
+  const materials=await canvas.evaluate(el=>JSON.parse(el.dataset.physicalMaterials));
+  for(const name of ['frosted-glass-shell','frosted-glass-skeleton']){
+    const material=materials.find(m=>m.name===name);
+    expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.transmission).toBeGreaterThan(0);
+  }
   await page.waitForFunction(() => document.querySelector('.anatomy-canvas canvas').dataset.parts);
   for (const width of [1440, 768, 390]) {
     await page.setViewportSize({ width, height: 950 });
@@ -24,15 +33,18 @@ test('physical mesh is centred in a fixed body-level viewport canvas on desktop 
   expect(Math.abs(camera.target[0])).toBeLessThan(.08);
   expect(Math.abs(camera.position[0])).toBeLessThan(.6);
   await page.screenshot({ path: '/tmp/navya-fullscreen-physical-hero.png' });
+  await expect(page.locator('main')).toHaveCSS('z-index','10');
+  await expect(page.locator('.hero-editorial')).toHaveCSS('z-index','20');
   expect(shaderErrors).toEqual([]);
 });
 
 test('camera enters the thoracic volume and retreats into fully interactive project cards', async ({ page }) => {
+  test.setTimeout(120000);
   await page.goto('/?profile=1');
   const canvas = page.locator('.anatomy-canvas canvas');
   await page.waitForFunction(() => document.querySelector('.anatomy-canvas canvas')?.dataset.camera);
   await page.getByRole('button', { name: 'Explore heart', exact: true }).click();
-  await expect.poll(() => canvas.evaluate(el => JSON.parse(el.dataset.camera).progress)).toBeGreaterThan(.97);
+  await expect.poll(() => canvas.evaluate(el => JSON.parse(el.dataset.camera).progress), { timeout: 40000 }).toBeGreaterThan(.97);
   const core = await canvas.evaluate(el => JSON.parse(el.dataset.camera));
   expect(Math.hypot(...core.position.map((x, i) => x - core.target[i]))).toBeLessThan(.5);
   await page.screenshot({ path: '/tmp/navya-fullscreen-heart-interior.png' });

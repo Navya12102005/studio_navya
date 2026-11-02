@@ -5,6 +5,7 @@ The website is a cyber-organic portfolio installation, not a clinical anatomical
 ## References actually inspected
 
 - [Z-Anatomy / Models of human anatomy](https://github.com/Z-Anatomy/Models-of-human-anatomy), commit `7b9197672eea2ed44ae238d3cfbf38e39b7586a9`. Read `Readme.md`, `License.txt` and the relevant terms in `TA2.csv`. The atlas credits BodyParts3D and is a navigable Blender atlas. Its terminology includes cervical/thoracic structures, true/false/floating ribs, sternum/manubrium and cardiac structures. Authors and source content license: Gauthier Kervyn, Marcin Zielinski and contributors; CC BY-SA 4.0. No dataset rows, model vertices, atlas images or definitions are redistributed here.
+- User-supplied floral glass-body image: visual direction for internal jewel flowers, translucent leaves, winding roots and luminous lung particles. No pixels or extracted assets from the image are shipped.
 - User recordings `r11.mp4` and `r12again.mp4`: inspected for the neuronal impulse, thoracic context and warm orbital light, not as a source of clinical anatomy.
 
 The requested anatomy3datlas.com website and OpenStax thoracic-cage page returned proxy CONNECT HTTP 403. Their pages and 3D models were not inspected. The open atlas terminology is a reference, not a claim that this original mesh has been checked against a professional atlas surface or clinically validated.
@@ -38,4 +39,4 @@ Physical-device 60 fps performance and professional atlas-surface validation rem
 
 ## Full-screen presentation
 
-The canvas is fixed to the viewport in a React portal under document.body. Main HTML remains at a higher stacking level; pointer events pass through the canvas. Camera focus stays centred, visits cranial/spinal/thoracic regions, enters an inner cardiac chamber, then pulls out and fades as the bento section enters. Software rendering substitutes alpha glass and lower-density meshes for expensive optical transmission while retaining real 3D volume, normals, lighting and motion. This remains original artistic geometry rather than an atlas-validated medical reconstruction.
+The canvas is fixed to the viewport in a React portal under document.body. Main HTML remains at a higher stacking level; pointer events pass through the canvas. Camera focus stays centred, visits cranial/spinal/thoracic regions, enters an inner cardiac chamber, then pulls out and fades as the bento section enters. React Three Fiber owns the Canvas and `useFrame` loop. Software rendering uses lower-density meshes, a smaller transmission buffer and a reduced pixel ratio while retaining nonzero optical transmission, roughness 0.1 and clearcoat 1. This remains original artistic geometry rather than an atlas-validated medical reconstruction.

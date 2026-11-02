@@ -116,11 +116,12 @@ test('contact prepares a reviewed draft and clipboard rejection keeps a manual f
   await expect(page.locator('.email-preview').getByRole('status')).toContainText('Select the message');
 });
 
-test('WebGL failure preserves artwork and portfolio; server content works without JavaScript', async ({ browser }) => {
+test('WebGL failure preserves portfolio without a flat anatomy fallback; server content works without JavaScript', async ({ browser }) => {
   const fallback = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox', '--disable-webgl'] });
   try {
     const page = await fallback.newPage(); await page.goto('http://127.0.0.1:3100');
-    await expect(page.locator('.anatomy-fallback')).toHaveCSS('opacity', '0.86');
+    await expect(page.locator('.anatomy-unavailable')).toHaveCount(1);
+    await expect(page.locator('.anatomy-fullscreen img, .anatomy-fullscreen svg')).toHaveCount(0);
     await page.locator('#work').scrollIntoViewIfNeeded();
     await page.getByRole('button', { name: 'Explore Oculomics · Research' }).click();
     await expect(page.getByRole('dialog')).toBeVisible();

@@ -11,7 +11,7 @@ import { anatomicalParts } from '../lib/anatomy';
 import DiagnosticHUD from './DiagnosticHUD';
 import CinematicIntro from './CinematicIntro';
 
-const AnatomyScene = dynamic(() => import('./AnatomyScene'), { ssr: false });
+const FullCanvasAnatomy = dynamic(() => import('./FullCanvasAnatomy'), { ssr: false });
 const chapters = [
   { id: 'brain', label: '01 / THE MIND', name: 'Think in systems.', text: 'A research-minded approach. An instinct for finding the pattern beneath the complexity.', color: 'cool', at: .33 },
   { id: 'spine', label: '02 / THE CONNECTION', name: 'Connect the unexpected.', text: 'Between science and storytelling, there is a common language: curiosity.', color: 'mixed', at: .63 },
@@ -118,9 +118,6 @@ export default function Journey() {
     <div className="static-chapters page-gutter">{chapters.map(chapter => <div className={chapter.color} id={chapter.id} key={chapter.id}><p className="eyebrow">{chapter.label}</p><h2>{chapter.name}</h2><p>{chapter.text}</p><MoveDown size={20} aria-hidden="true" /></div>)}</div>
     <div className="journey-exit page-gutter"><span>DIFFERENT DISCIPLINES.</span><ArrowDown size={16} /><span>ONE CONNECTED PERSPECTIVE.</span></div>
     <CinematicIntro />
-    {mounted ? createPortal(<div className={`anatomy-art anatomy-fullscreen ${ready && enabled ? 'canvas-ready' : ''}`} style={!enabled ? { opacity: sceneVisible ? 1 : 0 } : undefined} aria-hidden="true">
-      <img className="anatomy-fallback" src="/art/anatomy.webp" alt="" width="1024" height="1536" fetchPriority="high" />
-      {enabled ? <AnatomyScene progress={progress} cardsProgress={cardsProgress} velocity={velocity} active={active && sceneVisible} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} /> : null}
-    </div>, document.body) : null}
+    {mounted ? createPortal(<FullCanvasAnatomy enabled={enabled} progress={progress} cardsProgress={cardsProgress} velocity={velocity} active={active && sceneVisible} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} />, document.body) : null}
   </section>;
 }
