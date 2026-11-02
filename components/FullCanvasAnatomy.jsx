@@ -6,6 +6,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
 import CanvasLoader from './CanvasLoader';
+import AnatomyAnchors from './AnatomyAnchors';
+import {createSplitPortal} from '../lib/split-portal';
+import {spiralPose} from '../lib/spiral-camera';
 import { createImportedAnatomy } from '../lib/imported-anatomy';
 import { createAnatomyNebula } from '../lib/anatomy-nebula';
 
@@ -19,31 +22,33 @@ class ModelBoundary extends Component{
 }
 function SkeletonScene({progress,realm,active,onReady,onQuality}){
  const {scene:asset}=useGLTF('/models/skeleton.glb',false,false);
- const {scene,camera,gl,invalidate}=useThree();const runtime=useRef(null);
+ const {scene,camera,gl,invalidate}=useThree();const runtime=useRef(null);const [anchors,setAnchors]=useState(null);
  useLayoutEffect(()=>{
   const context=gl.getContext(),debug=context.getExtension('WEBGL_debug_renderer_info');
   const software=debug?/swiftshader|llvmpipe|software/i.test(context.getParameter(debug.UNMASKED_RENDERER_WEBGL)):false;
   if(software)onQuality(.6);
   gl.setClearColor('#151919',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
-  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),materials=new Map();scene.background=null;
+  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene),materials=new Map();scene.background=null;
   sculpture.model.traverse(node=>{if(node.isMesh){const m=node.material;materials.set(m.uuid,{name:m.name,transmission:m.transmission,roughness:m.roughness,clearcoat:m.clearcoat,ior:m.ior});}});
   const canvas=gl.domElement;canvas.dataset.engine='react-three-fiber';canvas.dataset.renderer='physical-mesh';canvas.dataset.modelSource='/models/skeleton.glb';canvas.dataset.importedMeshes=JSON.stringify(sculpture.sourceMeshes);canvas.dataset.physicalMaterials=JSON.stringify([...materials.values()]);canvas.dataset.wireframeMeshes='0';
-  runtime.current={sculpture,nebula,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
-  onReady(true);invalidate();
-  return()=>{runtime.current=null;nebula.dispose();sculpture.dispose();};
+  runtime.current={sculpture,nebula,portal,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
+  setAnchors(sculpture.anchors);onReady(true);invalidate();
+  return()=>{runtime.current=null;portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
   if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:realm.current.scroll,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);}
   const aspect=state.size.width/state.size.height;
-  const radius=Math.max(9.3,3.1/(2*Math.tan(THREE.MathUtils.degToRad(19))*aspect));
-  const angle=-.12+d.p*1.1,y=1.05-d.p*.45;
-  d.target.set(0,y,0);camera.position.set(Math.sin(angle)*radius,y+.12,Math.cos(angle)*radius);camera.lookAt(d.target);
+  const pose=spiralPose(d.p,d.sculpture.anchors,aspect),{radius,angle,target}=pose;
+  camera.position.copy(pose.position);camera.lookAt(target);
+  gl.domElement.dataset.organs=JSON.stringify(d.sculpture.telemetry());
+  gl.domElement.dataset.checkpoint=String(Math.min(4,Math.floor(d.p*3+.12)+1));
+  d.portal.update(d.p);
   d.nebula.update(d.time,d.warmth,gl.getPixelRatio(),aspect);gl.domElement.dataset.palette=JSON.stringify({...d.nebula.palette(),warmth:d.warmth});gl.domElement.dataset.lighting=JSON.stringify(d.sculpture.lighting());
-  gl.domElement.dataset.camera=JSON.stringify({progress:d.p,angle,radius,position:camera.position.toArray(),target:d.target.toArray()});
+  gl.domElement.dataset.camera=JSON.stringify({progress:d.p,angle,radius,position:camera.position.toArray(),target:target.toArray()});
   gl.domElement.dataset.modelPosition=JSON.stringify(d.sculpture.model.position.toArray());
  });
- return null;
+ return anchors?<AnatomyAnchors anchors={anchors} progress={progress}/>:null;
 }
 export default function FullCanvasAnatomy({enabled,active,onReady}){
  const [ready,setReady]=useState(false),[failed,setFailed]=useState(false),[dpr,setDpr]=useState(1.25);const progress=useRef(0),realm=useRef({scroll:0,selected:0,inWork:false});
@@ -53,7 +58,7 @@ export default function FullCanvasAnatomy({enabled,active,onReady}){
  useEffect(()=>{
   if(!enabled||!ready||failed)return;
   gsap.registerPlugin(ScrollTrigger);
-  const tween=gsap.to(progress,{current:1,ease:'none',scrollTrigger:{trigger:document.querySelector('main'),start:'top top',end:'bottom bottom',scrub:.9,invalidateOnRefresh:true}});
+  const tween=gsap.to(progress,{current:1,ease:'none',scrollTrigger:{trigger:'#home',start:'top top',end:'bottom 75%',scrub:1.2,invalidateOnRefresh:true}});
   realm.current.selected=document.getElementById('work')?.classList.contains('creative')?1:0;
   const color=gsap.to(realm.current,{scroll:1,ease:'none',scrollTrigger:{trigger:'#brain',start:'top 70%',endTrigger:'#heart',end:'bottom 30%',scrub:.9}});
   const work=ScrollTrigger.create({trigger:'#work',start:'top 75%',end:'bottom 25%',onToggle:self=>{realm.current.inWork=self.isActive;}});

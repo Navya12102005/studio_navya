@@ -10,11 +10,13 @@
     "Converted binary STL surfaces to indexed GLB",
     "Reduced faces with quadric decimation",
     "Normalized orientation, scale and placement",
-    "Grouped surfaces by anatomical region; retained original spatial relationships"
+    "Grouped surfaces by anatomical region; retained original spatial relationships",
+    "Partitioned authored brain triangles at sagittal plane into left and right nodes",
+    "Added authored ascending aorta and superior vena cava"
   ],
-  "bytes": 1767836,
-  "sha256": "dc8126dc25eccba824fd524ddcb5cc5499ebc3f41bf353cbbade2c363a490cd0",
-  "faces": 72818,
+  "bytes": 1827584,
+  "sha256": "19580c04988ca2109db13b5ec61f2c8fbf12168cf6751801ad7b8cee75177cba",
+  "faces": 75218,
   "meshes": [
     "Cranium",
     "CervicalSpine",
@@ -24,7 +26,9 @@
     "Sternum",
     "ShoulderGirdle",
     "Heart",
-    "Brain"
+    "BrainLeft",
+    "BrainRight",
+    "VascularNodes"
   ],
   "bounds": [
     [
@@ -803,6 +807,24 @@
       "originalFaces": 238506,
       "packagedFaces": 3000,
       "group": "Brain"
+    },
+    {
+      "id": "FMA3736",
+      "name": "ascending aorta",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA3736.stl",
+      "sha256": "c99fcd415e7d7df717446f32601324b53656a96c41ff9190c766e39381e108e3",
+      "originalFaces": 2156,
+      "packagedFaces": 1200,
+      "group": "VascularNodes"
+    },
+    {
+      "id": "FMA4720",
+      "name": "superior vena cava",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA4720.stl",
+      "sha256": "5be118bf9a3112718d16876762df66eb6d8998e433dd417f3ff0042057a08e10",
+      "originalFaces": 1532,
+      "packagedFaces": 1200,
+      "group": "VascularNodes"
     }
   ]
 }

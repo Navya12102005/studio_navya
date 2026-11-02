@@ -29,3 +29,9 @@ main { position:relative; z-index:10; pointer-events:auto; background:transparen
 }
 @media(prefers-reduced-motion:reduce) { [data-editorial-reveal],.spatial-project-copy,.domain-intro,.about-copy,.contact-heading { opacity:1!important; filter:none!important; } }
 .spatial-project:focus-within { opacity:1!important; filter:none!important; }
+
+.anatomy-spatial-label { width:310px; text-align:center; background:transparent!important; border:0; color:#ffd98c; font:11px/1.7 var(--font-jetbrains),monospace; text-shadow:0 1px 6px #030305; pointer-events:none; }
+.anatomy-spatial-label span,.anatomy-spatial-label small { display:block; }.anatomy-spatial-label small { color:#efb6cd; font-size:8px; letter-spacing:.08em; }
+.anatomy-portal { min-height:75svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:transparent; }
+.anatomy-portal h2 { font:500 clamp(36px,5vw,76px)/1.1 var(--font-syne),sans-serif; margin-block:25px; }
+.anatomy-portal-choices { display:flex; gap:clamp(24px,7vw,110px); flex-wrap:wrap; justify-content:center; }.anatomy-portal-choices button:first-child { color:#5be9f5; }.anatomy-portal-choices button:last-child { color:#ffbc72; }
