@@ -8,7 +8,6 @@ import { Magnetic, Tilt } from './Interactions';
 import { useMotion } from './MotionProvider';
 import { techProjects, creativeProjects } from '../lib/projects';
 import { CardTelemetry } from './DiagnosticHUD';
-import RealmAtmosphere from './RealmAtmosphere';
 
 function ProjectVisual({ kind }) {
   if (kind === 'retina') return <div className="project-visual retina-visual"><div className="retina-orb" /><svg viewBox="0 0 300 200" aria-hidden="true"><path d="M150 104C118 76 119 32 76 20M150 104C170 65 204 46 238 35M150 104C104 112 65 86 20 100M150 104C194 120 232 100 285 122M150 104C139 144 100 161 91 194M150 104C179 146 202 164 223 196"/><path d="M117 68 94 63 91 39M189 60l7-27M100 110 74 144M203 116l19 29M130 144l-25-2"/><circle cx="150" cy="104" r="6" /></svg><span>RETINAL NETWORK / AN EXPLORATION</span></div>;
@@ -25,8 +24,8 @@ function ProjectCard({ project, domain, onOpen }) {
   const { enabled } = useMotion();
   const Shell = enabled ? SpotlightCard : 'div';
   const shellProps = enabled ? { spotlightColor: domain === 'tech' ? '#78dcff' : '#ffad94', intensity: .11, borderGlow: .6, grain: .04, spotlightSize: 340, theme: 'dark' } : {};
-  return <Tilt className={`project-shell ${project.size === 'wide' ? 'wide' : ''}`}><Shell {...shellProps} className={`portfolio-card ${domain} ${domain === 'creative' || project.number !== '01' ? 'windowed-card' : ''}`}>
-    {domain === 'creative' || project.number !== '01' ? <div className="retro-window-bar" aria-hidden="true"><span><i /><i /><i /></span><span>NAVYA / {domain === 'tech' ? 'SCAN RECORD' : 'STUDIO WINDOW'} / {project.number}</span><span>↗</span></div> : null}
+  return <Tilt className={`project-shell ${project.size === 'wide' ? 'wide' : ''}`}><Shell {...shellProps} className={`portfolio-card ${domain} ${project.number !== '01' ? 'windowed-card' : ''}`}>
+    {project.number !== '01' ? <div className="retro-window-bar" aria-hidden="true"><span><i /><i /><i /></span><span>NAVYA / {domain === 'tech' ? 'SYSTEMS' : 'STUDIO'} / {project.number}</span><span>↗</span></div> : null}
     <article className="project-inner" onPointerMove={event => {
       if (!enabled || event.pointerType !== 'mouse') return;
       const r = event.currentTarget.getBoundingClientRect();
@@ -49,7 +48,8 @@ function ProjectCard({ project, domain, onOpen }) {
 export default function Domains() {
   const [selected, setSelected] = useState(null);
   const [switching, setSwitching] = useState(false);
-  const { enabled, setBlocked, realm: domain, setRealm: setDomain } = useMotion();
+  const [domain, setDomain] = useState('tech');
+  const { enabled, setBlocked } = useMotion();
   const wipe = useRef(null), panel = useRef(null), dialog = useRef(null), opener = useRef(null), tabs = useRef([]);
   const projects = domain === 'tech' ? techProjects : creativeProjects;
   useEffect(() => {
@@ -101,11 +101,10 @@ export default function Domains() {
   }
   function open(project, button) { opener.current = button; setSelected(project); }
   return <section id="work" className={`domains page-gutter ${domain}`}>
-    <RealmAtmosphere realm={domain} />
     <div className="section-meta"><span>01 — SELECTED WORLDS</span><span>AN INTERSECTION, NOT A DIVIDE.</span></div>
     <div className="domain-intro"><h2>One mind.<br /><em>Two worlds.</em></h2><div><p>Some ideas ask for a method.<br />Others ask for a little instinct.<br /><span>I like working where they meet.</span></p><div className="domain-legend"><i /> EXPLORE BOTH SIDES <ArrowDownIcon /></div></div></div>
     <div className="domain-tabs" role="tablist" aria-label="Portfolio domain">
-      {[['tech', 'Tech & Bioengineering', '01', Fingerprint], ['creative', 'Creative, PR & Strategy', '02', Sparkles]].map(([id, label, n, Icon], i) => <button key={id} id={`tab-${id}`} role="tab" ref={el => { tabs.current[i] = el; }} aria-selected={domain === id} aria-controls="domain-panel" tabIndex={domain === id ? 0 : -1} onKeyDown={event => tabKey(event, i)} onClick={() => switchDomain(id)}><span>{n}</span><Icon size={17} strokeWidth={1.2} /><span className="realm-tab-label"><b>{id === 'tech' ? 'Bio-Tech Lab' : 'Creative Studio'}</b><small>{label}</small></span><ArrowUpRight size={16} /></button>)}
+      {[['tech', 'Tech & Bioengineering', '01', Fingerprint], ['creative', 'Creative, PR & Strategy', '02', Sparkles]].map(([id, label, n, Icon], i) => <button key={id} id={`tab-${id}`} role="tab" ref={el => { tabs.current[i] = el; }} aria-selected={domain === id} aria-controls="domain-panel" tabIndex={domain === id ? 0 : -1} onKeyDown={event => tabKey(event, i)} onClick={() => switchDomain(id)}><span>{n}</span><Icon size={17} strokeWidth={1.2} /><span>{label}</span><ArrowUpRight size={16} /></button>)}
     </div>
     <div className="domain-panel-wrap">
       <div className="domain-wipe" ref={wipe} aria-hidden="true"><span>CONNECTING THE DOTS.</span></div>

@@ -51,5 +51,5 @@ export default function ArcadeUI() {
     document.addEventListener('click', click);
     return () => { document.removeEventListener('click', click); layer.replaceChildren(); springs.forEach(spring => spring.complete()); springs.clear(); };
   }, [enabled, active]);
-  return <><div className="realm-backdrop" aria-hidden="true" /><div ref={meter} className="pixel-reading-progress" role="progressbar" aria-label="Portfolio scroll depth" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span ref={bar} /><i ref={sprite} aria-hidden="true"><b /><b /><b /></i></div><div ref={burst} className="pixel-burst-layer" aria-hidden="true" /></>;
+  return <><div ref={meter} className="pixel-reading-progress" role="progressbar" aria-label="Portfolio scroll depth" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span ref={bar} /><i ref={sprite} aria-hidden="true"><b /><b /><b /></i></div><div ref={burst} className="pixel-burst-layer" aria-hidden="true" /></>;
 }

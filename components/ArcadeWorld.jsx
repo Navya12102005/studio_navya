@@ -29,12 +29,10 @@ export default function ArcadeWorld() {
   const [terminal, setTerminal] = useState(false), [output, setOutput] = useState('Type help to inspect this little universe.');
   const [message, setMessage] = useState('Scroll to move. Explore either level at any time.');
   const [sequence, setSequence] = useState(0), [secret, setSecret] = useState(false), [percent, setPercent] = useState(0);
-  const { enabled, active, scrollRef, realm, setRealm } = useMotion();
-  const realmRef = useRef(realm); realmRef.current = realm;
+  const { enabled, active, scrollRef } = useMotion();
   const activeRef = useRef(active), terminalRef = useRef(null), terminalToggle = useRef(null);
   useEffect(() => { activeRef.current = active; }, [active]);
   useEffect(() => { foundRef.current = found; }, [found]);
-  useEffect(() => { setLevel(realm === 'tech' ? 'lab' : 'studio'); }, [realm]);
   useEffect(() => {
     const observer = new IntersectionObserver(entries => setInView(entries[0].isIntersecting), { rootMargin: '120px' });
     observer.observe(section.current); return () => observer.disconnect();
@@ -53,11 +51,9 @@ export default function ArcadeWorld() {
         progress.current = self.progress;
         setPercent(current => current === Math.round(self.progress * 100) ? current : Math.round(self.progress * 100));
         const next = gameState(self.progress).level; setLevel(current => current === next ? current : next);
-        const nextRealm = next === 'lab' ? 'tech' : 'creative';
         // Anchor navigation can skip the whole chapter. Only an active visit
         // changes realm or earns items; jumping to work is not a completed level.
         if (self.isActive) {
-          if (realmRef.current !== nextRealm) { realmRef.current = nextRealm; setRealm(nextRealm); }
           POWERUPS.forEach(item => { if (self.progress >= item.at) collect(item.id); });
         }
       }
@@ -83,7 +79,6 @@ export default function ArcadeWorld() {
     return () => { cancelAnimationFrame(frame); observer.disconnect(); };
   }, [enabled, inView]);
   function visit(next) {
-    setRealm(next === 'lab' ? 'tech' : 'creative');
     if (!enabled) { setLevel(next); progress.current = next === 'lab' ? .2 : .76; setPercent(next === 'lab' ? 20 : 76); return; }
     const t = next === 'lab' ? .18 : .76;
     const y = section.current.offsetTop + (section.current.offsetHeight - innerHeight) * t;

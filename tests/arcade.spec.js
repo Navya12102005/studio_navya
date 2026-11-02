@@ -24,14 +24,14 @@ test('scroll engine walks, jumps, collects and separates the two realms; reverse
   await page.screenshot({ path: '/tmp/navya-arcade-lab.png' });
   await atProgress(page, .76);
   await expect(canvas).toHaveAttribute('data-level', 'studio');
-  await expect(page.locator('html')).toHaveAttribute('data-realm', 'creative');
-  await expect(page.locator('.domains .editorial-grid .project-shell')).toHaveCount(6);
+  await expect(page.locator('#arcade')).toHaveClass(/arcade-warm/);
+  await expect(page.locator('.domains .projects-grid .project-shell')).toHaveCount(4);
   await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 3);
   await expect.poll(() => canvas.getAttribute('data-avatar-x').then(Number)).toBeGreaterThan(1400);
   await page.screenshot({ path: '/tmp/navya-arcade-studio.png' });
   await atProgress(page, .1);
   await expect(canvas).toHaveAttribute('data-level', 'lab');
-  await expect(page.locator('html')).toHaveAttribute('data-realm', 'tech');
+  await expect(page.locator('#arcade')).not.toHaveClass(/arcade-warm/);
   await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 3);
   expect(errors).toEqual([]);
 });
@@ -40,7 +40,7 @@ test('reduced-motion arcade has keyboard controls, terminal commands, collectibl
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/');
   const stage = page.locator('#arcade'); await stage.scrollIntoViewIfNeeded();
   await stage.getByRole('button', { name: /02 Creative Studio/ }).click();
-  await expect(page.locator('html')).toHaveAttribute('data-realm', 'creative');
+  await expect(page.locator('#arcade')).toHaveClass(/arcade-warm/);
   await expect(page.locator('canvas')).toHaveCount(0);
   for (const label of ['Curiosity', 'Systems thinker', 'Story builder', 'Connector']) await stage.getByRole('button', { name: `Collect ${label} badge`, exact: true }).click();
   await expect(stage.locator('#discovery-energy')).toHaveJSProperty('value', 4);
@@ -66,7 +66,7 @@ test('reduced-motion arcade has keyboard controls, terminal commands, collectibl
   await expect(page.locator('.arcade-achievement')).toHaveCount(0);
 });
 
-test('pixel progress, real click bursts, OS frames and Framer Motion realm lighting work together', async ({ page }) => {
+test('pixel progress, real click bursts, spring feedback and secondary OS frames work together', async ({ page }) => {
   await page.addInitScript(() => {
     window.pixelBurstSeen = false;
     new MutationObserver(() => { if (document.querySelector('.pixel-burst-layer i')) window.pixelBurstSeen = true; }).observe(document, { childList: true, subtree: true });
@@ -76,13 +76,9 @@ test('pixel progress, real click bursts, OS frames and Framer Motion realm light
   await expect.poll(() => page.getByRole('progressbar', { name: 'Portfolio scroll depth' }).getAttribute('aria-valuenow').then(Number)).toBeGreaterThan(10);
   await expect.poll(() => page.evaluate(() => window.pixelBurstSeen)).toBe(true);
   await expect(page.locator('.domains')).toHaveClass(/tech/);
-  await expect(page.locator('.realm-geometric-grid')).toHaveCount(1);
   await expect(page.locator('.domains .retro-window-bar')).toHaveCount(3);
   await page.getByRole('tab', { name: /Creative, PR & Strategy/ }).click();
-  await expect(page.locator('.realm-lamp')).toHaveCount(1);
-  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(6);
-  await expect(page.locator('.domains .domain-intro h2')).toHaveCSS('font-family', /Georgia/);
-  await expect(page.locator('.lamp-filament')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(5);
 });
 
 test('mobile arcade and both realm layouts fit; reduced motion suppresses bursts', async ({ page }) => {

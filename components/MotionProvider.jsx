@@ -31,7 +31,6 @@ export function MotionProvider({ children }) {
   const [paused, setPaused] = useState(false);
   const [blocked, setBlocked] = useState(false);
   const [intro, setIntro] = useState(false);
-  const [realm, setRealm] = useState('tech');
   const [touch, setTouch] = useState(true);
   const [visible, setVisible] = useState(true);
   const scrollRef = useRef(null);
@@ -52,8 +51,7 @@ export function MotionProvider({ children }) {
   useEffect(() => {
     document.documentElement.dataset.motion = reduced ? 'reduced' : paused ? 'paused' : 'full';
   }, [reduced, paused]);
-  useEffect(() => { document.documentElement.dataset.realm = realm; }, [realm]);
-  const value = { reduced, paused, enabled, active: enabled && visible && !blocked, setPaused, setBlocked, blocked, scrollRef, intro, setIntro, realm, setRealm };
+  const value = { reduced, paused, enabled, active: enabled && visible && !blocked, setPaused, setBlocked, blocked, scrollRef, intro, setIntro };
   // The maintained React Lenis package supports current React. The retired
   // @studio-freight/react-lenis package has React 17/18-only peer dependencies.
   return <MotionContext.Provider value={value}>

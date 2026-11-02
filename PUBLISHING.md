@@ -15,7 +15,7 @@ Next.js requires Node 20.9+; use Node 24 as in the prepared environment. The sup
 
 ## Vercel
 
-Import this repository and select the branch containing the Next.js changes. The current work is on local branch `codex/portfolio-motion-libraries`; it must be pushed before a Git-based host can use it. This is separate from saving or publishing a cloud development environment.
+Import this repository and select the branch containing the Next.js changes. The current work is on local branch `codex/portfolio-through-point-12`; it must be pushed before a Git-based host can use it. This is separate from saving or publishing a cloud development environment.
 
 - Framework: **Next.js**
 - Install command: `npm ci --ignore-scripts`

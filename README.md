@@ -69,14 +69,10 @@ The scene is lazy loaded, with shader/vertex-color curve batching, instanced ato
 
 The Python demonstration is downloadable from the data project. Run `python3 public/studies/analysis_pipeline.py`; it reports four accepted synthetic records, three rejections and an exact-decimal total of 3600.00, with explicit synthetic-data provenance.
 
-## Playable arcade and shared realms
+## Release scope: through point 12
 
-`components/ArcadeWorld.jsx`, `components/arcade-renderer.js` and `lib/arcade.js` add an original two-level pixel-art chapter. Scroll moves a custom engineer sprite through the Bio-Tech Lab and Creative Design Studio, with reversible platform jumps, server/code/DNA props, drafting tables and brand boards. The low-resolution canvas is only mounted near this section, draws at a deliberately retro cadence, and stops drawing when hidden, paused or covered by a project dialog. Reduced motion uses server-rendered SVG art and explicit level controls.
+Includes the anatomical, cosmic, biomedical and botanical features, plus both point-12 arcade briefs: two pixel-art levels, scroll-driven avatar and jumps, collectible discoveries, terminals and puzzle, pixel progress meter, secondary retro-window cards, square click bursts and Framer Motion springs. Discovery energy tracks visitor exploration; all portfolio work stays open.
 
-Four collectible ideas drive discovery energy (visitor exploration, never a professional completion statistic). Project terminals open the existing real portfolio dialogs. A command prompt supports help, lab, studio, projects, achievements, contact and reset; an Observe → Connect → Create puzzle unlocks a contact link. No projects or contact options are gated by gameplay. Skipping the chapter via anchor navigation does not earn automatic collectibles.
+The later global shared-realm styling and Aceternity atmosphere (points 13–14) are excluded and preserved on local codex/portfolio-motion-libraries at commit 6832ab2. Original domain tabs and local game palettes remain.
 
-The game and portfolio tabs share a realm state. Cyan/violet lab lighting accompanies research, Python/code and HUD-framed cards. Pink/amber studio lighting accompanies serif editorial typography, leadership, events, PR and retro-windowed cards. The top pixel meter tracks actual document scroll, with a micro-avatar indicator. Clicks produce at most 64 transient square particles and actual Framer Motion spring feedback; keyboard activation uses the target's centre and reduced motion suppresses both effects.
-
-`components/RealmAtmosphere.jsx` uses Framer Motion 14.9.0 for geometric grid/beams and a warm opposed-conic lamp composition. These are **original Aceternity-style implementations**, not imported Aceternity registry components: the official registry returned HTTP 403 and the guessed upstream repository did not exist. `ui.aceternity.com` was added to the cloud network draft for later source inspection. This save does not apply access or publish. Framer Motion and the actual React Bits component are installed; official Aceternity source integration remains unverified.
-
-The four additional arcade browser checks exercise avatar jumps, reversal, collections, realm synchronization, terminal commands and sequence puzzle, real project/contact routes, OS frames, spring/burst UI, lamp styling, mobile fit and reduced-motion controls. Screenshots are written to /tmp/navya-arcade-lab.png, /tmp/navya-arcade-studio.png and /tmp/navya-arcade-mobile.png.
+Release branch: codex/portfolio-through-point-12. The production build and all 14 browser tests passed. Git publication alone does not establish a successful Vercel deployment.

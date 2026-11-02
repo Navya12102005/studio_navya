@@ -61,3 +61,7 @@ User requests these as references for graphics and animations alongside the supp
 ## Pixel-art / arcade / realm additions
 
 User requested a pixel-art add-on, two game levels, scroll-driven engineer avatar/jumps/collectibles, usable terminals and secret routes, a pixel scroll meter, OS frames, square click particles and spring feedback. These sit alongside the anatomical installation. A shared realm state connects arcade and portfolio: cool data/HUD typography vs warm editorial/OS windows. Framer Motion is installed. Aceternity's official registry is blocked; original Aceternity-style lamp/grid compositions are implemented without claiming upstream component integration. All projects remain directly available; discovery energy refers only to visitor gameplay.
+
+## Authorized release scope
+
+The user requests features through both point-12 briefs. Release codex/portfolio-through-point-12 excludes points 13–14, preserved at local commit 6832ab2. Automatic approval review blocked updating the existing deployment branch without explicit branch approval; no live deployment is established.
