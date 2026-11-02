@@ -1,42 +1,35 @@
-# Anatomical structure and reference scope
+# Imported upper-body anatomy
 
-The website is a cyber-organic portfolio installation, not a clinical anatomical atlas. Geometry is authored procedurally using Three.js buffers; neither a proprietary model nor a professional mesh has been copied into the application.
+The active anatomical renderer loads `/models/skeleton.glb` with `useGLTF` from `@react-three/drei`. The previous procedural anatomical factory has been deleted. It is not used as a fallback, converted to a GLB, or mixed with the imported skeleton.
 
-## References actually inspected
+## Authored asset and source
 
-- [Z-Anatomy / Models of human anatomy](https://github.com/Z-Anatomy/Models-of-human-anatomy), commit `7b9197672eea2ed44ae238d3cfbf38e39b7586a9`. Read `Readme.md`, `License.txt` and the relevant terms in `TA2.csv`. The atlas credits BodyParts3D and is a navigable Blender atlas. Its terminology includes cervical/thoracic structures, true/false/floating ribs, sternum/manubrium and cardiac structures. Authors and source content license: Gauthier Kervyn, Marcin Zielinski and contributors; CC BY-SA 4.0. No dataset rows, model vertices, atlas images or definitions are redistributed here.
-- User-supplied floral glass-body image: visual direction for internal jewel flowers, translucent leaves, winding roots and luminous lung particles. No pixels or extracted assets from the image are shipped.
-- User recordings `r11.mp4` and `r12again.mp4`: inspected for the neuronal impulse, thoracic context and warm orbital light, not as a source of clinical anatomy.
+The model packages 85 authored **BodyParts3D** surfaces into nine mesh regions: Cranium, CervicalSpine, ThoracicSpine, Ribcage, CostalCartilage, Sternum, ShoulderGirdle, Heart and Brain. It includes seven cervical levels, twelve thoracic levels and twelve rib pairs. No lumbar spine, pelvis, legs, lower-body mesh, or procedural anatomical primitive is included.
 
-The requested anatomy3datlas.com website and OpenStax thoracic-cage page returned proxy CONNECT HTTP 403. Their pages and 3D models were not inspected. The open atlas terminology is a reference, not a claim that this original mesh has been checked against a professional atlas surface or clinically validated.
+Source: Kevin Mattheus Moerman's BodyParts3D mirror at revision `f0eeb6e843380cfe6b83797cf8c3e1af74de5e61`, using the original BodyParts3D 3.0 / 20110915 surface dataset. BodyParts3D is © The Database Center for Life Science / Life Science Integrated Database Center (2008), licensed under **CC BY-SA 2.1 Japan**. The derived GLB retains that license. The surrounding site code is separate from the mesh license.
 
-## Structure
+Attribution appears in the website footer and `/models/README.md`; the source credit notice is at `/licenses/models/BodyParts3D.txt`. `/models/skeleton.provenance.json` records every source surface, exact source URL, SHA-256 hash, original/reduced face count, final mesh count and asset hash. `scripts/import-anatomy.py` reproduces the asset from the pinned sources using trimesh and quadric decimation. The conversion selects, simplifies, groups, rotates and scales authored surfaces; it never constructs skeleton shapes.
 
-- Upper body only: cranial vault, jaw/eye/nasal contours, paired cerebral forms, seven cervical levels, twelve thoracic levels, clavicular/shoulder contours, proximal arm segments and twelve rib pairs. The spine stops at the thoracic limit. No lumbar stack, pelvis, lower body or legs are generated.
-- C1 is represented by an atlas ring; the C2 region includes a schematic odontoid process. Cervical and thoracic paths have gentle opposing curvature.
-- Rib pairs 1–7 meet the sternum; pairs 8–10 return to the costal margin; pairs 11–12 stop freely. The sternum has a simplified manubrial/body/xiphoid path.
-- The cardiac core is an asymmetric, tapered volume with a tilted long axis, aortic/pulmonary-inspired paths and anterior branching vessels. It replaces the earlier conventional heart-symbol contour. It remains a stylized single core, not a four-chamber clinical reconstruction.
-- The branching vascular tree runs between the cranial, shoulder/arm and thoracic regions only. Neural floral fibers, quartz tips and the illustrative cell/ligand are decorative additions and are not anatomical structures or validated compounds.
-- Palette sides express the user's analytical/creative metaphor; they do not claim scientific left/right-brain specialization.
+The packaged GLB contains 72,818 faces and is 1,767,836 bytes. Brain surfaces represent cerebral white matter and cerebellum; this is not a reconstruction of the entire cortical surface. The heart uses the authored heart-wall surface. Rendering and simplification are intended for this artistic portfolio, not clinical teaching or measurement.
 
-## Interaction mapping
+## Loading and materials
 
-| Structure | Portfolio destination |
-| --- | --- |
-| Cranial / cerebral | Tech & Bioengineering domain |
-| Spine | Leadership & strategy domain |
-| Vascular | AWS Student Builder operations highlight; operations domain includes Sound Check logistics |
-| Thoracic / heart | Creative, PR & Strategy domain: Startup Club, Studio Navya, content and campus-summit communication |
-| Lipid-bilayer / ligand nodes | Molecular docking workflow highlight |
+`AnatomyWorld` suspends until `useGLTF('/models/skeleton.glb')` resolves. A CanvasLoader using Drei useProgress and a text-only DOM status overlay displays a floating loading indicator and percentage. Load errors preserve the HTML portfolio without substituting a procedural skeleton or flat image.
 
-Raycast volumes are tagged independently of delicate visual lines. The same targets have keyboard-operable buttons and contextual readouts. Interface percentages describe scan or pointer progress; they are not biological or professional performance metrics.
+`createImportedAnatomy` clones the loaded scene, traverses actual mesh nodes and replaces their original materials with MeshPhysicalMaterial. Every anatomical material has transmission **0.9**, roughness **0.1**, clearcoat **1.0** and IOR **1.5**, including on software renderers. Reduced pixel ratio and transmission-buffer resolution lower software rendering cost without changing those requested optical properties.
 
-## Rendering
+Cyan and neon pink key lights illuminate the two sides. A small world-space cyan/pink rim-emission shader reinforces the crystal edges on the imported surfaces; it changes shading only and does not generate anatomy. Additional cyan, pink and amber point lights sit inside the imported thoracic cavity and move with the model. The imported heart scales rhythmically around its centered authored pivot. A small local studio environment supplies physical clearcoat/transmission reflections.
 
-The active renderer uses lofted MeshPhysicalMaterial glass head/torso surfaces, solid tubular ribs and vessels, instanced vertebrae, folded organ meshes, dynamic point lights and vertex-shader spectrum mapping. Static tube buffers are merged by material; there are no line/wireframe materials in the active anatomical scene. Bounded recursive fibers, instanced crystals/atoms and local GLSL shaders avoid large model downloads. Low frame rates trigger a bounded resolution reduction. Render diagnostics are opt-in via `?profile=1`.
+## Camera, interaction and lifecycle
 
-Physical-device 60 fps performance and professional atlas-surface validation remain unverified. The measured cloud renderer uses software Chromium, which is distinct from a hardware-backed browser.
+The R3F canvas stays fixed at inset 0, z-index 0, pointer-events none, width 100vw and height 100vh. HTML owns navigation and controls at higher stacking levels. GSAP ScrollTrigger and Lenis drive the existing full-turn helical orbit around the centered imported model, descending toward the imported heart's actual world-space pivot before pulling out into the realms.
 
-## Full-screen presentation
+Raycasting uses the imported anatomical meshes themselves. No sphere/tube proxy skeleton is generated. Keyboard anatomy controls and project mappings remain available even without WebGL. Native world-space labels remain independent typography meshes.
 
-The canvas is fixed to the viewport in a React portal under document.body. Main HTML remains at a higher stacking level; pointer events pass through the canvas. Camera focus stays centred, visits cranial/spinal/thoracic regions, enters an inner cardiac chamber, then pulls out and fades as the bento section enters. React Three Fiber owns the Canvas and `useFrame` loop. Software rendering uses lower-density meshes, a smaller transmission buffer and a reduced pixel ratio while retaining nonzero optical transmission, roughness 0.1 and clearcoat 1. This remains original artistic geometry rather than an atlas-validated medical reconstruction.
+The cached useGLTF scene is never mutated or disposed. Each mounted instance gets its own geometry copies, mesh-node clones and material overrides. Unmount disposes only those owned copies, lights and environment resources, so pause/resume can reuse the cached GLB safely.
+
+The cosmic opening samples vertices from the actual imported meshes. Reduced motion/pause preserves normal HTML content and avoids loading the anatomy canvas. No physical-device frame-rate guarantee is made.
+
+The GLB is uncompressed and embeds its buffers. The hook disables unused Draco and Meshopt decoder initialization; no remote decoder request or production CSP relaxation is needed.
+
+Imported-model checkpoint validation: production build succeeded and all 22 browser checks passed. A software-Chromium sample measured about 3.26 fps at 0.5 pixel ratio, 12 draw calls, 72,824 submitted triangles, 13 geometries and zero line primitives. Hardware performance remains unverified. This checkpoint predates the subsequent spline/world-flight upgrade.

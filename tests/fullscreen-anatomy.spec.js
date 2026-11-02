@@ -15,9 +15,9 @@ test('physical mesh is centred in a fixed body-level viewport canvas on desktop 
   await expect(canvas).toHaveAttribute('data-wireframe-meshes', '0');
   await expect(page.locator('.anatomy-fullscreen img, .anatomy-fullscreen svg')).toHaveCount(0);
   const materials=await canvas.evaluate(el=>JSON.parse(el.dataset.physicalMaterials));
-  for(const name of ['frosted-glass-shell','frosted-glass-skeleton']){
+  for(const name of ['imported-crystal-skeleton','imported-crystal-heart','imported-crystal-brain']){
     const material=materials.find(m=>m.name===name);
-    expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.transmission).toBeGreaterThan(0);
+    expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.transmission).toBe(.9);expect(material.ior).toBe(1.5);
   }
   await page.waitForFunction(() => document.querySelector('.anatomy-canvas canvas').dataset.parts);
   for (const width of [1440, 768, 390]) {

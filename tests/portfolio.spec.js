@@ -187,7 +187,7 @@ test('diagnostic HUD tracks scroll rather than fabricated results; batched rende
   expect(samples[0].geometries).toBeLessThan(60);
   // Transmission renders an additional physical pass; budget total submitted
   // triangles rather than reusing the former line-only scene's budget.
-  expect(samples[0].triangles).toBeLessThan(80000);
+  expect(samples[0].triangles).toBeLessThan(250000);
   expect(samples[0].lines).toBe(0);
   expect(samples[0].physicalMeshes).toBe(true);
   console.log('Renderer sample (software Chromium; not a physical-device guarantee):', samples[0]);

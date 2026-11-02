@@ -65,3 +65,7 @@ Open `/?profile=1` to expose camera angle/radius/elevation, realm blend, palette
 Browser tests cover the exact full-turn path, live scroll traversal, local font loading, transparent/borderless typography, seven viewport widths, actual cursor/click inputs, both realm shaders, world-label projection, gradient quote progress, keyboard navigation, pause/reduced motion, native dialogs, no-WebGL content, the email draft flow and the existing arcade.
 
 Final validation for this revision: `npm run build` succeeded and all 19 Playwright checks passed. The sampled software-Chromium anatomical scene measured about 4.73 fps at 0.5 pixel ratio, with 38 draw calls, 35,342 submitted triangles, 38 resident geometries and zero line primitives. This is software-renderer evidence, not a hardware performance guarantee. Both realm screenshots were inspected, and the live tests exercised their actual shaders, coordinate updates, particle repulsion and click effects.
+
+## Subsequent imported-model override
+
+The anatomical portion now uses an authored BodyParts3D GLB loaded with Drei useGLTF and Suspense; the procedural anatomy factory described in earlier revisions is deleted. See [ANATOMY.md](ANATOMY.md) for source licensing, conversion provenance, material overrides and the current mesh scope. The realm engines and helical camera remain active. Earlier performance samples above describe their respective revisions.

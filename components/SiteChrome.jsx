@@ -43,5 +43,5 @@ export function Contact() {
 }
 
 export function Footer() {
-  return <footer className="site-footer page-gutter"><a href="#home" className="brand"><Asterisk size={24} strokeWidth={1} /><span>navya<em>gupta.</em></span></a><p>SCIENCE IN MY THINKING. HEART IN MY WORK.</p><a href="#home">Back to the beginning <ArrowUpRight size={15} /></a><span>© {new Date().getFullYear()} NAVYA GUPTA</span></footer>;
+  return <footer className="site-footer page-gutter"><a href="#home" className="brand"><Asterisk size={24} strokeWidth={1} /><span>navya<em>gupta.</em></span></a><p>SCIENCE IN MY THINKING. HEART IN MY WORK.</p><a href="#home">Back to the beginning <ArrowUpRight size={15} /></a><span>© {new Date().getFullYear()} NAVYA GUPTA</span><small className="model-credit">Anatomy: <a href="/models/README.md">BodyParts3D</a>, © The Database Center for Life Science. <a href="https://creativecommons.org/licenses/by-sa/2.1/jp/">CC BY-SA 2.1 Japan</a>. Adapted for this upper-body GLB.</small></footer>;
 }

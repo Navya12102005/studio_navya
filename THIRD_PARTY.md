@@ -25,7 +25,7 @@ The build serves all scripts from the site's own origin, including lazily reques
 
 ## Anatomical reference scope
 
-The Z-Anatomy open atlas repository (Gauthier Kervyn, Marcin Zielinski and contributors, based on BodyParts3D) was consulted for anatomical terminology: Readme.md and TA2.csv at commit 7b9197672eea2ed44ae238d3cfbf38e39b7586a9. See design/ANATOMY.md. Its atlas content is CC BY-SA 4.0. No meshes, Blender archives, dataset extracts, definitions or images from that atlas are included in the website; the geometry is original procedural artwork.
+The Z-Anatomy open atlas repository (Gauthier Kervyn, Marcin Zielinski and contributors, based on BodyParts3D) was consulted for anatomical terminology: Readme.md and TA2.csv at commit 7b9197672eea2ed44ae238d3cfbf38e39b7586a9. See design/ANATOMY.md. Its atlas content is CC BY-SA 4.0. No Z-Anatomy meshes, Blender archives, dataset extracts, definitions or images are included. The current asset instead derives from the separately licensed BodyParts3D dataset described below.
 
 ## Arcade and realm atmosphere
 
@@ -36,3 +36,7 @@ The Z-Anatomy open atlas repository (Gauthier Kervyn, Marcin Zielinski and contr
 ## Spatial typography (points 15–18)
 
 JetBrains Mono, Syne and Plus Jakarta Sans are Google Fonts, self-hosted from the official google/fonts repository under the SIL Open Font License. Full notices are served at `/licenses/fonts/JetBrainsMono.txt`, `/licenses/fonts/Syne.txt` and `/licenses/fonts/PlusJakartaSans.txt`. Native label textures are generated with those fonts. The DNA, matrix rain, orb shader, vinyl geometry, pixel stickers, pooled sparks and spray particles are original Three.js implementations. The active spatial project layout supersedes the earlier React Bits card presentation; the source and its original license are retained as historical work.
+
+## Imported anatomical GLB (current renderer)
+
+`@react-three/drei` 10.7.9 (MIT), notice at `/licenses/react-three-drei.txt`, supplies `useGLTF` and useProgress. `/models/skeleton.glb` packages authored BodyParts3D 3.0 surfaces from Kevin Mattheus Moerman’s mirror at revision f0eeb6e843380cfe6b83797cf8c3e1af74de5e61. BodyParts3D is © The Database Center for Life Science / Life Science Integrated Database Center (2008), under CC BY-SA 2.1 Japan. The derived GLB retains that license; see `/models/README.md`, `/models/skeleton.provenance.json` and `/licenses/models/BodyParts3D.txt`. Changes: upper-body selection, STL-to-GLB conversion, quadric face reduction, grouping and coordinate normalization. Visible attribution is in the footer. The former procedural anatomical factory is deleted; previous references to original anatomical geometry describe superseded implementations.

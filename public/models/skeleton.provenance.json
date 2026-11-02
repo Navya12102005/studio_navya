@@ -1,0 +1,808 @@
+{
+  "asset": "skeleton.glb",
+  "sourceRevision": "f0eeb6e843380cfe6b83797cf8c3e1af74de5e61",
+  "sourceRepository": "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D",
+  "credit": "BodyParts3D, (c) The Database Center for Life Science",
+  "license": "CC BY-SA 2.1 Japan",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.1/jp/",
+  "changes": [
+    "Selected upper-body structures only",
+    "Converted binary STL surfaces to indexed GLB",
+    "Reduced faces with quadric decimation",
+    "Normalized orientation, scale and placement",
+    "Grouped surfaces by anatomical region; retained original spatial relationships"
+  ],
+  "bytes": 1767836,
+  "sha256": "dc8126dc25eccba824fd524ddcb5cc5499ebc3f41bf353cbbade2c363a490cd0",
+  "faces": 72818,
+  "meshes": [
+    "Cranium",
+    "CervicalSpine",
+    "ThoracicSpine",
+    "Ribcage",
+    "CostalCartilage",
+    "Sternum",
+    "ShoulderGirdle",
+    "Heart",
+    "Brain"
+  ],
+  "bounds": [
+    [
+      -1.3534558467926132,
+      -1.5305101052603853,
+      -0.8300322692142597
+    ],
+    [
+      1.3520313802493282,
+      3.5294728614926916,
+      0.934637007291865
+    ]
+  ],
+  "surfaces": [
+    {
+      "id": "FMA52734",
+      "name": "frontal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52734.stl",
+      "sha256": "0791c2e2dde886005d3d5997b75a05353d3ae20d908fc74ab820a58520d26f46",
+      "originalFaces": 33062,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52735",
+      "name": "occipital bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52735.stl",
+      "sha256": "22467369bae988b5afc2699c631f3ae0d2db2ef65a624ccb5c6a259d767415b5",
+      "originalFaces": 27812,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52736",
+      "name": "sphenoid bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52736.stl",
+      "sha256": "76e95b3525d5e94964f5ed5308e8234f78945b9c2ffdc6065e5d3a6e2dc08777",
+      "originalFaces": 15322,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52738",
+      "name": "right temporal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52738.stl",
+      "sha256": "c4d134473a62f43ab18efa415f394ff6c01a07ca14664a640a4ba787eaa6cadc",
+      "originalFaces": 11274,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52739",
+      "name": "left temporal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52739.stl",
+      "sha256": "c42357deb26fb0468d7a2f4b471e7e7d8e7363cc5abe7e6d90e982c3d1ae449f",
+      "originalFaces": 11208,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52788",
+      "name": "right parietal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52788.stl",
+      "sha256": "b2bb58e09216066e45af9d74894b8974cbe84bc3a0fa4db5b614670272d5c428",
+      "originalFaces": 29734,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52789",
+      "name": "left parietal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52789.stl",
+      "sha256": "fbff8a906a4a96ff287b842c5a14ebbee2d96c2df6d554608861b011836a1346",
+      "originalFaces": 30250,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52740",
+      "name": "ethmoid",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52740.stl",
+      "sha256": "732b19d2f1784564cdcbe3dd892eebbc1d0274a62491fecb3779186371faaf93",
+      "originalFaces": 7774,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53647",
+      "name": "right nasal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53647.stl",
+      "sha256": "a2c4e73f0346df903e9fcc4c7522c2ce9a82fd65f2f8f2993867812306577303",
+      "originalFaces": 1024,
+      "packagedFaces": 1024,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53648",
+      "name": "left nasal bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53648.stl",
+      "sha256": "576a778c98145cbe676ca7c97f599430f8f52ed367ba4907d7ab1ebb720bb5ca",
+      "originalFaces": 1124,
+      "packagedFaces": 1124,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53649",
+      "name": "right maxilla",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53649.stl",
+      "sha256": "a83de38623317730c5f6c47be8c98b1fd7780b23317d09ca35e1f4f0735dd02e",
+      "originalFaces": 14148,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53650",
+      "name": "left maxilla",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53650.stl",
+      "sha256": "875a8fafabc5df5c11d9cdc6c99ac37326c7f77c5ab5987e8d5b3d00e0d8b907",
+      "originalFaces": 14506,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52892",
+      "name": "right zygomatic bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52892.stl",
+      "sha256": "a7af6f93c52cd816c3b5f134811ebe1cba5766e0ab170747cff37c089cbcc001",
+      "originalFaces": 4612,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52893",
+      "name": "left zygomatic bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52893.stl",
+      "sha256": "a47bff85f4f2fbde1ed67cdb79688414616f9ca05187425bc2ffa1b841295feb",
+      "originalFaces": 4560,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA52748",
+      "name": "mandible",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA52748.stl",
+      "sha256": "e0321ce797a06e8e14fea22261084262cf28099172224e22f44a60d66c42a888",
+      "originalFaces": 21658,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53655",
+      "name": "right palatine bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53655.stl",
+      "sha256": "318b033125aa504ed5583e61c4a6808a7fd998835d2dceef9df17c327726582b",
+      "originalFaces": 3592,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA53656",
+      "name": "left palatine bone",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA53656.stl",
+      "sha256": "1ac7ac814f39eb834d2f175002825085c6b04ecc94751ec247ab7c0161cabe37",
+      "originalFaces": 3642,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA9710",
+      "name": "vomer",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9710.stl",
+      "sha256": "8504c22ef2017bf56768f1127d607ccb0947dab8b2893e546d0ececc76d28d9b",
+      "originalFaces": 2422,
+      "packagedFaces": 1800,
+      "group": "Cranium"
+    },
+    {
+      "id": "FMA12519",
+      "name": "atlas",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12519.stl",
+      "sha256": "cc959122b7875a65d78597d89134fdb2f59a7c0f60d2e781c399db4010208f81",
+      "originalFaces": 6172,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12520",
+      "name": "axis",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12520.stl",
+      "sha256": "9e2a940db7b4bf921f97b63ed5aa549f675effe55af2cc81ad8589331309f896",
+      "originalFaces": 6870,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12521",
+      "name": "third cervical vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12521.stl",
+      "sha256": "1147f621766b9dce37b21a827f552c5669afaaf49531aab8d7b0df6f374233d1",
+      "originalFaces": 5278,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12522",
+      "name": "fourth cervical vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12522.stl",
+      "sha256": "34ea19b8f1c42e91c96f1ce19c520c2f72cda372c5373b15f85dc102e8da8208",
+      "originalFaces": 4224,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12523",
+      "name": "fifth cervical vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12523.stl",
+      "sha256": "e33ae49024283758ff60e48d14eeacf123fb79c48730e275951222e0fd91739c",
+      "originalFaces": 4754,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12524",
+      "name": "sixth cervical vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12524.stl",
+      "sha256": "449c209bd191ce4a0fbd32b422d48d0ab73142427b336dde45688f08f06455c6",
+      "originalFaces": 6350,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA12525",
+      "name": "seventh cervical vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA12525.stl",
+      "sha256": "083c2e5aa6876089f4b9fa43aaa1cb2ce5284ba5b49cb1700b8dbdaca89729b7",
+      "originalFaces": 5222,
+      "packagedFaces": 550,
+      "group": "CervicalSpine"
+    },
+    {
+      "id": "FMA9165",
+      "name": "first thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9165.stl",
+      "sha256": "ca7d411ee7e536c64f37ab217a151b9edfa4fbd7fdc80994ddb8e2a895a14cff",
+      "originalFaces": 5614,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9187",
+      "name": "second thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9187.stl",
+      "sha256": "819eee72d2b2582a6ac99757371a451ae22496311cbffbc7fd8a5027c51316a4",
+      "originalFaces": 8360,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9209",
+      "name": "third thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9209.stl",
+      "sha256": "3fb7d0c13bb268aba5bd60d3ebb6cc8fa0b2c3e265003d103cb126164b89653c",
+      "originalFaces": 8910,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9248",
+      "name": "fourth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9248.stl",
+      "sha256": "807493e20e64589561133744080d1d1259417b54a355f03b302aac2deb6aa2d9",
+      "originalFaces": 8930,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9922",
+      "name": "fifth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9922.stl",
+      "sha256": "c4d79d935d42cebc31350995d2b1270aa33c9d00afab8b965ac9571dbca89e86",
+      "originalFaces": 9834,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9945",
+      "name": "sixth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9945.stl",
+      "sha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "originalFaces": 4896,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9968",
+      "name": "seventh thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9968.stl",
+      "sha256": "e1ee58047e8e28646aeb1d94a4afa20395aed9573509de6a659db31ddfa8b8fd",
+      "originalFaces": 10740,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA9991",
+      "name": "eighth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9991.stl",
+      "sha256": "80b1dc4d2ef0c3e2828d9fb56c4f079d3b8007531c0ac21069f9e47bc784bb0f",
+      "originalFaces": 5206,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA10014",
+      "name": "ninth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA10014.stl",
+      "sha256": "9b44be02a7fc5a136a79d77bbbaa8d7c1642df160b281a8a7220f338db954d2f",
+      "originalFaces": 11286,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA10037",
+      "name": "tenth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA10037.stl",
+      "sha256": "a7453a5baca48e378e8bdbdfd1cf3733e9a84445f7139e43605b5997f29c7083",
+      "originalFaces": 11928,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA10059",
+      "name": "eleventh thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA10059.stl",
+      "sha256": "fbdbd603ced5d3e0cb29597deb56bd2e84788228d1cb2c8b056f9709b23759cd",
+      "originalFaces": 5652,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA10081",
+      "name": "twelfth thoracic vertebra",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA10081.stl",
+      "sha256": "a5c83982e93be05165e2aa51eb2ae9abcd92b6bfbb9abb076bca29aa17ecad74",
+      "originalFaces": 6038,
+      "packagedFaces": 500,
+      "group": "ThoracicSpine"
+    },
+    {
+      "id": "FMA7857",
+      "name": "right first rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7857.stl",
+      "sha256": "60aaf884bbba890b825cc96036ab3af04ab8ba9a8d283752ba5c86105927b265",
+      "originalFaces": 14194,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA7882",
+      "name": "right second rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7882.stl",
+      "sha256": "be841be06ebe7f2554655e222a5c5237a40103335816eb6c2d51dae28bb9a7b0",
+      "originalFaces": 23694,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA7909",
+      "name": "right third rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7909.stl",
+      "sha256": "942b53665d37f1541b49772e092d557ffee0407fa917205eb204c612c707710a",
+      "originalFaces": 30860,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA7957",
+      "name": "right fourth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7957.stl",
+      "sha256": "f09aed293efeaca491348e4b0d68aba243ad69b12da16c99ca0af8dfdbbe1537",
+      "originalFaces": 38488,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8066",
+      "name": "right fifth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8066.stl",
+      "sha256": "692ce079c288c646d05f30bd656554c2ea5efb382390a2cfa5f1f3215a57fb4c",
+      "originalFaces": 41634,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8175",
+      "name": "right sixth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8175.stl",
+      "sha256": "c7ceddf05e6f5b31a51f5cd5017659f10496fc004007052c45c0fddce2cbcf90",
+      "originalFaces": 44634,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8229",
+      "name": "right seventh rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8229.stl",
+      "sha256": "035891a2b0a602bc07206e6a560c43ace3270f9111fda00d3407a95991a69e3f",
+      "originalFaces": 43146,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8283",
+      "name": "right eighth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8283.stl",
+      "sha256": "bb77ea1b25858457b67e2be43a09077a2de0e2a3c662c3bc2b1528f28b458b84",
+      "originalFaces": 36646,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8364",
+      "name": "right ninth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8364.stl",
+      "sha256": "22f08d07eb9edcd51a3de7d3bb59df3cf848cc091808ec9e7080a937620a06fe",
+      "originalFaces": 34278,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8445",
+      "name": "right tenth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8445.stl",
+      "sha256": "74b03c2cd1d227d262d848aa0564b2022f1944bcaf6d3b469cceb5310da07c70",
+      "originalFaces": 31010,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8531",
+      "name": "right eleventh rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8531.stl",
+      "sha256": "e2bc61ccb59923b00048f093cb5d105c5a4a03f5d4cabce2be147df0192af269",
+      "originalFaces": 22428,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8533",
+      "name": "right twelfth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8533.stl",
+      "sha256": "eb47b3d7b6b8440a90fe27f333c8f30f72c6ae82694f4d0737ca6279b04e0b74",
+      "originalFaces": 13262,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA7987",
+      "name": "left first rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7987.stl",
+      "sha256": "47054d1d5654d7612a853d28529784a04719235c7162c20f3c11b14778735526",
+      "originalFaces": 15464,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8012",
+      "name": "left second rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8012.stl",
+      "sha256": "f6aadf30d7b507bd545fdcbb4f43630fc331c652fe1c4024d75380c1dfae45e6",
+      "originalFaces": 25304,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8039",
+      "name": "left third rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8039.stl",
+      "sha256": "344b8098d9d10c0fb24bc11cd5f1cf41aba35070c4344d84b9a9b9b01026d394",
+      "originalFaces": 31212,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8148",
+      "name": "left fourth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8148.stl",
+      "sha256": "477e7de3c896937eb7df14760a63c0003cdeb6de9ae156d02a46da960081456f",
+      "originalFaces": 37922,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8093",
+      "name": "left fifth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8093.stl",
+      "sha256": "c795ccae604bc9ffa90b607c04135548e6c6febcbe2276fb19a29167d4f2591e",
+      "originalFaces": 41568,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8202",
+      "name": "left sixth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8202.stl",
+      "sha256": "1230ade55f5abf93769e38411a2e6cb72a8e480a9335bfff21a0ef4c3ef78a1c",
+      "originalFaces": 44434,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8256",
+      "name": "left seventh rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8256.stl",
+      "sha256": "48a8cb5f072ee227097420c8af4707f1a2cae82127b3b11f846a6a80d8a66803",
+      "originalFaces": 44062,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8310",
+      "name": "left eighth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8310.stl",
+      "sha256": "89a351122e11281fb5f2ac6a6b7d7d79ca3c6c04f5be19cfcb9264988b3c9c33",
+      "originalFaces": 37134,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8391",
+      "name": "left ninth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8391.stl",
+      "sha256": "b912e0b9e6238b00620a657d299db5f08fcfb7cc359ac56f80d8c5c45a93a3a4",
+      "originalFaces": 36020,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8472",
+      "name": "left tenth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8472.stl",
+      "sha256": "73ceca00c9334232a2ee2221eb03fbc75f7b37cfc45e3762dc867571e1ca67b9",
+      "originalFaces": 31758,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8532",
+      "name": "left eleventh rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8532.stl",
+      "sha256": "1e744600b93e628619746faa6921a3b72b955c437dc4b35a1dbff0421776ac6b",
+      "originalFaces": 22826,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA8534",
+      "name": "left twelfth rib",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8534.stl",
+      "sha256": "47df6f4c18e72581fa78b08aa83326321d8179a3b363743a7e40697f645cd679",
+      "originalFaces": 13726,
+      "packagedFaces": 400,
+      "group": "Ribcage"
+    },
+    {
+      "id": "FMA7875",
+      "name": "right first costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7875.stl",
+      "sha256": "5a92e898b016f1d6cc485498ff0f0e207b31098feccabc85d5219f103c4cb206",
+      "originalFaces": 2342,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA7886",
+      "name": "right second costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7886.stl",
+      "sha256": "a714eaf849a06c058e7decd6f835395ae5d311087cb421b54ae8b8ad9037e8af",
+      "originalFaces": 2540,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA7913",
+      "name": "right third costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7913.stl",
+      "sha256": "46ee473827b2d0c86e89e987abd6a3a06bf58d83b1cf5a15ac74a4e329407fd8",
+      "originalFaces": 2694,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA7976",
+      "name": "right fourth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7976.stl",
+      "sha256": "8eb4e349353481cb9fc5e61cc64335d09fdd835b704725d21a7a0259f579b2c8",
+      "originalFaces": 3486,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8070",
+      "name": "right fifth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8070.stl",
+      "sha256": "4806b779a0c7ff894f258172c8d38ea27773846dfde5c3dbc4ec1970efc934aa",
+      "originalFaces": 4830,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8194",
+      "name": "right sixth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8194.stl",
+      "sha256": "0036ae34629bdc085cdca443267e6624fa645623b7baf0a34469920689778552",
+      "originalFaces": 6078,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8248",
+      "name": "right seventh costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8248.stl",
+      "sha256": "deed7fc150913c7f1a5944ede84f5c80314bf80ee320e086040694232e440b89",
+      "originalFaces": 10492,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8005",
+      "name": "left first costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8005.stl",
+      "sha256": "ec3ce37db56619908322f97ec11a3fac6af3783b1c1becf0584aba0b3aaa34d0",
+      "originalFaces": 2204,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8031",
+      "name": "left second costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8031.stl",
+      "sha256": "a1789b441e573b99c2ec9bc926bbbb4ea3e1320024a4d192a495eb6e6d17380b",
+      "originalFaces": 2350,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8058",
+      "name": "left third costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8058.stl",
+      "sha256": "94b352139f62506839687cef4dc7ffc9e8314094a4975cc0d9105f79eedc376a",
+      "originalFaces": 2428,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8167",
+      "name": "left fourth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8167.stl",
+      "sha256": "3ad3eed191f35c724b5beefaa835852b3e3f3e874871278bb5423cef17f2efcd",
+      "originalFaces": 3220,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8112",
+      "name": "left fifth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8112.stl",
+      "sha256": "ec2b2c0aa5181884e2661695f821e34e3a3774ae4cce7125b6d8eee8cc396945",
+      "originalFaces": 4536,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8221",
+      "name": "left sixth costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8221.stl",
+      "sha256": "a378b49e15d1a728170cc4a14642bd40d3a451f601e60e41204ce004f0025708",
+      "originalFaces": 5966,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA8275",
+      "name": "left seventh costal cartilage",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA8275.stl",
+      "sha256": "22f94e1cff58983b435c2c838bf28b286172c226b36499160c3bbcedeadff098",
+      "originalFaces": 9902,
+      "packagedFaces": 180,
+      "group": "CostalCartilage"
+    },
+    {
+      "id": "FMA7486",
+      "name": "manubrium",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7486.stl",
+      "sha256": "1d503e4a4b7b7090bb43ced9870d8bf8c618c4cc6c88f9570a6a3c0962b6597b",
+      "originalFaces": 11882,
+      "packagedFaces": 700,
+      "group": "Sternum"
+    },
+    {
+      "id": "FMA7487",
+      "name": "body of sternum",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7487.stl",
+      "sha256": "33488974f006fbf6404b7c3b095fac3502cd4c2abc787293eaf21e4c84193a90",
+      "originalFaces": 19916,
+      "packagedFaces": 700,
+      "group": "Sternum"
+    },
+    {
+      "id": "FMA7488",
+      "name": "xiphoid process",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7488.stl",
+      "sha256": "1cf0972021a6dc32d12b5d9da6bd4f3f68ba79005d3590ef550cb416b9cc1431",
+      "originalFaces": 4086,
+      "packagedFaces": 700,
+      "group": "Sternum"
+    },
+    {
+      "id": "FMA13322",
+      "name": "right clavicle",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA13322.stl",
+      "sha256": "f340050375ea4397a85082fb7bd68ea553d52f4718656599804ecf8f4c7768be",
+      "originalFaces": 5112,
+      "packagedFaces": 1700,
+      "group": "ShoulderGirdle"
+    },
+    {
+      "id": "FMA13323",
+      "name": "left clavicle",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA13323.stl",
+      "sha256": "ec68d362926061c62c2b7493fb6554941d78250f27ecdf744375659050bdc7ee",
+      "originalFaces": 5140,
+      "packagedFaces": 1700,
+      "group": "ShoulderGirdle"
+    },
+    {
+      "id": "FMA13395",
+      "name": "right scapula",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA13395.stl",
+      "sha256": "c0a3afd469db1fec9527bb81ec1f0956876d3d64d3acbf3a083619d4e7ce297b",
+      "originalFaces": 113256,
+      "packagedFaces": 1700,
+      "group": "ShoulderGirdle"
+    },
+    {
+      "id": "FMA13396",
+      "name": "left scapula",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA13396.stl",
+      "sha256": "104b7749a10794987535c539d6c412b9b9afb3fd1819bdf5911ab1852f07a425",
+      "originalFaces": 121816,
+      "packagedFaces": 1700,
+      "group": "ShoulderGirdle"
+    },
+    {
+      "id": "FMA7274",
+      "name": "wall of heart",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7274.stl",
+      "sha256": "ed570773264c7abf73db5f5da20e5e4f69943315e8c5995da850a2821988b0a2",
+      "originalFaces": 331592,
+      "packagedFaces": 5000,
+      "group": "Heart"
+    },
+    {
+      "id": "FMA61822",
+      "name": "white matter structure of cerebral hemisphere",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA61822.stl",
+      "sha256": "709107c09a8df8f820e332462490ee209bcdfd4921236ff69f6fa01c989f98d3",
+      "originalFaces": 176564,
+      "packagedFaces": 3000,
+      "group": "Brain"
+    },
+    {
+      "id": "FMA67944",
+      "name": "cerebellum",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA67944.stl",
+      "sha256": "a023ac8cad7440cbb16814782f0d78643c9e81cdf04272971afa11a0100bd6fe",
+      "originalFaces": 238506,
+      "packagedFaces": 3000,
+      "group": "Brain"
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 'use client';
 
-import { Component, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { createVolumetricAnatomy } from '../lib/volumetric-anatomy';
+import { createImportedAnatomy } from '../lib/imported-anatomy';
+import CanvasLoader from './CanvasLoader';
 import { createCosmicWarp } from '../lib/cosmic';
 import { createAmbientField, createRealmWorld, createSpatialLabel } from '../lib/realm-world';
 import { spatialState, sampleHelix, projectAnchor } from '../lib/spatial';
@@ -20,6 +22,7 @@ class AnatomyBoundary extends Component {
 }
 
 function AnatomyWorld({ progress, cardsProgress, velocity, active, onReady, onIntro, onPartHover, onPartSelect, onQuality }) {
+  const { scene: modelAsset } = useGLTF('/models/skeleton.glb', false, false);
   const { gl, scene, camera, setFrameloop } = useThree();
   const runtime = useRef(null), activeRef = useRef(active);
   activeRef.current = active;
@@ -31,33 +34,35 @@ function AnatomyWorld({ progress, cardsProgress, velocity, active, onReady, onIn
     gl.transmissionResolutionScale = software ? .25 : .75;
     gl.setClearColor(0x030305, 0); gl.outputColorSpace = THREE.SRGBColorSpace;
     gl.toneMapping = THREE.ACESFilmicToneMapping; gl.toneMappingExposure = 1;
-    const sculpture = createVolumetricAnatomy(scene, gl, { economy: software });
+    const sculpture = createImportedAnatomy(scene, gl, modelAsset);
     const realms = createRealmWorld(scene, { economy: software }), ambient = createAmbientField();
     const milestones = [
       ['brain', '01 / NEURAL ORIGIN', [-.9, 3.35, .05]], ['spine', '02 / CONNECTIVE SYSTEM', [.8, 1.5, .1]], ['heart', '03 / CREATIVE CORE', [-.8, .3, .6]]
     ].map(([id,text,position]) => { const label = createSpatialLabel(text, { width: 1.6, color: id === 'heart' ? '#ffb593' : '#9cecff' }); label.mesh.position.set(...position); sculpture.model.add(label.mesh); return {id, position, ...label}; });
     const canvas = gl.domElement;
     canvas.dataset.renderer = 'physical-mesh'; canvas.dataset.engine = 'react-three-fiber';
+    canvas.dataset.modelSource = '/models/skeleton.glb';
+    canvas.dataset.importedMeshes = JSON.stringify(sculpture.sourceMeshes);
     const actualMaterials=new Map();let wireframes=0;
-    sculpture.model.traverse(object=>{if(object.isMesh){const list=Array.isArray(object.material)?object.material:[object.material];for(const material of list){if(material.wireframe)wireframes++;if(material.isMeshPhysicalMaterial)actualMaterials.set(material.uuid,{name:material.name,roughness:material.roughness,clearcoat:material.clearcoat,transmission:material.transmission});}}});
+    sculpture.model.traverse(object=>{if(object.isMesh){const list=Array.isArray(object.material)?object.material:[object.material];for(const material of list){if(material.wireframe)wireframes++;if(material.isMeshPhysicalMaterial)actualMaterials.set(material.uuid,{name:material.name,roughness:material.roughness,clearcoat:material.clearcoat,transmission:material.transmission,ior:material.ior});}}});
     canvas.dataset.physicalMaterials=JSON.stringify([...actualMaterials.values()]);canvas.dataset.wireframeMeshes=String(wireframes);
     canvas.dataset.nativeText=JSON.stringify([...milestones.map(item=>item.mesh.name),...realms.root.children.filter(item=>item.name.startsWith('spatial-text:')).map(item=>item.name)]);
     canvas.dataset.glassMode = software ? 'physical-low-resolution' : 'physical-transmission';
-    const pickMaterial = new THREE.MeshBasicMaterial({ visible: false }), picks = [];
-    for (const [part, position, scale] of [
-      ['brain',[0,2.82,.05],[.75,.75,.64]],['heart',[.2,.02,.54],[.53,.64,.48]],
-      ['spine',[0,1.1,-.18],[.18,.55,.3]],['vascular',[.65,1.1,.2],[.3,.25,.3]],
-      ['cell',[-1,2.35,.18],[.27,.27,.27]],['ligand',[1,.8,.65],[.35,.32,.25]]
-    ]) {
-      const target = new THREE.Mesh(new THREE.SphereGeometry(1,10,8), pickMaterial);
-      target.name = `pick-${part}`;target.position.set(...position);target.scale.set(...scale);target.userData.part=part;
-      sculpture.model.add(target);picks.push(target);
+    // Raycast the imported surfaces themselves. No generated proxy skeleton or
+    // invisible primitive anatomy is added alongside the GLB.
+    const picks = [];
+    for (const [part,names] of [
+      ['brain',['Cranium','Brain']],['heart',['Heart']],
+      ['spine',['CervicalSpine','ThoracicSpine']],['vascular',['Ribcage','Sternum']]
+    ]) for (const name of names) {
+      const target = sculpture.model.getObjectByName(name);
+      if (target?.isMesh) { target.userData.part=part;picks.push(target); }
     }
     let seen = true;
     try { seen = sessionStorage.getItem('navya-intro-seen') === '1'; } catch {}
     const introRunning = !seen && scrollY < 80;
     const cosmic = introRunning ? createCosmicWarp(sculpture.model, innerWidth < 700) : null;
-    const data = { software, sculpture, realms, ambient, milestones, blend: 0, warmth: 0, cameraProgress: 0, picks, pickMaterial, cosmic, cosmicDisposed: false, introRunning, introElapsed: 0,
+    const data = { software, sculpture, realms, ambient, milestones, blend: 0, warmth: 0, cameraProgress: 0, picks, cosmic, cosmicDisposed: false, introRunning, introElapsed: 0,
       energyAt: 0, time: 0, energy: 0, hovered: null, pickAt: 0, pointer: {x:0,y:0},
       raycaster: new THREE.Raycaster(), ndc: new THREE.Vector2(), core: new THREE.Vector3(), look: new THREE.Vector3(),
       projection: new THREE.Vector3(), worldAnchor: new THREE.Vector3(), retreatPosition: new THREE.Vector3(0,.25,8.4), retreatLook: new THREE.Vector3(0,.1,0),
@@ -94,9 +99,9 @@ function AnatomyWorld({ progress, cardsProgress, velocity, active, onReady, onIn
     return()=>{
       runtime.current=null;removeEventListener('wheel',accelerate);removeEventListener('portfolio:intro-accelerate',accelerate);removeEventListener('portfolio:intro-skip',skip);
       removeEventListener('pointermove',move);removeEventListener('click',select);
-      if(!data.cosmicDisposed)cosmic?.dispose();onIntro?.(false);milestones.forEach(label=>label.dispose());realms.dispose();ambient.dispose();sculpture.dispose();pickMaterial.dispose();
+      if(!data.cosmicDisposed)cosmic?.dispose();onIntro?.(false);milestones.forEach(label=>label.dispose());realms.dispose();ambient.dispose();sculpture.dispose();
     };
-  },[gl,scene,camera,onQuality,progress,cardsProgress,velocity,onReady,onIntro,onPartHover,onPartSelect]);
+  },[gl,scene,camera,modelAsset,onQuality,progress,cardsProgress,velocity,onReady,onIntro,onPartHover,onPartSelect]);
 
   // R3F owns the renderer and frame lifecycle. Heartbeat, particles, lights and
   // the camera are updated here; there is no independent RAF or SVG compositor.
@@ -178,7 +183,9 @@ export default function FullCanvasAnatomy({ enabled, active, onReady, onIntro, .
       <Canvas className="anatomy-canvas" camera={CAMERA} dpr={dpr} frameloop={active?'always':'never'}
         gl={GL_OPTIONS}
         fallback={<div className="anatomy-unavailable" data-anatomy-state="unavailable" />}>
-        <AnatomyWorld {...props} onQuality={quality} active={active} onReady={reportReady} onIntro={onIntro} />
+        <Suspense fallback={<CanvasLoader />}>
+          <AnatomyWorld {...props} onQuality={quality} active={active} onReady={reportReady} onIntro={onIntro} />
+        </Suspense>
       </Canvas>
     </AnatomyBoundary> : failed ? <div className="anatomy-unavailable" data-anatomy-state="unavailable" /> : null}
   </div>;
