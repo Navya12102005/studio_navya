@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Volume2, VolumeX } from './Icons';
 import { useMotion } from './MotionProvider';
 
 export default function CinematicIntro() {

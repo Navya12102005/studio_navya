@@ -1,0 +1,21 @@
+/* Full-motion presentation is one fixed scene. Only this invisible rail scrolls;
+   no portfolio document sections move past the camera. */
+.flight-scroll-rail { height:1800svh; width:1px; pointer-events:none; }
+.flight-running main,.flight-running .site-header,.flight-running .site-footer,.flight-running .pixel-reading-progress,.flight-running .particle-field { display:none; }
+.flight-running { scroll-padding-top:0; }
+.flight-running body { background:#030305; }
+.flight-controls { position:fixed; z-index:45; top:26px; right:28px; display:flex; gap:10px; align-items:center; }
+.flight-controls button { display:grid; place-items:center; width:44px; height:44px; padding:10px; color:#c0aacd; border:0; background:none; filter:drop-shadow(0 2px 9px #030305); transition:color .2s,transform .2s; }
+.flight-controls button:hover { color:#a9f4ff; transform:translateY(-2px); }
+.flight-controls button:focus-visible { outline:1px solid #b1e9f6; outline-offset:2px; border-radius:50%; }
+.flight-node-controls { position:fixed; inset:0; z-index:24; pointer-events:none; }
+.flight-node-action { position:absolute; left:0; top:0; width:210px; height:48px; border:0; background:none; color:transparent; pointer-events:auto; }
+.flight-node-action:focus-visible { outline:1px solid #bc8cff; outline-offset:8px; border-radius:30px; box-shadow:0 0 35px #bc8cff20; }
+.flight-timeline { position:fixed; z-index:45; bottom:24px; left:50%; transform:translateX(-50%); width:min(260px,40vw); height:20px; appearance:none; background:none; cursor:ew-resize; }
+.flight-timeline::-webkit-slider-runnable-track { height:1px; background:linear-gradient(90deg,#00f0ff88,#7b2cbf99,#ff007f99,#ffb70388); }
+.flight-timeline::-webkit-slider-thumb { appearance:none; width:7px; height:7px; border-radius:50%; background:#d5b5ff; box-shadow:0 0 12px #bf8fff; margin-top:-3px; }
+.flight-timeline::-moz-range-track { height:1px; background:#aa8bc96b; }.flight-timeline::-moz-range-thumb { width:7px; height:7px; border:0; border-radius:50%; background:#d5b5ff; }
+.flight-model-credit { position:fixed; left:25px; bottom:21px; max-width:270px; color:#97829f; font:7px/1.8 var(--font-jetbrains),monospace; z-index:30; text-shadow:0 1px 8px #000; }
+.flight-model-credit a { text-underline-offset:3px; }.flight-model-credit a:hover { text-decoration:underline; }
+.reading-switch { color:#b6a7c9; font:9px var(--font-jetbrains),monospace; padding:10px 0; min-height:44px; }
+@media(max-width:760px) { .flight-controls { top:15px; right:12px; gap:3px; }.flight-controls button { width:39px; height:44px; padding:10px; }.flight-model-credit { left:17px; bottom:14px; max-width:145px; font-size:5px; }.flight-timeline { bottom:20px; left:auto; right:20px; width:140px; transform:none; }.reading-switch { font-size:8px; }.site-header { gap:9px; }.flight-node-action { width:180px; height:48px; } }

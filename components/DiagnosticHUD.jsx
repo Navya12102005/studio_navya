@@ -47,5 +47,5 @@ export default function DiagnosticHUD({ progress }) {
 export function CardTelemetry({ index = 0 }) {
   const ref = useRef(null);
   const { enabled } = useMotion();
-  return <div ref={ref} className="card-telemetry" aria-hidden="true"><span>FRAME / {String(index + 1).padStart(3, '0')}</span><span>X {String(24 + index * 13).padStart(3, '0')} · Y {String(16 + index * 7).padStart(3, '0')}</span><span className="card-scan-value">SCAN <b data-card-progress>{enabled ? '00' : '—'}</b>{enabled ? '%' : ''}</span><i /><i /><i /><i /></div>;
+  return <div ref={ref} className="card-telemetry" aria-hidden="true"><span>FRAME / {String(index + 1).padStart(3, '0')}</span><span>X {String(24 + index * 13).padStart(3, '0')} · Y {String(16 + index * 7).padStart(3, '0')}</span><span className="card-scan-value">SCAN <b data-card-progress>{enabled ? '00' : ' | '}</b>{enabled ? '%' : ''}</span><i /><i /><i /><i /></div>;
 }

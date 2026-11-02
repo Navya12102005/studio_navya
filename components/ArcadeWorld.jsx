@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ArrowUpRight, Terminal, Trophy, RotateCcw, Gamepad2, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Terminal, Trophy, RotateCcw, Gamepad2, Studio } from './Icons';
 import { useMotion } from './MotionProvider';
 import { POWERUPS, AVATAR, PALETTE, gameState } from '../lib/arcade';
 import { drawArcade } from './arcade-renderer';
@@ -29,7 +29,8 @@ export default function ArcadeWorld() {
   const [terminal, setTerminal] = useState(false), [output, setOutput] = useState('Type help to inspect this little universe.');
   const [message, setMessage] = useState('Scroll to move. Explore either level at any time.');
   const [sequence, setSequence] = useState(0), [secret, setSecret] = useState(false), [percent, setPercent] = useState(0);
-  const { enabled, active, scrollRef } = useMotion();
+  const { enabled: motionEnabled, active: motionActive, scrollRef, flightReady } = useMotion();
+  const enabled=motionEnabled&&!flightReady, active=motionActive&&!flightReady;
   const activeRef = useRef(active), terminalRef = useRef(null), terminalToggle = useRef(null);
   useEffect(() => { activeRef.current = active; }, [active]);
   useEffect(() => { foundRef.current = found; }, [found]);
@@ -118,9 +119,9 @@ export default function ArcadeWorld() {
           {enabled && inView ? <canvas ref={canvas} className="arcade-canvas" aria-hidden="true" /> : <StaticLevel level={level} />}
           <span className="arcade-level-label">LEVEL {level === 'lab' ? '01' : '02'} / {levelNames[level].toUpperCase()}</span>
         </div>
-        <div className="arcade-controls"><div className="arcade-level-buttons" role="group" aria-label="Choose an arcade level"><button aria-pressed={level === 'lab'} onClick={() => visit('lab')}>01 <span>Bio-Tech Lab</span></button><button aria-pressed={level === 'studio'} onClick={() => visit('studio')}>02 <span>Creative Studio</span></button></div><div><button id="arcade-project-terminal" onClick={project}><Sparkles size={13} /> {level === 'lab' ? 'Compile & inspect build' : 'Launch Studio Navya'}<ArrowUpRight size={13} /></button><button ref={terminalToggle} onClick={toggleTerminal} aria-expanded={terminal} aria-controls="arcade-terminal"><Terminal size={13} /><span>Terminal</span></button></div></div>
+        <div className="arcade-controls"><div className="arcade-level-buttons" role="group" aria-label="Choose an arcade level"><button aria-pressed={level === 'lab'} onClick={() => visit('lab')}>01 <span>Bio-Tech Lab</span></button><button aria-pressed={level === 'studio'} onClick={() => visit('studio')}>02 <span>Creative Studio</span></button></div><div><button id="arcade-project-terminal" onClick={project}><Studio size={13} /> {level === 'lab' ? 'Compile & inspect build' : 'Launch Studio Navya'}<ArrowUpRight size={13} /></button><button ref={terminalToggle} onClick={toggleTerminal} aria-expanded={terminal} aria-controls="arcade-terminal"><Terminal size={13} /><span>Terminal</span></button></div></div>
       </div>
-      <div className="arcade-inventory"><span>POWER-UPS /</span>{POWERUPS.map(item => <button key={item.id} className={found.includes(item.id) ? 'collected' : ''} aria-pressed={found.includes(item.id)} aria-label={`${found.includes(item.id) ? 'Inspect' : 'Collect'} ${item.label} badge`} onClick={() => { if (found.includes(item.id)) setMessage(`${item.label}: an idea for your inventory, not a professional certification.`); else collect(item.id); }}><span aria-hidden="true">✦</span>{item.label}</button>)}<small>{percent.toString().padStart(2, '0')}% OF SCROLL ROUTE</small></div>
+      <div className="arcade-inventory"><span>POWER-UPS /</span>{POWERUPS.map(item => <button key={item.id} className={found.includes(item.id) ? 'collected' : ''} aria-pressed={found.includes(item.id)} aria-label={`${found.includes(item.id) ? 'Inspect' : 'Collect'} ${item.label} badge`} onClick={() => { if (found.includes(item.id)) setMessage(`${item.label}: an idea for your inventory, not a professional certification.`); else collect(item.id); }}><span aria-hidden="true">+</span>{item.label}</button>)}<small>{percent.toString().padStart(2, '0')}% OF SCROLL ROUTE</small></div>
       <p className="arcade-announcement" role="status">{message}</p>
       {terminal ? <div id="arcade-terminal" className="arcade-terminal"><div><span>NG_OS / CONNECTION TERMINAL</span><button onClick={toggleTerminal} aria-label="Close arcade terminal">×</button></div><p className="terminal-output" aria-live="polite">{output}</p><form onSubmit={command}><label htmlFor="arcade-command">navya@possibility:~$</label><input ref={terminalRef} id="arcade-command" name="command" placeholder="help" autoComplete="off" spellCheck="false" maxLength={60} /><button type="submit" aria-label="Run terminal command"><ArrowRight size={15} /></button></form><div className="arcade-puzzle"><span>SECRET SEQUENCE / {sequence}/3</span>{['Create', 'Observe', 'Connect'].map(word => <button key={word} onClick={() => choose(word)}>{word}</button>)}</div></div> : null}
       {secret ? <div className="arcade-achievement"><Trophy size={16} /><span>SECRET CONNECTOR / EVERY GOOD IDEA STARTS A CONVERSATION.</span><a href="#contact">Open contact portal <ArrowRight size={13} /></a></div> : null}

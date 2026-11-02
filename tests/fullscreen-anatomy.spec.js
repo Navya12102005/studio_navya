@@ -1,62 +1,42 @@
-import { test, expect } from '@playwright/test';
+import {test,expect} from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => sessionStorage.setItem('navya-intro-seen', '1'));
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('navya-intro-seen','1'));});
+async function ready(page){await page.goto('/?profile=1');await page.waitForFunction(()=>Number(document.querySelector('canvas[data-camera]')?.dataset.nativeTextReadyCount)>60);}
+async function at(page,p){await page.evaluate(p=>scrollTo({top:(document.querySelector('.flight-scroll-rail').offsetHeight-innerHeight)*p,behavior:'instant'}),p);await expect.poll(()=>page.locator('.anatomy-canvas canvas').evaluate((el,p)=>Math.abs(JSON.parse(el.dataset.camera).progress-p),p)).toBeLessThan(.0015);}
+
+test('one fixed GLB canvas uses depth-tested native text and preserves browser scroll controls',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
+ await ready(page);const canvas=page.locator('.anatomy-canvas canvas');
+ await expect(page.locator('canvas')).toHaveCount(1);await expect(canvas).toHaveAttribute('data-flight-engine','CatmullRomCurve3');await expect(canvas).toHaveAttribute('data-model-source','/models/skeleton.glb');
+ await expect(page.locator('main')).toHaveCSS('display','none');
+ const text=await canvas.evaluate(el=>({total:Number(el.dataset.nativeTextCount),ready:Number(el.dataset.nativeTextReadyCount),depth:Number(el.dataset.depthTestedTextCount)}));expect(text.ready).toBeGreaterThan(60);expect(text.depth).toBe(text.total);
+ for(const width of[1440,768,390]){await page.setViewportSize({width,height:950});const layout=await page.locator('.anatomy-art').evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return{parent:el.parentElement.tagName,x:r.x,y:r.y,w:r.width,h:r.height,fixed:s.position,events:s.pointerEvents};});expect(layout).toEqual({parent:'BODY',x:0,y:0,w:width,h:950,fixed:'fixed',events:'none'});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
+ await page.setViewportSize({width:1440,height:1000});await page.mouse.move(600,450);await page.mouse.wheel(0,650);await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(500);
+ const before=await page.evaluate(()=>scrollY);const timeline=page.getByRole('slider',{name:'3D flight timeline'});await timeline.focus();await timeline.press('End');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before+1000);
+ expect(errors).toEqual([]);
+ await page.getByRole('link',{name:'Skip to portfolio',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.locator('main')).not.toHaveCSS('display','none');await expect(page.locator('canvas')).toHaveCount(0);
 });
 
-test('physical mesh is centred in a fixed body-level viewport canvas on desktop and mobile', async ({ page }) => {
-  test.setTimeout(90000);
-  const shaderErrors = [];
-  page.on('console', message => { if (/Shader Error|VALIDATE_STATUS|shader.*failed/i.test(message.text())) shaderErrors.push(message.text()); });
-  await page.goto('/?profile=1');
-  const canvas = page.locator('.anatomy-canvas canvas');
-  await expect(canvas).toHaveAttribute('data-renderer', 'physical-mesh');
-  await expect(canvas).toHaveAttribute('data-engine', 'react-three-fiber');
-  await expect(canvas).toHaveAttribute('data-wireframe-meshes', '0');
-  await expect(page.locator('.anatomy-fullscreen img, .anatomy-fullscreen svg')).toHaveCount(0);
-  const materials=await canvas.evaluate(el=>JSON.parse(el.dataset.physicalMaterials));
-  for(const name of ['imported-crystal-skeleton','imported-crystal-heart','imported-crystal-brain']){
-    const material=materials.find(m=>m.name===name);
-    expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.transmission).toBe(.9);expect(material.ior).toBe(1.5);
-  }
-  await page.waitForFunction(() => document.querySelector('.anatomy-canvas canvas').dataset.parts);
-  for (const width of [1440, 768, 390]) {
-    await page.setViewportSize({ width, height: 950 });
-    await expect.poll(() => page.locator('.anatomy-art').evaluate(el => {
-      const r = el.getBoundingClientRect(), style = getComputedStyle(el);
-      return { parent: el.parentElement.tagName, fixed: style.position, events: style.pointerEvents, x: r.x, y: r.y, width: Math.round(r.width), height: Math.round(r.height) };
-    })).toEqual({ parent: 'BODY', fixed: 'fixed', events: 'none', x: 0, y: 0, width, height: 950 });
-    await expect(page.locator('.anatomy-canvas')).toHaveCSS('transform', 'none');
-  }
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  const camera = await canvas.evaluate(el => JSON.parse(el.dataset.camera));
-  expect(Math.abs(camera.target[0])).toBeLessThan(.08);
-  expect(Math.abs(camera.position[0])).toBeLessThan(.6);
-  await page.screenshot({ path: '/tmp/navya-fullscreen-physical-hero.png' });
-  await expect(page.locator('main')).toHaveCSS('z-index','10');
-  await expect(page.locator('.hero-editorial')).toHaveCSS('z-index','20');
-  expect(shaderErrors).toEqual([]);
+test('spline orbits real anatomy, enters its heart, crosses a portal and reverses between spatial worlds',async({page})=>{
+ test.setTimeout(180000);await ready(page);const canvas=page.locator('.anatomy-canvas canvas');
+ const pose=()=>canvas.evaluate(el=>JSON.parse(el.dataset.camera));
+ await at(page,.08);expect((await pose()).position[0]).toBeGreaterThan(2);
+ await at(page,.16);expect((await pose()).position[2]).toBeLessThan(-3);
+ await at(page,.24);expect((await pose()).position[0]).toBeLessThan(-2);
+ await at(page,.30);let core=await pose();expect(Math.hypot(...core.position.map((v,i)=>v-core.target[i]))).toBeLessThan(.65);
+ await at(page,.39);expect((await pose()).zone).toBe('bio-tech');const bio=(await pose()).position;await page.screenshot({path:'/tmp/navya-flight-bio.png'});
+ await at(page,.60);await expect(canvas).toHaveAttribute('data-zone','portal');
+ const fx=await canvas.evaluate(el=>JSON.parse(el.dataset.postprocessing));expect(fx.enabled).toBe(true);expect(fx.bloom).toBeGreaterThan(.25);expect(fx.chromaticOffset).toBeGreaterThan(.00035);
+ await at(page,.67);expect((await pose()).zone).toBe('creative-studio');const studio=(await pose()).position;expect(studio[0]-bio[0]).toBeGreaterThan(10);expect(studio[2]).toBeLessThan(bio[2]-20);
+ const worlds=await canvas.evaluate(el=>JSON.parse(el.dataset.worldCoordinates));expect(worlds.anatomy).toEqual([0,0,0]);expect(worlds.creative[2]).toBeLessThan(worlds.bioTech[2]-20);await page.screenshot({path:'/tmp/navya-flight-studio.png'});
+ await at(page,.39);const reversed=(await pose()).position;expect(Math.hypot(...reversed.map((v,i)=>v-bio[i]))).toBeLessThan(.15);
 });
 
-test('camera enters the thoracic volume and retreats into the container-free realm', async ({ page }) => {
-  test.setTimeout(120000);
-  await page.goto('/?profile=1');
-  const canvas = page.locator('.anatomy-canvas canvas');
-  await page.waitForFunction(() => document.querySelector('.anatomy-canvas canvas')?.dataset.camera);
-  await page.getByRole('button', { name: 'Explore heart', exact: true }).click();
-  await expect.poll(() => canvas.evaluate(el => JSON.parse(el.dataset.camera).progress), { timeout: 40000 }).toBeGreaterThan(.97);
-  const core = await canvas.evaluate(el => JSON.parse(el.dataset.camera));
-  expect(Math.hypot(...core.position.map((x, i) => x - core.target[i]))).toBeLessThan(.5);
-  await page.screenshot({ path: '/tmp/navya-fullscreen-heart-interior.png' });
-  await page.evaluate(() => window.scrollTo({ top: document.querySelector('#work').offsetTop + innerHeight * .2, behavior: 'instant' }));
-  await expect.poll(() => canvas.evaluate(el => Number(el.dataset.cardsProgress))).toBeGreaterThan(.4);
-  const exit = await canvas.evaluate(el => JSON.parse(el.dataset.camera));
-  expect(exit.position[2]).toBeGreaterThan(core.position[2] + 2);
-  await page.evaluate(() => window.scrollTo({ top: document.querySelector('#work').offsetTop + innerHeight * .7, behavior: 'instant' }));
-  await expect(canvas).toHaveAttribute('data-realm', 'tech');
-  await expect(page.locator('.anatomy-art')).toHaveCSS('opacity', '1');
-  await page.getByRole('button', { name: 'Explore Oculomics · Research' }).click();
-  await expect(page.getByRole('dialog')).toBeVisible();
-  await page.keyboard.press('Escape');
-  await expect(page.getByRole('button', { name: 'Explore Oculomics · Research' })).toBeFocused();
+test('spatial project actions open working dialogs with focus return; contact opens the readable form',async({page})=>{
+ await ready(page);await page.getByRole('button',{name:'Fly to Creative Studio world'}).click();
+ const opener=page.getByRole('button',{name:'Explore Startup Club · President'});await expect(opener).toBeVisible();await opener.click();await expect(page.getByRole('dialog')).toContainText('Startup Club President');
+ await page.keyboard.press('Escape');await expect(opener).toBeFocused();
+ await page.getByRole('button',{name:'Fly to contact',exact:true}).click();await page.getByRole('button',{name:'Open contact form',exact:true}).click();
+ await expect(page.getByLabel('Your name',{exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);await expect(page.locator('main')).not.toHaveCSS('display','none');
+ await page.screenshot({path:'/tmp/navya-readable-contact.png'});
 });

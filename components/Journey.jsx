@@ -4,12 +4,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowDown, ArrowUpRight, MoveDown } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, MoveDown } from './Icons';
 import { useMotion } from './MotionProvider';
 import { Magnetic } from './Interactions';
 import { anatomicalParts } from '../lib/anatomy';
 import DiagnosticHUD from './DiagnosticHUD';
-import CinematicIntro from './CinematicIntro';
 import { SpatialMilestones } from './SpatialEditorial';
 
 const FullCanvasAnatomy = dynamic(() => import('./FullCanvasAnatomy'), { ssr: false });
@@ -48,43 +47,13 @@ export default function Journey() {
     if (scrollRef.current?.lenis) scrollRef.current.lenis.scrollTo(target);
     else target.scrollIntoView({ behavior: 'smooth' });
   }, [scrollRef]);
-  useEffect(() => {
-    if (!enabled) { progress.current = 0; cardsProgress.current = 0; setSceneChapter(null); return; }
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({ scrollTrigger: {
-        trigger: section.current, start: 'top top', end: 'bottom bottom', scrub: 1.2,
-        onUpdate: self => {
-
-          velocity.current = Math.max(-1.5, Math.min(1.5, self.getVelocity() / 4500));
-          const next = self.progress < .18 ? null : self.progress < .46 ? 'brain' : self.progress < .76 ? 'spine' : 'heart';
-          setSceneChapter(current => current === next ? current : next);
-        }
-      } });
-      timeline.to(progress, { current: 1, duration: 1, ease: 'none' }, 0);
-      timeline.to('.hero-editorial', { opacity: 0, y: -35, duration: .13 }, .05);
-      chapters.forEach((chapter, i) => {
-        const start = [.2, .49, .78][i];
-        timeline.fromTo(`[data-chapter="${chapter.id}"]`, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .09 }, start);
-        if (i < 2) timeline.to(`[data-chapter="${chapter.id}"]`, { opacity: 0, y: -24, duration: .08 }, start + .2);
-      });
-      timeline.to('.journey-progress-fill', { scaleY: 1, duration: 1, ease: 'none' }, 0);
-      timeline.fromTo('.diagnostic-sweep', { top: '-5%', opacity: 0 }, { top: '105%', opacity: .42, duration: .24, ease: 'none' }, .43);
-      timeline.to('.diagnostic-sweep', { opacity: 0, duration: .06 }, .67);
-      ScrollTrigger.create({ trigger: document.getElementById('work'), start: 'top 20%', end: 'top -60%',
-        onUpdate: self => { cardsProgress.current = self.progress; } });
-      gsap.from('.hero-editorial > *', { opacity: 0, y: 20, stagger: .09, duration: 1.1, ease: 'power3.out', clearProps: 'transform,opacity' });
-    }, section);
-    ScrollTrigger.refresh();
-    return () => ctx.revert();
-  }, [enabled]);
   function goTo(chapter) {
     const node = section.current;
     const top = enabled ? node.offsetTop + (node.offsetHeight - innerHeight) * Math.min(chapter.at, .995) : document.getElementById(chapter.id).offsetTop;
     const lenis = scrollRef.current?.lenis;
     if (lenis) lenis.scrollTo(top); else window.scrollTo({ top, behavior: enabled ? 'smooth' : 'auto' });
   }
-  return <section id="home" ref={section} data-radiance={inspectedPart === 'heart' ? 'warm' : inspectedPart ? 'cool' : 'neutral'} className={`anatomical-journey ${enabled ? 'journey-animated' : 'journey-static'}`} aria-label="From thought to feeling">
+  return <section id="home" ref={section} data-radiance={inspectedPart === 'heart' ? 'warm' : inspectedPart ? 'cool' : 'neutral'} className="anatomical-journey journey-static" aria-label="From thought to feeling">
     <div className="journey-sticky">
       <SpatialMilestones />
       <div className="scene-vignette" aria-hidden="true" />
@@ -99,7 +68,7 @@ export default function Journey() {
       {chapters.map(chapter => <div key={chapter.id} data-chapter={chapter.id} className={`journey-chapter page-gutter ${chapter.color}`}>
         <p className="eyebrow">{chapter.label}</p><h2>{chapter.name}</h2><p>{chapter.text}</p>
       </div>)}
-      <div className="specimen-label" aria-hidden="true"><span>FIG. 01 — HUMAN POTENTIAL</span><div className="specimen-rule" /><span>LOGIC <i /> INSTINCT</span></div>
+      <div className="specimen-label" aria-hidden="true"><span>FIG. 01  |  HUMAN POTENTIAL</span><div className="specimen-rule" /><span>LOGIC <i /> INSTINCT</span></div>
       <div className="floating-code" aria-hidden="true"><span>MAP / CONNECT / INTERPRET</span><span>↳ SYSTEM.PERSPECTIVE</span><span>021 / 034 / 055 / 089</span></div>
       <DiagnosticHUD progress={progress} />
       <div className="anatomy-inspector" onPointerLeave={() => setFocusedPart(null)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocusedPart(null); }}>
@@ -120,7 +89,6 @@ export default function Journey() {
     </div>
     <div className="static-chapters page-gutter">{chapters.map(chapter => <div className={chapter.color} id={chapter.id} key={chapter.id}><p className="eyebrow">{chapter.label}</p><h2>{chapter.name}</h2><p>{chapter.text}</p><MoveDown size={20} aria-hidden="true" /></div>)}</div>
     <div className="journey-exit page-gutter"><span>DIFFERENT DISCIPLINES.</span><ArrowDown size={16} /><span>ONE CONNECTED PERSPECTIVE.</span></div>
-    <CinematicIntro />
-    {mounted ? createPortal(<FullCanvasAnatomy enabled={enabled} progress={progress} cardsProgress={cardsProgress} velocity={velocity} active={active && sceneVisible} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} />, document.body) : null}
+    {mounted ? createPortal(<FullCanvasAnatomy enabled={enabled} progress={progress} cardsProgress={cardsProgress} velocity={velocity} active={active} onReady={onReady} onIntro={onIntro} onPartHover={onPartHover} onPartSelect={onPartSelect} />, document.body) : null}
   </section>;
 }

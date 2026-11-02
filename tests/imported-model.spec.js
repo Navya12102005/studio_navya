@@ -34,14 +34,14 @@ test('Suspense displays a loader, then useGLTF traverses the real asset and appl
     for(const material of materials){expect(material.transmission).toBe(.9);expect(material.roughness).toBe(.1);expect(material.clearcoat).toBe(1);expect(material.ior).toBe(1.5);}
     await page.waitForFunction(()=>document.querySelector('canvas[data-parts]'));
     await page.screenshot({path:'/tmp/navya-imported-glb-hero.png'});
-    await expect(page.locator('.model-credit')).toContainText('BodyParts3D');
+    await expect(page.locator('.flight-model-credit')).toContainText('BodyParts3D');
   }finally{release();}
 });
 
 test('missing GLB preserves the HTML portfolio and usable project dialogs without procedural anatomy',async({page})=>{
   await page.route('**/models/skeleton.glb',route=>route.abort());await page.goto('/');
   await expect(page.locator('.anatomy-unavailable')).toHaveCount(1);
-  await expect(page.locator('h1')).toBeVisible();
+  await expect(page.locator('main h1')).toBeVisible();
   await expect(page.locator('.anatomy-fullscreen img,.anatomy-fullscreen svg')).toHaveCount(0);
   await page.getByRole('button',{name:'Explore Oculomics · Research'}).click();await expect(page.getByRole('dialog')).toBeVisible();
 });

@@ -1,5 +1,7 @@
 import './globals.css';
 import './spatial.css';
+import './flight.css';
+import './restraint.css';
 import localFont from 'next/font/local';
 import { MotionProvider } from '../components/MotionProvider';
 
@@ -8,10 +10,10 @@ const syne = localFont({ src: './fonts/Syne.ttf', variable: '--font-syne', displ
 const jakarta = localFont({ src: './fonts/PlusJakartaSans.ttf', variable: '--font-jakarta', display: 'swap' });
 
 export const metadata = {
-  title: 'Navya Gupta — The science of possibility',
-  description: 'Bioengineering meets creative instinct. The portfolio of Navya Gupta — technology, research, creative strategy, marketing and PR.',
+  title: 'Navya Gupta  |  The science of possibility',
+  description: 'Bioengineering meets creative instinct. The portfolio of Navya Gupta  |  technology, research, creative strategy, marketing and PR.',
   icons: { icon: '/icon.svg' },
-  openGraph: { title: 'Navya Gupta — The science of possibility', description: 'One curious mind. Two connected worlds.', type: 'website' }
+  openGraph: { title: 'Navya Gupta  |  The science of possibility', description: 'One curious mind. Two connected worlds.', type: 'website' }
 };
 export const viewport = { themeColor: '#030305' };
 

@@ -11,31 +11,6 @@ async function atProgress(page, progress) {
   }, progress);
 }
 
-test('scroll engine walks, jumps, collects and separates the two realms; reverse traversal preserves inventory', async ({ page }) => {
-  const errors = []; page.on('pageerror', e => errors.push(e.message));
-  await page.goto('/');
-  await expect(page.locator('html')).toHaveAttribute('data-motion', 'full');
-  await atProgress(page, .13);
-  const canvas = page.locator('.arcade-canvas');
-  await expect(canvas).toHaveAttribute('data-level', 'lab');
-  await expect.poll(() => canvas.getAttribute('data-jump').then(Number)).toBeGreaterThan(30);
-  await atProgress(page, .35);
-  await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 2);
-  await page.screenshot({ path: '/tmp/navya-arcade-lab.png' });
-  await atProgress(page, .76);
-  await expect(canvas).toHaveAttribute('data-level', 'studio');
-  await expect(page.locator('#arcade')).toHaveClass(/arcade-warm/);
-  await expect(page.locator('.domains .spatial-projects .spatial-project')).toHaveCount(4);
-  await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 3);
-  await expect.poll(() => canvas.getAttribute('data-avatar-x').then(Number)).toBeGreaterThan(1400);
-  await page.screenshot({ path: '/tmp/navya-arcade-studio.png' });
-  await atProgress(page, .1);
-  await expect(canvas).toHaveAttribute('data-level', 'lab');
-  await expect(page.locator('#arcade')).not.toHaveClass(/arcade-warm/);
-  await expect(page.locator('#discovery-energy')).toHaveJSProperty('value', 3);
-  expect(errors).toEqual([]);
-});
-
 test('reduced-motion arcade has keyboard controls, terminal commands, collectible badges and a real project/contact reward', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/');
   const stage = page.locator('#arcade'); await stage.scrollIntoViewIfNeeded();
@@ -64,22 +39,6 @@ test('reduced-motion arcade has keyboard controls, terminal commands, collectibl
   await stage.getByRole('button', { name: 'Reset arcade discoveries' }).click();
   await expect(stage.locator('#discovery-energy')).toHaveJSProperty('value', 0);
   await expect(page.locator('.arcade-achievement')).toHaveCount(0);
-});
-
-test('pixel progress and click bursts remain usable with the new container-free projects', async ({ page }) => {
-  await page.addInitScript(() => {
-    window.pixelBurstSeen = false;
-    new MutationObserver(() => { if (document.querySelector('.pixel-burst-layer i')) window.pixelBurstSeen = true; }).observe(document, { childList: true, subtree: true });
-  });
-  await page.goto('/'); await expect(page.locator('html')).toHaveAttribute('data-motion', 'full');
-  await page.getByRole('link', { name: /Selected work/ }).click();
-  await expect.poll(() => page.getByRole('progressbar', { name: 'Portfolio scroll depth' }).getAttribute('aria-valuenow').then(Number)).toBeGreaterThan(10);
-  await expect.poll(() => page.evaluate(() => window.pixelBurstSeen)).toBe(true);
-  await expect(page.locator('.domains')).toHaveClass(/tech/);
-  await expect(page.locator('.domains .spatial-project')).toHaveCount(4);
-  await expect(page.locator('.domains .retro-window-bar')).toHaveCount(0);
-  await page.getByRole('tab', { name: /Creative, PR & Strategy/ }).click();
-  await expect(page.locator('.domains .spatial-project')).toHaveCount(6);
 });
 
 test('mobile arcade and both realm layouts fit; reduced motion suppresses bursts', async ({ page }) => {

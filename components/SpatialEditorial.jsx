@@ -6,9 +6,9 @@ import { useMotion } from './MotionProvider';
 
 export function SpatialQuote({ children, source = 'NAVYA / ON CONNECTING DISCIPLINES' }) {
   const ref = useRef(null);
-  const { enabled } = useMotion();
+  const { enabled, flightReady } = useMotion();
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || flightReady) return;
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.fromTo(ref.current, { '--quote-warmth': 0 }, { '--quote-warmth': 1, ease: 'none', scrollTrigger: {
@@ -16,7 +16,7 @@ export function SpatialQuote({ children, source = 'NAVYA / ON CONNECTING DISCIPL
       } });
     });
     return () => ctx.revert();
-  }, [enabled]);
+  }, [enabled, flightReady]);
   return <figure className="spatial-quote" ref={ref}><blockquote>{children}</blockquote><figcaption>{source}</figcaption></figure>;
 }
 

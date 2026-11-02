@@ -4,22 +4,7 @@ import { gsap } from 'gsap';
 import { useMotion } from './MotionProvider';
 
 export function Magnetic({ children, className = '' }) {
-  const ref = useRef(null);
-  const { enabled } = useMotion();
-  useEffect(() => {
-    const el = ref.current;
-    if (!enabled || !matchMedia('(pointer: fine)').matches) { gsap.set(el, { clearProps: 'transform' }); return; }
-    const x = gsap.quickTo(el, 'x', { duration: .5, ease: 'power3.out' });
-    const y = gsap.quickTo(el, 'y', { duration: .5, ease: 'power3.out' });
-    function move(e) {
-      const r = el.getBoundingClientRect();
-      x((e.clientX - r.left - r.width / 2) * .16); y((e.clientY - r.top - r.height / 2) * .2);
-    }
-    function reset() { x(0); y(0); }
-    el.addEventListener('pointermove', move); el.addEventListener('pointerleave', reset);
-    return () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', reset); gsap.killTweensOf(el); gsap.set(el, { clearProps: 'transform' }); };
-  }, [enabled]);
-  return <span ref={ref} className={`magnetic ${className}`}>{children}</span>;
+  return <span className={`magnetic ${className}`}>{children}</span>;
 }
 
 export function Tilt({ children, className = '' }) {

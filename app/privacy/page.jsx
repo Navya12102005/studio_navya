@@ -1,0 +1,9 @@
+import LegalPage from '../../components/LegalPage';
+export const metadata={title:'Privacy Policy draft | Navya Gupta'};
+export default function Privacy(){return <LegalPage title="Privacy Policy">
+ <h2>What this portfolio currently does</h2><p>The contact form prepares an email draft in your browser. Submitting the form does not send its contents to a server. You choose whether to open your email app or copy the draft.</p>
+ <h2>Information you enter</h2><p>Name, email address, interest and message remain in the current page state while you review the draft. The application does not save these form values in browser storage or a database. Opening your email app passes the draft to that application. Its provider handles any message you choose to send.</p>
+ <h2>Browser storage and clipboard</h2><p>Earlier versions stored an introduction-seen flag in sessionStorage. That flag may remain until the browser session ends; it contains no form data. Clipboard access occurs only when you choose Copy message.</p>
+ <h2>Assets, hosting and external links</h2><p>Fonts and the anatomical model are served with this site. The application contains no analytics, advertising or payment integration. Hosting providers may process network information such as IP addresses and request logs. Their configuration and retention practices have not been confirmed for this draft. External links open services with their own policies.</p>
+ <h2>Details requiring confirmation</h2><p>The owner must confirm the operator identity, contact address, hosting provider, log practices, applicable requirements and effective date before finalizing this policy. The address currently displayed by the portfolio is hello@studionavya.com; ownership and availability require confirmation.</p>
+ </LegalPage>;}
