@@ -17,7 +17,7 @@ npm start -- --port 3000
 - Full-screen fixed R3F Canvas, centered upper-body GLB loaded through Drei useGLTF and Suspense.
 - Physical glass materials, orange/gold skeletal rims, pink brain displacement waves, cyan/violet lighting, amber cardiac flashes and real 3D particles.
 - Acoustic brain/heart shells use chromatic sine-wave shaders and vortex particles; GSAP scroll velocity compresses the rings and increases their speed, then relaxes to a heartbeat-modulated idle.
-- Native document scrolling drives a full 360-degree descending helix through brain, cervical spine and heart checkpoints, then a split domain gateway.
+- Native document scrolling drives cranial arrival/splitting (0–25%), spinal descent (25–50%), a held heart/energy-blade/light-burst transition (50–75%) and the final 360-degree domain gateway. All phases reverse with scrolling.
 - Transparent, depth-tested world-space checkpoint labels plus accessible HTML typography, opacity/blur reveals, project dialogs and working realm tabs.
 - Reduced-motion reading layout, pause and Hide 3D controls, loading progress and model-error recovery.
 - Optional game demonstration at `/arcade`, separated from the primary portfolio.

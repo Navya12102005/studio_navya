@@ -15,13 +15,13 @@ test('native scrolling completes a descending spiral and fades text without movi
  await load(page);const canvas=page.locator('.anatomy-canvas canvas'),chapter=page.locator('#brain');const initial=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));
  const before=await chapter.evaluate(el=>({top:el.offsetTop,height:el.offsetHeight}));await chapter.scrollIntoViewIfNeeded();await expect.poll(()=>chapter.evaluate(el=>parseFloat(getComputedStyle(el).opacity))).toBeGreaterThan(.8);
  expect(await chapter.evaluate(el=>({top:el.offsetTop,height:el.offsetHeight}))).toEqual(before);await expect(chapter).toHaveCSS('transform','none');await expect(chapter).toHaveCSS('overflow','visible');
- await at(page,.8);const later=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));expect(later.angle-initial.angle).toBeGreaterThan(4.8);expect(later.angle-initial.angle).toBeLessThan(5.2);expect(later.target[1]).toBeLessThan(initial.target[1]-2);await expect(canvas).toHaveAttribute('data-model-position','[0,0,0]');
+ await at(page,.8);const later=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));expect(later.angle-initial.angle).toBeGreaterThan(4.1);expect(later.angle-initial.angle).toBeLessThan(4.6);expect(later.target[1]).toBeLessThan(initial.target[1]-2);await expect(canvas).toHaveAttribute('data-model-position','[0,0,0]');
  await page.getByRole('link',{name:'Skip to portfolio',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.locator('#work')).toBeInViewport();
 });
 
 test('realm selection interpolates real neon lights, glass and particle palettes; pause freezes the view',async({page})=>{
  await load(page);const canvas=page.locator('.anatomy-canvas canvas');const lights=await canvas.evaluate(el=>JSON.parse(el.dataset.lighting));expect(lights).toMatchObject({cyan:'00f0ff',violet:'7b2cbf',pink:'ff007f',amber:'ffb703'});
- await page.locator('#work').scrollIntoViewIfNeeded();await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeLessThan(.1);const tech=await canvas.evaluate(el=>JSON.parse(el.dataset.palette));expect(tech.particles).toBeGreaterThan(100);
+ await page.locator('#work').scrollIntoViewIfNeeded();await page.getByRole('tab',{name:/Tech & Bioengineering/}).click();await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeLessThan(.1);const tech=await canvas.evaluate(el=>JSON.parse(el.dataset.palette));expect(tech.particles).toBeGreaterThan(100);
  await page.getByRole('tab',{name:/Creative, PR & Strategy/}).click();await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.palette).warmth)).toBeGreaterThan(.9);const warm=await canvas.evaluate(el=>JSON.parse(el.dataset.palette));expect(warm.primary).not.toBe(tech.primary);
  await page.screenshot({path:'/tmp/navya-clean-neon-creative.png'});
  await page.getByRole('button',{name:'Explore Startup Club · President'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('dialog')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');await page.keyboard.press('Escape');
@@ -34,7 +34,7 @@ test('four spatial checkpoints complete one turn, with animated organs and worki
  const organs=await canvas.evaluate(el=>JSON.parse(el.dataset.organs));expect(organs.bpm).toBe(75);expect(organs.brainNodes).toEqual(['BrainLeft','BrainRight']);
  await expect.poll(()=>canvas.evaluate(el=>JSON.parse(el.dataset.organs).heartScale)).not.toBe(organs.heartScale);
  let previousHeight=Infinity;
- for(const [p,angle] of [[0,0],[1/3,Math.PI*2/3],[2/3,Math.PI*4/3],[1,Math.PI*2]]){
+ for(const [p,angle] of [[0,0],[.375,Math.PI],[.625,Math.PI*4/3],[1,Math.PI*2]]){
   await at(page,p);const pose=await canvas.evaluate(el=>JSON.parse(el.dataset.camera));expect(pose.angle).toBeCloseTo(angle,0);expect(pose.target[1]).toBeLessThanOrEqual(previousHeight);previousHeight=pose.target[1];
  }
  await page.screenshot({path:'/tmp/navya-spiral-portal.png'});

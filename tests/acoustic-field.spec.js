@@ -6,7 +6,7 @@ test('acoustic response is bidirectional, bounded and releases owned GPU resourc
  const idle=acousticResponse(0),fast=acousticResponse(3000);
  expect(fast.frequency).toBeGreaterThan(idle.frequency);expect(fast.speed).toBeGreaterThan(idle.speed);expect(fast.intensity).toBeGreaterThan(idle.intensity);
  expect(acousticResponse(-3000)).toEqual(fast);expect(acousticResponse(1e9)).toEqual(fast);expect(acousticResponse(NaN)).toEqual(idle);
- const scene=new THREE.Scene(),field=createAcousticField(scene,{brain:[0,3,0],heart:[0,.4,.3]},{economy:true});
+ const scene=new THREE.Scene(),field=createAcousticField(scene,{brain:[0,3,0],spine:[0,1.9,0],heart:[0,.4,.3]},{economy:true});
  const resources=new Set();scene.traverse(node=>{if(node.geometry)resources.add(node.geometry);if(node.material)resources.add(node.material);});
  const disposed=new Set();resources.forEach(resource=>resource.addEventListener('dispose',()=>disposed.add(resource)));
  field.update(1,.016,2400,1);const initial=field.telemetry();

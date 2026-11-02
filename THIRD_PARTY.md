@@ -48,3 +48,7 @@ The full-screen renderer uses Three.js, React Three Fiber and Drei. Neon materia
 ## Acoustic field
 
 The concentric shell shaders, phase-offset spectral fringes and swirling particle system in `lib/acoustic-field.js` are original code using Three.js. No external audio assets, microphones, acoustic recordings or additional libraries are used.
+
+## Surgical narrative
+
+The scroll-phase controller, laser sheet, abstract energy dagger and heart-vertex light-particle effect are original Three.js code. Brain halves and heart remain the licensed BodyParts3D GLB meshes; no new anatomical assets or libraries were introduced.
