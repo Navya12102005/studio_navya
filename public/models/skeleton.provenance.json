@@ -12,11 +12,12 @@
     "Normalized orientation, scale and placement",
     "Grouped surfaces by anatomical region; retained original spatial relationships",
     "Partitioned authored brain triangles at sagittal plane into left and right nodes",
-    "Added authored ascending aorta and superior vena cava"
+    "Added authored ascending aorta and superior vena cava",
+    "Added five authored lung lobes grouped into left and right lungs"
   ],
-  "bytes": 1827584,
-  "sha256": "19580c04988ca2109db13b5ec61f2c8fbf12168cf6751801ad7b8cee75177cba",
-  "faces": 75218,
+  "bytes": 1916296,
+  "sha256": "6b8df4829e52f529e39b4a76fbcdf10c0612f2db7e52285c1020241d0c5a0a55",
+  "faces": 78818,
   "meshes": [
     "Cranium",
     "CervicalSpine",
@@ -25,6 +26,8 @@
     "CostalCartilage",
     "Sternum",
     "ShoulderGirdle",
+    "LungLeft",
+    "LungRight",
     "Heart",
     "BrainLeft",
     "BrainRight",
@@ -780,6 +783,51 @@
       "originalFaces": 121816,
       "packagedFaces": 1700,
       "group": "ShoulderGirdle"
+    },
+    {
+      "id": "FMA7370",
+      "name": "upper lobe of left lung",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7370.stl",
+      "sha256": "d5e0401182d8af9e9b05f4cac7eb4f728598650645370a15eec83ea1598b7e24",
+      "originalFaces": 40652,
+      "packagedFaces": 900,
+      "group": "LungLeft"
+    },
+    {
+      "id": "FMA7371",
+      "name": "lower lobe of left lung",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7371.stl",
+      "sha256": "17419dd2f9d837e162286b8545308893a9377e1f410c6e3c6385b45f1a6e90a3",
+      "originalFaces": 44288,
+      "packagedFaces": 900,
+      "group": "LungLeft"
+    },
+    {
+      "id": "FMA7333",
+      "name": "upper lobe of right lung",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7333.stl",
+      "sha256": "cd168d6c22d10dcb5e8be3ec88e9a97b33a261fc3e8195001daaac32d964a177",
+      "originalFaces": 30398,
+      "packagedFaces": 600,
+      "group": "LungRight"
+    },
+    {
+      "id": "FMA7383",
+      "name": "middle lobe of lung",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7383.stl",
+      "sha256": "a12839911dd06f97d21f716d717a207ad0237dc602ce2ad2ad53fbcd402d4673",
+      "originalFaces": 23478,
+      "packagedFaces": 600,
+      "group": "LungRight"
+    },
+    {
+      "id": "FMA7337",
+      "name": "lower lobe of right lung",
+      "source": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA7337.stl",
+      "sha256": "cfb1641ad8443abd6da3919d3f7565f7d119dc740b7cf91d51d17ae9f2f67eda",
+      "originalFaces": 65592,
+      "packagedFaces": 600,
+      "group": "LungRight"
     },
     {
       "id": "FMA7274",

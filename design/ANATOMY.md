@@ -4,13 +4,13 @@ The active anatomical renderer loads `/models/skeleton.glb` with `useGLTF` from 
 
 ## Authored asset and source
 
-The model packages 87 authored **BodyParts3D** surfaces into eleven mesh regions: Cranium, CervicalSpine, ThoracicSpine, Ribcage, CostalCartilage, Sternum, ShoulderGirdle, Heart, BrainLeft, BrainRight and VascularNodes. It includes seven cervical levels, twelve thoracic levels and twelve rib pairs. No lumbar spine, pelvis, legs, lower-body mesh, or procedural anatomical primitive is included.
+The model packages 92 authored **BodyParts3D** surfaces into thirteen mesh regions: Cranium, CervicalSpine, ThoracicSpine, Ribcage, CostalCartilage, Sternum, ShoulderGirdle, LungLeft, LungRight, Heart, BrainLeft, BrainRight and VascularNodes. It includes seven cervical levels, twelve thoracic levels and twelve rib pairs. No lumbar spine, pelvis, legs, lower-body mesh, or procedural anatomical primitive is included.
 
 Source: Kevin Mattheus Moerman's BodyParts3D mirror at revision `f0eeb6e843380cfe6b83797cf8c3e1af74de5e61`, using the original BodyParts3D 3.0 / 20110915 surface dataset. BodyParts3D is © The Database Center for Life Science / Life Science Integrated Database Center (2008), licensed under **CC BY-SA 2.1 Japan**. The derived GLB retains that license. The surrounding site code is separate from the mesh license.
 
 Attribution appears in the website footer and `/models/README.md`; the source credit notice is at `/licenses/models/BodyParts3D.txt`. `/models/skeleton.provenance.json` records every source surface, exact source URL, SHA-256 hash, original/reduced face count, final mesh count and asset hash. `scripts/import-anatomy.py` reproduces the asset from the pinned sources using trimesh and quadric decimation. The conversion selects, simplifies, groups, rotates and scales authored surfaces; it never constructs skeleton shapes.
 
-The packaged GLB contains 75,218 faces and is 1,827,584 bytes. Brain surfaces represent cerebral white matter and cerebellum; this is not a reconstruction of the entire cortical surface. The brain surface is partitioned at the sagittal plane into independent left/right mesh nodes under a Brain parent. This includes cerebellar surfaces and does not claim atlas-defined cortical lobes. VascularNodes packages the authored ascending aorta and superior vena cava. The heart uses the authored heart-wall surface. Rendering and simplification are intended for this artistic portfolio, not clinical teaching or measurement.
+The packaged GLB contains 78,818 faces and is 1,916,296 bytes. Brain surfaces represent cerebral white matter and cerebellum; this is not a reconstruction of the entire cortical surface. The brain surface is partitioned at the sagittal plane into independent left/right mesh nodes under a Brain parent. This includes cerebellar surfaces and does not claim atlas-defined cortical lobes. VascularNodes packages the authored ascending aorta and superior vena cava. The heart uses the authored heart-wall surface. Rendering and simplification are intended for this artistic portfolio, not clinical teaching or measurement.
 
 ## Loading and materials
 
@@ -75,3 +75,13 @@ Pointer motion adds a damped offset of at most .045 world units and a small pane
 The cranial camera remains mostly frontal during the slice (up to 30 degrees at 25%) so both lobe identities remain visible, then resumes the existing spinal/heart orbit and full-turn exit. HUD world points are constrained to the camera frustum at their original projected depth, avoiding clipping without CSS masks. During the active HUD interval, duplicate visual brain-chapter prose fades while remaining in the accessibility tree; the chapter action remains visible on keyboard focus and in the reading layout. Hide 3D/unmount clears that presentation flag and restores the normal reading layout.
 
 The synaptic spark/core layer uses additive X-ray rendering without depth rejection so its light remains visible through the translucent anatomical surfaces. This applies only to the artistic neural motifs; imported anatomy and the HUD text continue to use their own physical shading/occlusion.
+
+## Cyber-blueprint and telemetry (task 24)
+
+Branch `codex/anatomy-task-24-preview` retains task 23 on its original preview branch. The background is #0A0A0C with a derivative-antialiased procedural cyan/white grid, native cranial radar rings, angular ticks and corner reticles. Transparent editorial readouts display the real camera coordinates and the number of imported regions. No placeholder coordinate values or fabricated performance statistics are shown.
+
+The current GLB adds authored left/right lungs assembled from five atlas lobes, bringing the surface manifest to 92 sources and 13 mesh regions. The asset remains below 2 MB and 80,000 triangles. Source hashes and exact identifiers are in the provenance manifest. Lung materials retain physical transmission .95 and use .18 opacity to preserve visibility of the heart and floral installation.
+
+PULSE is the existing simulated 75 BPM heart waveform. VOLUME is the actual relative scale-cubed value of the modeled lungs, driven by a 12 cycles/min breathing function. Both monitors explicitly say SIMULATED ORGAN SIGNALS / NOT MEDICAL DATA and report relative units, never clinical millilitres. Scene status/coordinates come from the running renderer at up to eight updates per second. Pause freezes the model clock and waveforms; reduced-motion/reading mode omits the WebGL HUD.
+
+Brain arrival and heart core emission use #FF7A00, while separated cerebral identities retain their cyan/violet distinction. The original cranial cut, spinal acoustic corridor, heart strike, burst and realm controls remain. Biography and ABOUT copy describe the supplied student portfolio; no clinical outcomes or credentials were added.

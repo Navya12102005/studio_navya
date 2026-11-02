@@ -2,6 +2,7 @@ import './globals.css';
 import './spatial.css';
 import './restraint.css';
 import './clean.css';
+import './technical.css';
 import localFont from 'next/font/local';
 import { MotionProvider } from '../components/MotionProvider';
 

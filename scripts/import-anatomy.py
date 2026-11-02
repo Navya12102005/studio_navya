@@ -41,6 +41,8 @@ groups = {
     'CostalCartilage': (cartilage, 180),
     'Sternum': (['FMA7486','FMA7487','FMA7488'], 700),
     'ShoulderGirdle': (['FMA13322','FMA13323','FMA13395','FMA13396'], 1700),
+    'LungLeft': (['FMA7370','FMA7371'], 900),
+    'LungRight': (['FMA7333','FMA7383','FMA7337'], 600),
     'Heart': (['FMA7274'], 5000),
     'Brain': (['FMA61822','FMA67944'], 3000),
     'VascularNodes': (['FMA3736','FMA4720'], 1200),
@@ -53,7 +55,7 @@ meshes = {key: trimesh.load_mesh(path, process=True) for key, path in paths.item
 # Source Z is superior; rotate into Three.js Y-up using a proper rotation.
 rotation = trimesh.transformations.rotation_matrix(-np.pi / 2, [1,0,0])
 for mesh in meshes.values(): mesh.apply_transform(rotation)
-bone_ids = [key for group, (keys, _) in groups.items() if group not in ('Heart','Brain','VascularNodes') for key in keys]
+bone_ids = [key for group, (keys, _) in groups.items() if group not in ('Heart','Brain','VascularNodes','LungLeft','LungRight') for key in keys]
 bounds = np.array([meshes[key].bounds for key in bone_ids])
 minimum, maximum = bounds[:,0].min(axis=0), bounds[:,1].max(axis=0)
 scale = 5.06 / (maximum[1] - minimum[1])
@@ -92,6 +94,6 @@ output = ROOT / 'public/models'
 output.mkdir(exist_ok=True)
 blob = scene.export(file_type='glb', include_normals=True)
 (output/'skeleton.glb').write_bytes(blob)
-manifest = {'asset':'skeleton.glb','sourceRevision':REVISION,'sourceRepository':'https://github.com/Kevin-Mattheus-Moerman/BodyParts3D','credit':'BodyParts3D, (c) The Database Center for Life Science','license':'CC BY-SA 2.1 Japan','licenseUrl':'https://creativecommons.org/licenses/by-sa/2.1/jp/','changes':['Selected upper-body structures only','Converted binary STL surfaces to indexed GLB','Reduced faces with quadric decimation','Normalized orientation, scale and placement','Grouped surfaces by anatomical region; retained original spatial relationships','Partitioned authored brain triangles at sagittal plane into left and right nodes','Added authored ascending aorta and superior vena cava'],'bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest(),'faces':sum(item['packagedFaces'] for item in provenance),'meshes':list(scene.geometry),'bounds':scene.bounds.tolist(),'surfaces':provenance}
+manifest = {'asset':'skeleton.glb','sourceRevision':REVISION,'sourceRepository':'https://github.com/Kevin-Mattheus-Moerman/BodyParts3D','credit':'BodyParts3D, (c) The Database Center for Life Science','license':'CC BY-SA 2.1 Japan','licenseUrl':'https://creativecommons.org/licenses/by-sa/2.1/jp/','changes':['Selected upper-body structures only','Converted binary STL surfaces to indexed GLB','Reduced faces with quadric decimation','Normalized orientation, scale and placement','Grouped surfaces by anatomical region; retained original spatial relationships','Partitioned authored brain triangles at sagittal plane into left and right nodes','Added authored ascending aorta and superior vena cava','Added five authored lung lobes grouped into left and right lungs'],'bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest(),'faces':sum(item['packagedFaces'] for item in provenance),'meshes':list(scene.geometry),'bounds':scene.bounds.tolist(),'surfaces':provenance}
 (output/'skeleton.provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({key:manifest[key] for key in ['bytes','faces','meshes','bounds']},indent=2),flush=True)

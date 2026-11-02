@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
 import CanvasLoader from './CanvasLoader';
 import AnatomyAnchors from './AnatomyAnchors';
+import {createBlueprintField} from '../lib/blueprint-field';
 import {createLobeEngine} from '../lib/lobe-engine';
 import {createCrystalArt} from '../lib/crystal-art';
 import {createSurgicalNarrative,surgicalState} from '../lib/surgical-narrative';
@@ -31,13 +32,13 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   const context=gl.getContext(),debug=context.getExtension('WEBGL_debug_renderer_info');
   const software=debug?/swiftshader|llvmpipe|software/i.test(context.getParameter(debug.UNMASKED_RENDERER_WEBGL)):false;
   if(software)onQuality(.6);
-  gl.setClearColor('#151919',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
-  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),materials=new Map();scene.background=null;
+  gl.setClearColor('#0A0A0C',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
+  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),blueprint=createBlueprintField(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),materials=new Map();scene.background=null;
   sculpture.model.traverse(node=>{if(node.isMesh){const m=node.material;materials.set(m.uuid,{name:m.name,transmission:m.transmission,roughness:m.roughness,clearcoat:m.clearcoat,clearcoatRoughness:m.clearcoatRoughness,ior:m.ior,thickness:m.thickness});}});
   const canvas=gl.domElement;canvas.dataset.engine='react-three-fiber';canvas.dataset.renderer='physical-mesh';canvas.dataset.modelSource='/models/skeleton.glb';canvas.dataset.importedMeshes=JSON.stringify(sculpture.sourceMeshes);canvas.dataset.physicalMaterials=JSON.stringify([...materials.values()]);canvas.dataset.wireframeMeshes='0';
-  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,lobes,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
+  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,lobes,blueprint,lastTelemetry:0,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
   setAnchors(sculpture.anchors);onReady(true);invalidate();
-  return()=>{runtime.current=null;delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
+  return()=>{runtime.current=null;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm,velocity]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
@@ -54,6 +55,8 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   gl.domElement.dataset.acoustics=JSON.stringify(d.acoustics.telemetry());
   gl.domElement.dataset.organs=JSON.stringify(d.sculpture.telemetry());
   gl.domElement.dataset.checkpoint=String(Math.min(4,Math.floor(d.p*4)+1));
+  d.blueprint.update(d.p,camera,aspect);
+  if(performance.now()-d.lastTelemetry>125){d.lastTelemetry=performance.now();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:true,time:d.time,progress:d.p,camera:camera.position.toArray(),meshes:d.sculpture.sourceMeshes.length,bpm:75,relativeVolume:d.sculpture.respiratoryVolume()??1,respiratoryRate:12}}));}
   d.portal.update(d.p,camera);gl.domElement.dataset.gateway=JSON.stringify(d.portal.telemetry());
   d.nebula.update(d.time,d.warmth,gl.getPixelRatio(),aspect);gl.domElement.dataset.palette=JSON.stringify({...d.nebula.palette(),warmth:d.warmth});gl.domElement.dataset.lighting=JSON.stringify(d.sculpture.lighting());
   gl.domElement.dataset.camera=JSON.stringify({progress:d.p,angle,radius,position:camera.position.toArray(),target:target.toArray()});

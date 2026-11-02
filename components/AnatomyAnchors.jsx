@@ -9,7 +9,7 @@ import {surgicalState} from '../lib/surgical-narrative';
 import {spiralPose} from '../lib/spiral-camera';
 const STOPS=[0,.375,.625,1];
 const LABELS=[
- ['01 // NEURAL CORE','BIOENGINEERING & SYSTEM ARCHITECTURE'],
+ ['02 // BRAIN','ABOUT // BIOENGINEERING & SYSTEM ARCHITECTURE'],
  ['02 // BACKBONE','AWS & DATA PIPELINES'],
  ['03 // CREATIVE ENGINE','BRAND STRATEGY & STARTUP LEADERSHIP'],
  ['04 // WORLD TRANSITION','TECH LAB / CREATIVE STUDIO']
@@ -22,7 +22,7 @@ export default function AnatomyAnchors({anchors,progress,model}){
  const placements=useMemo(()=>LABELS.map((_,i)=>{
   const pose=spiralPose(STOPS[i],anchors,size.width/size.height);
   // Labels live in world space, just in front of each organ's camera stop.
-  const position=pose.target.clone().lerp(pose.position,.45);position.y+=.95;
+  const position=pose.target.clone().lerp(pose.position,.45);position.y+=i===0?.65:.95;
   return position.toArray();
  }),[anchors,size.width,size.height]);
  useFrame((state,delta)=>{if(!active)return;const s=surgicalState(progress.current);

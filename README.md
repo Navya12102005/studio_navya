@@ -28,3 +28,5 @@ npm start -- --port 3000
 See [model provenance](design/ANATOMY.md), [third-party notices](THIRD_PARTY.md) and [publishing instructions](PUBLISHING.md). The earlier world-flight design is historical and superseded. Hardware frame rate and live hosting require independent verification.
 
 `/?reading=1` opens the reading layout. Canvas datasets expose rendering diagnostics, not portfolio achievements.
+
+Task 24 preview branch: `codex/anatomy-task-24-preview`. It adds the #0A0A0C technical blueprint, cranial radar, real scene coordinates and clearly labeled simulated pulse/respiratory monitors. Task 23 remains on `codex/anatomy-flight-preview`; the v22 Git tag is unchanged.

@@ -1,0 +1,10 @@
+import {test,expect} from '@playwright/test';
+test('task 24 blueprint telemetry reports the scene and labels modeled signals honestly',async({page})=>{
+ test.setTimeout(150000);const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
+ await page.goto('/?profile=1');const hud=page.locator('[data-technical-telemetry]'),canvas=page.locator('.anatomy-canvas canvas');await expect(hud).toBeVisible();await expect(hud).toContainText('ANATOMY...CHECK / 13 REGIONS');await expect(hud).toContainText('SIMULATED ORGAN SIGNALS / NOT MEDICAL DATA');await expect(page.locator('body')).toHaveCSS('background-color','rgb(10, 10, 12)');
+ const coordinates=await page.locator('[data-live-coordinates]').textContent();const graph=page.locator('svg[aria-label="Simulated cardiac waveform"] path'),initial=await graph.getAttribute('d');await expect.poll(()=>graph.getAttribute('d')).not.toBe(initial);await page.screenshot({path:'/tmp/navya-task24-brain.png'});
+ await page.evaluate(()=>scrollTo({top:(document.getElementById('home').offsetHeight-innerHeight*.75)*.55,behavior:'instant'}));await expect.poll(()=>page.locator('[data-live-coordinates]').textContent()).not.toBe(coordinates);await expect(hud).toContainText('PULSE / 75 BPM');await page.screenshot({path:'/tmp/navya-task24-thorax.png'});
+ for(const selector of['.telemetry-status','.telemetry-coordinates','.telemetry-monitors'])await expect(page.locator(selector)).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+ await page.setViewportSize({width:390,height:950});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(hud).toBeVisible();await page.screenshot({path:'/tmp/navya-task24-mobile.png'});
+ await page.getByRole('button',{name:'Pause visual effects'}).click();const frozen=await canvas.getAttribute('data-camera');await page.mouse.wheel(0,200);await expect(canvas).toHaveAttribute('data-camera',frozen);expect(errors).toEqual([]);
+});
