@@ -44,3 +44,7 @@ JetBrains Mono, Syne and Plus Jakarta Sans are Google Fonts, self-hosted from th
 ## Current fixed anatomy implementation
 
 The full-screen renderer uses Three.js, React Three Fiber and Drei. Neon material shaders, the particle field and ambient color-field shaders are original code. HTML typography uses the locally hosted fonts described above. Postprocessing packages and the earlier world-flight renderer have been removed; their retained license files document historical use. Lucide has been removed; small original action SVGs replace it. No analytics or delivery service was added.
+
+## Acoustic field
+
+The concentric shell shaders, phase-offset spectral fringes and swirling particle system in `lib/acoustic-field.js` are original code using Three.js. No external audio assets, microphones, acoustic recordings or additional libraries are used.

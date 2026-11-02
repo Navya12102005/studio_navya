@@ -31,3 +31,11 @@ The cached useGLTF scene is never mutated or disposed. Each mounted instance get
 The GLB is uncompressed and embeds its buffers. The hook disables unused Draco and Meshopt decoder initialization; no remote decoder request or production CSP relaxation is needed.
 
 Hardware rendering performance remains unverified; no physical-device frame-rate guarantee is made.
+
+## Cymatics field (point 20)
+
+`lib/acoustic-field.js` adds two concentric, transparent wave shells at each authored brain and heart pivot. These spheres are acoustic artwork around the imported model, never substitute anatomy. Surface displacement and ring opacity follow `sin(distance * frequency - phase)`; phase integrates speed continuously so velocity changes do not pop the wave position. Cyan, violet and amber phase offsets produce spectral edge splitting. A camera-facing transparent central aperture preserves the organ rather than painting an opaque black disk over it. Two GPU-animated micro-particle vortices occupy the fields.
+
+A separate GSAP ScrollTrigger samples native document velocity in pixels/second. Absolute velocity is capped at 2400 and exponentially damped; frequency ranges from 12 to 36 and angular phase speed from 1.8 to 8.0. The peak impulse is retained until the next rendered frame so a slower GPU cannot miss it. After scrolling stops, sustained input expires at 160 ms and the field relaxes. Ring intensity and shell expansion also follow the existing 75 BPM cardiac waveform. This is an artistic acoustic visualization, not a physical pressure solver. No microphone, audio capture, permission prompt or new data collection is involved.
+
+Reduced motion/Hide 3D omit the field with the canvas. Pause freezes shader time, phase and particles. Shared sphere geometry and all owned shader/particle resources are disposed on unmount. Software rendering uses 32×20 sphere segments and 100 particles per vortex; hardware uses 64×40 and 220. Device frame rate remains unverified.
