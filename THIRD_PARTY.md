@@ -68,3 +68,7 @@ Task 25 uses EffectComposer, RenderPass, ShaderPass and OutputPass shipped with 
 ## Code-cloud brain
 
 Task 26's glyph atlas and morph shader are original code, rendered with the already licensed local JetBrains Mono font. Neural targets are sampled from the existing BodyParts3D derivative. No code snippets are executed; no external AI, font, texture or model service is called.
+
+## Graphic-novel worlds
+
+Task 27 uses the existing Three.js MIT components and locally hosted fonts. Cel/ink/halftone shaders, code-city blocks, page hinges, rose petals and speech textures are original. Exploded anatomical plates reuse the credited BodyParts3D derivative. Molecular shapes are illustrative procedural artwork, not externally sourced protein data. Local sandbox tools do not contact an AI, scientific or analytics service.

@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
 import CanvasLoader from './CanvasLoader';
 import AnatomyAnchors from './AnatomyAnchors';
+import {createComicWorld} from '../lib/comic-world';
 import {createCodeBrain} from '../lib/code-brain';
 import {createCadInspection} from '../lib/cad-inspection';
 import {createBlueprintField} from '../lib/blueprint-field';
@@ -35,16 +36,16 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   const software=debug?/swiftshader|llvmpipe|software/i.test(context.getParameter(debug.UNMASKED_RENDERER_WEBGL)):false;
   if(software)onQuality(.6);
   gl.setClearColor('#0A0A0C',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
-  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),blueprint=createBlueprintField(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),codeBrain=createCodeBrain(sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),inspection=createCadInspection(scene,camera,gl,sculpture,{economy:software}),materials=new Map();scene.background=null;document.documentElement.dataset.inspection='active';
+  const sculpture=createImportedAnatomy(scene,gl,asset),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),blueprint=createBlueprintField(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),codeBrain=createCodeBrain(sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),inspection=createCadInspection(scene,camera,gl,sculpture,{economy:software}),comic=createComicWorld(scene,camera,sculpture,{economy:software,invalidate}),materials=new Map();scene.background=null;document.documentElement.dataset.inspection='active';
   sculpture.model.traverse(node=>{if(node.isMesh){const m=node.material;materials.set(m.uuid,{name:m.name,transmission:m.transmission,roughness:m.roughness,clearcoat:m.clearcoat,clearcoatRoughness:m.clearcoatRoughness,ior:m.ior,thickness:m.thickness});}});
   const canvas=gl.domElement;canvas.dataset.engine='react-three-fiber';canvas.dataset.renderer='physical-mesh';canvas.dataset.modelSource='/models/skeleton.glb';canvas.dataset.importedMeshes=JSON.stringify(sculpture.sourceMeshes);canvas.dataset.physicalMaterials=JSON.stringify([...materials.values()]);canvas.dataset.wireframeMeshes='0';
-  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,lobes,codeBrain,brainMorph:0,blueprint,inspection,lastTelemetry:0,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
+  runtime.current={sculpture,nebula,portal,acoustics,surgery,crystalArt,lobes,codeBrain,brainMorph:0,blueprint,inspection,comic,lastTelemetry:0,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
   setAnchors(sculpture.anchors);onReady(true);invalidate();
-  return()=>{runtime.current=null;codeBrain.dispose();inspection.dispose();delete document.documentElement.dataset.inspection;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
+  return()=>{runtime.current=null;comic.dispose();codeBrain.dispose();inspection.dispose();delete document.documentElement.dataset.inspection;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm,velocity]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
-  if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const story=d.surgery.update(d.p,d.time,gl.getPixelRatio());d.brainMorph=d.codeBrain.update(d.time,d.p,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst,d.brainMorph);d.lobes.update(d.time,story.separation,gl.getPixelRatio(),d.brainMorph);
+  if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const restoring=['finale','returned'].includes(d.comic.telemetry().mode);const story=d.surgery.update(restoring?0:d.p,d.time,gl.getPixelRatio());d.brainMorph=d.codeBrain.update(d.time,restoring?.1:d.p,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst,d.brainMorph);d.lobes.update(d.time,story.separation,gl.getPixelRatio(),d.brainMorph);
    if(!realm.current.inWork&&d.p>.735&&!d.creativeActivated){d.creativeActivated=true;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'creative'}}));}
    if(!realm.current.inWork&&d.p<.5&&d.creativeActivated){d.creativeActivated=false;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'tech'}}));}const speed=Math.max(velocity.current.pending,performance.now()-velocity.current.at<160?Math.abs(velocity.current.value):0);velocity.current.pending=0;d.acoustics.update(d.time,delta,speed,gl.getPixelRatio(),d.p,state.size.width/state.size.height);}
   const aspect=state.size.width/state.size.height;
@@ -60,9 +61,11 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   gl.domElement.dataset.checkpoint=String(Math.min(4,Math.floor(d.p*4)+1));
   d.inspection.update(d.time,d.p,velocity.current.value,state.size,d.brainMorph);gl.domElement.dataset.inspection=JSON.stringify(d.inspection.telemetry());
   d.blueprint.update(d.p,camera,aspect);
-  if(performance.now()-d.lastTelemetry>125){d.lastTelemetry=performance.now();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:true,time:d.time,progress:d.p,camera:camera.position.toArray(),meshes:d.sculpture.sourceMeshes.length,bpm:75,relativeVolume:d.sculpture.respiratoryVolume()??1,respiratoryRate:12,inspection:d.inspection.telemetry()}}));}
+
   d.portal.update(d.p,camera);gl.domElement.dataset.gateway=JSON.stringify(d.portal.telemetry());
   d.nebula.update(d.time,d.warmth,gl.getPixelRatio(),aspect);gl.domElement.dataset.palette=JSON.stringify({...d.nebula.palette(),warmth:d.warmth});gl.domElement.dataset.lighting=JSON.stringify(d.sculpture.lighting());
+  const comic=d.comic.update(d.time,d.p,state.size,active);d.inspection.setComic(comic);gl.domElement.dataset.comic=JSON.stringify(comic);
+  if(performance.now()-d.lastTelemetry>125){d.lastTelemetry=performance.now();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:true,time:d.time,progress:d.p,camera:camera.position.toArray(),meshes:d.sculpture.sourceMeshes.length,bpm:75,relativeVolume:d.sculpture.respiratoryVolume()??1,respiratoryRate:12,inspection:d.inspection.telemetry(),comic}}));}
   gl.domElement.dataset.camera=JSON.stringify({progress:d.p,angle,radius,position:camera.position.toArray(),target:target.toArray()});
   gl.domElement.dataset.modelPosition=JSON.stringify(d.sculpture.model.position.toArray());
  });
