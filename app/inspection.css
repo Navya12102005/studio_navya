@@ -4,3 +4,6 @@
 .cad-summary { position:absolute; bottom:28px; left:30px; display:grid; gap:3px; font-variant-numeric:tabular-nums; background:transparent; }.cad-summary>span:first-child { color:#b3e5ed; font-size:11px; }.cad-summary small { color:#738f92; font-size:7px; }
 html[data-inspection=active] .telemetry-about { display:none; }html[data-inspection=active] .telemetry-coordinates { left:30px; right:auto; top:170px; }
 @media(max-width:760px){.cad-node-label { display:none; }.cad-summary { left:16px; bottom:105px; font-size:7px; }.cad-summary>span:first-child { font-size:9px; }html[data-inspection=active] .telemetry-coordinates { left:16px; top:145px; }}
+
+html[data-inspection=active] .clean-chapter>p,html[data-inspection=active] .clean-chapter>h2,html[data-inspection=active] .clean-chapter>.text-cta:not(:focus-visible) { opacity:0; pointer-events:none; }
+.narrative-3 { color:#8fe7df; }

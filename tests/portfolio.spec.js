@@ -27,5 +27,5 @@ test('WebGL failure and no JavaScript retain portfolio content, legal links and 
 });
 
 test('anatomical chapter actions retain project mappings and normal anchor navigation',async({page})=>{
- await page.goto('/?reading=1');await page.getByRole('link',{name:'Connection',exact:true}).click();await expect(page.locator('#spine')).toBeInViewport();await page.getByRole('button',{name:'View operational leadership',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('AWS Student Builder operational lead');
+ await page.goto('/?reading=1');await page.getByRole('link',{name:'Foundation',exact:true}).click();await expect(page.locator('#spine')).toBeInViewport();await page.getByRole('button',{name:'Explore biomedical foundation',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('Oculomics');
 });

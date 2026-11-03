@@ -18,7 +18,7 @@ test('crystal art follows the source mesh transforms and disposes all owned reso
 test('exact crystal optics, diamond particles and roses render through the existing surgical phases',async({page})=>{
  test.setTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(/Shader Error|VALIDATE_STATUS/.test(m.text()))errors.push(m.text());});
  await page.goto('/?profile=1');const canvas=page.locator('.anatomy-canvas canvas');await expect(canvas).toHaveAttribute('data-crystal-art',/.+/);
- const materials=await canvas.evaluate(el=>JSON.parse(el.dataset.physicalMaterials));for(const m of materials)expect(m).toMatchObject({transmission:m.name.includes('brain')?.92:.95,roughness:.08,clearcoat:1,clearcoatRoughness:.1,ior:1.52,thickness:1.2});
+ const materials=await canvas.evaluate(el=>JSON.parse(el.dataset.physicalMaterials));for(const m of materials)expect(m).toMatchObject({transmission:.95,roughness:.08,clearcoat:1,clearcoatRoughness:.1,ior:1.52,thickness:1.2});
  const art=await canvas.evaluate(el=>JSON.parse(el.dataset.crystalArt));expect(art).toMatchObject({roses:3,petals:63,filigreeWires:9});expect(art.dustPoints).toBeGreaterThanOrEqual(500);expect(art.dustRegions).toContain('ThoracicSpine');await page.screenshot({path:'/tmp/navya-crystal-cranium.png'});
  const at=async p=>{await page.evaluate(p=>scrollTo({top:(document.getElementById('home').offsetHeight-innerHeight*.75)*p,behavior:'instant'}),p);await expect.poll(()=>canvas.evaluate((el,p)=>Math.abs(JSON.parse(el.dataset.narrative).progress-p),p)).toBeLessThan(.008);};
  await at(.55);await page.screenshot({path:'/tmp/navya-crystal-botanical-heart.png'});expect(await canvas.evaluate(el=>JSON.parse(el.dataset.crystalArt).botanicalsVisible)).toBe(true);

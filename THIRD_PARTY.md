@@ -64,3 +64,7 @@ The scroll-phase controller, laser sheet, abstract energy dagger and heart-verte
 ## CAD inspection compositor
 
 Task 25 uses EffectComposer, RenderPass, ShaderPass and OutputPass shipped with the already pinned Three.js package under its existing MIT notice. The bounding cage, shader scan, point overlay, marker texture and interaction code are original. No third-party postprocessing package or additional asset was added.
+
+## Code-cloud brain
+
+Task 26's glyph atlas and morph shader are original code, rendered with the already licensed local JetBrains Mono font. Neural targets are sampled from the existing BodyParts3D derivative. No code snippets are executed; no external AI, font, texture or model service is called.

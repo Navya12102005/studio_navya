@@ -31,7 +31,7 @@ test('Suspense displays a loader, then useGLTF traverses the real asset and appl
     await expect(page.locator('.anatomy-model-loader')).toHaveCount(0);
     const meshes=JSON.parse(await canvas.getAttribute('data-imported-meshes'));expect(meshes).toHaveLength(13);expect(meshes).toContain('Cranium');expect(meshes).toContain('Ribcage');
     const materials=JSON.parse(await canvas.getAttribute('data-physical-materials'));
-    for(const material of materials){expect(material.transmission).toBe(material.name.includes('brain')?.92:.95);expect(material.roughness).toBe(.08);expect(material.clearcoat).toBe(1);expect(material.ior).toBe(1.52);expect(material.clearcoatRoughness).toBe(.1);expect(material.thickness).toBe(1.2);}
+    for(const material of materials){expect(material.transmission).toBe(.95);expect(material.roughness).toBe(.08);expect(material.clearcoat).toBe(1);expect(material.ior).toBe(1.52);expect(material.clearcoatRoughness).toBe(.1);expect(material.thickness).toBe(1.2);}
     await page.waitForFunction(()=>document.querySelector('canvas[data-camera]'));
     await page.screenshot({path:'/tmp/navya-imported-glb-hero.png'});
     await expect(page.locator('.model-credit')).toContainText('BodyParts3D');

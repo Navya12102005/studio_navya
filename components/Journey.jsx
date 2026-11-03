@@ -6,9 +6,9 @@ import { useMotion } from './MotionProvider';
 import { ArrowUpRight } from './Icons';
 const FullCanvasAnatomy=dynamic(()=>import('./FullCanvasAnatomy'),{ssr:false});
 const chapters=[
- {id:'brain',label:'01 // NEURAL CORE: BIOENGINEERING & SYSTEM ARCHITECTURE',title:'Think in systems.',text:'Areas of interest: molecular docking, computational biosensors and clinical diagnostics. Technical exploration spans prompt engineering, vibe coding, Python data pipelines, Java and generative AI workflows.',domain:'tech',action:'Explore Tech & Bioengineering'},
- {id:'spine',label:'02 // BACKBONE: AWS & DATA PIPELINES',title:'Connect the unexpected.',text:'Planning, communication and coordination across student communities. The structure that connects an idea with the people bringing it to life.',domain:'creative',project:'aws',action:'View operational leadership'},
- {id:'heart',label:'03 // CREATIVE ENGINE: BRAND STRATEGY & STARTUP LEADERSHIP',title:'Create with intent.',text:'Startup Club leadership, independent design and content strategy. Work shaped around a clear purpose and the people it needs to reach.',domain:'creative',action:'Explore Creative, PR & Strategy'}
+ {id:'brain',label:'01 // TECH ENTHUSIAST: PROMPT ENGINEER & VIBE CODER',title:'Think in code.',text:'Technical exploration through Python data pipelines, prompt engineering, generative AI workflows and creative coding. Explore the working Python demonstration and the systems behind this installation.',domain:'tech',project:'data',action:'Explore technical workflows'},
+ {id:'spine',label:'02 // BIOENGINEERING & BIOMEDICAL INNOVATION: HEALTHCARE CONTRIBUTOR',title:'A biomedical foundation.',text:'My bioengineering foundation connects research context, molecular docking workflows, computational biosensors and an interest in future healthcare. Academic exploration is distinguished from clinically validated work.',domain:'tech',project:'oculomics',action:'Explore biomedical foundation'},
+ {id:'heart',label:'03 // CREATIVE & NON-TECH ROLES: DESIGN LEADERSHIP & STUDIO NAVYA',title:'Create with intent.',text:'Studio Navya, startup leadership, PR, content strategy and event direction. Explore the creative and community work that connects an idea with people.',domain:'creative',action:'Explore Creative, PR & Strategy'}
 ];
 export default function Journey(){
  const [mounted,setMounted]=useState(false);const {enabled,active}=useMotion();useEffect(()=>setMounted(true),[]);
@@ -19,7 +19,7 @@ export default function Journey(){
    <h1>The science<br/>of possibility.</h1>
    <p className="clean-deck">Research, technology and the work of bringing people around an idea.</p>
    <a className="text-cta" href="#work">Explore my work <ArrowUpRight size={16}/></a>
-   <nav className="clean-chapter-links" aria-label="Explore anatomical chapters"><a href="#brain">Mind</a><a href="#spine">Connection</a><a href="#heart">Instinct</a></nav>
+   <nav className="clean-chapter-links" aria-label="Explore anatomical chapters"><a href="#brain">Mind</a><a href="#spine">Foundation</a><a href="#heart">Instinct</a></nav>
   </div>
   <div className="clean-chapters page-gutter">{chapters.map(chapter=><article className="clean-chapter" id={chapter.id} key={chapter.id} data-editorial-reveal>
    <p className="eyebrow">{chapter.label}</p><h2>{chapter.title}</h2><p>{chapter.text}</p>

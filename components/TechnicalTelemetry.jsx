@@ -12,7 +12,7 @@ export default function TechnicalTelemetry(){
   {['tl','tr','bl','br'].map(corner=><i key={corner} className={`scan-reticle ${corner}`} aria-hidden="true"/>)}
   <div className="telemetry-status"><span>SCENE ONLINE</span><span>ANATOMY...CHECK / {data.meshes} REGIONS</span><small>LOCAL RENDER TELEMETRY</small></div>
   <div className="telemetry-coordinates" data-live-coordinates>{data.camera.map((v,i)=><span key={i}>{'XYZ'[i]} {v.toFixed(2)}</span>)}</div>
-  {cranial?<div className="telemetry-about"><span className="telemetry-kicker">02 // BRAIN</span><p>ABOUT / Bioengineering student exploring biomedical innovation, computational workflows and creative strategy.</p></div>:null}
+  {cranial?<div className="telemetry-about"><span className="telemetry-kicker">01 // BRAIN / TECH</span><p>ABOUT / Technical exploration through Python workflows, prompt systems, generative AI and creative coding.</p></div>:null}
   <div className="telemetry-monitors"><div><span>PULSE / {data.bpm} BPM</span><svg viewBox="0 0 180 36" aria-label="Simulated cardiac waveform"><path d={monitor(data.time,false)} fill="none" stroke="currentColor" strokeWidth="1"/></svg></div><div><span>VOLUME / {data.relativeVolume.toFixed(3)}×</span><svg viewBox="0 0 180 36" aria-label="Modeled relative lung volume"><path d={monitor(data.time,true)} fill="none" stroke="currentColor" strokeWidth="1"/></svg></div><small>SIMULATED ORGAN SIGNALS / NOT MEDICAL DATA</small></div>
  </aside>;
 }
