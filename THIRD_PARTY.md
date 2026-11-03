@@ -71,4 +71,4 @@ Task 26's glyph atlas and morph shader are original code, rendered with the alre
 
 ## Voxel Tech Core
 
-The gothic arch, vines, ash, moon/cloud layers, lava fissures, redstone circuitry, voxel brain and code terminals in `lib/voxel-tech-core.js` are original procedural Three.js work. Terminal textures are generated locally at runtime from portfolio-safe code labels. The environment is inspired by voxel-building visual language but contains no Minecraft/Mojang assets, textures, models, sounds or source code.
+The street canyon, gothic arch, lanterns, foliage, vines, crimson storm layers, GPU embers, ash, moon, lava falls, soul-fire beacons, particle portals, redstone circuitry, voxel brain, floating command blocks and code terminals in `lib/voxel-tech-core.js` are original procedural Three.js work. Terminal textures are generated locally at runtime from portfolio-safe code labels. The environment is inspired by voxel-building visual language but contains no Minecraft/Mojang assets, textures, models, sounds or source code.
