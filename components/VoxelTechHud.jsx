@@ -14,6 +14,6 @@ export default function VoxelTechHud(){
  return <aside className="voxel-tech-hud" aria-label="Tech Core telemetry" data-voxel-sequence={frame.sequence}>
   <header><p>REALM 01 // TECH CORE</p><div><button onClick={()=>setPaused(value=>!value)}>{paused?'Resume realm':'Pause realm'}</button><button onClick={()=>document.getElementById('heart')?.scrollIntoView({behavior:'auto',block:'center'})}>Return to anatomy</button></div></header>
   <p className="voxel-sequence" aria-live="polite">{NAMES[frame.sequence]}</p>
-  <footer><span>OBSIDIAN NETWORK / ONLINE</span><span>BRAIN VOXELS {frame.assets.brainVoxels.toLocaleString()}</span><span>ASH {frame.assets.ashParticles.toLocaleString()}</span><span>{Math.round(frame.progress*100).toString().padStart(3,'0')}%</span></footer>
+  <footer><span>OBSIDIAN NETWORK / ONLINE</span><span>BRAIN VERTICES {frame.assets.brainSurfaceVertices.toLocaleString()}</span><span>EMBERS {frame.assets.emberParticles.toLocaleString()}</span><span>{Math.round(frame.progress*100).toString().padStart(3,'0')}%</span></footer>
  </aside>;
 }

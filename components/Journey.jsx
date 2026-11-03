@@ -27,7 +27,7 @@ export default function Journey(){
   </article>)}</div>
   <section className="anatomy-portal page-gutter" aria-label="Tech Core gateway" data-editorial-reveal data-gateway-state="tech-core-online">
    <p className="eyebrow">04 // POST-HEART SPLIT</p><h2>The gateway is clear.</h2>
-   <p className="gateway-reset-note">Realm 01 online. Continue scrolling to enter the voxel Tech Core.</p>
+   <p className="gateway-reset-note">Three voxel portals condensed. Realm 01 is online. Continue scrolling to enter the Nether-Core Tech Domain.</p>
   </section>
   {mounted?createPortal(<FullCanvasAnatomy enabled={enabled} active={active}/>,document.body):null}
  </section>;
