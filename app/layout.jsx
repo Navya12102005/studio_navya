@@ -3,6 +3,7 @@ import './spatial.css';
 import './restraint.css';
 import './clean.css';
 import './technical.css';
+import './inspection.css';
 import localFont from 'next/font/local';
 import { MotionProvider } from '../components/MotionProvider';
 

@@ -60,3 +60,7 @@ The scroll-phase controller, laser sheet, abstract energy dagger and heart-verte
 ## Cybernetic lobe HUDs
 
 `lib/lobe-engine.js` and `components/LobeHudPanel.jsx` contain original artistic synaptic paths, core fibers and transparent optical HUD surfaces. Copper surface traces are original procedural GLSL in the existing anatomical material adapter. No atlas, neural tractography dataset, UI library, font or remote texture was added.
+
+## CAD inspection compositor
+
+Task 25 uses EffectComposer, RenderPass, ShaderPass and OutputPass shipped with the already pinned Three.js package under its existing MIT notice. The bounding cage, shader scan, point overlay, marker texture and interaction code are original. No third-party postprocessing package or additional asset was added.

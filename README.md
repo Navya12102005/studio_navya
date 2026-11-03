@@ -30,3 +30,5 @@ See [model provenance](design/ANATOMY.md), [third-party notices](THIRD_PARTY.md)
 `/?reading=1` opens the reading layout. Canvas datasets expose rendering diagnostics, not portfolio achievements.
 
 Task 24 preview branch: `codex/anatomy-task-24-preview`. It adds the #0A0A0C technical blueprint, cranial radar, real scene coordinates and clearly labeled simulated pulse/respiratory monitors. Task 23 remains on `codex/anatomy-flight-preview`; the v22 Git tag is unchanged.
+
+Task 25 preview branch: `codex/anatomy-task-25-preview`. It adds an actual model-bound CAD cage, source-mesh point layers, selectable spatial markers, coordinate leaders and a short ShaderPass scan at chapter boundaries. Task 24 remains unchanged on its own preview branch.

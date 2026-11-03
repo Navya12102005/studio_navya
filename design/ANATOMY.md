@@ -85,3 +85,13 @@ The current GLB adds authored left/right lungs assembled from five atlas lobes, 
 PULSE is the existing simulated 75 BPM heart waveform. VOLUME is the actual relative scale-cubed value of the modeled lungs, driven by a 12 cycles/min breathing function. Both monitors explicitly say SIMULATED ORGAN SIGNALS / NOT MEDICAL DATA and report relative units, never clinical millilitres. Scene status/coordinates come from the running renderer at up to eight updates per second. Pause freezes the model clock and waveforms; reduced-motion/reading mode omits the WebGL HUD.
 
 Brain arrival and heart core emission use #FF7A00, while separated cerebral identities retain their cyan/violet distinction. The original cranial cut, spinal acoustic corridor, heart strike, burst and realm controls remain. Biography and ABOUT copy describe the supplied student portfolio; no clinical outcomes or credentials were added.
+
+## CAD scanner and point-cloud inspection (task 25)
+
+`lib/cad-inspection.js` unions the authored mesh bounds into a real Box3Helper cage. It adds a sampled point layer to each of the 13 anatomical mesh nodes without replacing their physical materials. Vertex totals are read from the imported BufferGeometry attributes. VISIBLE MESH VERTICES counts complete meshes intersecting the camera frustum, not per-pixel occlusion or a clinical measurement. Total source vertices stay constant; the frustum subset changes with camera descent and heart visibility.
+
+Cranium, cervical spine, lateral ribcage and heart markers use projected positions from actual mesh bounds. Native 3D sprites and Line leaders connect them to transparent coordinate labels. The corresponding keyboard-operable HTML buttons occupy those projected positions above the canvas. Clicking selects the real anatomical node and highlights its marker/readout. Frustum limits keep labels in view; reduced-motion/Hide 3D removes the inspector with the canvas.
+
+The renderer now uses Three.js EffectComposer with RenderPass, a custom ShaderPass and OutputPass. Chapter crossings briefly trigger a bounded RGB/planar sweep; strength decays against the active scene clock instead of persisting at a scroll threshold. Pause freezes that clock. Draw counts aggregate the actual composed frame via renderer.info, and are labeled FRAME DRAWS. The procedural grid is toned down for linear compositing. All render targets, materials, geometries, source point attachments and event listeners are released on teardown.
+
+No new source assets, libraries, clinical datasets or data collection were added. Task 25 advances only its dedicated preview branch; tasks 23/24 and the protected v22 tag remain separate.
