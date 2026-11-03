@@ -26,7 +26,7 @@ export default function Journey(){
    <button className="text-cta" onClick={event=>explore(chapter,event.currentTarget)}>{chapter.action}<ArrowUpRight size={16}/></button>
   </article>)}</div>
   <section className="anatomy-portal page-gutter" aria-label="Choose your next world" data-editorial-reveal>
-   <p className="eyebrow">04 // WORLD TRANSITION</p><h2>One mind. Two worlds.</h2>
+   <p className="eyebrow">04 // WORLD TRANSITION</p><h2>One mind. Three worlds.</h2>
    <div className="anatomy-portal-choices">{[[1,'01 // TECH MATRIX'],[2,'02 // BIOMEDICAL SANCTUARY'],[3,'03 // CREATIVE STUDIO']].map(([id,title])=><button key={id} className="text-cta" onClick={()=>dispatchEvent(new CustomEvent('portfolio:comic-select',{detail:id}))}>{title}</button>)}</div>
   </section>
   {mounted?createPortal(<FullCanvasAnatomy enabled={enabled} active={active}/>,document.body):null}

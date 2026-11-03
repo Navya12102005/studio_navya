@@ -3,11 +3,11 @@
 ## Active Next.js application
 
 - Next.js 16.4.3 and React / React DOM 19.3.1; Tailwind CSS / PostCSS integration 4.3.3. MIT licenses.
-- `lenis/react` from Lenis 1.3.27 provides ReactLenis, the maintained successor to the React-17/18-only `@studio-freight/react-lenis` package. MIT.
+- Lenis 1.3.27 remains a dependency from earlier versions (MIT). The current anatomical experience preserves native browser scrolling with GSAP ScrollTrigger.
 - GSAP / ScrollTrigger 3.15.0, under the GSAP Standard License linked below.
-- Three.js 0.187.0 and @react-three/fiber 9.8.2 (MIT) render locally generated anatomical curves and original GLSL shader effects; MIT notices shipped at `/licenses/three.txt` and `/licenses/react-three-fiber.txt`.
-- Lucide React supplies the interface icons, under the ISC license.
-- **Actual React Bits SpotlightCard** is included in `components/react-bits/SpotlightCard.jsx` and its CSS, retrieved from the pinned upstream commit listed below. The full MIT + Commons Clause notice is retained in `licenses/react-bits.txt` and served at `/licenses/react-bits.txt`. It is integrated into this portfolio; it is not offered as a standalone component service.
+- Three.js 0.187.0 and @react-three/fiber 9.8.2 (MIT), with Drei useGLTF, render the credited BodyParts3D derivative and original world assets/shaders. MIT notices ship at `/licenses/three.txt` and `/licenses/react-three-fiber.txt`.
+- Current interface symbols are the local SVG components in `components/Icons.jsx`; Lucide is not used in the current app.
+- **Actual React Bits SpotlightCard** is included in `components/react-bits/SpotlightCard.jsx` and its CSS, retrieved from the pinned upstream commit listed below. The full MIT + Commons Clause notice is retained in `licenses/react-bits.txt` and served at `/licenses/react-bits.txt`. It is retained from the earlier card-based design and is not used by the current spatial comic frames; it is not offered as a standalone component service.
 - The magnetic controls, tilt, anatomical geometry, custom shader programs, particle field and domain transition are original implementation for this site. The shaders are stylized refraction/scattering approximations, not physically based ray-traced materials.
 
 21st.dev, the four additional website references, and the ThreeUI Notion reference were supplied by the user but could not be visually inspected because the environment proxy denied access. Their code was not copied or represented as inspected.
@@ -72,3 +72,5 @@ Task 26's glyph atlas and morph shader are original code, rendered with the alre
 ## Graphic-novel worlds
 
 Task 27 uses the existing Three.js MIT components and locally hosted fonts. Cel/ink/halftone shaders, code-city blocks, page hinges, rose petals and speech textures are original. Exploded anatomical plates reuse the credited BodyParts3D derivative. Molecular shapes are illustrative procedural artwork, not externally sourced protein data. Local sandbox tools do not contact an AI, scientific or analytics service.
+
+Task 28's panel-focus paths, spline vortex layout, projected prop controls and orbit interface are original additions using the same pinned Three.js and R3F dependencies. No additional third-party model, library or service was introduced.

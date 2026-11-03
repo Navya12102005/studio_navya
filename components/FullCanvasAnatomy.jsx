@@ -43,14 +43,15 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   setAnchors(sculpture.anchors);onReady(true);invalidate();
   return()=>{runtime.current=null;comic.dispose();codeBrain.dispose();inspection.dispose();delete document.documentElement.dataset.inspection;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm,velocity]);
+ useEffect(()=>{if(runtime.current)runtime.current.skipDelta=true;},[active]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
-  if(active){d.time+=delta;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const restoring=['finale','returned'].includes(d.comic.telemetry().mode);const story=d.surgery.update(restoring?0:d.p,d.time,gl.getPixelRatio());d.brainMorph=d.codeBrain.update(d.time,restoring?.1:d.p,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst,d.brainMorph);d.lobes.update(d.time,story.separation,gl.getPixelRatio(),d.brainMorph);
+  if(active){d.time+=d.skipDelta?0:delta;d.skipDelta=false;d.p=THREE.MathUtils.damp(d.p,progress.current,6,Math.min(delta,.1));d.warmth=THREE.MathUtils.damp(d.warmth,realm.current.inWork?realm.current.selected:surgicalState(d.p).creativeMix,3,Math.min(delta,.1));d.sculpture.update(d.time,0,d.warmth);const restoring=['finale','returned'].includes(d.comic.telemetry().mode);const story=d.surgery.update(restoring?0:d.p,d.time,gl.getPixelRatio());d.brainMorph=d.codeBrain.update(d.time,restoring?.1:d.p,gl.getPixelRatio());d.crystalArt.update(d.time,gl.getPixelRatio(),story.burst,d.brainMorph);d.lobes.update(d.time,story.separation,gl.getPixelRatio(),d.brainMorph);
    if(!realm.current.inWork&&d.p>.735&&!d.creativeActivated){d.creativeActivated=true;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'creative'}}));}
    if(!realm.current.inWork&&d.p<.5&&d.creativeActivated){d.creativeActivated=false;dispatchEvent(new CustomEvent('portfolio:domain',{detail:{domain:'tech'}}));}const speed=Math.max(velocity.current.pending,performance.now()-velocity.current.at<160?Math.abs(velocity.current.value):0);velocity.current.pending=0;d.acoustics.update(d.time,delta,speed,gl.getPixelRatio(),d.p,state.size.width/state.size.height);}
   const aspect=state.size.width/state.size.height;
   const pose=spiralPose(d.p,d.sculpture.anchors,aspect),{radius,angle,target}=pose;
-  camera.position.copy(pose.position);camera.lookAt(target);
+  if(!['realm','finale','returned'].includes(d.comic.telemetry().mode)){camera.position.copy(pose.position);camera.lookAt(target);}
   const cranialHud=d.p>.12&&d.p<.31?'active':'inactive';if(document.documentElement.dataset.cranialHud!==cranialHud)document.documentElement.dataset.cranialHud=cranialHud;
   gl.domElement.dataset.codeBrain=JSON.stringify(d.codeBrain.telemetry());
   gl.domElement.dataset.lobes=JSON.stringify(d.lobes.telemetry());
