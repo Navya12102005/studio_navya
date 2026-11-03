@@ -25,9 +25,9 @@ export default function Journey(){
    <p className="eyebrow">{chapter.label}</p><h2>{chapter.title}</h2><p>{chapter.text}</p>
    <button className="text-cta" onClick={event=>explore(chapter,event.currentTarget)}>{chapter.action}<ArrowUpRight size={16}/></button>
   </article>)}</div>
-  <section className="anatomy-portal page-gutter" aria-label="World gateway reset" data-editorial-reveal data-gateway-state="cleared">
+  <section className="anatomy-portal page-gutter" aria-label="Tech Core gateway" data-editorial-reveal data-gateway-state="tech-core-online">
    <p className="eyebrow">04 // POST-HEART SPLIT</p><h2>The gateway is clear.</h2>
-   <p className="gateway-reset-note">Destination coordinates are reserved for the upcoming voxel realms.</p>
+   <p className="gateway-reset-note">Realm 01 online. Continue scrolling to enter the voxel Tech Core.</p>
   </section>
   {mounted?createPortal(<FullCanvasAnatomy enabled={enabled} active={active}/>,document.body):null}
  </section>;

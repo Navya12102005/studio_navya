@@ -7,9 +7,10 @@ import Domains from '../components/Domains';
 import { SpatialQuote } from '../components/SpatialEditorial';
 import { Magnetic } from '../components/Interactions';
 import { Contact, Footer, Header } from '../components/SiteChrome';
+import VoxelTechHud from '../components/VoxelTechHud';
 
 export default function Home() {
-  return <><Header /><main><EditorialMotion/>
+  return <><Header /><VoxelTechHud/><main><EditorialMotion/>
     <Journey /><TechnicalTelemetry/><CadInspection/>
     <div className="manifesto page-gutter"><p className="eyebrow">CONNECTED DISCIPLINES</p><SpatialQuote>I believe the most interesting things happen between disciplines.</SpatialQuote><div><span>THE ANALYTICAL MIND.</span><i /><span>THE CREATIVE INSTINCT.</span></div></div>
     <Domains />

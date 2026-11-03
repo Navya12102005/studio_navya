@@ -1,0 +1,9 @@
+html[data-voxel-realm=active] main,html[data-voxel-realm=active] .site-header,html[data-voxel-realm=active] .site-footer { visibility:hidden; pointer-events:none; }
+html[data-voxel-realm=active] .technical-telemetry,html[data-voxel-realm=active] .cad-inspection,html[data-voxel-realm=active] .anatomy-spatial-label { display:none; }
+.voxel-tech-hud { position:fixed; inset:0; z-index:60; pointer-events:none; color:#d5cec5; font:10px/1.8 var(--font-jetbrains),monospace; letter-spacing:.09em; text-transform:uppercase; text-shadow:0 1px 8px #030305; }
+.voxel-tech-hud header { position:absolute; top:28px; left:32px; right:32px; display:flex; justify-content:space-between; gap:24px; align-items:flex-start; }
+.voxel-tech-hud header div { display:flex; gap:22px; }.voxel-tech-hud button { pointer-events:auto; border:0; border-bottom:1px solid #a84b3b77; border-radius:0; background:transparent; color:inherit; padding:8px 0; cursor:pointer; font:inherit; text-transform:inherit; }.voxel-tech-hud button:focus-visible { outline:2px solid #e18463; outline-offset:5px; }
+.voxel-sequence { position:absolute; left:32px; top:50%; color:#e37250; }
+.voxel-tech-hud footer { position:absolute; left:32px; right:32px; bottom:25px; display:flex; gap:28px; justify-content:space-between; color:#9c8f85; }
+@media(max-width:700px){.voxel-tech-hud header { top:18px; left:18px; right:18px; flex-direction:column; gap:6px; }.voxel-sequence { left:18px; top:auto; bottom:100px; }.voxel-tech-hud footer { left:18px; right:18px; bottom:18px; display:grid; grid-template-columns:1fr 1fr; gap:5px 16px; }.voxel-tech-hud footer span:nth-child(even) { text-align:right; }}
+@media(prefers-reduced-motion:reduce){.voxel-tech-hud { display:none; }}

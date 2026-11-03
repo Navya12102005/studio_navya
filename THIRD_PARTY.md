@@ -68,3 +68,7 @@ Task 25 uses EffectComposer, RenderPass, ShaderPass and OutputPass shipped with 
 ## Code-cloud brain
 
 Task 26's glyph atlas and morph shader are original code, rendered with the already licensed local JetBrains Mono font. Neural targets are sampled from the existing BodyParts3D derivative. No code snippets are executed; no external AI, font, texture or model service is called.
+
+## Voxel Tech Core
+
+The gothic arch, vines, ash, moon/cloud layers, lava fissures, redstone circuitry, voxel brain and code terminals in `lib/voxel-tech-core.js` are original procedural Three.js work. Terminal textures are generated locally at runtime from portfolio-safe code labels. The environment is inspired by voxel-building visual language but contains no Minecraft/Mojang assets, textures, models, sounds or source code.

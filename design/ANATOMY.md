@@ -110,4 +110,12 @@ Native spatial readouts now carry the master labels. Duplicate HTML chapter pros
 
 The active build stops at the post-heart split. The former comic worlds, toon/halftone compositor, cyanotype lab, luxury-goth gallery, realm dock, work sandboxes and rebirth loop are removed from the application. Their earlier branches remain recoverable history.
 
-The licensed glass anatomy, code-brain morph, surgical sequence, acoustic field, CAD cage, point cloud, coordinate nodes, scan pass and split-portal signal remain active. The gateway exposes no destination controls or automatic camera transfer. Its HTML checkpoint is explicitly marked `data-gateway-state="cleared"` and reserves the transition for the new voxel realm engine.
+The licensed glass anatomy, code-brain morph, surgical sequence, acoustic field, CAD cage, point cloud, coordinate nodes, scan pass and split-portal signal remain active. The clean reset is preserved on `codex/anatomy-voxel-reset-preview`; on that branch the gateway exposes no destination or automatic transfer. Realm 01 is layered from that boundary here.
+
+## Realm 01: voxel Tech Core
+
+`lib/voxel-tech-core.js` begins only after scroll progress .76, preserving a visible heart-burst/split checkpoint first. It captures the live anatomical camera and drives one CatmullRom tracking path through three continuous phases: atmospheric arch entry, upward bank around the neural core, and descent to the terminal floor. Reverse scrolling below the threshold disposes the active flight state and returns control to the anatomical spiral.
+
+The environment is original procedural geometry: 53 gothic arch blocks, a deepslate voxel floor, 14 jointed crimson vines, deterministic shader ash, moving block clouds, a generated moon, animated lava fissures and more than 100 redstone circuit tiles. The brain is an instanced ellipsoidal voxel volume with a longitudinal fissure, physical glass optics and a separate shader-driven redstone neural point field. Six locally generated 1024-pixel canvas textures display Python, `vibe_coding()` and prompt parameters on command-style terminal blocks. No Minecraft textures, models, code or branded assets are bundled.
+
+The scene adapts voxel/particle counts for software rendering while retaining the same composition and motion. Reported canvas telemetry exposes actual generated counts and viewport pixel ratio. Pause freezes the shared scene clock; Escape or Return to anatomy exits the realm. Reduced-motion mode keeps the HTML checkpoint and omits the WebGL flight.
