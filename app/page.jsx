@@ -1,5 +1,4 @@
 import { ArrowUpRight, ArrowDown, Orbit, Fingerprint } from '../components/Icons';
-import ComicNarrative from '../components/ComicNarrative';
 import CadInspection from '../components/CadInspection';
 import TechnicalTelemetry from '../components/TechnicalTelemetry';
 import Journey from '../components/Journey';
@@ -10,7 +9,7 @@ import { Magnetic } from '../components/Interactions';
 import { Contact, Footer, Header } from '../components/SiteChrome';
 
 export default function Home() {
-  return <><Header /><ComicNarrative/><main><EditorialMotion/>
+  return <><Header /><main><EditorialMotion/>
     <Journey /><TechnicalTelemetry/><CadInspection/>
     <div className="manifesto page-gutter"><p className="eyebrow">CONNECTED DISCIPLINES</p><SpatialQuote>I believe the most interesting things happen between disciplines.</SpatialQuote><div><span>THE ANALYTICAL MIND.</span><i /><span>THE CREATIVE INSTINCT.</span></div></div>
     <Domains />

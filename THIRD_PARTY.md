@@ -7,7 +7,7 @@
 - GSAP / ScrollTrigger 3.15.0, under the GSAP Standard License linked below.
 - Three.js 0.187.0 and @react-three/fiber 9.8.2 (MIT), with Drei useGLTF, render the credited BodyParts3D derivative and original world assets/shaders. MIT notices ship at `/licenses/three.txt` and `/licenses/react-three-fiber.txt`.
 - Current interface symbols are the local SVG components in `components/Icons.jsx`; Lucide is not used in the current app.
-- **Actual React Bits SpotlightCard** is included in `components/react-bits/SpotlightCard.jsx` and its CSS, retrieved from the pinned upstream commit listed below. The full MIT + Commons Clause notice is retained in `licenses/react-bits.txt` and served at `/licenses/react-bits.txt`. It is retained from the earlier card-based design and is not used by the current spatial comic frames; it is not offered as a standalone component service.
+- **Actual React Bits SpotlightCard** is included in `components/react-bits/SpotlightCard.jsx` and its CSS, retrieved from the pinned upstream commit listed below. The full MIT + Commons Clause notice is retained in `licenses/react-bits.txt` and served at `/licenses/react-bits.txt`. It is retained from the earlier card-based design and is not used by the current spatial anatomy; it is not offered as a standalone component service.
 - The magnetic controls, tilt, anatomical geometry, custom shader programs, particle field and domain transition are original implementation for this site. The shaders are stylized refraction/scattering approximations, not physically based ray-traced materials.
 
 21st.dev, the four additional website references, and the ThreeUI Notion reference were supplied by the user but could not be visually inspected because the environment proxy denied access. Their code was not copied or represented as inspected.
@@ -68,9 +68,3 @@ Task 25 uses EffectComposer, RenderPass, ShaderPass and OutputPass shipped with 
 ## Code-cloud brain
 
 Task 26's glyph atlas and morph shader are original code, rendered with the already licensed local JetBrains Mono font. Neural targets are sampled from the existing BodyParts3D derivative. No code snippets are executed; no external AI, font, texture or model service is called.
-
-## Graphic-novel worlds
-
-Task 27 uses the existing Three.js MIT components and locally hosted fonts. Cel/ink/halftone shaders, code-city blocks, page hinges, rose petals and speech textures are original. Exploded anatomical plates reuse the credited BodyParts3D derivative. Molecular shapes are illustrative procedural artwork, not externally sourced protein data. Local sandbox tools do not contact an AI, scientific or analytics service.
-
-Task 28's panel-focus paths, spline vortex layout, projected prop controls and orbit interface are original additions using the same pinned Three.js and R3F dependencies. No additional third-party model, library or service was introduced.

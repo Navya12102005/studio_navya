@@ -34,6 +34,7 @@ main { position:relative; z-index:10; pointer-events:auto; background:transparen
 .anatomy-spatial-label span,.anatomy-spatial-label small { display:block; }.anatomy-spatial-label small { color:#efb6cd; font-size:8px; letter-spacing:.08em; }
 .anatomy-portal { min-height:75svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:transparent; }
 .anatomy-portal h2 { font:500 clamp(36px,5vw,76px)/1.1 var(--font-syne),sans-serif; margin-block:25px; }
+.gateway-reset-note { max-width:430px; color:#9eb1ad; font:10px/2 var(--font-jetbrains),monospace; letter-spacing:.08em; text-transform:uppercase; text-shadow:0 1px 8px #030305; }
 .anatomy-portal-choices { display:flex; gap:clamp(24px,7vw,110px); flex-wrap:wrap; justify-content:center; }.anatomy-portal-choices button:first-child { color:#5be9f5; }.anatomy-portal-choices button:last-child { color:#ffbc72; }
 
 .narrative-label { opacity:0; width:280px; white-space:normal; overflow:visible; }.narrative-0 { color:#00F0FF; }.narrative-1 { color:#bd91ff; }.narrative-2 { color:#ffaf6d; }.narrative-label small { color:inherit; }

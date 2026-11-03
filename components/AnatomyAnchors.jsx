@@ -12,7 +12,7 @@ const LABELS=[
  ['01 // TECH ENTHUSIAST','PROMPT ENGINEER & VIBE CODER'],
  ['02 // THE BACKBONE','BIOENGINEERING & BIOMEDICAL INNOVATION'],
  ['03 // CREATIVE & NON-TECH','DESIGN LEADERSHIP & STUDIO NAVYA'],
- ['04 // WORLD TRANSITION','TECH MATRIX / BIOMEDICAL LAB / CREATIVE STUDIO']
+ ['04 // WORLD TRANSITION','VOXEL DESTINATIONS / AWAITING BUILD']
 ];
 export default function AnatomyAnchors({anchors,progress,model}){
  const {size,camera}=useThree(),refs=useRef([]),narrativeRefs=useRef([]),left=useRef(),right=useRef(),creative=useRef(),bio=useRef(),panels=useRef([]),pointer=useRef(new THREE.Vector2()),smoothPointer=useRef(new THREE.Vector2());

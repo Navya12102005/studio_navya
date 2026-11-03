@@ -4,7 +4,6 @@ import './restraint.css';
 import './clean.css';
 import './technical.css';
 import './inspection.css';
-import './comic.css';
 import localFont from 'next/font/local';
 import { MotionProvider } from '../components/MotionProvider';
 
