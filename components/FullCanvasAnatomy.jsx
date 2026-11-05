@@ -20,6 +20,7 @@ import { createImportedAnatomy } from '../lib/imported-anatomy';
 import { createAnatomyNebula } from '../lib/anatomy-nebula';
 import {createVoxelTechCore} from '../lib/voxel-tech-core';
 import {createVoxelAnatomy} from '../lib/voxel-anatomy';
+import {createVoxelDomainRealms} from '../lib/voxel-domain-realms';
 
 const STYLE={position:'fixed',inset:0,zIndex:0,pointerEvents:'none',width:'100vw',height:'100vh'};
 const CAMERA={position:[0,1,9.3],fov:38,near:.025,far:70};
@@ -37,12 +38,12 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   const software=debug?/swiftshader|llvmpipe|software/i.test(context.getParameter(debug.UNMASKED_RENDERER_WEBGL)):false;
   if(software)onQuality(.6);
   gl.setClearColor('#0A0A0C',0);gl.outputColorSpace=THREE.SRGBColorSpace;gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1;gl.transmissionResolutionScale=software?.25:.75;
-  const sculpture=createImportedAnatomy(scene,gl,asset),voxelAnatomy=createVoxelAnatomy(scene,sculpture,{economy:software}),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors),blueprint=createBlueprintField(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),codeBrain=createCodeBrain(sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),inspection=createCadInspection(scene,camera,gl,sculpture,{economy:software}),techCore=createVoxelTechCore(scene,{economy:software,sourceModel:sculpture.model}),materials=new Map();scene.background=null;document.documentElement.dataset.inspection='active';
+  const sculpture=createImportedAnatomy(scene,gl,asset),voxelAnatomy=createVoxelAnatomy(scene,sculpture,{economy:software}),nebula=createAnatomyNebula(scene,{economy:software}),portal=createSplitPortal(scene,sculpture.anchors,{economy:software}),blueprint=createBlueprintField(scene,sculpture.anchors),crystalArt=createCrystalArt(scene,sculpture,{economy:software}),lobes=createLobeEngine(scene,sculpture,{economy:software}),codeBrain=createCodeBrain(sculpture,{economy:software}),surgery=createSurgicalNarrative(scene,sculpture,{economy:software}),acoustics=createAcousticField(scene,sculpture.anchors,{economy:software}),inspection=createCadInspection(scene,camera,gl,sculpture,{economy:software}),techCore=createVoxelTechCore(scene,{economy:software,sourceModel:sculpture.model}),domainRealms=createVoxelDomainRealms(scene,{economy:software}),materials=new Map();scene.background=null;document.documentElement.dataset.inspection='active';
   sculpture.model.traverse(node=>{if(node.isMesh){const m=node.material;materials.set(m.uuid,{name:m.name,transmission:m.transmission,roughness:m.roughness,clearcoat:m.clearcoat,clearcoatRoughness:m.clearcoatRoughness,ior:m.ior,thickness:m.thickness});}});
   const canvas=gl.domElement;canvas.dataset.engine='react-three-fiber';canvas.dataset.renderer='physical-mesh';canvas.dataset.modelSource='/models/skeleton.glb';canvas.dataset.importedMeshes=JSON.stringify(sculpture.sourceMeshes);canvas.dataset.physicalMaterials=JSON.stringify([...materials.values()]);canvas.dataset.wireframeMeshes='0';
-  runtime.current={sculpture,voxelAnatomy,nebula,portal,acoustics,surgery,crystalArt,lobes,codeBrain,brainMorph:0,blueprint,inspection,techCore,lastTelemetry:0,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
+  runtime.current={sculpture,voxelAnatomy,nebula,portal,acoustics,surgery,crystalArt,lobes,codeBrain,brainMorph:0,blueprint,inspection,techCore,domainRealms,lastTelemetry:0,creativeActivated:false,time:0,p:progress.current,warmth:0,target:new THREE.Vector3(0,1,0)};
   setAnchors(sculpture.anchors);onReady(true);invalidate();
-  return()=>{runtime.current=null;techCore.dispose();voxelAnatomy.dispose();codeBrain.dispose();inspection.dispose();delete document.documentElement.dataset.inspection;delete document.documentElement.dataset.voxelRealm;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
+  return()=>{runtime.current=null;domainRealms.dispose();techCore.dispose();voxelAnatomy.dispose();codeBrain.dispose();inspection.dispose();delete document.documentElement.dataset.inspection;delete document.documentElement.dataset.voxelRealm;blueprint.dispose();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:false}}));delete document.documentElement.dataset.cranialHud;lobes.dispose();crystalArt.dispose();surgery.dispose();acoustics.dispose();portal.dispose();nebula.dispose();sculpture.dispose();};
  },[scene,camera,gl,asset,onReady,onQuality,invalidate,progress,realm,velocity]);
  useFrame((state,delta)=>{
   const d=runtime.current;if(!d)return;
@@ -52,7 +53,8 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   const aspect=state.size.width/state.size.height;
   const pose=spiralPose(d.p,d.sculpture.anchors,aspect),{radius,angle,target}=pose;
   camera.position.copy(pose.position);camera.lookAt(target);
-  const techCore=d.techCore.update(d.time,d.p,camera,state.size,gl.getPixelRatio()),voxelState=techCore.active?'active':'inactive';if(document.documentElement.dataset.voxelRealm!==voxelState)document.documentElement.dataset.voxelRealm=voxelState;gl.domElement.dataset.techCore=JSON.stringify(techCore);dispatchEvent(new CustomEvent('portfolio:voxel-tech-frame',{detail:techCore}));
+  const dive=THREE.MathUtils.smoothstep(d.p,.605,.748);if(d.p<.77&&dive>0){camera.position.y-=dive*1.35;camera.position.z+=dive*.42;camera.lookAt(new THREE.Vector3(d.sculpture.anchors.heart[0],d.sculpture.anchors.heart[1]-dive*1.5,d.sculpture.anchors.heart[2]));}
+  const portalRoute=d.portal.selection(),domainRealm=d.domainRealms.update(d.time,d.p,camera,portalRoute),techCore=d.techCore.update(d.time,d.p,camera,state.size,gl.getPixelRatio(),portalRoute==='tech'),voxelState=techCore.active||domainRealm.active?'active':'inactive';if(document.documentElement.dataset.voxelRealm!==voxelState)document.documentElement.dataset.voxelRealm=voxelState;gl.domElement.dataset.techCore=JSON.stringify(techCore);gl.domElement.dataset.domainRealm=JSON.stringify(domainRealm);dispatchEvent(new CustomEvent('portfolio:voxel-tech-frame',{detail:techCore}));
   const cranialHud=d.p>.12&&d.p<.31?'active':'inactive';if(document.documentElement.dataset.cranialHud!==cranialHud)document.documentElement.dataset.cranialHud=cranialHud;
   gl.domElement.dataset.codeBrain=JSON.stringify(d.codeBrain.telemetry());
   gl.domElement.dataset.lobes=JSON.stringify(d.lobes.telemetry());
@@ -65,9 +67,9 @@ function SkeletonScene({progress,realm,velocity,active,onReady,onQuality}){
   d.inspection.update(d.time,d.p,velocity.current.value,state.size,d.brainMorph);gl.domElement.dataset.inspection=JSON.stringify(d.inspection.telemetry());
   d.blueprint.update(d.p,camera,aspect);
 
-  d.portal.update(d.p,camera);gl.domElement.dataset.gateway=JSON.stringify(d.portal.telemetry());
+  d.portal.update(d.p,camera,d.time,gl.getPixelRatio());gl.domElement.dataset.gateway=JSON.stringify(d.portal.telemetry());
   d.nebula.update(d.time,d.warmth,gl.getPixelRatio(),aspect);gl.domElement.dataset.palette=JSON.stringify({...d.nebula.palette(),warmth:d.warmth});gl.domElement.dataset.lighting=JSON.stringify(d.sculpture.lighting());
-  if(performance.now()-d.lastTelemetry>125){d.lastTelemetry=performance.now();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:true,time:d.time,progress:d.p,camera:camera.position.toArray(),meshes:d.sculpture.sourceMeshes.length,bpm:75,relativeVolume:d.sculpture.respiratoryVolume()??1,respiratoryRate:12,inspection:d.inspection.telemetry(),techCore}}));}
+  if(performance.now()-d.lastTelemetry>125){d.lastTelemetry=performance.now();dispatchEvent(new CustomEvent('portfolio:telemetry',{detail:{online:true,time:d.time,progress:d.p,camera:camera.position.toArray(),meshes:d.sculpture.sourceMeshes.length,bpm:75,relativeVolume:d.sculpture.respiratoryVolume()??1,respiratoryRate:12,inspection:d.inspection.telemetry(),techCore,domainRealm}}));}
   gl.domElement.dataset.camera=JSON.stringify({progress:d.p,angle,radius,position:camera.position.toArray(),target:target.toArray()});
   gl.domElement.dataset.modelPosition=JSON.stringify(d.sculpture.model.position.toArray());
  });

@@ -17,5 +17,5 @@ test('continuous camera flight visits atmosphere, voxel brain and code terminals
 });
 
 test('reduced motion keeps the readable gateway and does not start WebGL realm flight',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect(page.locator('.anatomy-canvas canvas')).toHaveCount(0);await expect(page.locator('[data-gateway-state="tech-core-online"]')).toContainText('Continue scrolling');await expect(page.getByRole('complementary',{name:'Tech Core telemetry'})).toHaveCount(0);
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect(page.locator('.anatomy-canvas canvas')).toHaveCount(0);await expect(page.locator('[data-gateway-state="tech-core-online"]')).toContainText('Hover and scroll deeper');await expect(page.getByRole('complementary',{name:'Tech Core telemetry'})).toHaveCount(0);
 });
